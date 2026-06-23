@@ -1,0 +1,12 @@
+.DS_Store
+*.zip
+*.sql
+*.sqlite
+*.db
+.env
+.env.*
+node_modules/
+backups/
+backup/
+work/
+*.log
