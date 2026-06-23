@@ -1,6 +1,7 @@
 # VoxLaci — novo site
 
-Site estático bilingue, responsivo e preparado para publicação rápida.
+Site estático bilingue, responsivo e preparado para publicação rápida via GitHub
+e Cloudflare Pages.
 
 ## Identidade visual
 
@@ -62,7 +63,9 @@ e visite `http://localhost:8080`.
 
 ## Publicação rápida
 
-O caminho mais simples é arrastar esta pasta para Netlify Drop ou publicar através de Cloudflare Pages/GitHub Pages. Para manter `voxlaci.com`, é necessário ter acesso ao registo do domínio e alterar os DNS para o novo alojamento.
+O caminho recomendado é Cloudflare Pages ligado ao repositório GitHub
+`voxlaci/new-website-voxlaci`. As instruções completas estão em
+`CLOUDFLARE-PAGES.md`.
 
 ## Integração com redes sociais
 

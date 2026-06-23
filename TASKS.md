@@ -3,8 +3,8 @@
 ## Urgente antes de domínio definitivo
 
 - Confirmar domínio final e atualizar `sitemap.xml`, `robots.txt` e URLs canónicos.
-- Ligar o repositório GitHub à Netlify para deploy automático.
-- Confirmar que o formulário `inscricao-voxlaci` aparece em Netlify Forms.
+- Ligar o repositório GitHub à Cloudflare Pages para deploy automático.
+- Escolher solução de formulários para Cloudflare Pages.
 - Ativar notificações por email para `info@voxlaci.com`.
 - Testar formulário de casting em produção, incluindo envio de cópia ao participante.
 - Confirmar política de privacidade, cookies e consentimento de analytics.
@@ -35,7 +35,7 @@
 
 ## Integrações
 
-- Ativar Instagram automático com `INSTAGRAM_ACCESS_TOKEN` na Netlify.
+- Ativar Instagram automático com `INSTAGRAM_ACCESS_TOKEN` na Cloudflare Pages.
 - Confirmar feed YouTube automático após publicação.
 - Avaliar Stripe, Mollie ou outro sistema seguro para pagamentos online.
 - Nunca recolher números de cartão diretamente no site.

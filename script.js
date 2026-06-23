@@ -388,7 +388,9 @@ if (SpeechRecognition) {
 
 const instagramLatest = document.querySelector(".instagram-latest");
 if (instagramLatest) {
-  fetch("/.netlify/functions/instagram-latest").then((response) => response.json()).then((post) => {
+  fetch("/instagram-latest").then((response) => response.json()).catch(() => (
+    fetch("/.netlify/functions/instagram-latest").then((response) => response.json())
+  )).then((post) => {
     if (!post.image) throw new Error("Instagram not configured");
     instagramLatest.href = post.url;
     instagramLatest.querySelector("img").src = post.image;
@@ -402,7 +404,9 @@ if (instagramLatest) {
 
 const youtubeLatest = document.querySelector(".youtube-latest");
 if (youtubeLatest) {
-  fetch("/.netlify/functions/youtube-latest").then((response) => response.json()).then((video) => {
+  fetch("/youtube-latest").then((response) => response.json()).catch(() => (
+    fetch("/.netlify/functions/youtube-latest").then((response) => response.json())
+  )).then((video) => {
     if (!video.videoId) throw new Error("YouTube feed unavailable");
     youtubeLatest.href = video.url;
     youtubeLatest.querySelector("img").src = video.thumbnail;
