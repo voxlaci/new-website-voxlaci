@@ -77,7 +77,7 @@ export async function onRequestPost(context) {
     // 1) Notificação interna para a equipa VoxLaci
     await sendEmail(env.RESEND_API_KEY, {
       from: fromAddress,
-      to: ["info@voxlaci.com"],
+      to: ["voxlaci@gmail.com"],
       reply_to: email,
       subject: `Novo casting VoxLaci — ${nome}`,
       html: resumo,
