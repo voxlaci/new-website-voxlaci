@@ -2,7 +2,9 @@ const topbar = document.querySelector(".topbar");
 const menuButton = document.querySelector(".menu-toggle");
 const desktopNav = document.querySelector(".desktop-nav");
 const languageButton = document.querySelector(".lang-toggle");
-let language = document.documentElement.lang === "en" ? "en" : "pt";
+const supportedLanguages = ["pt", "en", "es", "fr", "it"];
+const pathLanguage = location.pathname.split("/").filter(Boolean)[0];
+let language = supportedLanguages.includes(pathLanguage) ? pathLanguage : (supportedLanguages.includes(document.documentElement.lang) ? document.documentElement.lang : "pt");
 let chatLanguage = "pt";
 const castingWelcome = document.querySelector(".casting-welcome");
 const castingWelcomeClose = document.querySelector(".casting-welcome-close");
@@ -42,14 +44,181 @@ menuButton.addEventListener("click", () => {
   menuButton.setAttribute("aria-expanded", String(open));
 });
 
+const languageMeta = {
+  pt: {
+    title: "VoxLaci | Coros, grupos vocais e canto em Cascais e Lisboa",
+    description: "VoxLaci é uma comunidade coral em Cascais e Grande Lisboa. Coros e grupos vocais para crianças, jovens e adultos, eventos, festivais, inscrições e serviços musicais."
+  },
+  en: {
+    title: "VoxLaci | Choirs, vocal groups and singing in Cascais and Lisbon",
+    description: "VoxLaci is a choral community in Cascais and Greater Lisbon, with choirs and vocal groups for children, teenagers and adults."
+  },
+  es: {
+    title: "VoxLaci | Coros, grupos vocales y canto en Cascais y Lisboa",
+    description: "VoxLaci es una comunidad coral en Cascais y Gran Lisboa, con coros y grupos vocales para niños, jóvenes y adultos."
+  },
+  fr: {
+    title: "VoxLaci | Chœurs, ensembles vocaux et chant à Cascais et Lisbonne",
+    description: "VoxLaci est une communauté chorale à Cascais et dans le Grand Lisbonne, avec des chœurs et groupes vocaux pour enfants, jeunes et adultes."
+  },
+  it: {
+    title: "VoxLaci | Cori, gruppi vocali e canto a Cascais e Lisbona",
+    description: "VoxLaci è una comunità corale a Cascais e nella Grande Lisbona, con cori e gruppi vocali per bambini, giovani e adulti."
+  }
+};
+
+const uiTranslations = {
+  es: {
+    "Casting / Inscrições": "Casting / Inscripciones",
+    "Projetos": "Proyectos",
+    "Serviços": "Servicios",
+    "Eventos": "Eventos",
+    "Fazer casting": "Hacer casting",
+    "Cascais · Desde 1996": "Cascais · Desde 1996",
+    "A voz<br>é um lugar.": "La voz<br>es un lugar.",
+    "Entre. Escute. Encontre a sua.": "Entre. Escuche. Encuentre la suya.",
+    "OUVIR A VOXLACI · OUVIR A VOXLACI · ": "ESCUCHAR VOXLACI · ESCUCHAR VOXLACI · ",
+    "anos a transformar<br>respiração em pertença": "años transformando<br>respiración en pertenencia",
+    "Começar a experiência": "Comenzar la experiencia",
+    "A nossa razão": "Nuestra razón",
+    "Mais do que unirmos vozes.<br><em>Transformamos mundos.</em>": "Más que unir voces.<br><em>Transformamos mundos.</em>",
+    "Crianças, jovens, adultos, famílias, maestros e públicos. Há trinta anos que criamos ligações através da voz.": "Niños, jóvenes, adultos, familias, directores y públicos. Desde hace treinta años creamos vínculos a través de la voz.",
+    "anos de história": "años de historia",
+    "ensembles e caminhos": "ensembles y caminos",
+    "anos. Todas as idades.": "años. Todas las edades.",
+    "Ainda não sabe qual é o grupo certo? Nós ajudamos a encontrar.": "¿Todavía no sabe cuál es el grupo adecuado? Le ayudamos a encontrarlo.",
+    "Fazer casting online →": "Hacer casting online →",
+    "Encontre a sua voz": "Encuentre su voz",
+    "Não há um só caminho para cantar.": "No hay un único camino para cantar.",
+    "Escolha uma fase da vida ou siga a curiosidade.": "Elija una etapa de la vida o siga la curiosidad.",
+    "Ouvir 10 segundos": "Escuchar 10 segundos",
+    "Todos os ensembles": "Todos los ensembles",
+    "Eventos VoxLaci": "Eventos VoxLaci",
+    "Cada evento<br>abre um mundo.": "Cada evento<br>abre un mundo.",
+    "Crie connosco": "Cree con nosotros",
+    "A sua ideia.<br>A nossa voz.": "Su idea.<br>Nuestra voz.",
+    "Digital Home para artistas <i>↗</i>": "Digital Home para artistas <i>↗</i>",
+    "Experiência interativa": "Experiencia interactiva",
+    "Onde vive<br>a sua voz?": "¿Dónde vive<br>su voz?",
+    "Casting e inscrição online": "Casting e inscripción online",
+    "A sua voz<br>começa aqui.": "Su voz<br>empieza aquí.",
+    "Pagamentos 2026": "Pagos 2026",
+    "Duas formas<br>de participar.": "Dos formas<br>de participar.",
+    "A sua voz começa aqui": "Su voz empieza aquí",
+    "Encontre o seu novo grupo.": "Encuentre su nuevo grupo.",
+    "Encontrar o meu novo grupo": "Encontrar mi nuevo grupo",
+    "A VoxLaci está viva": "VoxLaci está viva",
+    "Veja. Receba.<br>Faça parte.": "Vea. Reciba.<br>Forme parte.",
+    "Falar connosco": "Contactar",
+    "Acompanhar": "Seguir"
+  },
+  fr: {
+    "Casting / Inscrições": "Casting / Inscriptions",
+    "Projetos": "Projets",
+    "Serviços": "Services",
+    "Eventos": "Événements",
+    "Fazer casting": "Faire un casting",
+    "Cascais · Desde 1996": "Cascais · Depuis 1996",
+    "A voz<br>é um lugar.": "La voix<br>est un lieu.",
+    "Entre. Escute. Encontre a sua.": "Entrez. Écoutez. Trouvez la vôtre.",
+    "OUVIR A VOXLACI · OUVIR A VOXLACI · ": "ÉCOUTER VOXLACI · ÉCOUTER VOXLACI · ",
+    "anos a transformar<br>respiração em pertença": "ans à transformer<br>le souffle en appartenance",
+    "Começar a experiência": "Commencer l’expérience",
+    "A nossa razão": "Notre raison d’être",
+    "Mais do que unirmos vozes.<br><em>Transformamos mundos.</em>": "Plus que réunir des voix.<br><em>Nous transformons des mondes.</em>",
+    "Crianças, jovens, adultos, famílias, maestros e públicos. Há trinta anos que criamos ligações através da voz.": "Enfants, jeunes, adultes, familles, chefs et publics. Depuis trente ans, nous créons des liens par la voix.",
+    "anos de história": "ans d’histoire",
+    "ensembles e caminhos": "ensembles et parcours",
+    "anos. Todas as idades.": "ans. Tous les âges.",
+    "Ainda não sabe qual é o grupo certo? Nós ajudamos a encontrar.": "Vous ne savez pas encore quel groupe choisir ? Nous vous aidons à le trouver.",
+    "Fazer casting online →": "Faire un casting en ligne →",
+    "Encontre a sua voz": "Trouvez votre voix",
+    "Não há um só caminho para cantar.": "Il n’y a pas une seule façon de chanter.",
+    "Escolha uma fase da vida ou siga a curiosidade.": "Choisissez une étape de la vie ou suivez votre curiosité.",
+    "Ouvir 10 segundos": "Écouter 10 secondes",
+    "Todos os ensembles": "Tous les ensembles",
+    "Eventos VoxLaci": "Événements VoxLaci",
+    "Cada evento<br>abre um mundo.": "Chaque événement<br>ouvre un monde.",
+    "Crie connosco": "Créez avec nous",
+    "A sua ideia.<br>A nossa voz.": "Votre idée.<br>Notre voix.",
+    "Digital Home para artistas <i>↗</i>": "Digital Home pour artistes <i>↗</i>",
+    "Experiência interativa": "Expérience interactive",
+    "Onde vive<br>a sua voz?": "Où vit<br>votre voix ?",
+    "Casting e inscrição online": "Casting et inscription en ligne",
+    "A sua voz<br>começa aqui.": "Votre voix<br>commence ici.",
+    "Pagamentos 2026": "Paiements 2026",
+    "Duas formas<br>de participar.": "Deux façons<br>de participer.",
+    "A sua voz começa aqui": "Votre voix commence ici",
+    "Encontre o seu novo grupo.": "Trouvez votre nouveau groupe.",
+    "Encontrar o meu novo grupo": "Trouver mon nouveau groupe",
+    "A VoxLaci está viva": "VoxLaci est vivant",
+    "Veja. Receba.<br>Faça parte.": "Regardez. Recevez.<br>Participez.",
+    "Falar connosco": "Nous contacter",
+    "Acompanhar": "Suivre"
+  },
+  it: {
+    "Casting / Inscrições": "Casting / Iscrizioni",
+    "Projetos": "Progetti",
+    "Serviços": "Servizi",
+    "Eventos": "Eventi",
+    "Fazer casting": "Fare il casting",
+    "Cascais · Desde 1996": "Cascais · Dal 1996",
+    "A voz<br>é um lugar.": "La voce<br>è un luogo.",
+    "Entre. Escute. Encontre a sua.": "Entra. Ascolta. Trova la tua.",
+    "OUVIR A VOXLACI · OUVIR A VOXLACI · ": "ASCOLTA VOXLACI · ASCOLTA VOXLACI · ",
+    "anos a transformar<br>respiração em pertença": "anni trasformando<br>il respiro in appartenenza",
+    "Começar a experiência": "Iniziare l’esperienza",
+    "A nossa razão": "La nostra ragione",
+    "Mais do que unirmos vozes.<br><em>Transformamos mundos.</em>": "Più che unire voci.<br><em>Trasformiamo mondi.</em>",
+    "Crianças, jovens, adultos, famílias, maestros e públicos. Há trinta anos que criamos ligações através da voz.": "Bambini, giovani, adulti, famiglie, direttori e pubblico. Da trent’anni creiamo legami attraverso la voce.",
+    "anos de história": "anni di storia",
+    "ensembles e caminhos": "ensemble e percorsi",
+    "anos. Todas as idades.": "anni. Tutte le età.",
+    "Ainda não sabe qual é o grupo certo? Nós ajudamos a encontrar.": "Non sai ancora qual è il gruppo giusto? Ti aiutiamo a trovarlo.",
+    "Fazer casting online →": "Fare il casting online →",
+    "Encontre a sua voz": "Trova la tua voce",
+    "Não há um só caminho para cantar.": "Non esiste un solo modo di cantare.",
+    "Escolha uma fase da vida ou siga a curiosidade.": "Scegli una fase della vita o segui la curiosità.",
+    "Ouvir 10 segundos": "Ascolta 10 secondi",
+    "Todos os ensembles": "Tutti gli ensemble",
+    "Eventos VoxLaci": "Eventi VoxLaci",
+    "Cada evento<br>abre um mundo.": "Ogni evento<br>apre un mondo.",
+    "Crie connosco": "Crea con noi",
+    "A sua ideia.<br>A nossa voz.": "La tua idea.<br>La nostra voce.",
+    "Digital Home para artistas <i>↗</i>": "Digital Home per artisti <i>↗</i>",
+    "Experiência interativa": "Esperienza interattiva",
+    "Onde vive<br>a sua voz?": "Dove vive<br>la tua voce?",
+    "Casting e inscrição online": "Casting e iscrizione online",
+    "A sua voz<br>começa aqui.": "La tua voce<br>inizia qui.",
+    "Pagamentos 2026": "Pagamenti 2026",
+    "Duas formas<br>de participar.": "Due modi<br>per partecipare.",
+    "A sua voz começa aqui": "La tua voce inizia qui",
+    "Encontre o seu novo grupo.": "Trova il tuo nuovo gruppo.",
+    "Encontrar o meu novo grupo": "Trovare il mio nuovo gruppo",
+    "A VoxLaci está viva": "VoxLaci è viva",
+    "Veja. Receba.<br>Faça parte.": "Guarda. Ricevi.<br>Partecipa.",
+    "Falar connosco": "Contattaci",
+    "Acompanhar": "Seguire"
+  }
+};
+
+function translateItem(item) {
+  const direct = item.dataset[language];
+  const translated = uiTranslations[language]?.[item.dataset.pt];
+  item.innerHTML = direct || translated || item.dataset.en || item.dataset.pt;
+}
+
 function applySiteLanguage() {
   document.documentElement.lang = language;
-  document.querySelectorAll("[data-pt][data-en]").forEach((item) => item.innerHTML = item.dataset[language]);
-  languageButton.textContent = language === "pt" ? "EN" : "PT";
+  const meta = languageMeta[language] || languageMeta.pt;
+  document.title = meta.title;
+  document.querySelector('meta[name="description"]')?.setAttribute("content", meta.description);
+  document.querySelectorAll("[data-pt][data-en]").forEach(translateItem);
+  if (languageButton) languageButton.value = language;
 }
 applySiteLanguage();
-languageButton.addEventListener("click", () => {
-  language = language === "pt" ? "en" : "pt";
+languageButton.addEventListener("change", () => {
+  language = supportedLanguages.includes(languageButton.value) ? languageButton.value : "pt";
   applySiteLanguage();
   if (voiceModeCopy?.[voiceMode] && !voiceBusy) setVoiceMode(voiceMode);
 });
