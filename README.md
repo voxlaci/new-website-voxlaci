@@ -95,3 +95,4 @@ Para permitir conversa livre e tradução dinâmica em praticamente qualquer lí
 - confirmar na Netlify que o formulário `inscricao-voxlaci` foi detetado e ativar notificações por email;
 - instalar Google Search Console, Bing Webmaster Tools e analytics consentido;
 - criar páginas individuais PT/EN para cada ensemble, serviço e festival.
+-Deployment refresh i June 2026
