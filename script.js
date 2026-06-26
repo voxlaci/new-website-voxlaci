@@ -2,7 +2,7 @@ const topbar = document.querySelector(".topbar");
 const menuButton = document.querySelector(".menu-toggle");
 const desktopNav = document.querySelector(".desktop-nav");
 const languageButton = document.querySelector(".lang-toggle");
-const supportedLanguages = ["pt", "en", "es", "fr", "it"];
+const supportedLanguages = ["pt", "en", "es", "fr", "it", "zh"];
 const pathLanguage = location.pathname.split("/").filter(Boolean)[0];
 let language = supportedLanguages.includes(pathLanguage) ? pathLanguage : (supportedLanguages.includes(document.documentElement.lang) ? document.documentElement.lang : "pt");
 let chatLanguage = "pt";
@@ -64,6 +64,10 @@ const languageMeta = {
   it: {
     title: "VoxLaci | Cori, gruppi vocali e canto a Cascais e Lisbona",
     description: "VoxLaci è una comunità corale a Cascais e nella Grande Lisbona, con cori e gruppi vocali per bambini, giovani e adulti."
+  },
+  zh: {
+    title: "VoxLaci | 卡斯凯什与里斯本的合唱团与声乐团体",
+    description: "VoxLaci是葡萄牙卡斯凯什大里斯本地区的合唱社区，为儿童、青少年和成人提供合唱团和声乐团体。"
   }
 };
 
@@ -199,6 +203,50 @@ const uiTranslations = {
     "Veja. Receba.<br>Faça parte.": "Guarda. Ricevi.<br>Partecipa.",
     "Falar connosco": "Contattaci",
     "Acompanhar": "Seguire"
+  },
+  zh: {
+    "Casting / Inscrições": "试唱 / 报名",
+    "Projetos": "项目",
+    "Serviços": "服务",
+    "Eventos": "活动",
+    "Fazer casting": "参加试唱",
+    "Cascais · Desde 1996": "卡斯凯什 · 自1996年",
+    "A voz<br>é um lugar.": "声音，<br>是一个地方。",
+    "Entre. Escute. Encontre a sua.": "走进来。聆听。找到属于你的声音。",
+    "OUVIR A VOXLACI · OUVIR A VOXLACI · ": "聆听 VOXLACI · 聆听 VOXLACI · ",
+    "anos a transformar<br>respiração em pertença": "年，将呼吸<br>化为归属",
+    "Começar a experiência": "开始体验",
+    "A nossa razão": "我们的使命",
+    "Mais do que unirmos vozes.<br><em>Transformamos mundos.</em>": "不只是汇聚声音。<br><em>我们改变世界。</em>",
+    "Crianças, jovens, adultos, famílias, maestros e públicos. Há trinta anos que criamos ligações através da voz.": "儿童、青少年、成人、家庭、指挥与听众。三十年来，我们用声音建立联结。",
+    "anos de história": "年历史",
+    "ensembles e caminhos": "个合唱团",
+    "anos. Todas as idades.": "岁。各个年龄。",
+    "Ainda não sabe qual é o grupo certo? Nós ajudamos a encontrar.": "不确定哪个合唱团适合您？我们来帮您找到。",
+    "Fazer casting online →": "在线试唱报名 →",
+    "Encontre a sua voz": "找到你的声音",
+    "Não há um só caminho para cantar.": "歌唱没有唯一的路。",
+    "Escolha uma fase da vida ou siga a curiosidade.": "选择一个人生阶段，或跟随好奇心。",
+    "Ouvir 10 segundos": "聆听10秒",
+    "Todos os ensembles": "全部合唱团",
+    "Eventos VoxLaci": "VoxLaci 活动",
+    "Cada evento<br>abre um mundo.": "每场活动<br>开启一个新世界。",
+    "Crie connosco": "与我们共创",
+    "A sua ideia.<br>A nossa voz.": "您的构想。<br>我们的声音。",
+    "Digital Home para artistas <i>↗</i>": "艺术家数字主页 <i>↗</i>",
+    "Experiência interativa": "互动体验",
+    "Onde vive<br>a sua voz?": "您的声音<br>住在哪里？",
+    "Casting e inscrição online": "在线试唱与报名",
+    "A sua voz<br>começa aqui.": "您的声音<br>从这里开始。",
+    "Pagamentos 2026": "2026年缴费",
+    "Duas formas<br>de participar.": "两种<br>参与方式。",
+    "A sua voz começa aqui": "您的声音从这里开始",
+    "Encontre o seu novo grupo.": "找到您的新合唱团。",
+    "Encontrar o meu novo grupo": "寻找我的新合唱团",
+    "A VoxLaci está viva": "VoxLaci 充满活力",
+    "Veja. Receba.<br>Faça parte.": "欣赏。接收。<br>成为其中一员。",
+    "Falar connosco": "联系我们",
+    "Acompanhar": "关注我们"
   }
 };
 
@@ -404,6 +452,20 @@ const copy = {
       location: ["Wir proben im Seminário Torre d'Águilha in Cascais.", "#contactos", "Kontakte ansehen"],
       human: ["Kontakt: info@voxlaci.com oder (+351) 925 075 186.", "mailto:info@voxlaci.com", "E-Mail senden"]
     }
+  },
+  zh: {
+    welcome: "好的。您想了解什么？",
+    placeholder: "请输入或说话…",
+    options: [["寻找我的合唱团", "sing"], ["儿童与青少年合唱团", "child"], ["棕枝主日节", "festival"], ["邀请VoxLaci演出", "book"], ["排练时间与地点", "location"], ["联系工作人员", "human"]],
+    fallback: "我可以帮助您了解合唱团、节日、报名、演出、时间安排和联系方式。",
+    answers: {
+      sing: ["我们有适合儿童、青少年、成人、室内声乐和职业合唱的路径。请告诉我年龄或经验。", "#vozes", "探索合唱团"],
+      child: ["Vox Pueri适合4至9/10岁儿童。Vox Soul适合10至18岁青少年。", "#vozes", "查看合唱团"],
+      festival: ["棕枝主日节汇聚来自各国的歌手、合唱团和指挥，进行大师班、排练和音乐会。", "#festival", "了解节日"],
+      book: ["我们为婚礼、典礼、企业活动和私人活动创作音乐。", "#servicos", "与我们合作"],
+      location: ["我们在卡斯凯什圣多明戈斯德拉纳的Torre d'Águilha修道院排练。", "#contactos", "查看联系方式"],
+      human: ["请联系 info@voxlaci.com 或致电 (+351) 925 075 186。", "mailto:info@voxlaci.com", "发送邮件"]
+    }
   }
 };
 
@@ -543,7 +605,7 @@ if (SpeechRecognition) {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         stream.getTracks().forEach((track) => track.stop());
       }
-      const recognitionLanguages = { pt: "pt-PT", en: "en-GB", es: "es-ES", fr: "fr-FR", it: "it-IT", de: "de-DE" };
+      const recognitionLanguages = { pt: "pt-PT", en: "en-GB", es: "es-ES", fr: "fr-FR", it: "it-IT", de: "de-DE", zh: "zh-CN" };
       recognition.lang = recognitionLanguages[chatLanguage] || "en-GB";
       recognition.start();
     } catch {

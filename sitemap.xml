@@ -12,6 +12,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://voxlaci.com/es/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://voxlaci.com/fr/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://voxlaci.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://voxlaci.com/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/"/>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -24,6 +25,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://voxlaci.com/es/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://voxlaci.com/fr/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://voxlaci.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://voxlaci.com/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/"/>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -36,6 +38,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://voxlaci.com/es/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://voxlaci.com/fr/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://voxlaci.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://voxlaci.com/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/"/>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -48,6 +51,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://voxlaci.com/es/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://voxlaci.com/fr/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://voxlaci.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://voxlaci.com/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/"/>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -60,6 +64,20 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://voxlaci.com/es/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://voxlaci.com/fr/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://voxlaci.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://voxlaci.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/"/>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://voxlaci.com/zh/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://voxlaci.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://voxlaci.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://voxlaci.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://voxlaci.com/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/"/>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
