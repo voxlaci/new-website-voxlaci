@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://voxlaci.com/</loc><lastmod>2026-06-21</lastmod><priority>1.0</priority></url>
+  <url><loc>https://voxlaci.com/</loc><lastmod>2026-06-26</lastmod><priority>1.0</priority></url>
   <url><loc>https://voxlaci.com/coros-cascais.html</loc><lastmod>2026-06-21</lastmod><priority>0.9</priority></url>
   <url><loc>https://voxlaci.com/obrigado.html</loc><lastmod>2026-06-21</lastmod><priority>0.6</priority></url>
   <url><loc>https://voxlaci.com/academia/</loc><lastmod>2026-06-21</lastmod><priority>0.6</priority></url>
@@ -41,6 +41,8 @@
   <url><loc>https://voxlaci.com/projectos/</loc><lastmod>2026-06-21</lastmod><priority>0.6</priority></url>
   <url><loc>https://voxlaci.com/ramos/</loc><lastmod>2026-06-21</lastmod><priority>0.9</priority></url>
   <url><loc>https://voxlaci.com/servicos/</loc><lastmod>2026-06-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://voxlaci.com/servicos/digital-home-artistas/</loc><lastmod>2026-06-26</lastmod><priority>0.7</priority></url>
+  <url><loc>https://voxlaci.com/servicos/web-design/</loc><lastmod>2026-06-26</lastmod><priority>0.7</priority></url>
   <url><loc>https://voxlaci.com/transportedosavos/</loc><lastmod>2026-06-21</lastmod><priority>0.6</priority></url>
   <url><loc>https://voxlaci.com/vox-laci/</loc><lastmod>2026-06-21</lastmod><priority>0.6</priority></url>
   <url><loc>https://voxlaci.com/voxpop/</loc><lastmod>2026-06-21</lastmod><priority>0.6</priority></url>

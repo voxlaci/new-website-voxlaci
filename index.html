@@ -20,6 +20,18 @@
   <meta property="og:description" content="Cantar. Unir. Inspirar. Transformar. Desde 1996, em Cascais.">
   <meta property="og:image" content="https://voxlaci.com/assets/hero-live.jpg">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://voxlaci.com/">
+  <meta property="og:site_name" content="VoxLaci">
+  <meta property="og:locale" content="pt_PT">
+  <meta property="og:image:alt" content="VoxLaci — encontro musical em Cascais, Portugal">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@VoxLaci">
+  <meta name="twitter:title" content="VoxLaci — Uma comunidade, muitas vozes">
+  <meta name="twitter:description" content="Cantar. Unir. Inspirar. Transformar. Desde 1996, em Cascais.">
+  <meta name="twitter:image" content="https://voxlaci.com/assets/hero-live.jpg">
+  <meta name="twitter:image:alt" content="VoxLaci — encontro musical em Cascais, Portugal">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
@@ -28,7 +40,7 @@
   {"@context":"https://schema.org","@type":["Organization","PerformingGroup"],"name":"VoxLaci","url":"https://voxlaci.com/","foundingDate":"1996","email":"info@voxlaci.com","telephone":"+351925075186","address":{"@type":"PostalAddress","streetAddress":"Seminário Torre d'Águilha","addressLocality":"São Domingos de Rana","addressRegion":"Cascais","addressCountry":"PT"},"sameAs":["https://www.facebook.com/VoxLaci","https://www.instagram.com/VoxLaci","https://www.youtube.com/@VoxLaci"]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Onde posso cantar num coro em Cascais?","acceptedAnswer":{"@type":"Answer","text":"VoxLaci ensaia no Seminário Torre d'Águilha, em São Domingos de Rana, Cascais, com grupos para crianças, jovens e adultos."}},{"@type":"Question","name":"Preciso de experiência para cantar na VoxLaci?","acceptedAnswer":{"@type":"Answer","text":"Não. O casting ajuda a encontrar o grupo e o percurso adequados à idade, experiência e objetivos de cada pessoa."}},{"@type":"Question","name":"Existem coros para crianças e jovens?","acceptedAnswer":{"@type":"Answer","text":"Sim. VoxPueri destina-se aproximadamente aos 4–9/10 anos e VoxSoul aos 10–18 anos."}}]}
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Onde posso cantar num coro em Cascais?","acceptedAnswer":{"@type":"Answer","text":"VoxLaci ensaia no Seminário Torre d'Águilha, em São Domingos de Rana, Cascais, com grupos para crianças, jovens e adultos."}},{"@type":"Question","name":"Preciso de experiência para cantar na VoxLaci?","acceptedAnswer":{"@type":"Answer","text":"Não. O casting ajuda a encontrar o grupo e o percurso adequados à idade, experiência e objetivos de cada pessoa."}},{"@type":"Question","name":"Existem coros para crianças e jovens?","acceptedAnswer":{"@type":"Answer","text":"Sim. VoxPueri destina-se aproximadamente aos 4–9/10 anos e VoxSoul aos 10–18 anos."}},{"@type":"Question","name":"Quanto custa participar na VoxLaci?","acceptedAnswer":{"@type":"Answer","text":"A inscrição/audição custa 20€. A mensalidade é 57€/mês (10 meses) ou 390€ por temporada completa, mais jóia anual de 30€. Existe desconto familiar de 10% a partir do segundo membro até aos 18 anos."}},{"@type":"Question","name":"A VoxLaci canta em casamentos e cerimónias?","acceptedAnswer":{"@type":"Answer","text":"Sim. VoxLaci disponibiliza grupos vocais para casamentos, baptizados e missas no distrito de Lisboa. O orçamento começa em 2100€ para animação de cerimónia. Para mais informações contacte info@voxlaci.com."}},{"@type":"Question","name":"O que é o Festival Ramos?","acceptedAnswer":{"@type":"Answer","text":"O Ramos Palm Sunday Festival é um festival coral internacional organizado pela VoxLaci que decorre na semana da Páscoa em Cascais. Inclui masterclasses, ensaios intensivos e concertos com maestros e coros convidados de vários países."}},{"@type":"Question","name":"Como faço o casting para a VoxLaci?","acceptedAnswer":{"@type":"Answer","text":"Preencha o formulário de casting disponível em voxlaci.com, indique a faixa etária e o ensemble de interesse. A inscrição fica completa após o pagamento de 20€. A equipa VoxLaci entrará em contacto para agendar o próximo passo."}}]}
   </script>
 <link rel="stylesheet" href="/universal-share.css?v=14"></head>
 <body>
@@ -281,6 +293,7 @@
       <p class="overline" data-pt="Serviços" data-en="Services">Serviços</p>
       <div class="services-list">
         <a href="servicos/digital-home-artistas/" data-pt="Digital Home para artistas <i>↗</i>" data-en="Digital Home for artists <i>↗</i>">Digital Home para artistas <i>↗</i></a>
+        <a href="servicos/web-design/" data-pt="Web design e presença digital <i>↗</i>" data-en="Web design and digital presence <i>↗</i>">Web design e presença digital <i>↗</i></a>
         <button type="button" data-detail="casamentos">Casamentos e baptizados <i>↗</i></button>
         <button type="button" data-detail="cerimonias">Missas e cerimónias <i>↗</i></button>
         <button type="button" data-detail="empresas">Empresas e team building <i>↗</i></button>
@@ -389,8 +402,7 @@
         </div>
       </div>
       <div class="community-signup">
-        <form name="newsletter" method="POST" data-netlify="true" action="/obrigado.html">
-          <input type="hidden" name="form-name" value="newsletter">
+        <form name="newsletter" method="GET" action="/obrigado.html">
           <div><p class="overline">Newsletter</p><h3 data-pt="Seja o primeiro a saber." data-en="Be the first to know.">Seja o primeiro a saber.</h3></div>
           <label><span>Email</span><input type="email" name="email" required placeholder="nome@email.com"></label>
           <label><span data-pt="Nome" data-en="Name">Nome</span><input type="text" name="nome" required></label>
