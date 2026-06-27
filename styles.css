@@ -142,3 +142,17 @@ body{background:var(--paper)}
 .youtube-latest span,.youtube-latest p,.youtube-latest b{position:relative;z-index:2}
 .youtube-latest p{max-width:440px;margin-top:auto;color:#fff;font:700 clamp(1.45rem,3vw,2.6rem)/1 Manrope;letter-spacing:-.04em}
 .youtube-latest:hover img{transform:scale(1.04)}
+
+/* Hero context line — clareza SEO/AI */
+.hero-context{font-size:.78rem;opacity:.55;margin:.5rem 0 0;letter-spacing:.01em;line-height:1.4}
+
+/* Hero casting link */
+.hero-cast-link{display:block;margin-top:.9rem;color:rgba(255,255,255,.55);text-decoration:none;font-size:.82rem;letter-spacing:.03em;transition:color .2s}
+.hero-cast-link:hover{color:#fff}
+
+/* Statement context — frase semântica para AI Overviews */
+.statement-context{font-size:.78rem;opacity:.5;margin:.25rem 0 2rem;max-width:520px;letter-spacing:.01em;line-height:1.5}
+
+/* City pills — world-stage */
+.city-pills{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.1rem}
+.city-pills span{display:inline-block;padding:.22rem .65rem;border:1px solid rgba(255,255,255,.2);border-radius:20px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6)}
