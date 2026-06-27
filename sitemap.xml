@@ -11,7 +11,7 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://voxlaci.com/it/"/>
     <xhtml:link rel="alternate" hreflang="zh" href="https://voxlaci.com/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/"/>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -91,8 +91,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/choirs-cascais.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/coros-cascais.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/choirs-cascais.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/coros-cascais.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/coros-cascais.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -100,36 +100,48 @@
   </url>
   <url>
     <loc>https://voxlaci.com/vox-laci/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/vox-laci/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/vox-laci/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/vox-laci/quem-somos/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/vox-laci/quem-somos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/vox-laci/quem-somos/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/vox-laci/cv-maestro/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/vox-laci/cv-maestro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/vox-laci/cv-maestro/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/vox-laci/palavra-de-maestro/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/vox-laci/palavra-de-maestro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/vox-laci/palavra-de-maestro/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/vox-laci/international-tours/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/vox-laci/international-tours/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/vox-laci/international-tours/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/ensembles/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -226,50 +238,64 @@
   </url>
   <url>
     <loc>https://voxlaci.com/ensembles/board-pta/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/board-pta/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/board-pta/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/ensembles/liturgico/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/liturgico/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/liturgico/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/ensembles/mates/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/mates/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/mates/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/ensembles/newgroup/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/newgroup/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/newgroup/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/ensembles/pro/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/pro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/pro/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/ensembles/sporos/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/sporos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/sporos/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/ensembles/voxlfe/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxlfe/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxlfe/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/en/ensembles/voxpueri.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxpueri.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxpueri.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxpueri.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxpueri.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -277,8 +303,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ensembles/voxsoul.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxsoul.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxsoul.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxsoul.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxsoul.html"/>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -286,8 +312,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ensembles/voxatma.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxatma.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxatma.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxatma.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxatma.html"/>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -295,8 +321,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ensembles/voxcor.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxcor.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxcor.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxcor.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxcor.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -304,8 +330,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ensembles/tutti.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/tutti.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/tutti.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/tutti.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/tutti.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -313,8 +339,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ensembles/intuicao.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/intuicao.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/intuicao.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/intuicao.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/intuicao.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -322,8 +348,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ensembles/hirmandade.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/hirmandade.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/hirmandade.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/hirmandade.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/hirmandade.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -331,8 +357,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ensembles/quorum.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/quorum.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/quorum.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/quorum.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/quorum.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -340,8 +366,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ensembles/kyma.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/kyma.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/kyma.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/kyma.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/kyma.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -349,8 +375,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ensembles/voxpetrus.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxpetrus.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxpetrus.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxpetrus.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxpetrus.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -359,7 +385,6 @@
   <url>
     <loc>https://voxlaci.com/ramos/</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -367,6 +392,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/ramos/arquivo-completo/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/arquivo-completo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/arquivo-completo/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
@@ -562,17 +589,16 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/en/ramos/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2028.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2028.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2028.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2028.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2028.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -580,8 +606,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2027.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2027.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2027.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2027.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2027.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -589,8 +615,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2026.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2026.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2026.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2026.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2026.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -598,8 +624,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2025.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2025.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2025.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2025.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2025.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
@@ -607,8 +633,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2024.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2024.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2024.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2024.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2024.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
@@ -616,8 +642,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2023.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2023.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2023.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2023.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2023.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
@@ -625,8 +651,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2022.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2022.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2022.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2022.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2022.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
@@ -634,8 +660,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2021.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2021.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2021.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2021.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2021.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>never</changefreq>
@@ -643,8 +669,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2019.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2019.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2019.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2019.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2019.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>never</changefreq>
@@ -652,8 +678,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2018.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2018.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2018.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2018.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2018.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>never</changefreq>
@@ -661,8 +687,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2017.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2017.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2017.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2017.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2017.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>never</changefreq>
@@ -670,8 +696,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2014.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2014.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2014.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2014.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2014.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>never</changefreq>
@@ -679,8 +705,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2013.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2013.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2013.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2013.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2013.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>never</changefreq>
@@ -688,8 +714,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2012.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2012.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2012.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2012.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2012.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>never</changefreq>
@@ -697,8 +723,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2011.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2011.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2011.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2011.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2011.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>never</changefreq>
@@ -706,8 +732,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2010.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2010.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2010.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2010.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2010.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>never</changefreq>
@@ -715,8 +741,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2009.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2009.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2009.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2009.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2009.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>never</changefreq>
@@ -724,8 +750,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2008.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2008.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2008.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2008.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2008.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>never</changefreq>
@@ -733,8 +759,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2007.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2007.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2007.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2007.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2007.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>never</changefreq>
@@ -742,8 +768,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2006.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2006.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2006.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2006.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2006.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>never</changefreq>
@@ -751,8 +777,8 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/ramos/editions/2005.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2005.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2005.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2005.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2005.html"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>never</changefreq>
@@ -761,7 +787,6 @@
   <url>
     <loc>https://voxlaci.com/eventos/</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/events/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -769,207 +794,272 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/events/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/events/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/en/events/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/eventos/agenda/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/agenda/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/agenda/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/eventos/janeiras/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/janeiras/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/janeiras/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/eventos/reis/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/reis/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/reis/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/eventos/stella/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/stella/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/stella/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/eventos/voxaround/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/voxaround/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/voxaround/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/eventos/voxpueri-fest/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/voxpueri-fest/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/voxpueri-fest/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/eventos/internacionais/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/internacionais/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/internacionais/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/eventos/internacionais-2/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/internacionais-2/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/internacionais-2/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/eventos/nacionais/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/nacionais/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/nacionais/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/eventos/conductors-mob/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/conductors-mob/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/conductors-mob/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/barbershop/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/barbershop/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/barbershop/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/gratias/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/gratias/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/gratias/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/hirmandade/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/hirmandade/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/hirmandade/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/coromusicaeucaristia/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/coromusicaeucaristia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/coromusicaeucaristia/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/voxpop/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/voxpop/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/voxpop/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/cascaisvoxpop/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/cascaisvoxpop/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/cascaisvoxpop/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/lisboavoxpop/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/lisboavoxpop/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/lisboavoxpop/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/portovoxpop/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/portovoxpop/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/portovoxpop/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/londonvoxpop/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/londonvoxpop/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/londonvoxpop/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/dakarvoxpop/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/dakarvoxpop/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/dakarvoxpop/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/monopolivoxpop/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/monopolivoxpop/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/monopolivoxpop/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/dakar-singing-festival/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/dakar-singing-festival/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/dakar-singing-festival/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/servicos/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/servicos/casamentos/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/casamentos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/casamentos/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/servicos/baptizados/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/baptizados/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/baptizados/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/servicos/missa-de-7o-e-30o-dia/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/missa-de-7o-e-30o-dia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/missa-de-7o-e-30o-dia/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/servicos/eventos-privados/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/eventos-privados/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/eventos-privados/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/servicos/team-building/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/team-building/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/team-building/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/servicos/som-luzes/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/som-luzes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/som-luzes/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/servicos/violinos/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/violinos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/violinos/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/servicos/guitarras/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/guitarras/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/guitarras/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/servicos/aprender-instrumento/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/aprender-instrumento/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/aprender-instrumento/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/servicos/servicos-ohana/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/servicos-ohana/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/servicos-ohana/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
@@ -977,7 +1067,6 @@
   <url>
     <loc>https://voxlaci.com/servicos/digital-home-artistas/</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/digital-home-artistas/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/servicos/digital-home-artists/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/digital-home-artistas/"/>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -985,180 +1074,234 @@
   </url>
   <url>
     <loc>https://voxlaci.com/en/servicos/digital-home-artists/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/digital-home-artistas/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/servicos/digital-home-artists/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/digital-home-artistas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/en/servicos/digital-home-artists/"/>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/servicos/web-design/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/web-design/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/web-design/"/>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/mentoria/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/mentoria/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/mentoria/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/inscricoes/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/inscricoes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/inscricoes/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/inscricoes/inscricao-online/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/inscricoes/inscricao-online/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/inscricoes/inscricao-online/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/inscricoes/marcacao/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/inscricoes/marcacao/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/inscricoes/marcacao/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/inscricoes/pagamentos/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/inscricoes/pagamentos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/inscricoes/pagamentos/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/inscricoes/ensaios-indumentaria/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/inscricoes/ensaios-indumentaria/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/inscricoes/ensaios-indumentaria/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/inscricoes/responsabilidades-dos-coristas/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/inscricoes/responsabilidades-dos-coristas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/inscricoes/responsabilidades-dos-coristas/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/projectos/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/projectos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/projectos/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/projectos/coros-nas-escolas/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/projectos/coros-nas-escolas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/projectos/coros-nas-escolas/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/projectos/de-maos-dadas/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/projectos/de-maos-dadas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/projectos/de-maos-dadas/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/projectos/voxfrater/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/projectos/voxfrater/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/projectos/voxfrater/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/projectos/bolsa-17/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/projectos/bolsa-17/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/projectos/bolsa-17/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/projectos/encontros-surpresa/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/projectos/encontros-surpresa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/projectos/encontros-surpresa/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/projectos/quadro-de-merito/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/projectos/quadro-de-merito/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/projectos/quadro-de-merito/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/media/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/media/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/media/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/media/press/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/media/press/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/media/press/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/media/discografia/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/media/discografia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/media/discografia/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/media/media/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/media/media/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/media/media/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/academia/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/academia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/academia/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/workshopprofessores/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/workshopprofessores/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/workshopprofessores/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/espacodosavos/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/espacodosavos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/espacodosavos/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/transportedosavos/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/transportedosavos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/transportedosavos/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/loja/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/loja/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/loja/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/arquivo/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/arquivo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/arquivo/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/contacto/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/contacto/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/contacto/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/politica-de-privacidade/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/politica-de-privacidade/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/politica-de-privacidade/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/politica-de-cookies/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/politica-de-cookies/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/politica-de-cookies/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-
 </urlset>
