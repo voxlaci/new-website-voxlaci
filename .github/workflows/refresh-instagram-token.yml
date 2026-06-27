@@ -1,0 +1,21 @@
+name: Refresh Instagram Token
+
+on:
+  schedule:
+    - cron: '0 9 1 * *'   # dia 1 de cada mês às 09:00 UTC
+  workflow_dispatch:        # permite disparar manualmente no GitHub
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Renovar token Instagram VoxLaci
+        run: |
+          response=$(curl -s -o body.txt -w "%{http_code}" \
+            "https://www.voxlaci.com/refresh-instagram-token")
+          body=$(cat body.txt)
+          echo "HTTP $response — $body"
+          if [ "$response" != "200" ]; then
+            echo "Falha na renovação do token!"
+            exit 1
+          fi
