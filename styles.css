@@ -156,3 +156,74 @@ body{background:var(--paper)}
 /* City pills — world-stage */
 .city-pills{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.1rem}
 .city-pills span{display:inline-block;padding:.22rem .65rem;border:1px solid rgba(255,255,255,.2);border-radius:20px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+
+/* ── Instagram posts grid (alive section) ────────────── */
+.insta-grid-wrap { margin-top: 8px; }
+.insta-grid-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  background: #151515;
+  margin-bottom: 8px;
+}
+.insta-grid-head span {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  color: #fff;
+  font-weight: 700;
+}
+.ig-follow-link {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: .85rem;
+  transition: color .2s;
+}
+.ig-follow-link:hover { color: var(--accent); }
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.insta-post-item {
+  display: block;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: #151515;
+}
+.insta-post-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .3s ease, opacity .3s ease;
+}
+.insta-post-item:hover img { transform: scale(1.04); opacity: .75; }
+.insta-post-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.5);
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+.insta-post-item:hover .insta-post-overlay { opacity: 1; }
+.insta-skel {
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  background: #1e1e1e;
+  animation: skel-fade 1.4s ease-in-out infinite alternate;
+}
+@keyframes skel-fade {
+  from { opacity: .3; }
+  to   { opacity: .7; }
+}
+@media (max-width: 800px) {
+  .insta-grid { grid-template-columns: repeat(2, 1fr); }
+}
