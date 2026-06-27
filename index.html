@@ -43,7 +43,15 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Onde posso cantar num coro em Cascais?","acceptedAnswer":{"@type":"Answer","text":"VoxLaci ensaia no Seminário Torre d'Águilha, em São Domingos de Rana, Cascais, com grupos para crianças, jovens e adultos."}},{"@type":"Question","name":"Preciso de experiência para cantar na VoxLaci?","acceptedAnswer":{"@type":"Answer","text":"Não. O casting ajuda a encontrar o grupo e o percurso adequados à idade, experiência e objetivos de cada pessoa."}},{"@type":"Question","name":"Existem coros para crianças e jovens?","acceptedAnswer":{"@type":"Answer","text":"Sim. VoxPueri destina-se aproximadamente aos 4–9/10 anos e VoxSoul aos 10–18 anos."}},{"@type":"Question","name":"Quanto custa participar na VoxLaci?","acceptedAnswer":{"@type":"Answer","text":"A inscrição/audição custa 20€. A mensalidade é 57€/mês (10 meses) ou 390€ por temporada completa, mais jóia anual de 30€. Existe desconto familiar de 10% a partir do segundo membro até aos 18 anos."}},{"@type":"Question","name":"A VoxLaci canta em casamentos e cerimónias?","acceptedAnswer":{"@type":"Answer","text":"Sim. VoxLaci disponibiliza grupos vocais para casamentos, baptizados e missas no distrito de Lisboa. O orçamento começa em 2100€ para animação de cerimónia. Para mais informações contacte info@voxlaci.com."}},{"@type":"Question","name":"O que é o Festival Ramos?","acceptedAnswer":{"@type":"Answer","text":"O Ramos Palm Sunday Festival é um festival coral internacional organizado pela VoxLaci que decorre na semana da Páscoa em Cascais. Inclui masterclasses, ensaios intensivos e concertos com maestros e coros convidados de vários países."}},{"@type":"Question","name":"Como faço o casting para a VoxLaci?","acceptedAnswer":{"@type":"Answer","text":"Preencha o formulário de casting disponível em voxlaci.com, indique a faixa etária e o ensemble de interesse. A inscrição fica completa após o pagamento de 20€. A equipa VoxLaci entrará em contacto para agendar o próximo passo."}}]}
   </script>
-<link rel="stylesheet" href="/universal-share.css?v=14"></head>
+<link rel="stylesheet" href="/universal-share.css?v=14">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<style>
+.form-erro{grid-column:1/-1;background:#fff0f0;border:1.5px solid #e53;border-radius:6px;color:#c00;font-size:.88rem;font-weight:600;padding:14px 16px;margin-bottom:8px}
+.foto-label{display:grid;gap:8px}
+.foto-hint{color:#c00;font-size:.82rem;font-weight:600;padding-top:4px}
+.cf-turnstile{grid-column:1/-1}
+</style>
+</head>
 <body>
   <a class="skip" href="#conteudo">Saltar para o conteúdo</a>
 
@@ -334,10 +342,10 @@
         <h2 data-pt="A sua voz<br>começa aqui." data-en="Your voice<br>starts here.">A sua voz<br>começa aqui.</h2>
         <p data-pt="Não precisa de saber qual é o seu tipo de voz nem qual é o grupo certo. Preencha o casting; a equipa VoxLaci ajudará a encontrar o caminho mais adequado." data-en="You do not need to know your voice type or which group is right. Complete the casting form and the VoxLaci team will help find the best path.">Não precisa de saber qual é o seu tipo de voz nem qual é o grupo certo. Preencha o casting; a equipa VoxLaci ajudará a encontrar o caminho mais adequado.</p>
       </div>
-      <form class="registration-form reveal" name="inscricao-voxlaci" method="POST" action="/enviar-casting" enctype="multipart/form-data">
+      <div id="form-erro" class="form-erro" hidden></div>
+      <form class="registration-form reveal" name="inscricao-voxlaci" method="POST" action="/enviar-casting" enctype="multipart/form-data" novalidate>
         <input type="hidden" name="form-name" value="inscricao-voxlaci">
-        <input type="hidden" name="subject" data-remove-prefix value="Novo casting VoxLaci — %{submissionId}">
-        <p class="form-hidden"><label>Não preencher: <input name="campo-secreto"></label></p>
+        <p class="form-hidden" aria-hidden="true"><label>Leave blank: <input name="campo-secreto" tabindex="-1" autocomplete="off"><input name="website" tabindex="-1" autocomplete="off"></label></p>
         <label class="span-2"><span>Nome completo / Full name *</span><input name="nome" required autocomplete="name"></label>
         <label><span>Idade / Age *</span><input type="number" name="idade" min="2" max="114" required></label>
         <label><span>País / Country</span><input name="pais" autocomplete="country-name"></label>
@@ -349,6 +357,11 @@
         <label><span>Sabe ler música?</span><select name="leitura-musical"><option>Não</option><option>Sim</option><option>Um pouco</option></select></label>
         <label><span>Como conheceu a VoxLaci?</span><select name="origem"><option>Google</option><option>Instagram</option><option>Facebook</option><option>YouTube</option><option>Família ou amigos</option><option>Evento</option><option>Outro</option></select></label>
         <label class="span-2"><span>Porque gostaria de fazer parte da VoxLaci?</span><textarea name="motivacao" rows="4"></textarea></label>
+        <label class="span-2 foto-label">
+          <span data-pt="Fotografia sua (JPG, PNG ou WEBP, máx. 5 MB) *" data-en="Your photograph (JPG, PNG or WEBP, max 5 MB) *">Fotografia sua (JPG, PNG ou WEBP, máx. 5 MB) *</span>
+          <input type="file" name="fotografia" id="campo-fotografia" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" required>
+          <span class="foto-hint" id="foto-erro" hidden></span>
+        </label>
         <fieldset class="payment-registration span-2">
           <legend data-pt="Pagamento obrigatório da inscrição / audição — 20€" data-en="Mandatory registration / audition payment — €20">Pagamento obrigatório da inscrição / audição — 20€</legend>
           <p data-pt="A inscrição só fica completa após o pagamento. Indique sempre o nome da pessoa que se está a inscrever." data-en="Registration is only complete after payment. Always identify the person being registered.">A inscrição só fica completa após o pagamento. Indique sempre o nome da pessoa que se está a inscrever.</p>
@@ -358,6 +371,7 @@
           <p class="secure-payment span-2" data-pt="Visa, Mastercard, Apple Pay e Google Pay serão disponibilizados assim que a ligação de pagamento segura Stripe/Mollie estiver associada. Nunca introduza dados do cartão diretamente neste formulário." data-en="Visa, Mastercard, Apple Pay and Google Pay will be available once the secure Stripe/Mollie payment link is connected. Never enter card details directly in this form.">Visa, Mastercard, Apple Pay e Google Pay serão disponibilizados assim que a ligação de pagamento segura Stripe/Mollie estiver associada. Nunca introduza dados do cartão diretamente neste formulário.</p>
         </fieldset>
         <label class="form-consent span-2"><input type="checkbox" name="privacidade" required><span data-pt="Aceito que estes dados sejam usados para responder ao meu casting e receber a confirmação por email." data-en="I agree that this data may be used to respond to my casting and send me an email confirmation.">Aceito que estes dados sejam usados para responder ao meu casting e receber a confirmação por email.</span></label>
+        <div class="cf-turnstile span-2" data-sitekey="__TURNSTILE_SITE_KEY__" data-language="pt"></div>
         <button class="form-submit span-2" type="submit" data-pt="Enviar casting e receber confirmação →" data-en="Submit casting and receive confirmation →">Enviar casting e receber confirmação →</button>
       </form>
     </section>
@@ -462,5 +476,60 @@
     <a href="#inscricao"><span>＋</span><b data-pt="Casting" data-en="Casting">Casting</b></a>
   </nav>
   <script src="script.js?v=16"></script>
-<script src="/universal-share.js?v=14" defer></script></body>
+<script src="/universal-share.js?v=14" defer></script>
+<script>
+// ── Mensagens de erro do casting ────────────────────────────────────────
+(function () {
+  const ERROS = {
+    "foto-ausente": "Para concluir a inscrição, é necessário anexar uma fotografia.",
+    "foto-tamanho": "A fotografia não pode exceder 5 MB.",
+    "foto-tipo": "Só são permitidos ficheiros JPG, PNG ou WEBP.",
+    "captcha": "Não foi possível validar a submissão. Tente novamente.",
+    "rate": "Demasiadas tentativas. Aguarde alguns minutos antes de tentar novamente.",
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get("erro");
+  const msg = code && ERROS[code];
+  if (msg) {
+    const el = document.getElementById("form-erro");
+    if (el) {
+      el.textContent = msg;
+      el.hidden = false;
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    // Limpa o param da URL sem reload
+    const url = new URL(window.location);
+    url.searchParams.delete("erro");
+    history.replaceState(null, "", url);
+  }
+
+  // ── Validação client-side da fotografia ──────────────────────────────
+  const fotoInput = document.getElementById("campo-fotografia");
+  const fotoErro = document.getElementById("foto-erro");
+  const ALLOWED = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+  const MAX = 5 * 1024 * 1024;
+
+  if (fotoInput && fotoErro) {
+    fotoInput.addEventListener("change", function () {
+      const file = this.files[0];
+      fotoErro.hidden = true;
+      fotoErro.textContent = "";
+      if (!file) return;
+      if (!ALLOWED.includes(file.type)) {
+        fotoErro.textContent = "Só são permitidos ficheiros JPG, PNG ou WEBP.";
+        fotoErro.hidden = false;
+        this.value = "";
+        return;
+      }
+      if (file.size > MAX) {
+        fotoErro.textContent = "A fotografia não pode exceder 5 MB.";
+        fotoErro.hidden = false;
+        this.value = "";
+      }
+    });
+  }
+})();
+</script>
+</body>
 </html>
