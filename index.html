@@ -53,6 +53,9 @@
 .foto-label{display:grid;gap:8px}
 .foto-hint{color:#c00;font-size:.82rem;font-weight:600;padding-top:4px}
 .cf-turnstile{grid-column:1/-1}
+.input-erro{border-color:#e53!important;box-shadow:0 0 0 3px rgba(238,85,51,.14)!important;outline-color:#e53!important}
+input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-shadow:none!important}
+.field-erro:not([hidden]){display:block;color:#c00;font-size:.82rem;font-weight:600;padding-top:5px;line-height:1.35}
 </style>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V1Y0NK8EJK"></script>
@@ -326,7 +329,7 @@
 
     <section class="maestro-feature">
       <img src="assets/myguel-maestro-new.jpg" alt="Myguel Santos e Castro, maestro, fundador e diretor artístico da VoxLaci">
-      <div class="reveal"><p class="overline" data-pt="Maestro · Fundador · Diretor Artístico" data-en="Conductor · Founder · Artistic Director">Maestro · Fundador · Diretor Artístico</p><h2>Myguel<br>Santos e Castro</h2><p data-pt="Uma vida dedicada a criar comunidades através da música, da direção coral e de projetos que ligam pessoas, culturas e gerações." data-en="A life dedicated to building communities through music, choral conducting and projects connecting people, cultures and generations.">Uma vida dedicada a criar comunidades através da música, da direção coral e de projetos que ligam pessoas, culturas e gerações.</p><a class="pill primary" href="ramos/#maestros" data-pt="Conhecer a direção artística →" data-en="Meet the artistic direction →">Conhecer a direção artística →</a></div>
+      <div class="reveal"><p class="overline" data-pt="Maestro · Fundador · Diretor Artístico" data-en="Conductor · Founder · Artistic Director">Maestro · Fundador · Diretor Artístico</p><h2>Myguel<br>Santos e Castro</h2><p data-pt="Uma vida dedicada a criar comunidades através da música, da direção coral e de projetos que ligam pessoas, culturas e gerações." data-en="A life dedicated to building communities through music, choral conducting and projects connecting people, cultures and generations.">Uma vida dedicada a criar comunidades através da música, da direção coral e de projetos que ligam pessoas, culturas e gerações.</p><a class="pill primary" href="https://www.myguelcastro.com" target="_blank" rel="noopener" data-pt="Conhecer a direção artística →" data-en="Meet the artistic direction →">Conhecer a direção artística →</a></div>
     </section>
 
     <section class="testimonials reveal" aria-label="Testemunhos de membros">
@@ -409,17 +412,6 @@
         </div>
         <button class="form-submit span-2" type="submit" data-pt="Enviar casting e receber confirmação →" data-en="Submit casting and receive confirmation →">Enviar casting e receber confirmação →</button>
       </form>
-      <script>
-      document.querySelector(".registration-form")?.addEventListener("submit", function() {
-        if (typeof gtag !== "undefined") {
-          gtag("event", "generate_lead", {
-            event_category: "casting",
-            event_label: "casting_form_submit",
-            value: 1
-          });
-        }
-      });
-      </script>
     </section>
 
     <section class="payments" id="pagamentos">
@@ -569,58 +561,166 @@
   <script src="script.js?v=16"></script>
 <script src="/universal-share.js?v=14" defer></script>
 <script>
-// ── Mensagens de erro do casting ────────────────────────────────────────
 (function () {
   const ERROS = {
-    "foto-ausente": "Para concluir a inscrição, é necessário anexar uma fotografia.",
-    "foto-tamanho": "A fotografia não pode exceder 5 MB.",
-    "foto-tipo": "Só são permitidos ficheiros JPG, PNG ou WEBP.",
-    "comprovativo-ausente": "Para concluir a inscrição, é necessário anexar o comprovativo de pagamento dos 20€.",
-    "captcha": "Não foi possível validar a submissão. Tente novamente.",
-    "rate": "Demasiadas tentativas. Aguarde alguns minutos antes de tentar novamente.",
+    "foto-ausente":           "Para concluir a inscrição, é necessário anexar uma fotografia.",
+    "foto-tamanho":           "A fotografia não pode exceder 5 MB.",
+    "foto-tipo":              "Só são permitidos ficheiros JPG, PNG ou WEBP.",
+    "comprovativo-ausente":   "Para concluir a inscrição, é necessário anexar o comprovativo de pagamento dos 20€.",
+    "captcha":                "Não foi possível validar a submissão. Tente novamente.",
+    "rate":                   "Demasiadas tentativas. Aguarde alguns minutos antes de tentar novamente.",
+    "campos-obrigatorios":    "Por favor, preencha todos os campos obrigatórios.",
   };
 
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get("erro");
-  const msg = code && ERROS[code];
-  if (msg) {
+  const MSGS = {
+    nome:                  "Por favor, indica o teu nome completo.",
+    idade:                 "Por favor, indica a tua idade.",
+    telefone:              "Por favor, indica o teu telefone.",
+    email:                 "Por favor, indica um email válido.",
+    fotografia:            "Por favor, anexa a tua fotografia.",
+    "pagamento-inscricao": "Por favor, seleciona a forma de pagamento.",
+    "nome-pagamento":      "Por favor, indica o nome usado no pagamento.",
+    comprovativo:          "Por favor, anexa o comprovativo de pagamento.",
+    privacidade:           "É necessário aceitar para continuar.",
+  };
+
+  // ── Banner de erro geral ──────────────────────────────────────────────
+  function showBanner(msg) {
     const el = document.getElementById("form-erro");
-    if (el) {
-      el.textContent = msg;
-      el.hidden = false;
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-    // Limpa o param da URL sem reload
+    if (!el) return;
+    el.textContent = msg;
+    el.hidden = false;
+    el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+  function hideBanner() {
+    const el = document.getElementById("form-erro");
+    if (el) { el.hidden = true; el.textContent = ""; }
+  }
+
+  // ── Mostrar erro do servidor via ?erro= ──────────────────────────────
+  const params = new URLSearchParams(window.location.search);
+  const serverCode = params.get("erro");
+  if (serverCode && ERROS[serverCode]) {
+    showBanner(ERROS[serverCode]);
     const url = new URL(window.location);
     url.searchParams.delete("erro");
     history.replaceState(null, "", url);
   }
 
-  // ── Validação client-side da fotografia ──────────────────────────────
-  const fotoInput = document.getElementById("campo-fotografia");
-  const fotoErro = document.getElementById("foto-erro");
-  const ALLOWED = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
-  const MAX = 5 * 1024 * 1024;
-
-  if (fotoInput && fotoErro) {
-    fotoInput.addEventListener("change", function () {
-      const file = this.files[0];
-      fotoErro.hidden = true;
-      fotoErro.textContent = "";
-      if (!file) return;
-      if (!ALLOWED.includes(file.type)) {
-        fotoErro.textContent = "Só são permitidos ficheiros JPG, PNG ou WEBP.";
-        fotoErro.hidden = false;
-        this.value = "";
-        return;
+  // ── Helpers de erro por campo ────────────────────────────────────────
+  function errorSpanFor(input) {
+    const id = input.name === "fotografia" ? "foto-erro" : "erro-" + input.name;
+    let span = document.getElementById(id);
+    if (!span) {
+      span = document.createElement("span");
+      span.id = id;
+      span.className = "field-erro";
+      span.setAttribute("role", "alert");
+      span.hidden = true;
+      if (input.type === "checkbox") {
+        input.closest("label").appendChild(span);
+      } else {
+        input.insertAdjacentElement("afterend", span);
       }
-      if (file.size > MAX) {
-        fotoErro.textContent = "A fotografia não pode exceder 5 MB.";
-        fotoErro.hidden = false;
+    }
+    if (!input.getAttribute("aria-describedby")) {
+      input.setAttribute("aria-describedby", id);
+    }
+    return span;
+  }
+
+  function setError(input, msg) {
+    input.setAttribute("aria-invalid", "true");
+    input.classList.add("input-erro");
+    const span = errorSpanFor(input);
+    span.textContent = msg;
+    span.hidden = false;
+  }
+
+  function clearError(input) {
+    input.removeAttribute("aria-invalid");
+    input.classList.remove("input-erro");
+    const id = input.name === "fotografia" ? "foto-erro" : "erro-" + input.name;
+    const span = document.getElementById(id);
+    if (span) { span.textContent = ""; span.hidden = true; }
+  }
+
+  function isValid(field) {
+    if (field.type === "checkbox") return field.checked;
+    if (field.type === "file")     return !!(field.files && field.files.length > 0);
+    if (field.tagName === "SELECT") return field.value !== "";
+    if (field.type === "email")    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim());
+    return field.value.trim() !== "";
+  }
+
+  // ── Validação da fotografia (tipo e tamanho) ─────────────────────────
+  const fotoInput = document.getElementById("campo-fotografia");
+  const ALLOWED_FOTO = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+  const MAX_FOTO = 5 * 1024 * 1024;
+
+  if (fotoInput) {
+    fotoInput.addEventListener("change", function () {
+      clearError(this);
+      const file = this.files[0];
+      if (!file) return;
+      if (!ALLOWED_FOTO.includes(file.type)) {
+        setError(this, "Só são permitidos ficheiros JPG, PNG ou WEBP.");
+        this.value = ""; return;
+      }
+      if (file.size > MAX_FOTO) {
+        setError(this, "A fotografia não pode exceder 5 MB.");
         this.value = "";
       }
     });
   }
+
+  // ── Validação no submit ──────────────────────────────────────────────
+  const form = document.querySelector(".registration-form");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    const required = Array.from(form.querySelectorAll("[required]"));
+    const errorFields = [];
+
+    required.forEach(function (field) {
+      if (!isValid(field)) {
+        setError(field, MSGS[field.name] || "Campo obrigatório.");
+        errorFields.push(field);
+      } else {
+        clearError(field);
+      }
+    });
+
+    if (errorFields.length > 0) {
+      e.preventDefault();
+      showBanner("Por favor, preencha todos os campos obrigatórios assinalados a vermelho.");
+      const first = errorFields[0];
+      first.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (first.type !== "file") first.focus();
+      return;
+    }
+
+    hideBanner();
+
+    if (typeof gtag !== "undefined") {
+      gtag("event", "generate_lead", {
+        event_category: "casting",
+        event_label: "casting_form_submit",
+        value: 1,
+      });
+    }
+  });
+
+  // ── Limpar erros ao corrigir ─────────────────────────────────────────
+  ["input", "change"].forEach(function (evt) {
+    form.addEventListener(evt, function (e) {
+      const field = e.target;
+      if (field.hasAttribute("required") && isValid(field)) {
+        clearError(field);
+        if (!form.querySelector("[aria-invalid='true']")) hideBanner();
+      }
+    });
+  });
 })();
 </script>
 </body>

@@ -80,7 +80,7 @@ export async function onRequestPost(context) {
   const nomePagamento = sanitize(formData.get("nome-pagamento"));
 
   if (!nome || !idade || !telefone || !email) {
-    return new Response("Faltam campos obrigatórios.", { status: 400 });
+    return errorRedirect(base, "campos-obrigatorios");
   }
 
   // ── Validar fotografia (obrigatória) ─────────────────────────────────
