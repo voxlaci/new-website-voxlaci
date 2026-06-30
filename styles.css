@@ -255,3 +255,7 @@ details.faq-home-item p { margin: 0; padding: 0 0 24px; color: #555; line-height
 .testimonial-card cite { display: block; margin-top: 22px; font-style: normal; font-size: .83rem; color: #999; }
 .testimonial-card cite strong { color: #333; display: block; margin-bottom: 2px; }
 @media(max-width:800px) { .testimonials-grid { grid-template-columns: 1fr; } }
+
+/* Turnstile label */
+.turnstile-wrap { display: flex; flex-direction: column; gap: 10px; }
+.turnstile-label { font-size: .85rem; font-weight: 600; color: var(--grey, #555); }

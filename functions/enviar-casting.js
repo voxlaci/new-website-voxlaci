@@ -103,6 +103,12 @@ export async function onRequestPost(context) {
     return errorRedirect(base, "foto-tipo");
   }
 
+  // ── Validar comprovativo de pagamento (obrigatório) ───────────────────
+  const comprovativo = formData.get("comprovativo");
+  if (!comprovativo || typeof comprovativo !== "object" || !("arrayBuffer" in comprovativo) || comprovativo.size === 0) {
+    return errorRedirect(base, "comprovativo-ausente");
+  }
+
   if (!env.RESEND_API_KEY) {
     return new Response(
       "O envio de email ainda não está configurado. Contacte info@voxlaci.com diretamente.",
@@ -113,22 +119,19 @@ export async function onRequestPost(context) {
   // ── Preparar anexos ───────────────────────────────────────────────────
   const attachments = [];
 
-  // Fotografia de candidato
+  // Fotografia do candidato
   const fotoBuffer = await fotografia.arrayBuffer();
   attachments.push({
     filename: `foto-${sanitizeFilename(nome)}.${extFromMime(fotografia.type, fotoName)}`,
     content: toBase64(fotoBuffer),
   });
 
-  // Comprovativo de pagamento (opcional)
-  const comprovativo = formData.get("comprovativo");
-  if (comprovativo && typeof comprovativo === "object" && "arrayBuffer" in comprovativo && comprovativo.size > 0) {
-    const buf = await comprovativo.arrayBuffer();
-    attachments.push({
-      filename: comprovativo.name || "comprovativo",
-      content: toBase64(buf),
-    });
-  }
+  // Comprovativo de pagamento (obrigatório — já validado acima)
+  const comprovanteBuffer = await comprovativo.arrayBuffer();
+  attachments.push({
+    filename: comprovativo.name || `comprovativo-${sanitizeFilename(nome)}`,
+    content: toBase64(comprovanteBuffer),
+  });
 
   // ── Corpo do email ────────────────────────────────────────────────────
   const resumo = `
@@ -157,7 +160,7 @@ export async function onRequestPost(context) {
       from,
       to: ["info@voxlaci.com"],
       reply_to: email,
-      subject: `Novo casting VoxLaci — ${nome}`,
+      subject: `Casting — ${nome}`,
       html: resumo,
       attachments,
     });
@@ -165,12 +168,13 @@ export async function onRequestPost(context) {
     await sendEmail(env.RESEND_API_KEY, {
       from,
       to: [email],
-      subject: "Recebemos o seu casting VoxLaci",
+      subject: "Casting VoxLaci — recebemos a tua candidatura",
       html: `
         <p>Olá ${esc(nome)},</p>
-        <p>Recebemos o seu casting. A equipa VoxLaci entrará em contacto para indicar o próximo passo.</p>
+        <p>Recebemos o teu casting. A equipa VoxLaci entrará em contacto para indicar o próximo passo.</p>
         ${resumo}
       `,
+      attachments,
     });
   } catch (err) {
     console.error("Erro ao enviar email do casting:", err);

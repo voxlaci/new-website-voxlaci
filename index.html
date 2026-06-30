@@ -403,7 +403,10 @@
           <p class="secure-payment span-2" data-pt="Visa, Mastercard, Apple Pay e Google Pay serão disponibilizados assim que a ligação de pagamento segura Stripe/Mollie estiver associada. Nunca introduza dados do cartão diretamente neste formulário." data-en="Visa, Mastercard, Apple Pay and Google Pay will be available once the secure Stripe/Mollie payment link is connected. Never enter card details directly in this form.">Visa, Mastercard, Apple Pay e Google Pay serão disponibilizados assim que a ligação de pagamento segura Stripe/Mollie estiver associada. Nunca introduza dados do cartão diretamente neste formulário.</p>
         </fieldset>
         <label class="form-consent span-2"><input type="checkbox" name="privacidade" required><span data-pt="Aceito que estes dados sejam usados para responder ao meu casting e receber a confirmação por email." data-en="I agree that this data may be used to respond to my casting and send me an email confirmation.">Aceito que estes dados sejam usados para responder ao meu casting e receber a confirmação por email.</span></label>
-        <div class="cf-turnstile span-2" data-sitekey="1x00000000000000000000AA" data-language="pt"></div>
+        <div class="turnstile-wrap span-2">
+          <label class="turnstile-label" data-pt="Verificação de segurança — confirme que é humano" data-en="Security check — confirm you are human">Verificação de segurança — confirme que é humano</label>
+          <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="pt"></div>
+        </div>
         <button class="form-submit span-2" type="submit" data-pt="Enviar casting e receber confirmação →" data-en="Submit casting and receive confirmation →">Enviar casting e receber confirmação →</button>
       </form>
       <script>
@@ -572,6 +575,7 @@
     "foto-ausente": "Para concluir a inscrição, é necessário anexar uma fotografia.",
     "foto-tamanho": "A fotografia não pode exceder 5 MB.",
     "foto-tipo": "Só são permitidos ficheiros JPG, PNG ou WEBP.",
+    "comprovativo-ausente": "Para concluir a inscrição, é necessário anexar o comprovativo de pagamento dos 20€.",
     "captcha": "Não foi possível validar a submissão. Tente novamente.",
     "rate": "Demasiadas tentativas. Aguarde alguns minutos antes de tentar novamente.",
   };
