@@ -8,7 +8,41 @@
   <link rel="canonical" href="https://voxlaci.com/ramos/"><link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/"><link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/"><link rel="stylesheet" href="../subpage.css">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Festival","name":"Ramos Palm Sunday Festival 2027","startDate":"2027-03-15","endDate":"2027-03-21","location":{"@type":"Place","name":"Seminário Torre d'Águilha","address":{"@type":"PostalAddress","addressLocality":"São Domingos de Rana","addressRegion":"Cascais","addressCountry":"PT"}},"organizer":{"@type":"Organization","name":"VoxLaci","url":"https://voxlaci.com"},"performer":{"@type":"Person","name":"Felicia Barber"}}</script>
-<link rel="stylesheet" href="/universal-share.css?v=14"></head>
+<link rel="stylesheet" href="/universal-share.css?v=14">
+<style>
+/* === Grelha de edições Ramos === */
+.ramos-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:32px}
+@media(max-width:1024px){.ramos-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:760px){.ramos-grid{grid-template-columns:repeat(3,1fr);gap:10px}}
+@media(max-width:480px){.ramos-grid{grid-template-columns:repeat(2,1fr);gap:8px}}
+.ramos-card{background:none;border:1px solid var(--line,#d2d2d7);border-radius:10px;overflow:hidden;cursor:pointer;padding:0;text-align:left;display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s;width:100%}
+.ramos-card:hover,.ramos-card:focus-visible{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.15);outline:2px solid var(--gold,#6c63ff);outline-offset:2px}
+.ramos-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.ramos-card-body{padding:10px 12px 4px;background:#fff;flex:1;display:flex;flex-direction:column;gap:3px}
+.ramos-card-body b{font-size:1rem;font-family:Manrope,sans-serif;display:block;line-height:1.2}
+.ramos-card-body span{font-size:.7rem;color:var(--muted,#6e6e73);display:block;line-height:1.35}
+.ramos-card-cta{display:block;padding:4px 12px 10px;font-size:.75rem;font-weight:700;color:var(--gold,#6c63ff);background:#fff}
+.ramos-card--future .ramos-card-cta{color:var(--muted,#6e6e73)}
+/* === Modal de edição Ramos === */
+.remodal-overlay{display:none;position:fixed;inset:0;background:rgba(5,5,5,.65);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:900;align-items:center;justify-content:center;padding:20px}
+.remodal-overlay.is-open{display:flex}
+.remodal{background:#fff;border-radius:14px;padding:36px 32px 28px;max-width:580px;width:100%;max-height:88vh;overflow-y:auto;position:relative;animation:remodal-in .22s ease}
+@media(max-width:480px){.remodal{padding:28px 20px 20px;border-radius:10px}}
+@keyframes remodal-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.remodal-close{position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.6rem;line-height:1;color:var(--muted,#6e6e73);cursor:pointer;padding:4px}
+.remodal-close:hover{color:var(--ink,#050505)}
+.remodal-eyebrow{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted,#6e6e73);margin:0 0 4px}
+.remodal-title{font-size:1.55rem;font-family:Manrope,sans-serif;margin:0 0 2px;line-height:1.15;color:var(--ink,#050505)}
+.remodal-country{font-size:.82rem;color:var(--muted,#6e6e73);margin:0 0 18px}
+.remodal-summary{font-size:.95rem;line-height:1.65;margin:0;color:var(--ink,#050505)}
+.remodal-prog{border-top:1px solid var(--line,#d2d2d7);margin-top:18px;padding-top:16px}
+.remodal-prog-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted,#6e6e73);margin-bottom:10px}
+.remodal-prog-list{font-size:.84rem;line-height:1.8;color:#333;white-space:pre-line}
+.remodal-future-msg{font-size:.9rem;color:var(--muted,#6e6e73);font-style:italic;border-top:1px solid var(--line,#d2d2d7);margin-top:18px;padding-top:16px}
+.remodal-link{display:inline-block;margin-top:20px;font-size:.84rem;font-weight:700;color:var(--gold,#6c63ff);text-decoration:none}
+.remodal-link:hover{text-decoration:underline}
+</style>
+</head>
 <body>
   <header class="page-nav"><a href="../"><img src="../assets/voxlaci-logo-white.png" alt="VoxLaci"></a><nav><a href="#2027">2027</a><a href="#participar">Participar</a><a href="#edicoes">Edições</a><a href="#maestros">Maestros</a></nav><a class="page-language" href="../en/ramos/">EN</a><a class="cta" href="mailto:info@voxlaci.com?subject=Ramos%202027">Candidatar-me</a></header>
   <main>
@@ -23,31 +57,32 @@
       <details><summary>Chegada, alojamento e local</summary><div><p>Os ensaios decorrem no Seminário Torre d’Águilha, São Domingos de Rana, Cascais, a cerca de 30 minutos de Lisboa. Cada participante trata da própria viagem e alojamento. É possível chegar de metro até Cais do Sodré e seguir de comboio para Cascais.</p></div></details>
       <details><summary>Pagamento</summary><div><p><b>Associação Vox SDR</b><br>IBAN: PT50 0036 0196 9910 0035 3991 7<br>BIC/SWIFT: MPIOPTPL<br>Banco Montepio Geral<br>PayPal: info@voxlaci.com<br>MB Way: 938 407 985</p></div></details>
     </div></section>
-    <section class="section" id="edicoes"><div class="section-head"><p class="eyebrow">Arquivo 2005–2028</p><h2>Cada edição deixa uma voz.</h2><p>Deslize para conhecer os maestros, cartazes e páginas de cada edição.</p></div><div class="ramos-rail">
-      <a href="edicoes/2005.html"><img src="../assets/ramos/ramos-2005.jpg" alt="Walter Bially"><b>2005</b><span>Walter Bially · Alemanha</span></a>
-      <a href="edicoes/2006.html"><img src="../assets/ramos/ramos-2006.jpg" alt="Joel Thomas"><b>2006</b><span>Joel Thomas · Grã-Bretanha</span></a>
-      <a href="edicoes/2007.html"><img src="../assets/ramos/ramos-2007.jpg" alt="Branka Potočnik"><b>2007</b><span>Branka Potočnik · Eslovénia</span></a>
-      <a href="edicoes/2008.html"><img src="../assets/ramos/ramos-2008.jpg" alt="Frankie Wai"><b>2008</b><span>Frankie Wai · China</span></a>
-      <a href="edicoes/2009.html"><img src="../assets/ramos/ramos-2009.jpg" alt="Vincenzo Scarafile"><b>2009</b><span>Vincenzo Scarafile · Itália</span></a>
-      <a href="edicoes/2010.html"><img src="../assets/ramos/ramos-2010.jpg" alt="David A. McConnell"><b>2010</b><span>David A. McConnell · USA</span></a>
-      <a href="edicoes/2011.html"><img src="../assets/ramos/ramos-2011.jpg" alt="Jean-Marie Puissant"><b>2011</b><span>Jean-Marie Puissant · França</span></a>
-      <a href="edicoes/2012.html"><img src="../assets/ramos/ramos-2012.jpg" alt="Marta Jacubiec"><b>2012</b><span>Marta Jacubiec · Polónia</span></a>
-      <a href="edicoes/2013.html"><img src="../assets/ramos/ramos-2013.jpg" alt="Raimon Romaní"><b>2013</b><span>Raimon Romaní · Espanha</span></a>
-      <a href="edicoes/2014.html"><img src="../assets/ramos/ramos-2014.jpg" alt="Virginia Bono"><b>2014</b><span>Virginia Bono · Argentina</span></a>
-      <a href="edicoes/2017.html"><img src="../assets/ramos/ramos-2017.jpg" alt="Ivan Moody"><b>2017</b><span>Ivan Moody · Inglaterra/Portugal</span></a>
-      <a href="edicoes/2018.html"><img src="../assets/ramos/ramos-2018.jpg" alt="Eric Banks"><b>2018</b><span>Eric Banks · USA</span></a>
-      <a href="edicoes/2019.html"><img src="../assets/ramos/ramos-2019.jpg" alt="Vladimir Silva"><b>2019</b><span>Vladimir Silva · Brasil</span></a>
-      <a href="edicoes/2021.html"><img src="../assets/ramos/ramos-2021.jpg" alt="Myguel Santos e Castro"><b>2021</b><span>Myguel Santos e Castro · Portugal</span></a>
-      <a href="edicoes/2022.html"><img src="../assets/ramos/ramos-2022.jpg" alt="Donka Miteva"><b>2022</b><span>Donka Miteva · Bulgária/Alemanha</span></a>
-      <a href="edicoes/2023.html"><img src="../assets/ramos/steve-scott.jpg" alt="Steve Scott"><b>2023</b><span>Steve Scott · USA</span></a>
-      <a href="edicoes/2024.html"><img src="../assets/ramos/david-mcconnell.jpg" alt="David A. McConnell"><b>2024</b><span>David A. McConnell · USA</span></a>
-      <a href="edicoes/2025.html"><img src="../assets/ramos/myguel-2025.jpg" alt="Myguel Santos e Castro"><b>2025</b><span>Myguel Santos e Castro · Portugal</span></a>
-      <a href="edicoes/2026.html"><img src="../assets/ramos/jean-kleeb.jpg" alt="Jean Kleeb"><b>2026</b><span>Jean Kleeb · Brasil/Alemanha</span></a>
-      <a href="edicoes/2027.html"><img src="../assets/ramos/felicia-barber-headshot.jpg" alt="Felicia Barber"><b>2027</b><span>Felicia Barber · USA</span></a>
-      <a href="edicoes/2028.html"><img src="../assets/ramos/donald-brinegar.jpg" alt="Donald Brinegar"><b>2028</b><span>Donald Brinegar · USA</span></a>
+    <section class="section" id="edicoes"><div class="section-head"><p class="eyebrow">Arquivo 2005–2028</p><h2>Cada edição deixa uma voz.</h2><p>Clique numa edição para descobrir o maestro, o programa e o repertório.</p></div>
+    <div class="ramos-grid">
+      <button class="ramos-card" type="button" data-year="2005"><img src="../assets/ramos/ramos-2005.jpg" alt="Ramos 2005"><div class="ramos-card-body"><b>2005</b><span>Walter Bially · Alemanha</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2006"><img src="../assets/ramos/ramos-2006.jpg" alt="Ramos 2006"><div class="ramos-card-body"><b>2006</b><span>Joel Thomas · Grã-Bretanha</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2007"><img src="../assets/ramos/ramos-2007.jpg" alt="Ramos 2007"><div class="ramos-card-body"><b>2007</b><span>Branka Potočnik · Eslovénia</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2008"><img src="../assets/ramos/ramos-2008.jpg" alt="Ramos 2008"><div class="ramos-card-body"><b>2008</b><span>Frankie Wai · China</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2009"><img src="../assets/ramos/ramos-2009.jpg" alt="Ramos 2009"><div class="ramos-card-body"><b>2009</b><span>Vincenzo Scarafile · Itália</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2010"><img src="../assets/ramos/ramos-2010.jpg" alt="Ramos 2010"><div class="ramos-card-body"><b>2010</b><span>David A. McConnell · USA</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2011"><img src="../assets/ramos/ramos-2011.jpg" alt="Ramos 2011"><div class="ramos-card-body"><b>2011</b><span>Jean-Marie Puissant · França</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2012"><img src="../assets/ramos/ramos-2012.jpg" alt="Ramos 2012"><div class="ramos-card-body"><b>2012</b><span>Marta Jakubiec · Polónia</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2013"><img src="../assets/ramos/ramos-2013.jpg" alt="Ramos 2013"><div class="ramos-card-body"><b>2013</b><span>Raimon Romaní · Espanha</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2014"><img src="../assets/ramos/ramos-2014.jpg" alt="Ramos 2014"><div class="ramos-card-body"><b>2014</b><span>Virginia Bono · Argentina</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2017"><img src="../assets/ramos/ramos-2017.jpg" alt="Ramos 2017"><div class="ramos-card-body"><b>2017</b><span>Ivan Moody · Inglaterra / Portugal</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2018"><img src="../assets/ramos/ramos-2018.jpg" alt="Ramos 2018"><div class="ramos-card-body"><b>2018</b><span>Eric Banks · USA</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2019"><img src="../assets/ramos/ramos-2019.jpg" alt="Ramos 2019"><div class="ramos-card-body"><b>2019</b><span>Vladimir Silva · Brasil</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2021"><img src="../assets/ramos/ramos-2021.jpg" alt="Ramos 2021"><div class="ramos-card-body"><b>2021</b><span>Myguel Santos e Castro · Portugal</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2022"><img src="../assets/ramos/ramos-2022.jpg" alt="Ramos 2022"><div class="ramos-card-body"><b>2022</b><span>Donka Miteva · Bulgária / Alemanha</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2023"><img src="../assets/ramos/steve-scott.jpg" alt="Ramos 2023"><div class="ramos-card-body"><b>2023</b><span>Steve Scott · USA</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2024"><img src="../assets/ramos/david-mcconnell.jpg" alt="Ramos 2024"><div class="ramos-card-body"><b>2024</b><span>David A. McConnell · USA</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2025"><img src="../assets/ramos/myguel-2025.jpg" alt="Ramos 2025"><div class="ramos-card-body"><b>2025</b><span>Myguel Santos e Castro · Portugal</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card" type="button" data-year="2026"><img src="../assets/ramos/jean-kleeb.jpg" alt="Ramos 2026"><div class="ramos-card-body"><b>2026</b><span>Jean Kleeb · Brasil / Alemanha</span></div><span class="ramos-card-cta">Ver mais →</span></button>
+      <button class="ramos-card ramos-card--future" type="button" data-year="2027"><img src="../assets/ramos/felicia-barber-headshot.jpg" alt="Ramos 2027"><div class="ramos-card-body"><b>2027</b><span>Felicia Barber · USA</span></div><span class="ramos-card-cta">Programa em breve</span></button>
+      <button class="ramos-card ramos-card--future" type="button" data-year="2028"><img src="../assets/ramos/donald-brinegar.jpg" alt="Ramos 2028"><div class="ramos-card-body"><b>2028</b><span>Donald Brinegar · USA</span></div><span class="ramos-card-cta">Programa em breve</span></button>
     </div>
     <div class="archive-actions">
-      <a class="button" href="arquivo-completo/">Abrir programas e repertórios completos +</a>
+      <a class="button" href="arquivo-completo/">Programas e repertórios completos</a>
     </div></section>
     <section class="section white next-conductor"><div class="artist">
       <img src="../assets/ramos/donald-brinegar.jpg" alt="Maestro do Ramos">
@@ -61,4 +96,81 @@
     <section class="page-cta"><p class="eyebrow">Ramos 2027</p><h2>Uma semana pode mudar a forma como escuta, canta e dirige.</h2><a class="button primary" href="mailto:info@voxlaci.com?subject=Candidatura%20Ramos%202027">Enviar candidatura</a></section>
   </main>
   <footer class="page-footer"><div><img src="../assets/voxlaci-logo-white.png" alt="VoxLaci"><p>Ramos Palm Sunday Festival · Portugal</p></div><div><a href="mailto:info@voxlaci.com">info@voxlaci.com</a><a href="tel:+351925075186">(+351) 925 075 186</a><a href="../">Voltar ao site VoxLaci</a></div></footer>
+<!-- Modal de edição Ramos -->
+<div class="remodal-overlay" id="ramosModal" role="dialog" aria-modal="true" aria-labelledby="ramosModalTitle">
+  <div class="remodal">
+    <button class="remodal-close" id="ramosModalClose" aria-label="Fechar">&times;</button>
+    <p class="remodal-eyebrow" id="ramosModalEyebrow"></p>
+    <h4 class="remodal-title" id="ramosModalTitle"></h4>
+    <p class="remodal-country" id="ramosModalCountry"></p>
+    <p class="remodal-summary" id="ramosModalSummary"></p>
+    <div id="ramosModalProg"></div>
+    <a class="remodal-link" id="ramosModalLink" href="#" target="_self">Ver página desta edição →</a>
+  </div>
+</div>
+<script>
+(function(){
+  var DATA = {
+    "2005":{conductor:"Walter Bially",country:"Alemanha",summary:"A primeira edição iniciou em Portugal uma tradição internacional de música coral sacra.",programme:"António Carreira — Segundo Tento a Quatro em Sol\nKnut Nystedt — Peace I Leave with You\nMaurice Duruflé — Ubi Caritas · Tota Pulchra es Maria · Tu es Petrus\nJohann Pachelbel — Fuga em Ré menor\nLouis-Nicolas Clérambault — Trio de Suite de Premier Ton\nJ.S. Bach — Jesu meine Freude\nAntónio Carreira — Sexti Toni Fantasia a Quatro\nTradicional, arr. Thomas Moore — An Irish Blessing"},
+    "2006":{conductor:"Joel Thomas",country:"Grã-Bretanha",summary:"A segunda edição consolidou o encontro entre cantores VoxLaci e diferentes tradições de direção.",programme:"Thomas Tallis — If Ye Love Me · Hear the Voice and Prayer\nArthur Hutchings — Hosanna to the Son of David\nBartholomäus Gesius — Hosianna dem Sohne Davids\nWilliam H. Harris — Holy is the True Light\nGeorge Malcolm — Ingrediente Domino\nTomás Luis de Victoria — Jesu Dulcis Memoria · Pueri Hebraeorum\nJohn Tavener — The Lamb\nLouis Bourgeois — O Gladsome Light, O Grace\nAnton Bruckner — Locus Iste\nJacques Arcadelt — O Lord, My God, to Thee\nJohn Rutter — God Be in My Head"},
+    "2007":{conductor:"Branka Potočnik",country:"Eslovénia",summary:"A terceira edição alargou o diálogo artístico europeu do festival.",programme:"Iacobus Gallus — Domine, Ante Te Omne\nDamijan Močnik — Hagios o Theos\nWilliam Mathias — Laetentur Coeli\nKnut Nystedt — Laudate\nLajos Bárdos — Libera Me\nNancy Telfer — Missa Brevis\nUrmas Sisask — Oremus\nUroš Krek — Salmo XLII\nClaude Versher — Veni Creator\nJohannes Brahms — Warum ist das Licht"},
+    "2008":{conductor:"Frankie Wai",country:"Hong Kong · China",summary:"A quarta edição ligou cantores portugueses a uma perspetiva de direção asiática.",programme:"Canto Gregoriano — Gloria, Laus et Honor\nOla Gjeilo — Ubi Caritas\nUrmas Sisask — Sanctus\nGeorges Bizet, arr. A.H. Ryder — Agnus Dei\nG. Palestrina, arr. Herbert G. Smith — By the Waters of Babylon\nJohn Stainer — God So Loved the World\nJosef Jacobsen — Vi-J'huda Leolam Teshev\nNaomi Shemer, arr. Gil Aldema — Jerusalem of Gold\nGeorge Malcolm — Ingrediente Domino\n江蘇民歌 — 茉莉花 (Jasmine) · 蒙古族民歌 — 牧歌 (Shepherd Song)\nS. Scheidt — Surrexit Christus\nEdward C. Bairstow — Psalm 114\nArr. Patrick Chiu — Hosanna in the Highest\nJohn A. Ray / Susan N. Callaway — There's a Great Day"},
+    "2009":{conductor:"Vincenzo Scarafile",country:"Itália",summary:"A quinta edição explorou repertório sacro através da tradição musical italiana.",programme:"Anónimo séc. XV — Alta Trinita Beata\nCanto Gregoriano — Pueri Hebraeorum · Hosanna Filio David\nWilliam Byrd — Missa a 4 Vozes (Kyrie, Gloria, Sanctus, Agnus Dei) · Ave Verum Corpus\nOrlando di Lasso — Amicus Meus · Unus ex Discipulis Meis · Tenebrae Factae Sunt\nJohann Kuhnau — Tristis est Anima Mea\nCarlo Gesualdo — O Vos Omnes\nGyörgy Deák-Bárdos — Eli, Eli!\nRei D. João IV de Portugal — O Crux Fidelis\nClaudio Monteverdi — Adoramus Te · Cantate Domino\nCharles Villiers Stanford — Justorum Animae\nJohn Stainer — God So Loved the World"},
+    "2010":{conductor:"David A. McConnell",country:"USA",summary:"A sexta edição iniciou uma relação artística continuada com David A. McConnell.",programme:"Tema: A Journey to Holy Week\nMark Sirett — Thou Shalt Know Him When He Comes\nEric Whitacre — Lux Aurumque\nEleanor Daley — Upon Your Heart\nSpiritual, arr. Undine Smith Moore — I Believe This Is Jesus\nGallus Dressler — Ich Bin die Auferstehung\nAlan Smith — You Are the Peace of All Things Calm\nMartha Shaffer — I Would See Jesus\nRichard DeLong — O for a Thousand Tongues to Sing\nMark G. Sirett — Wilt Thou Forgive\nOla Gjeilo — Ubi Caritas\nEleanor Daley — My Soul Is Exceeding Sorrowful\nSir William Walton — A Litany\nArvo Pärt — Da Pacem Domine\nMoses Hogan — We Shall Walk Through the Valley in Peace"},
+    "2011":{conductor:"Jean-Marie Puissant",country:"França",summary:"A sétima edição trouxe a experiência coral francesa a Cascais e Lisboa.",programme:"Mel Bonis — Adoro-te\nPhilippe Mazé — Missa Dolce (Kyrie, Sanctus, Agnus Dei, Ave Verum)\nPierre Villette — Jesu, Dulcis Memoria · O Quam Amabilis Es\nMaurice Duruflé — Ubi Caritas · Tota Pulchra Es · Tu es Petrus · Tantum Ergo · Notre Père\nFrancis Poulenc — O Proles · Ave Maria · Ave Verum Corpus · Salve Regina"},
+    "2012":{conductor:"Marta Jakubiec",country:"Polónia",summary:"A oitava edição ligou o festival à cultura coral polaca.",programme:"Giovanni Pierluigi da Palestrina — Sicut Cervus\nGrzegorz Gerwazy Gorczycki — Missa Paschalis (Kyrie, Gloria, Sanctus, Benedictus, Agnus Dei)\nAnton Bruckner — Christus Factus Est\nCharles Gounod — Ave Verum\nHenk Badings — Missa Brevis (Benedictus)\nLajos Bárdos — Libera Me\nGyörgy Orbán — Ave Verum\nGyörgy Deák-Bárdos — Eli Eli\nKurt Bikkembergs — Motetti Sanctorum"},
+    "2013":{conductor:"Raimon Romaní",country:"Espanha",summary:"A nona edição continuou Ramos como lugar de encontro entre vozes ibéricas e internacionais.",programme:"Felice Anerio — Christus Factus Est\nThomas Tallis — Verily, Verily I Say unto You\nJacob Handl 'Gallus' — Ecce Quomodo Moritur\nQuirino Gasparini — Adoramus Te Christe\nMichael Haydn — Tenebrae Factae Sunt\nCarl Loewe — Salvum Fac Regem\nFerran Sor — O Crux Ave Spes Unica\nSaint-Saëns — Ave Verum\nRheinberger — Salve Regina, op. 107 n.4\nJouzas Naujalis — In Monte Oliveti\nVic Nees — De Profundis Clamavi\nRaimon Romaní — Ave Maria"},
+    "2014":{conductor:"Virginia Bono",country:"Argentina",summary:"A décima edição assinalou uma década de transformação através da música.",programme:null},
+    "2017":{conductor:"Ivan Moody",country:"Inglaterra / Portugal",summary:"A décima primeira edição explorou música sacra contemporânea e o poder expressivo do texto.",programme:"Ioan Chirescu — Sfinte Dumnezeule\nIvan Moody — Thy Fatherly Embrace · Troparion of Kassiani · Behold the Bridegroom · Vecheri Tvoeya · He Who Clothed Himself · Exaposteilarion of Pascha\nStevan Mokranjac — Hino dos Querubins\nDobri Hristov — Svyaty Bozhe\nPiotr Tchaikovsky — Nyne Sili"},
+    "2018":{conductor:"Eric Banks",country:"USA",summary:"A décima segunda edição incluiu The Palms N.º 2 — Una Palmera e novo repertório internacional.",programme:"Ciclo coral 'As Palmeiras' (The Palms)\nEric Banks — textos de Hawai'i, Filipinas, Índia, Turquia, Síria, Argélia, França, Alemanha, Espanha, Portugal e Brasil\nLínguas: árabe, bengali, inglês, filipino, francês, alemão, português e turco"},
+    "2019":{conductor:"Vladimir Silva",country:"Brasil",summary:"A décima terceira edição cruzou repertório de Domingo de Ramos com energia coral brasileira.",programme:"Danilo Guanais — Domingo de Ramos N.º 2 / Omnes Gentes\nInformação em atualização"},
+    "2021":{conductor:"Myguel Santos e Castro",country:"Portugal",summary:"Uma edição especial marcada pela resiliência e adaptação artística durante a pandemia.",programme:"Edição '13+1 — Grateful for the Past, Excited for the Future'\nRepertório construído em torno da resiliência e continuidade do festival durante o período pandémico."},
+    "2022":{conductor:"Donka Miteva",country:"Bulgária / Alemanha",summary:"A décima quinta edição marcou o regresso aos ensaios presenciais e ao encontro internacional.",programme:"Tema: Of Love, Life and Spirit\nArr. Ralph Hoffmann — Wach auf meins Herzens schöne\nArr. Grete Pedersen — Ned i vester\nArr. Gunnar Eriksson — Gjendines bådnlåt\nArr. E. Tugcular — Suda balık\nHeinrich Schütz — Die mit Tränen säen\nAntonio Lotti — Crucifixus\nGiovanni Palestrina — Exultate Deo\nAnton Bruckner — Os Justi\nH. Koessler — Traurug' Scheiden\nN. Kedrov — Our Father\nS. Mokranjac — Njest svjat\nA. Archangelsky — Pomishljaju den strashni\nJ. Pamintuan — Salva me\nL. Bárdos — Libera me"},
+    "2023":{conductor:"Steve Scott",country:"USA",summary:"O festival continuou a sua viagem internacional através de ensaio intensivo, repertório sacro e transformação partilhada.",programme:"Tema: Peace Like a River\nArr. Harrington — It Is Well with My Soul\nArr. Ronald Staheli — Peace Like a River\nOla Gjeilo — Ubi Caritas\nArr. A. Scott — Consider the Lilies\nArr. Haegar — Lost in the Stars\nKurt Bestor — Prayer of the Children\nBob Chilcott — God So Loved the World\nArr. Workman — Children's Hymn\nThomas Tallis — If Ye Love Me\nArr. Furch — Because I Have Been Given Much\nArr. Staheli — How Can I Keep from Singing\nGiallambardo — Tribute to World Peace"},
+    "2024":{conductor:"David A. McConnell",country:"USA",summary:"Pilgrimage to the Cross: uma viagem musical pelos momentos que antecedem a Páscoa.",programme:"Tema: Pilgrimage to the Cross\nCristóbal de Morales — Parce Mihi Domine\nRichard Farrant — Lord, for Thy Tender Mercy's Sake\nSpiritual, arr. Alice Parker — I Want Jesus to Walk with Me\nBob Chilcott — God So Loved the World\nArr. Martha Schaffer — I Would See Jesus\nIvan Moody — Thy Fatherly Embrace\nLinda Cable Shute — Mercy's Free\nJosé Maurício Nunes Garcia — Hosanna Filio David · In Monte Oliveti · Tenuisti Manum · Improperium · Ofertorium\nLuigi Monfino — O Sacrum Convivium\nJames Biery — Ubi Caritas\nPedro de Cristo — Tenebrae Factae Sunt\nAndrea Gabrieli — O Crux Fidelis\nJames Whitbourn — Prayer of Desmond Tutu\nKaren Marrolli — Until Love Is Spoken"},
+    "2025":{conductor:"Myguel Santos e Castro",country:"Portugal",summary:"Dezasseis obras revisitaram a história do festival em torno da mensagem Sê a luz e a ponte.",programme:"Tema: Be the Light and the Bridge\n16 obras representando cada edição anterior, apresentadas em ordem cronológica.\nEric Banks — The Palms N.º 2 / Una Palmera (Ramos 2018)\nDanilo Guanais — Domingo de Ramos N.º 2 / Omnes Gentes (Ramos 2019)\nKaren Marrolli — Until Love Is Spoken (Ramos 2024)"},
+    "2026":{conductor:"Jean Kleeb",country:"Brasil / Alemanha",summary:"Behold, I make all things new: música entre lamento, esperança, dúvida e confiança.",programme:"Tema: Behold, I Make All Things New (Apocalipse 21:5)\nJ.S. Bach — Befiehl du deine Wege\nTrad. Xhosa (África do Sul), arr. Lhente-Mari Pitout — Kwangena Thina bo\nJean Kleeb — Kyrie (Missa Brasileira) · Gloria (Missa Brasileira)\nOla Gjeilo — Ubi Caritas\nArvo Pärt — The Deer's Cry\nFrank Ticheli — Earth Song\nManoel Dias de Oliveira — Popule Meus\nTomás Luis de Victoria — Jesus Dulcis\nJosé Maurício Nunes Garcia — Gradual for Palm Sunday\nTrad. África do Sul — Ukuthula\nGlenn Burleigh — Order My Steps"},
+    "2027":{conductor:"Felicia Barber",country:"USA",summary:"A 19.ª edição do Palm Sunday Festival realiza-se de 15 a 21 de março de 2027.",programme:null,future:true},
+    "2028":{conductor:"Donald Brinegar",country:"USA",summary:"Maestro convidado anunciado. Datas, repertório e programa ainda por confirmar.",programme:null,future:true}
+  };
+
+  var overlay  = document.getElementById("ramosModal");
+  var closeBtn = document.getElementById("ramosModalClose");
+  var elYear   = document.getElementById("ramosModalEyebrow");
+  var elTitle  = document.getElementById("ramosModalTitle");
+  var elCountry= document.getElementById("ramosModalCountry");
+  var elSummary= document.getElementById("ramosModalSummary");
+  var elProg   = document.getElementById("ramosModalProg");
+  var elLink   = document.getElementById("ramosModalLink");
+
+  function openModal(year) {
+    var d = DATA[year];
+    if (!d) return;
+    elYear.textContent    = "Palm Sunday Festival · " + year;
+    elTitle.textContent   = d.conductor;
+    elCountry.textContent = d.country;
+    elSummary.textContent = d.summary;
+    elLink.href = "edicoes/" + year + ".html";
+    elProg.innerHTML = "";
+    if (d.future) {
+      elProg.innerHTML = '<p class="remodal-future-msg">O programa desta edição ainda não foi anunciado.</p>';
+    } else if (!d.programme) {
+      elProg.innerHTML = '<div class="remodal-prog"><p class="remodal-prog-label">Programa</p><p class="remodal-prog-list">Informação em atualização.</p></div>';
+    } else {
+      elProg.innerHTML = '<div class="remodal-prog"><p class="remodal-prog-label">Programa / Repertório</p><p class="remodal-prog-list">' + d.programme.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") + '</p></div>';
+    }
+    overlay.classList.add("is-open");
+    closeBtn.focus();
+  }
+
+  function closeModal() { overlay.classList.remove("is-open"); }
+
+  document.querySelectorAll(".ramos-card").forEach(function(btn) {
+    btn.addEventListener("click", function() { openModal(this.dataset.year); });
+  });
+  closeBtn.addEventListener("click", closeModal);
+  overlay.addEventListener("click", function(e) { if (e.target === overlay) closeModal(); });
+  document.addEventListener("keydown", function(e) { if (e.key === "Escape") closeModal(); });
+})();
+</script>
 <script src="/universal-share.js?v=14" defer></script></body></html>
