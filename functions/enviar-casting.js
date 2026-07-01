@@ -128,7 +128,7 @@ export async function onRequestPost(context) {
     content: toBase64(comprovanteBuffer),
   }];
 
-  const from = env.FROM_EMAIL || "VoxLaci <casting@voxlaci.com>";
+  const from = "VoxLaci <info@voxlaci.com>";
 
   // ── Email interno para info@voxlaci.com ───────────────────────────────
   const corpoInterno = `
