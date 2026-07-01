@@ -153,7 +153,7 @@ export async function onRequestPost(context) {
   `;
 
   try {
-    await sendEmail(env.RESEND_API_KEY, {
+    const r1 = await sendEmail(env.RESEND_API_KEY, {
       from,
       to: ["info@voxlaci.com"],
       reply_to: email,
@@ -161,9 +161,9 @@ export async function onRequestPost(context) {
       html: corpoInterno,
       attachments,
     });
-    console.info(`[casting] ${candidaturaId} — email interno enviado para info@voxlaci.com`);
+    console.info(`[casting] ${candidaturaId} — email interno OK · resend_id=${r1.id} · to=info@voxlaci.com · from=${from}`);
   } catch (err) {
-    console.error(`[casting] ${candidaturaId} — FALHA no email interno: ${err.message}`);
+    console.error(`[casting] ${candidaturaId} — FALHA email interno · from=${from} · erro: ${err.message}`);
     return errorRedirect(base, "envio-falhou");
   }
 
@@ -187,17 +187,17 @@ export async function onRequestPost(context) {
   `;
 
   try {
-    await sendEmail(env.RESEND_API_KEY, {
+    const r2 = await sendEmail(env.RESEND_API_KEY, {
       from,
       to: [email],
       reply_to: "info@voxlaci.com",
       subject: "Candidatura recebida — VoxLaci",
       html: corpoConfirmacao,
     });
-    console.info(`[casting] ${candidaturaId} — confirmação enviada para ${email}`);
+    console.info(`[casting] ${candidaturaId} — confirmação OK · resend_id=${r2.id} · to=${email} · from=${from}`);
   } catch (err) {
     // Candidatura registada — falha na confirmação não bloqueia
-    console.error(`[casting] ${candidaturaId} — FALHA na confirmação ao candidato: ${err.message}`);
+    console.error(`[casting] ${candidaturaId} — FALHA confirmação candidato · to=${email} · from=${from} · erro: ${err.message}`);
   }
 
   return Response.redirect(new URL("/obrigado.html", base), 303);
@@ -211,7 +211,9 @@ async function sendEmail(apiKey, payload) {
     headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`);
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(`Resend ${res.status}: ${JSON.stringify(body)}`);
+  return body; // contém { id } do email enviado
 }
 
 function sanitize(value) {
