@@ -23,13 +23,29 @@ function errorRedirect(base, code) {
   return Response.redirect(new URL(`/#inscricao?erro=${code}`, base), 303);
 }
 
+function gerarId() {
+  const now = new Date();
+  const pad = (n, l = 2) => String(n).padStart(l, "0");
+  const data =
+    now.getUTCFullYear() +
+    pad(now.getUTCMonth() + 1) +
+    pad(now.getUTCDate());
+  const hora =
+    pad(now.getUTCHours()) +
+    pad(now.getUTCMinutes()) +
+    pad(now.getUTCSeconds());
+  return `#${data}-${hora}`;
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
   const base = new URL(request.url);
+  const candidaturaId = gerarId();
 
   // ── Rate limiting por IP ────────────────────────────────────────────
   const ip = request.headers.get("CF-Connecting-IP") || "unknown";
   if (!checkRateLimit(ip)) {
+    console.warn(`[casting] rate-limit atingido — IP: ${ip}`);
     return errorRedirect(base, "rate");
   }
 
@@ -37,17 +53,20 @@ export async function onRequestPost(context) {
   try {
     formData = await request.formData();
   } catch {
+    console.error(`[casting] ${candidaturaId} — erro ao ler formData`);
     return new Response("Pedido inválido.", { status: 400 });
   }
 
   // ── Honeypots ────────────────────────────────────────────────────────
   if (formData.get("website") || formData.get("campo-secreto")) {
+    console.info(`[casting] ${candidaturaId} — honeypot ativado, IP: ${ip}`);
     return Response.redirect(new URL("/obrigado.html", base), 303);
   }
 
   // ── Validar Turnstile ────────────────────────────────────────────────
   const turnstileToken = formData.get("cf-turnstile-response");
   if (!turnstileToken) {
+    console.warn(`[casting] ${candidaturaId} — Turnstile token ausente`);
     return errorRedirect(base, "captcha");
   }
 
@@ -60,56 +79,62 @@ export async function onRequestPost(context) {
     });
     const tsJson = await tsResult.json();
     if (!tsJson.success) {
+      console.warn(`[casting] ${candidaturaId} — Turnstile falhou: ${JSON.stringify(tsJson["error-codes"])}`);
       return errorRedirect(base, "captcha");
     }
   }
 
   // ── Campos de texto ──────────────────────────────────────────────────
-  const nome          = sanitize(formData.get("nome"));
-  const idade         = sanitize(formData.get("idade"));
-  const pais          = sanitize(formData.get("pais"));
-  const telefone      = sanitize(formData.get("telefone"));
-  const email         = sanitize(formData.get("email"));
-  const morada        = sanitize(formData.get("morada"));
-  const ensemble      = sanitize(formData.get("ensemble"));
-  const experiencia   = sanitize(formData.get("experiencia"));
-  const leituraMusical= sanitize(formData.get("leitura-musical"));
-  const origem        = sanitize(formData.get("origem"));
-  const motivacao     = sanitize(formData.get("motivacao"));
+  const nome           = sanitize(formData.get("nome"));
+  const idade          = sanitize(formData.get("idade"));
+  const pais           = sanitize(formData.get("pais"));
+  const telefone       = sanitize(formData.get("telefone"));
+  const email          = sanitize(formData.get("email"));
+  const morada         = sanitize(formData.get("morada"));
+  const ensemble       = sanitize(formData.get("ensemble"));
+  const experiencia    = sanitize(formData.get("experiencia"));
+  const leituraMusical = sanitize(formData.get("leitura-musical"));
+  const origem         = sanitize(formData.get("origem"));
+  const motivacao      = sanitize(formData.get("motivacao"));
   const pagamentoMetodo = sanitize(formData.get("pagamento-inscricao"));
-  const nomePagamento = sanitize(formData.get("nome-pagamento"));
+  const nomePagamento  = sanitize(formData.get("nome-pagamento"));
 
   if (!nome || !idade || !telefone || !email) {
+    console.warn(`[casting] ${candidaturaId} — campos obrigatórios em falta`);
     return errorRedirect(base, "campos-obrigatorios");
   }
 
+  console.info(`[casting] ${candidaturaId} — candidatura recebida de ${nome} <${email}>`);
 
   // ── Validar comprovativo de pagamento (obrigatório) ───────────────────
   const comprovativo = formData.get("comprovativo");
   if (!comprovativo || typeof comprovativo !== "object" || !("arrayBuffer" in comprovativo) || comprovativo.size === 0) {
+    console.warn(`[casting] ${candidaturaId} — comprovativo ausente`);
     return errorRedirect(base, "comprovativo-ausente");
   }
 
   if (!env.RESEND_API_KEY) {
+    console.error(`[casting] ${candidaturaId} — RESEND_API_KEY não configurada`);
     return new Response(
       "O envio de email ainda não está configurado. Contacte info@voxlaci.com diretamente.",
       { status: 500 }
     );
   }
 
-  // ── Preparar anexos ───────────────────────────────────────────────────
-  const attachments = [];
-
-  // Comprovativo de pagamento (obrigatório — já validado acima)
+  // ── Preparar anexo do comprovativo ────────────────────────────────────
   const comprovanteBuffer = await comprovativo.arrayBuffer();
-  attachments.push({
-    filename: comprovativo.name || `comprovativo-${sanitizeFilename(nome)}`,
+  const attachments = [{
+    filename: comprovativo.name || `comprovativo-${nome.replace(/[^a-zA-Z0-9\-_]/g, "-").slice(0, 40).toLowerCase()}`,
     content: toBase64(comprovanteBuffer),
-  });
+  }];
 
-  // ── Corpo do email ────────────────────────────────────────────────────
-  const resumo = `
-    <h2>Novo casting VoxLaci</h2>
+  const from = env.FROM_EMAIL || "VoxLaci <casting@voxlaci.com>";
+
+  // ── Email interno para info@voxlaci.com ───────────────────────────────
+  const corpoInterno = `
+    <h2>Nova candidatura VoxLaci</h2>
+    <p><b>Candidatura:</b> ${esc(candidaturaId)}</p>
+    <hr>
     <p><b>Nome:</b> ${esc(nome)}</p>
     <p><b>Idade:</b> ${esc(idade)}</p>
     <p><b>País:</b> ${esc(pais)}</p>
@@ -124,37 +149,55 @@ export async function onRequestPost(context) {
     <hr>
     <p><b>Forma de pagamento:</b> ${esc(pagamentoMetodo)}</p>
     <p><b>Nome usado no pagamento:</b> ${esc(nomePagamento)}</p>
+    <p><i>Comprovativo de pagamento em anexo.</i></p>
   `;
-
-  const from = env.FROM_EMAIL || "VoxLaci <casting@voxlaci.com>";
 
   try {
     await sendEmail(env.RESEND_API_KEY, {
       from,
       to: ["info@voxlaci.com"],
       reply_to: email,
-      subject: `Casting — ${nome}`,
-      html: resumo,
+      subject: `Candidatura ${candidaturaId} — ${nome}`,
+      html: corpoInterno,
       attachments,
     });
+    console.info(`[casting] ${candidaturaId} — email interno enviado para info@voxlaci.com`);
+  } catch (err) {
+    console.error(`[casting] ${candidaturaId} — FALHA no email interno: ${err.message}`);
+    return errorRedirect(base, "envio-falhou");
+  }
 
+  // ── Email de confirmação ao candidato ─────────────────────────────────
+  const corpoConfirmacao = `
+    <p>Olá, ${esc(nome)},</p>
+    <br>
+    <p>Obrigado pela tua candidatura ao VoxLaci.</p>
+    <br>
+    <p>Recebemos a tua inscrição com sucesso.</p>
+    <br>
+    <p>A nossa equipa irá analisar a informação enviada e entraremos em contacto contigo assim que possível.</p>
+    <br>
+    <p>Se tiveres alguma dúvida, podes responder diretamente a este email.</p>
+    <br>
+    <p>Obrigado.</p>
+    <br>
+    <p><b>VoxLaci</b><br><a href="https://www.voxlaci.com">www.voxlaci.com</a></p>
+    <hr>
+    <p style="font-size:12px;color:#888">Referência: ${esc(candidaturaId)}</p>
+  `;
+
+  try {
     await sendEmail(env.RESEND_API_KEY, {
       from,
       to: [email],
-      subject: "Casting VoxLaci — recebemos a tua candidatura",
-      html: `
-        <p>Olá ${esc(nome)},</p>
-        <p>Recebemos o teu casting. A equipa VoxLaci entrará em contacto para indicar o próximo passo.</p>
-        ${resumo}
-      `,
-      attachments,
+      reply_to: "info@voxlaci.com",
+      subject: "Candidatura recebida — VoxLaci",
+      html: corpoConfirmacao,
     });
+    console.info(`[casting] ${candidaturaId} — confirmação enviada para ${email}`);
   } catch (err) {
-    console.error("Erro ao enviar email do casting:", err);
-    return new Response(
-      "Não foi possível enviar o casting. Tente novamente ou contacte info@voxlaci.com diretamente.",
-      { status: 502 }
-    );
+    // Candidatura registada — falha na confirmação não bloqueia
+    console.error(`[casting] ${candidaturaId} — FALHA na confirmação ao candidato: ${err.message}`);
   }
 
   return Response.redirect(new URL("/obrigado.html", base), 303);
@@ -180,7 +223,6 @@ function esc(value) {
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
   );
 }
-
 
 function toBase64(buffer) {
   let binary = "";
