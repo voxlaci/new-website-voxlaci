@@ -83,25 +83,6 @@ export async function onRequestPost(context) {
     return errorRedirect(base, "campos-obrigatorios");
   }
 
-  // ── Validar fotografia (obrigatória) ─────────────────────────────────
-  const fotografia = formData.get("fotografia");
-  if (!fotografia || typeof fotografia !== "object" || !("arrayBuffer" in fotografia) || fotografia.size === 0) {
-    return errorRedirect(base, "foto-ausente");
-  }
-
-  const ALLOWED_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
-  const MAX_FOTO_SIZE = 5 * 1024 * 1024; // 5 MB
-
-  if (fotografia.size > MAX_FOTO_SIZE) {
-    return errorRedirect(base, "foto-tamanho");
-  }
-
-  const fotoType = fotografia.type?.toLowerCase() || "";
-  const fotoName = (fotografia.name || "").toLowerCase();
-  const extOk = /\.(jpg|jpeg|png|webp)$/.test(fotoName);
-  if (!ALLOWED_TYPES.includes(fotoType) && !extOk) {
-    return errorRedirect(base, "foto-tipo");
-  }
 
   // ── Validar comprovativo de pagamento (obrigatório) ───────────────────
   const comprovativo = formData.get("comprovativo");
@@ -118,13 +99,6 @@ export async function onRequestPost(context) {
 
   // ── Preparar anexos ───────────────────────────────────────────────────
   const attachments = [];
-
-  // Fotografia do candidato
-  const fotoBuffer = await fotografia.arrayBuffer();
-  attachments.push({
-    filename: `foto-${sanitizeFilename(nome)}.${extFromMime(fotografia.type, fotoName)}`,
-    content: toBase64(fotoBuffer),
-  });
 
   // Comprovativo de pagamento (obrigatório — já validado acima)
   const comprovanteBuffer = await comprovativo.arrayBuffer();
@@ -150,7 +124,6 @@ export async function onRequestPost(context) {
     <hr>
     <p><b>Forma de pagamento:</b> ${esc(pagamentoMetodo)}</p>
     <p><b>Nome usado no pagamento:</b> ${esc(nomePagamento)}</p>
-    <p><i>Fotografia de candidato incluída em anexo.</i></p>
   `;
 
   const from = env.FROM_EMAIL || "VoxLaci <casting@voxlaci.com>";
@@ -208,16 +181,6 @@ function esc(value) {
   );
 }
 
-function sanitizeFilename(name) {
-  return name.replace(/[^a-zA-Z0-9\-_]/g, "-").slice(0, 40).toLowerCase();
-}
-
-function extFromMime(mime, filename) {
-  const mimeMap = { "image/jpeg": "jpg", "image/jpg": "jpg", "image/png": "png", "image/webp": "webp" };
-  if (mimeMap[mime]) return mimeMap[mime];
-  const m = filename.match(/\.(jpg|jpeg|png|webp)$/i);
-  return m ? m[1] : "jpg";
-}
 
 function toBase64(buffer) {
   let binary = "";

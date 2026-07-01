@@ -50,8 +50,6 @@
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <style>
 .form-erro{grid-column:1/-1;background:#fff0f0;border:1.5px solid #e53;border-radius:6px;color:#c00;font-size:.88rem;font-weight:600;padding:14px 16px;margin-bottom:8px}
-.foto-label{display:grid;gap:8px}
-.foto-hint{color:#c00;font-size:.82rem;font-weight:600;padding-top:4px}
 .cf-turnstile{grid-column:1/-1}
 .input-erro{border-color:#e53!important;box-shadow:0 0 0 3px rgba(238,85,51,.14)!important;outline-color:#e53!important}
 input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-shadow:none!important}
@@ -416,11 +414,6 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
         <label><span>Sabe ler música?</span><select name="leitura-musical"><option>Não</option><option>Sim</option><option>Um pouco</option></select></label>
         <label><span>Como conheceu a VoxLaci?</span><select name="origem"><option>Google</option><option>Instagram</option><option>Facebook</option><option>YouTube</option><option>Família ou amigos</option><option>Evento</option><option>Outro</option></select></label>
         <label class="span-2"><span>Porque gostaria de fazer parte da VoxLaci?</span><textarea name="motivacao" rows="4"></textarea></label>
-        <label class="span-2 foto-label">
-          <span data-pt="Fotografia sua (JPG, PNG ou WEBP, máx. 5 MB) *" data-en="Your photograph (JPG, PNG or WEBP, max 5 MB) *">Fotografia sua (JPG, PNG ou WEBP, máx. 5 MB) *</span>
-          <input type="file" name="fotografia" id="campo-fotografia" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" required>
-          <span class="foto-hint" id="foto-erro" hidden></span>
-        </label>
         <fieldset class="payment-registration span-2">
           <legend data-pt="Pagamento obrigatório da inscrição / audição — 20€" data-en="Mandatory registration / audition payment — €20">Pagamento obrigatório da inscrição / audição — 20€</legend>
           <p data-pt="A inscrição só fica completa após o pagamento. Indique sempre o nome da pessoa que se está a inscrever." data-en="Registration is only complete after payment. Always identify the person being registered.">A inscrição só fica completa após o pagamento. Indique sempre o nome da pessoa que se está a inscrever.</p>
@@ -587,9 +580,6 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
 <script>
 (function () {
   const ERROS = {
-    "foto-ausente":           "Para concluir a inscrição, é necessário anexar uma fotografia.",
-    "foto-tamanho":           "A fotografia não pode exceder 5 MB.",
-    "foto-tipo":              "Só são permitidos ficheiros JPG, PNG ou WEBP.",
     "comprovativo-ausente":   "Para concluir a inscrição, é necessário anexar o comprovativo de pagamento dos 20€.",
     "captcha":                "Não foi possível validar a submissão. Tente novamente.",
     "rate":                   "Demasiadas tentativas. Aguarde alguns minutos antes de tentar novamente.",
@@ -601,7 +591,6 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
     idade:                 "Por favor, indica a tua idade.",
     telefone:              "Por favor, indica o teu telefone.",
     email:                 "Por favor, indica um email válido.",
-    fotografia:            "Por favor, anexa a tua fotografia.",
     "pagamento-inscricao": "Por favor, seleciona a forma de pagamento.",
     "nome-pagamento":      "Por favor, indica o nome usado no pagamento.",
     comprovativo:          "Por favor, anexa o comprovativo de pagamento.",
@@ -633,7 +622,7 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
 
   // ── Helpers de erro por campo ────────────────────────────────────────
   function errorSpanFor(input) {
-    const id = input.name === "fotografia" ? "foto-erro" : "erro-" + input.name;
+    const id = "erro-" + input.name;
     let span = document.getElementById(id);
     if (!span) {
       span = document.createElement("span");
@@ -664,7 +653,7 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
   function clearError(input) {
     input.removeAttribute("aria-invalid");
     input.classList.remove("input-erro");
-    const id = input.name === "fotografia" ? "foto-erro" : "erro-" + input.name;
+    const id = "erro-" + input.name;
     const span = document.getElementById(id);
     if (span) { span.textContent = ""; span.hidden = true; }
   }
@@ -677,26 +666,6 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
     return field.value.trim() !== "";
   }
 
-  // ── Validação da fotografia (tipo e tamanho) ─────────────────────────
-  const fotoInput = document.getElementById("campo-fotografia");
-  const ALLOWED_FOTO = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
-  const MAX_FOTO = 5 * 1024 * 1024;
-
-  if (fotoInput) {
-    fotoInput.addEventListener("change", function () {
-      clearError(this);
-      const file = this.files[0];
-      if (!file) return;
-      if (!ALLOWED_FOTO.includes(file.type)) {
-        setError(this, "Só são permitidos ficheiros JPG, PNG ou WEBP.");
-        this.value = ""; return;
-      }
-      if (file.size > MAX_FOTO) {
-        setError(this, "A fotografia não pode exceder 5 MB.");
-        this.value = "";
-      }
-    });
-  }
 
   // ── Validação no submit ──────────────────────────────────────────────
   const form = document.querySelector(".registration-form");
