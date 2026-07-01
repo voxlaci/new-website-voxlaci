@@ -248,8 +248,10 @@ export async function onRequestPost(context) {
   </p>
 </div>`;
 
-  // ── ENVIO CRÍTICO: email interno ─────────────────────────────────────
+  // ── ENVIO CRÍTICO: email interno para info@voxlaci.com ───────────────
+  // REGRA: se falhar → NÃO enviar ao candidato + mostrar erro
   let emailInternoStatus;
+  let resendIdInterno;
   try {
     const r1 = await sendEmail(env.RESEND_API_KEY, {
       from,
@@ -259,14 +261,18 @@ export async function onRequestPost(context) {
       html: corpoInterno,
       attachments,
     });
+    resendIdInterno   = r1.id;
     emailInternoStatus = { ok: true, id: r1.id };
+    console.info(`[casting] ${candidaturaId} — email interno ACEITE · resend_id=${r1.id} · to=info@voxlaci.com · from=${from} · reply_to=${email}`);
   } catch (err) {
     emailInternoStatus = { ok: false, erro: err.message };
+    console.error(`[casting] ${candidaturaId} — email interno FALHOU · to=info@voxlaci.com · from=${from} · erro=${err.message}`);
     logRelatorio(candidaturaId, emailInternoStatus, null);
     return errorRedirect(base, "envio-falhou");
   }
 
   // ── ENVIO SECUNDÁRIO: email ao candidato (falha não bloqueia) ────────
+  // Só chega aqui se o email interno foi aceite pelo Resend
   let emailCandidatoStatus;
   try {
     const r2 = await sendEmail(env.RESEND_API_KEY, {
@@ -277,8 +283,10 @@ export async function onRequestPost(context) {
       html: corpoConfirmacao,
     });
     emailCandidatoStatus = { ok: true, id: r2.id, to: email };
+    console.info(`[casting] ${candidaturaId} — email candidato ACEITE · resend_id=${r2.id} · to=${email} · from=${from} · reply_to=info@voxlaci.com`);
   } catch (err) {
     emailCandidatoStatus = { ok: false, erro: err.message, to: email };
+    console.error(`[casting] ${candidaturaId} — email candidato FALHOU (candidatura válida) · to=${email} · erro=${err.message}`);
   }
 
   logRelatorio(candidaturaId, emailInternoStatus, emailCandidatoStatus);
