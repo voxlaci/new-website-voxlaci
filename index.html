@@ -399,8 +399,8 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
         <h2 data-pt="A sua voz<br>começa aqui." data-en="Your voice<br>starts here.">A sua voz<br>começa aqui.</h2>
         <p data-pt="Não precisa de saber qual é o seu tipo de voz nem qual é o grupo certo. Preencha o casting; a equipa VoxLaci ajudará a encontrar o caminho mais adequado." data-en="You do not need to know your voice type or which group is right. Complete the casting form and the VoxLaci team will help find the best path.">Não precisa de saber qual é o seu tipo de voz nem qual é o grupo certo. Preencha o casting; a equipa VoxLaci ajudará a encontrar o caminho mais adequado.</p>
       </div>
-      <div id="form-erro" class="form-erro" hidden></div>
       <form class="registration-form reveal" name="inscricao-voxlaci" method="POST" action="/enviar-casting" enctype="multipart/form-data" novalidate>
+        <div id="form-erro" class="form-erro" hidden></div>
         <input type="hidden" name="form-name" value="inscricao-voxlaci">
         <p class="form-hidden" aria-hidden="true"><label>Leave blank: <input name="campo-secreto" tabindex="-1" autocomplete="off"><input name="website" tabindex="-1" autocomplete="off"></label></p>
         <label class="span-2"><span>Nome completo / Full name *</span><input name="nome" required autocomplete="name"></label>
