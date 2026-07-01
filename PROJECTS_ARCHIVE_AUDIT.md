@@ -128,7 +128,7 @@ Criada nova estrutura:
 - `/projetos/academia/`
 - `/projetos/espaco-dos-avos/`
 
-## Redirects criados
+## Redirects / páginas-ponte criados
 
 Para preservar a grafia antiga e não quebrar URLs:
 
@@ -139,6 +139,8 @@ Para preservar a grafia antiga e não quebrar URLs:
 - `/projectos/bolsa-17/` → `/projetos/bolsa-17/`
 - `/projectos/quadro-de-merito/` → `/projetos/quadro-de-merito/`
 - `/projectos/encontros-surpresa/` → `/projetos/encontros-surpresa/`
+
+Além das regras em `_redirects`, as páginas antigas em `/projectos/` foram convertidas em páginas-ponte com `canonical`, `noindex,follow`, meta refresh e `location.replace`, porque o Cloudflare pode servir ficheiros existentes antes de aplicar o redirect estático.
 
 As restantes URLs históricas foram preservadas como arquivo e referenciadas nas novas páginas, sem redirect forçado.
 
