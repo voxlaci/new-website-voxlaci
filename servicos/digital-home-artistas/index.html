@@ -11,6 +11,44 @@
   <link rel="alternate" hreflang="en" href="https://voxlaci.com/en/servicos/digital-home-artists/">
   <link rel="stylesheet" href="/subpage.css">
   <link rel="stylesheet" href="/universal-share.css?v=14">
+  <style>
+    /* ── Concept Websites Section ───────────────────────────────────────── */
+    .concepts-section{background:var(--ivory)}
+    .concepts-head{max-width:900px;margin-bottom:55px}
+    .concepts-head h2{margin:5px 0;font:700 clamp(3rem,6vw,7rem)/.9 Manrope,sans-serif;letter-spacing:-.07em}
+    .concepts-intro{margin:20px 0 0;max-width:680px;font-size:1.08rem;color:var(--muted)}
+    .concepts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .concept-card{background:#fff;display:flex;flex-direction:column;border:1px solid var(--line);transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+    .concept-card:hover{transform:translateY(-5px);box-shadow:0 20px 56px rgba(0,0,0,.1)}
+    .concept-thumb{height:180px;display:flex;align-items:center;justify-content:center;font:700 2.8rem/1 Manrope,sans-serif;letter-spacing:-.06em;color:rgba(255,255,255,.45);user-select:none}
+    .ct-voxlaci   {background:linear-gradient(135deg,#0a0a0a 0%,#1a1240 100%)}
+    .ct-miguel    {background:linear-gradient(135deg,#120a22 0%,#2a1845 100%)}
+    .ct-martina   {background:linear-gradient(135deg,#071a1a 0%,#0d3a30 100%)}
+    .ct-tonu      {background:linear-gradient(135deg,#1a1000 0%,#3a2400 100%)}
+    .ct-carrie    {background:linear-gradient(135deg,#080f1a 0%,#0f2035 100%)}
+    .ct-kaspars   {background:linear-gradient(135deg,#1a0508 0%,#350a10 100%)}
+    .ct-grete     {background:linear-gradient(135deg,#071020 0%,#0e2040 100%)}
+    .ct-ifcm      {background:linear-gradient(135deg,#07071a 0%,#100a30 100%)}
+    .ct-creators  {background:linear-gradient(135deg,#140808 0%,#280a18 100%)}
+    .ct-basilio   {background:linear-gradient(135deg,#101010 0%,#222222 100%)}
+    .ct-candidate {background:linear-gradient(135deg,#060c18 0%,#0a1828 100%)}
+    .concept-body{padding:24px;flex:1;display:flex;flex-direction:column}
+    .concept-tag{display:inline-block;padding:4px 11px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin-bottom:14px;align-self:start}
+    .concept-tag--live{color:#fff;background:#050505}
+    .concept-tag--concept{color:var(--gold);background:rgba(108,99,255,.1)}
+    .concept-card h3{margin:0 0 5px;font:700 1.45rem/1.15 Manrope,sans-serif;letter-spacing:-.03em}
+    .concept-cat{margin:0 0 10px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--silver)}
+    .concept-desc{margin:0 0 22px;font-size:.9rem;line-height:1.6;color:var(--muted);flex:1}
+    .concept-btn{display:inline-flex;align-items:center;gap:5px;padding:10px 18px;border-radius:99px;font-size:.82rem;font-weight:700;align-self:start;transition:background .2s,color .2s,border-color .2s;text-decoration:none}
+    .concept-btn--live{color:#fff;background:#050505;border:1.5px solid #050505}
+    .concept-btn--live:hover{background:var(--gold);border-color:var(--gold)}
+    .concept-btn--concept{color:var(--gold);border:1.5px solid var(--gold);background:transparent}
+    .concept-btn--concept:hover{color:#fff;background:var(--gold)}
+    .concept-btn--soon{color:var(--silver);border:1.5px solid var(--line);background:transparent;pointer-events:none;opacity:.6}
+    .concepts-legal{margin-top:40px;padding:18px 22px;border:1px solid var(--line);border-radius:4px;font-size:.78rem;line-height:1.65;color:var(--silver)}
+    @media(max-width:1000px){.concepts-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.concepts-grid{grid-template-columns:1fr}.concept-thumb{height:140px;font-size:2.2rem}}
+  </style>
 </head>
 <body>
   <header class="page-nav">
@@ -74,6 +112,152 @@
         <details><summary>Coros, ensembles e projetos culturais</summary><div><p>Uma estrutura clara para missão, grupos, inscrições, eventos, pagamentos, equipa artística e arquivo histórico.</p></div></details>
         <details><summary>Escolas, academias e festivais</summary><div><p>Informação organizada para participantes, pais, professores, parceiros e público, com formulários, FAQ e páginas bilingues.</p></div></details>
       </div>
+    </section>
+
+    <section class="section concepts-section" id="conceitos">
+      <div class="concepts-head">
+        <p class="eyebrow">VoxLaci Studio · Digital Platforms</p>
+        <h2>Concept Websites<br>for Conductors</h2>
+        <p class="concepts-intro">VoxLaci Studio creates digital platforms for artists, conductors, composers and cultural leaders — from official websites to independent concept designs.</p>
+      </div>
+
+      <div class="concepts-grid">
+
+        <!-- 1 — VoxLaci (Live) -->
+        <article class="concept-card">
+          <div class="concept-thumb ct-voxlaci" aria-hidden="true">VL</div>
+          <div class="concept-body">
+            <span class="concept-tag concept-tag--live">Live Website</span>
+            <h3>VoxLaci</h3>
+            <p class="concept-cat">Official Choral Organisation · Cascais &amp; Lisboa</p>
+            <p class="concept-desc">The official home of VoxLaci — a vibrant choral community in Cascais and Greater Lisbon, building voices and belonging since 1996.</p>
+            <a class="concept-btn concept-btn--live" href="https://voxlaci.com" target="_blank" rel="noopener">View Website ↗</a>
+          </div>
+        </article>
+
+        <!-- 2 — Myguel Santos e Castro (Live) -->
+        <article class="concept-card">
+          <div class="concept-thumb ct-miguel" aria-hidden="true">MC</div>
+          <div class="concept-body">
+            <span class="concept-tag concept-tag--live">Live Website</span>
+            <h3>Myguel Santos e Castro</h3>
+            <p class="concept-cat">Conductor · Artistic Director · Portugal</p>
+            <p class="concept-desc">Official website of Myguel Santos e Castro, conductor, founder and artistic director of VoxLaci — a life dedicated to music and community.</p>
+            <a class="concept-btn concept-btn--live" href="https://www.myguelcastro.com" target="_blank" rel="noopener">View Website ↗</a>
+          </div>
+        </article>
+
+        <!-- 3 — Martina Batič (Concept) -->
+        <article class="concept-card">
+          <div class="concept-thumb ct-martina" aria-hidden="true">MB</div>
+          <div class="concept-body">
+            <span class="concept-tag concept-tag--concept">Concept Design</span>
+            <h3>Martina Batič</h3>
+            <p class="concept-cat">International Choral Conductor · Slovenia</p>
+            <p class="concept-desc">Concept digital home for Martina Batič, internationally acclaimed choral conductor and artistic director of world-leading ensembles.</p>
+            <a class="concept-btn concept-btn--concept" href="https://martinabatic.pages.dev" target="_blank" rel="noopener">View Live Concept ↗</a>
+          </div>
+        </article>
+
+        <!-- 4 — Tõnu Kaljuste (Concept) -->
+        <article class="concept-card">
+          <div class="concept-thumb ct-tonu" aria-hidden="true">TK</div>
+          <div class="concept-body">
+            <span class="concept-tag concept-tag--concept">Concept Design</span>
+            <h3>Tõnu Kaljuste</h3>
+            <p class="concept-cat">Conductor · Composer · Estonia</p>
+            <p class="concept-desc">Concept digital home for Tõnu Kaljuste, Estonian conductor and composer, founder of the Estonian Philharmonic Chamber Choir.</p>
+            <a class="concept-btn concept-btn--concept" href="https://tonukaljuste.pages.dev" target="_blank" rel="noopener">View Live Concept ↗</a>
+          </div>
+        </article>
+
+        <!-- 5 — Carrie Tennant (Concept) -->
+        <article class="concept-card">
+          <div class="concept-thumb ct-carrie" aria-hidden="true">CT</div>
+          <div class="concept-body">
+            <span class="concept-tag concept-tag--concept">Concept Design</span>
+            <h3>Carrie Tennant</h3>
+            <p class="concept-cat">Conductor · Educator · Artistic Leader</p>
+            <p class="concept-desc">Concept digital home for Carrie Tennant, conductor, educator and artistic leader with a distinguished international career.</p>
+            <a class="concept-btn concept-btn--concept" href="https://carrietennant.pages.dev" target="_blank" rel="noopener">View Live Concept ↗</a>
+          </div>
+        </article>
+
+        <!-- 6 — Kaspars Putniņš (Concept) -->
+        <article class="concept-card">
+          <div class="concept-thumb ct-kaspars" aria-hidden="true">KP</div>
+          <div class="concept-body">
+            <span class="concept-tag concept-tag--concept">Concept Design</span>
+            <h3>Kaspars Putniņš</h3>
+            <p class="concept-cat">Conductor · Latvia</p>
+            <p class="concept-desc">Concept digital home for Kaspars Putniņš, Latvian conductor renowned for his precise, expressive work with leading choral ensembles worldwide.</p>
+            <a class="concept-btn concept-btn--concept" href="https://kaspars.pages.dev" target="_blank" rel="noopener">View Live Concept ↗</a>
+          </div>
+        </article>
+
+        <!-- 7 — Grete Pedersen (Concept) -->
+        <article class="concept-card">
+          <div class="concept-thumb ct-grete" aria-hidden="true">GP</div>
+          <div class="concept-body">
+            <span class="concept-tag concept-tag--concept">Concept Design</span>
+            <h3>Grete Pedersen</h3>
+            <p class="concept-cat">Conductor · Norway</p>
+            <p class="concept-desc">Concept digital home for Grete Pedersen, Norwegian choral conductor of international renown and principal conductor of the Norwegian Chamber Choir.</p>
+            <a class="concept-btn concept-btn--concept" href="https://gretepedersen.voxlaci2016.workers.dev" target="_blank" rel="noopener">View Live Concept ↗</a>
+          </div>
+        </article>
+
+        <!-- 8 — IFCM Future Concept (Concept) -->
+        <article class="concept-card">
+          <div class="concept-thumb ct-ifcm" aria-hidden="true">IF</div>
+          <div class="concept-body">
+            <span class="concept-tag concept-tag--concept">Concept Design</span>
+            <h3>Future IFCM</h3>
+            <p class="concept-cat">International Choral Organisation · Concept Prototype</p>
+            <p class="concept-desc">An independent concept prototype for the future digital presence of the International Federation for Choral Music.</p>
+            <a class="concept-btn concept-btn--concept" href="https://imagineifcm.pages.dev" target="_blank" rel="noopener">View Live Concept ↗</a>
+          </div>
+        </article>
+
+        <!-- 9 — IFCM Creators (Concept) -->
+        <article class="concept-card">
+          <div class="concept-thumb ct-creators" aria-hidden="true">IF</div>
+          <div class="concept-body">
+            <span class="concept-tag concept-tag--concept">Concept Design</span>
+            <h3>IFCM — Creators Transforming the World</h3>
+            <p class="concept-cat">International Choral Organisation · Vision Concept</p>
+            <p class="concept-desc">A concept vision celebrating the IFCM mission — creators transforming the world through the universal language of choral music.</p>
+            <a class="concept-btn concept-btn--concept" href="https://gentle-poetry-af4d.voxlaci2016.workers.dev" target="_blank" rel="noopener">View Live Concept ↗</a>
+          </div>
+        </article>
+
+        <!-- 10 — Basilio Astulez (Concept — URL pending) -->
+        <article class="concept-card">
+          <div class="concept-thumb ct-basilio" aria-hidden="true">BA</div>
+          <div class="concept-body">
+            <span class="concept-tag concept-tag--concept">Concept Design</span>
+            <h3>Basilio Astulez</h3>
+            <p class="concept-cat">Conductor</p>
+            <p class="concept-desc">Concept digital home for Basilio Astulez, conductor — a dedicated digital presence for an internationally active artistic career.</p>
+            <span class="concept-btn concept-btn--soon">Coming Soon</span>
+          </div>
+        </article>
+
+        <!-- 11 — IFCM Candidate President (Concept — URL pending) -->
+        <article class="concept-card">
+          <div class="concept-thumb ct-candidate" aria-hidden="true">IF</div>
+          <div class="concept-body">
+            <span class="concept-tag concept-tag--concept">Concept Design</span>
+            <h3>IFCM — Candidate for President</h3>
+            <p class="concept-cat">International Leadership · Campaign Concept</p>
+            <p class="concept-desc">A concept campaign site for IFCM presidential candidacy, presenting a vision and programme for international choral leadership.</p>
+            <span class="concept-btn concept-btn--soon">Coming Soon</span>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="concepts-legal">These are independent design concepts created for portfolio and demonstration purposes. Concept websites are not official websites and are not affiliated with, endorsed by, or commissioned by the artists unless explicitly stated. VoxLaci and Miguel Castro are official live websites.</p>
     </section>
 
     <section class="page-cta">
