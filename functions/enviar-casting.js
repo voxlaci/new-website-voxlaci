@@ -4,11 +4,11 @@ export async function onRequestGet({ request }) {
 
 // Rate limiter em memória por instância (proteção básica; para produção use KV)
 const rateLimiter = new Map();
-const RATE_LIMIT = 3;
+const RATE_LIMIT    = 3;
 const RATE_WINDOW_MS = 60 * 60 * 1000; // 1 hora
 
 function checkRateLimit(ip) {
-  const now = Date.now();
+  const now   = Date.now();
   const entry = rateLimiter.get(ip);
   if (!entry || now - entry.start > RATE_WINDOW_MS) {
     rateLimiter.set(ip, { start: now, count: 1 });
@@ -23,26 +23,83 @@ function errorRedirect(base, code) {
   return Response.redirect(new URL(`/#inscricao?erro=${code}`, base), 303);
 }
 
+// ID no formato #AAAAMMDD-HHMMSS (UTC)
 function gerarId() {
   const now = new Date();
   const pad = (n, l = 2) => String(n).padStart(l, "0");
-  const data =
-    now.getUTCFullYear() +
-    pad(now.getUTCMonth() + 1) +
-    pad(now.getUTCDate());
-  const hora =
-    pad(now.getUTCHours()) +
-    pad(now.getUTCMinutes()) +
-    pad(now.getUTCSeconds());
+  const data = now.getUTCFullYear() + pad(now.getUTCMonth() + 1) + pad(now.getUTCDate());
+  const hora = pad(now.getUTCHours()) + pad(now.getUTCMinutes()) + pad(now.getUTCSeconds());
   return `#${data}-${hora}`;
+}
+
+// Converte #AAAAMMDD-HHMMSS → "DD/MM/AAAA às HH:MM:SS UTC"
+function dataHoraFormatada(id) {
+  const m = id.match(/^#(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2})(\d{2})$/);
+  if (!m) return id;
+  return `${m[3]}/${m[2]}/${m[1]} às ${m[4]}:${m[5]}:${m[6]} UTC`;
+}
+
+// Relatório estruturado emitido para os logs do Cloudflare (Workers → Logs)
+function logRelatorio(id, interno, candidato) {
+  const sep  = "─".repeat(44);
+  const sep2 = "─".repeat(40);
+  const linhas = [`[casting] ${sep}`, `[casting] RELATÓRIO ${id}`];
+
+  if (interno.ok) {
+    linhas.push(
+      `[casting] ✓ Email interno enviado`,
+      `[casting]   Destinatário : info@voxlaci.com`,
+      `[casting]   Assunto      : [VoxLaci] Nova candidatura de Casting (${id})`,
+      `[casting]   Status       : Accepted`,
+      `[casting]   Message ID   : ${interno.id}`,
+    );
+  } else {
+    linhas.push(
+      `[casting] ✗ Email interno FALHOU — candidatura NÃO registada`,
+      `[casting]   Destinatário : info@voxlaci.com`,
+      `[casting]   Erro         : ${interno.erro}`,
+    );
+  }
+
+  linhas.push(`[casting]   ${sep2}`);
+
+  if (candidato === null) {
+    linhas.push(`[casting] — Email ao candidato: não enviado (email interno falhou)`);
+  } else if (candidato.ok) {
+    linhas.push(
+      `[casting] ✓ Email ao candidato enviado`,
+      `[casting]   Destinatário : ${candidato.to}`,
+      `[casting]   Assunto      : [VoxLaci] Cópia da sua candidatura (${id})`,
+      `[casting]   Status       : Accepted`,
+      `[casting]   Message ID   : ${candidato.id}`,
+    );
+  } else {
+    linhas.push(
+      `[casting] ✗ Email ao candidato FALHOU (candidatura mantida válida)`,
+      `[casting]   Destinatário : ${candidato.to}`,
+      `[casting]   Erro         : ${candidato.erro}`,
+    );
+  }
+
+  linhas.push(`[casting] ${sep}`);
+  console.info(linhas.join("\n"));
+}
+
+// Linha HTML de campo para os corpos de email
+function linha(label, valor) {
+  return `<tr>
+    <td style="padding:9px 12px;background:#f5f5f5;font-weight:700;width:38%;vertical-align:top">${label}</td>
+    <td style="padding:9px 12px;border-bottom:1px solid #eee;white-space:pre-wrap">${esc(valor || "—")}</td>
+  </tr>`;
 }
 
 export async function onRequestPost(context) {
   const { request, env } = context;
-  const base = new URL(request.url);
+  const base          = new URL(request.url);
   const candidaturaId = gerarId();
+  const from          = "VoxLaci <info@voxlaci.com>";
 
-  // ── Rate limiting por IP ────────────────────────────────────────────
+  // ── Rate limiting por IP ─────────────────────────────────────────────
   const ip = request.headers.get("CF-Connecting-IP") || "unknown";
   if (!checkRateLimit(ip)) {
     console.warn(`[casting] rate-limit atingido — IP: ${ip}`);
@@ -85,28 +142,28 @@ export async function onRequestPost(context) {
   }
 
   // ── Campos de texto ──────────────────────────────────────────────────
-  const nome           = sanitize(formData.get("nome"));
-  const idade          = sanitize(formData.get("idade"));
-  const pais           = sanitize(formData.get("pais"));
-  const telefone       = sanitize(formData.get("telefone"));
-  const email          = sanitize(formData.get("email"));
-  const morada         = sanitize(formData.get("morada"));
-  const ensemble       = sanitize(formData.get("ensemble"));
-  const experiencia    = sanitize(formData.get("experiencia"));
-  const leituraMusical = sanitize(formData.get("leitura-musical"));
-  const origem         = sanitize(formData.get("origem"));
-  const motivacao      = sanitize(formData.get("motivacao"));
+  const nome            = sanitize(formData.get("nome"));
+  const idade           = sanitize(formData.get("idade"));
+  const pais            = sanitize(formData.get("pais"));
+  const telefone        = sanitize(formData.get("telefone"));
+  const email           = sanitize(formData.get("email"));
+  const morada          = sanitize(formData.get("morada"));
+  const ensemble        = sanitize(formData.get("ensemble"));
+  const experiencia     = sanitize(formData.get("experiencia"));
+  const leituraMusical  = sanitize(formData.get("leitura-musical"));
+  const origem          = sanitize(formData.get("origem"));
+  const motivacao       = sanitize(formData.get("motivacao"));
   const pagamentoMetodo = sanitize(formData.get("pagamento-inscricao"));
-  const nomePagamento  = sanitize(formData.get("nome-pagamento"));
+  const nomePagamento   = sanitize(formData.get("nome-pagamento"));
 
   if (!nome || !idade || !telefone || !email) {
     console.warn(`[casting] ${candidaturaId} — campos obrigatórios em falta`);
     return errorRedirect(base, "campos-obrigatorios");
   }
 
-  console.info(`[casting] ${candidaturaId} — candidatura recebida de ${nome} <${email}>`);
+  console.info(`[casting] ${candidaturaId} — candidatura recebida · nome=${nome} · email=${email} · IP=${ip}`);
 
-  // ── Validar comprovativo de pagamento (obrigatório) ───────────────────
+  // ── Validar comprovativo de pagamento (obrigatório) ──────────────────
   const comprovativo = formData.get("comprovativo");
   if (!comprovativo || typeof comprovativo !== "object" || !("arrayBuffer" in comprovativo) || comprovativo.size === 0) {
     console.warn(`[casting] ${candidaturaId} — comprovativo ausente`);
@@ -121,89 +178,115 @@ export async function onRequestPost(context) {
     );
   }
 
-  // ── Preparar anexo do comprovativo ────────────────────────────────────
+  // ── Preparar anexo ───────────────────────────────────────────────────
   const comprovanteBuffer = await comprovativo.arrayBuffer();
   const attachments = [{
     filename: comprovativo.name || `comprovativo-${nome.replace(/[^a-zA-Z0-9\-_]/g, "-").slice(0, 40).toLowerCase()}`,
     content: toBase64(comprovanteBuffer),
   }];
 
-  const from = "VoxLaci <info@voxlaci.com>";
+  const dataHora = dataHoraFormatada(candidaturaId);
 
-  // ── Email interno para info@voxlaci.com ───────────────────────────────
-  const corpoInterno = `
-    <h2>Nova candidatura VoxLaci</h2>
-    <p><b>Candidatura:</b> ${esc(candidaturaId)}</p>
-    <hr>
-    <p><b>Nome:</b> ${esc(nome)}</p>
-    <p><b>Idade:</b> ${esc(idade)}</p>
-    <p><b>País:</b> ${esc(pais)}</p>
-    <p><b>Telefone:</b> ${esc(telefone)}</p>
-    <p><b>Email:</b> ${esc(email)}</p>
-    <p><b>Morada:</b> ${esc(morada)}</p>
-    <p><b>Ensemble de interesse:</b> ${esc(ensemble)}</p>
-    <p><b>Já cantou num coro?:</b> ${esc(experiencia)}</p>
-    <p><b>Sabe ler música?:</b> ${esc(leituraMusical)}</p>
-    <p><b>Como conheceu a VoxLaci?:</b> ${esc(origem)}</p>
-    <p><b>Motivação:</b><br>${esc(motivacao).replace(/\n/g, "<br>")}</p>
-    <hr>
-    <p><b>Forma de pagamento:</b> ${esc(pagamentoMetodo)}</p>
-    <p><b>Nome usado no pagamento:</b> ${esc(nomePagamento)}</p>
-    <p><i>Comprovativo de pagamento em anexo.</i></p>
-  `;
+  // ── Corpo: email interno ─────────────────────────────────────────────
+  const corpoInterno = `<div style="font-family:sans-serif;max-width:680px;margin:0 auto">
+  <h2 style="margin-bottom:4px;color:#111">Nova candidatura de Casting</h2>
+  <p style="color:#888;font-size:13px;margin-top:0">VoxLaci · ${esc(dataHora)}</p>
+  <table style="width:100%;border-collapse:collapse;margin-top:20px;font-size:14px">
+    ${linha("ID da candidatura", candidaturaId)}
+    ${linha("Nome", nome)}
+    ${linha("Email", email)}
+    ${linha("Telefone", telefone)}
+    ${linha("Idade", idade)}
+    ${linha("País", pais)}
+    ${linha("Morada", morada)}
+    ${linha("Ensemble pretendido", ensemble)}
+    ${linha("Experiência coral", experiencia)}
+    ${linha("Leitura musical", leituraMusical)}
+    ${linha("Como conheceu a VoxLaci", origem)}
+    ${linha("Motivação", motivacao)}
+    ${linha("Forma de pagamento", pagamentoMetodo)}
+    ${linha("Nome no pagamento", nomePagamento)}
+  </table>
+  <p style="margin-top:20px;font-size:13px;color:#555"><i>Comprovativo de pagamento em anexo.</i></p>
+  <p style="font-size:12px;color:#aaa;border-top:1px solid #eee;padding-top:12px">Reply-To automático para o candidato: ${esc(email)}</p>
+</div>`;
 
+  // ── Corpo: email ao candidato ────────────────────────────────────────
+  const corpoConfirmacao = `<div style="font-family:sans-serif;max-width:680px;margin:0 auto">
+  <h2 style="margin-bottom:4px;color:#111">VoxLaci — Cópia da sua candidatura</h2>
+  <p style="color:#888;font-size:13px;margin-top:0">Recebida em ${esc(dataHora)}</p>
+
+  <p>Olá, ${esc(nome)},</p>
+  <p>Segue em baixo a cópia completa da candidatura que submeteu ao VoxLaci.</p>
+
+  <table style="width:100%;border-collapse:collapse;margin-top:20px;font-size:14px">
+    ${linha("ID da candidatura", candidaturaId)}
+    ${linha("Data e hora", dataHora)}
+    ${linha("Nome", nome)}
+    ${linha("Email", email)}
+    ${linha("Telefone", telefone)}
+    ${linha("Idade", idade)}
+    ${linha("País", pais)}
+    ${linha("Morada", morada)}
+    ${linha("Ensemble pretendido", ensemble)}
+    ${linha("Experiência coral", experiencia)}
+    ${linha("Leitura musical", leituraMusical)}
+    ${linha("Como conheceu a VoxLaci", origem)}
+    ${linha("Motivação", motivacao)}
+    ${linha("Forma de pagamento", pagamentoMetodo)}
+    ${linha("Nome no pagamento", nomePagamento)}
+  </table>
+
+  <p style="margin-top:24px">Os ficheiros anexados foram recebidos com sucesso e fazem parte da sua candidatura.</p>
+
+  <p>A nossa equipa irá analisar cuidadosamente a sua candidatura e entraremos em contacto consigo assim que possível.</p>
+  <p>Obrigado pelo seu interesse no VoxLaci.</p>
+
+  <p style="margin-top:32px"><b>VoxLaci</b><br><a href="https://www.voxlaci.com">www.voxlaci.com</a></p>
+  <p style="font-size:12px;color:#aaa;margin-top:24px;border-top:1px solid #eee;padding-top:12px">
+    Referência: ${esc(candidaturaId)} · Se não submeteu esta candidatura, por favor ignore este email.
+  </p>
+</div>`;
+
+  // ── ENVIO CRÍTICO: email interno ─────────────────────────────────────
+  let emailInternoStatus;
   try {
     const r1 = await sendEmail(env.RESEND_API_KEY, {
       from,
       to: ["info@voxlaci.com"],
       reply_to: email,
-      subject: `Candidatura ${candidaturaId} — ${nome}`,
+      subject: `[VoxLaci] Nova candidatura de Casting (${candidaturaId})`,
       html: corpoInterno,
       attachments,
     });
-    console.info(`[casting] ${candidaturaId} — email interno OK · resend_id=${r1.id} · to=info@voxlaci.com · from=${from}`);
+    emailInternoStatus = { ok: true, id: r1.id };
   } catch (err) {
-    console.error(`[casting] ${candidaturaId} — FALHA email interno · from=${from} · erro: ${err.message}`);
+    emailInternoStatus = { ok: false, erro: err.message };
+    logRelatorio(candidaturaId, emailInternoStatus, null);
     return errorRedirect(base, "envio-falhou");
   }
 
-  // ── Email de confirmação ao candidato ─────────────────────────────────
-  const corpoConfirmacao = `
-    <p>Olá, ${esc(nome)},</p>
-    <br>
-    <p>Obrigado pela tua candidatura ao VoxLaci.</p>
-    <br>
-    <p>Recebemos a tua inscrição com sucesso.</p>
-    <br>
-    <p>A nossa equipa irá analisar a informação enviada e entraremos em contacto contigo assim que possível.</p>
-    <br>
-    <p>Se tiveres alguma dúvida, podes responder diretamente a este email.</p>
-    <br>
-    <p>Obrigado.</p>
-    <br>
-    <p><b>VoxLaci</b><br><a href="https://www.voxlaci.com">www.voxlaci.com</a></p>
-    <hr>
-    <p style="font-size:12px;color:#888">Referência: ${esc(candidaturaId)}</p>
-  `;
-
+  // ── ENVIO SECUNDÁRIO: email ao candidato (falha não bloqueia) ────────
+  let emailCandidatoStatus;
   try {
     const r2 = await sendEmail(env.RESEND_API_KEY, {
       from,
       to: [email],
       reply_to: "info@voxlaci.com",
-      subject: "Candidatura recebida — VoxLaci",
+      subject: `[VoxLaci] Cópia da sua candidatura (${candidaturaId})`,
       html: corpoConfirmacao,
     });
-    console.info(`[casting] ${candidaturaId} — confirmação OK · resend_id=${r2.id} · to=${email} · from=${from}`);
+    emailCandidatoStatus = { ok: true, id: r2.id, to: email };
   } catch (err) {
-    // Candidatura registada — falha na confirmação não bloqueia
-    console.error(`[casting] ${candidaturaId} — FALHA confirmação candidato · to=${email} · from=${from} · erro: ${err.message}`);
+    emailCandidatoStatus = { ok: false, erro: err.message, to: email };
   }
+
+  logRelatorio(candidaturaId, emailInternoStatus, emailCandidatoStatus);
 
   return Response.redirect(new URL("/obrigado.html", base), 303);
 }
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+// ── Helpers ──────────────────────────────────────────────────────────────────
 
 async function sendEmail(apiKey, payload) {
   const res = await fetch("https://api.resend.com/emails", {
@@ -212,8 +295,8 @@ async function sendEmail(apiKey, payload) {
     body: JSON.stringify(payload),
   });
   const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(`Resend ${res.status}: ${JSON.stringify(body)}`);
-  return body; // contém { id } do email enviado
+  if (!res.ok) throw new Error(`Resend HTTP ${res.status}: ${JSON.stringify(body)}`);
+  return body; // { id: "..." }
 }
 
 function sanitize(value) {
