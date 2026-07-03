@@ -63,6 +63,16 @@
     .cmodal-icon svg{width:20px;height:20px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
     .cmodal h4{margin:0 0 12px;font:700 1.35rem/1.2 Manrope,sans-serif;letter-spacing:-.03em}
     .cmodal p{margin:0;font-size:.93rem;line-height:1.72;color:var(--muted)}
+    /* ── Footer newsletter ─────────────────────────────────────────────── */
+    .footer-news{max-width:340px}
+    .footer-news-title{margin:0 0 6px;font:700 1.05rem Manrope,sans-serif;color:#fff}
+    .footer-news-sub{margin:0 0 14px;font-size:.85rem;color:#aaa}
+    .footer-news-form{display:flex;gap:6px}
+    .footer-news-form input{flex:1;min-width:0;padding:11px 14px;border:1px solid #2a2a2a;border-radius:99px;background:#111;color:#fff;font:inherit;font-size:.85rem}
+    .footer-news-form input::placeholder{color:#666}
+    .footer-news-form input:focus{outline:none;border-color:var(--gold)}
+    .footer-news-form button{padding:11px 20px;border:1.5px solid var(--gold);border-radius:99px;background:var(--gold);color:#fff;font:700 .85rem Inter,sans-serif;cursor:pointer;transition:opacity .2s}
+    .footer-news-form button:hover{opacity:.85}
     @media(max-width:1000px){.concepts-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:600px){.concepts-grid{grid-template-columns:1fr}.concept-thumb{height:140px;font-size:2.2rem}.cmodal{padding:36px 22px 30px}}
   </style>
@@ -70,7 +80,7 @@
 <body>
   <header class="page-nav">
     <a href="/"><img src="/assets/voxlaci-logo-white.png" alt="VoxLaci"></a>
-    <nav><a href="/#vozes">Ensembles</a><a href="/eventos/">Eventos e Festivais</a><a href="/#servicos">Serviços</a></nav>
+    <nav><a href="/#vozes">Ensembles</a><a href="/eventos/">Eventos e Festivais</a><a href="/#servicos">Serviços</a><a href="#newsletter">Newsletter</a></nav>
     <a class="page-language" href="/en/servicos/digital-home-artists/">EN</a>
     <a class="cta" href="mailto:info@voxlaci.com?subject=Digital%20Home%20para%20artistas">Pedir proposta</a>
   </header>
@@ -335,6 +345,15 @@
   <footer class="page-footer">
     <div><img src="/assets/voxlaci-logo-white.png" alt="VoxLaci"><p>Cantar. Unir. Inspirar. Transformar.</p></div>
     <div><a href="mailto:info@voxlaci.com">info@voxlaci.com</a><a href="tel:+351925075186">(+351) 925 075 186</a><a href="/#servicos">Voltar aos serviços</a></div>
+    <div class="footer-news" id="newsletter">
+      <p class="footer-news-title">Newsletter</p>
+      <p class="footer-news-sub">Novidades do VoxLaci Studio — projetos, concertos e digital homes.</p>
+      <!-- BREVO: substituir o action abaixo pelo link do formulário da Brevo (ver instruções) -->
+      <form class="footer-news-form" method="POST" action="COLE_AQUI_O_LINK_DA_BREVO" target="_blank">
+        <input type="email" name="EMAIL" required placeholder="O seu email">
+        <button type="submit">Subscrever</button>
+      </form>
+    </div>
   </footer>
   <!-- Private Preview Modal -->
   <div class="cmodal-overlay" id="conceptsModal" role="dialog" aria-modal="true" aria-labelledby="cmodalTitle">
