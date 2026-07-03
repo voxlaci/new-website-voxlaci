@@ -10,6 +10,9 @@
   <link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/team-building/">
   <link rel="alternate" hreflang="en" href="https://voxlaci.com/en/servicos/team-building/">
   <link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/team-building/">
+  <link rel="alternate" hreflang="fr" href="https://voxlaci.com/fr/servicos/team-building/">
+  <link rel="alternate" hreflang="es" href="https://voxlaci.com/es/servicos/team-building/">
+  <link rel="alternate" hreflang="it" href="https://voxlaci.com/it/servicos/team-building/">
   <meta property="og:title" content="Music Team Building &amp; Corporate Choir | VoxLaci — Lisbon, Portugal">
   <meta property="og:description" content="Choir team building and musical workshops for companies. 7 to 700 participants. No experience needed. Lisbon and Cascais, Portugal.">
   <meta property="og:image" content="https://voxlaci.com/legacy-media/64b95e774f86.jpg">
@@ -190,9 +193,24 @@
     }
     @media(max-width:700px){
       .tb-why-grid,.tb-benefits-grid,.tb-whom-grid,.tb-cases,.tb-steps{grid-template-columns:1fr}
+      .tb-compare{grid-template-columns:1fr}
       .tb-quote,.tb-price-box,.tb-midcta{padding:28px 22px}
       .tb-midcta p{font-size:1rem}
     }
+
+    /* ── Compare grid ────────────────────────────────────────────────────── */
+    .tb-compare{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:40px}
+    .tb-compare-col{padding:32px 28px}
+    .tb-compare-col--other{background:#f5f5f7;border:1px solid var(--line,#d2d2d7)}
+    .tb-compare-col--vox{background:#050505;border:3px solid var(--gold,#6c63ff)}
+    .tb-compare-col h3{font-size:1.05rem;font-weight:700;font-family:Manrope,sans-serif;margin:0 0 20px}
+    .tb-compare-col--other h3{color:var(--muted,#6e6e73)}
+    .tb-compare-col--vox h3{color:var(--gold,#6c63ff)}
+    .tb-compare-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;font-size:.87rem;line-height:1.55}
+    .tb-compare-item::before{content:'✗';flex-shrink:0;margin-top:1px;font-size:.8rem;color:#bbb}
+    .tb-compare-col--vox .tb-compare-item::before{content:'✓';color:var(--gold,#6c63ff)}
+    .tb-compare-col--other .tb-compare-item{color:var(--muted,#6e6e73)}
+    .tb-compare-col--vox .tb-compare-item{color:#ccc}
   </style>
 </head>
 <body>
@@ -228,7 +246,7 @@
       <nav class="breadcrumb" aria-label="Breadcrumb navigation">
         <a href="/en/">VoxLaci</a><span>›</span><a href="/en/#servicos">Services</a><span>›</span><strong>Music Team Building</strong>
       </nav>
-      <p class="tb-lang-notice">Também disponível em <a href="/servicos/team-building/">Português ↗</a></p>
+      <p class="tb-lang-notice">Also available in: <a href="/servicos/team-building/">PT</a> · <a href="/fr/servicos/team-building/">FR</a> · <a href="/es/servicos/team-building/">ES</a> · <a href="/it/servicos/team-building/">IT</a></p>
     </div>
 
     <!-- ═══ WHAT IS IT ════════════════════════════════════════════════════ -->
@@ -520,6 +538,40 @@
       </div>
     </section>
 
+    <!-- ═══ DIFFERENTIATOR ═══════════════════════════════════════════════ -->
+    <section class="section white" id="why-voxlaci">
+      <div class="section-head">
+        <p class="eyebrow">Why VoxLaci</p>
+        <h2>What sets a VoxLaci session apart.</h2>
+        <p>We are not a team building agency. We are professional musicians with decades of experience in human group formation — and that makes all the difference.</p>
+      </div>
+      <div class="tb-compare">
+        <div class="tb-compare-col tb-compare-col--other">
+          <h3>Typical team building</h3>
+          <div class="tb-compare-item"><span>Generic exercises, repeated from company to company</span></div>
+          <div class="tb-compare-item"><span>Requires physical activity or competition</span></div>
+          <div class="tb-compare-item"><span>Hierarchy remains — seniority defines role</span></div>
+          <div class="tb-compare-item"><span>Results visible only weeks later</span></div>
+          <div class="tb-compare-item"><span>Subject to VAT (23%)</span></div>
+          <div class="tb-compare-item"><span>Limited to a narrow range of group sizes</span></div>
+        </div>
+        <div class="tb-compare-col tb-compare-col--vox">
+          <h3>VoxLaci Music Team Building</h3>
+          <div class="tb-compare-item"><span>Own pedagogical method — tested over 20+ years</span></div>
+          <div class="tb-compare-item"><span>Only the voice — accessible to all, regardless of physical condition</span></div>
+          <div class="tb-compare-item"><span>Hierarchy dissolves — everyone at the same level</span></div>
+          <div class="tb-compare-item"><span>Results visible still within the room</span></div>
+          <div class="tb-compare-item"><span>VAT exempt — certified cultural entity</span></div>
+          <div class="tb-compare-item"><span>7 to 700 — the method adapts</span></div>
+        </div>
+      </div>
+      <div class="fact-grid" style="margin-top:40px">
+        <div><b>Certified cultural entity</b><span>VAT exempt — immediate saving</span></div>
+        <div><b>PT + EN</b><span>bilingual sessions available</span></div>
+        <div><b>Cascais · Lisbon · Nationwide</b><span>travel included in proposal</span></div>
+      </div>
+    </section>
+
     <!-- ═══ PRICING ════════════════════════════════════════════════════════ -->
     <section class="section white" id="pricing">
       <div class="section-head">
@@ -561,7 +613,7 @@
         <h2>Questions about music team building?</h2>
       </div>
       <div class="accordion">
-        <details>
+        <details open>
           <summary>What is music team building?</summary>
           <div><p>Music team building is a team development methodology that uses choral singing and vocal exercises to work on communication, trust, active listening and leadership. Unlike games or physical activities, music places everyone at the same level — regardless of role — with results visible within the session itself.</p></div>
         </details>
@@ -625,8 +677,10 @@
     <div>
       <a href="mailto:info@voxlaci.com">info@voxlaci.com</a>
       <a href="tel:+351925075186">(+351) 925 075 186</a>
-      <a href="/en/#servicos">All services</a>
-      <a href="/en/">VoxLaci</a>
+      <a href="/servicos/eventos-privados/">Private Events</a>
+      <a href="/ramos/">VoxLaci Ensembles</a>
+      <a href="/contacto/">Contact</a>
+      <a href="/servicos/">All services</a>
     </div>
   </footer>
 
