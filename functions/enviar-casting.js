@@ -117,7 +117,7 @@ export async function onRequestPost(context) {
   // ── Honeypots ────────────────────────────────────────────────────────
   if (formData.get("website") || formData.get("campo-secreto")) {
     console.info(`[casting] ${candidaturaId} — honeypot ativado, IP: ${ip}`);
-    return Response.redirect(new URL("/obrigado.html", base), 303);
+    return Response.redirect(new URL("/casting-obrigado.html", base), 303);
   }
 
   // ── Validar Turnstile ────────────────────────────────────────────────
@@ -291,7 +291,7 @@ export async function onRequestPost(context) {
 
   logRelatorio(candidaturaId, emailInternoStatus, emailCandidatoStatus);
 
-  return Response.redirect(new URL("/obrigado.html", base), 303);
+  return Response.redirect(new URL("/casting-obrigado.html", base), 303);
 }
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
