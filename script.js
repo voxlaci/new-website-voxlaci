@@ -12,9 +12,14 @@ const castingWelcomeClose = document.querySelector(".casting-welcome-close");
 window.addEventListener("scroll", () => topbar.classList.toggle("scrolled", scrollY > 40), { passive: true });
 
 if (castingWelcome) {
-  setTimeout(() => {
-    if (!castingWelcome.open) castingWelcome.showModal();
-  }, 850);
+  const castingWelcomeAlreadyShown = sessionStorage.getItem("castingWelcomeShown");
+  const wantsInscricao = location.hash === "#inscricao";
+  if (!castingWelcomeAlreadyShown && !wantsInscricao) {
+    setTimeout(() => {
+      if (!castingWelcome.open) castingWelcome.showModal();
+      sessionStorage.setItem("castingWelcomeShown", "1");
+    }, 850);
+  }
   castingWelcomeClose.addEventListener("click", () => castingWelcome.close());
   castingWelcome.addEventListener("click", (event) => {
     if (event.target === castingWelcome) castingWelcome.close();
