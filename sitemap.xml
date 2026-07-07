@@ -81,7 +81,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/coros-cascais.html</loc>
+    <loc>https://voxlaci.com/coros-cascais</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/coros-cascais.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/choirs-cascais.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/coros-cascais.html"/>
@@ -90,7 +90,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/choirs-cascais.html</loc>
+    <loc>https://voxlaci.com/en/choirs-cascais</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/choirs-cascais.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/coros-cascais.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/coros-cascais.html"/>
@@ -147,7 +147,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ensembles/voxpueri.html</loc>
+    <loc>https://voxlaci.com/ensembles/voxpueri</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxpueri.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxpueri.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxpueri.html"/>
@@ -156,7 +156,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ensembles/voxsoul.html</loc>
+    <loc>https://voxlaci.com/ensembles/voxsoul</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxsoul.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxsoul.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxsoul.html"/>
@@ -165,7 +165,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ensembles/voxatma.html</loc>
+    <loc>https://voxlaci.com/ensembles/voxatma</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxatma.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxatma.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxatma.html"/>
@@ -174,7 +174,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ensembles/voxcor.html</loc>
+    <loc>https://voxlaci.com/ensembles/voxcor</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxcor.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxcor.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxcor.html"/>
@@ -183,7 +183,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ensembles/tutti.html</loc>
+    <loc>https://voxlaci.com/ensembles/tutti</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/tutti.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/tutti.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/tutti.html"/>
@@ -192,7 +192,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ensembles/intuicao.html</loc>
+    <loc>https://voxlaci.com/ensembles/intuicao</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/intuicao.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/intuicao.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/intuicao.html"/>
@@ -201,7 +201,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ensembles/hirmandade.html</loc>
+    <loc>https://voxlaci.com/ensembles/hirmandade</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/hirmandade.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/hirmandade.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/hirmandade.html"/>
@@ -210,7 +210,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ensembles/quorum.html</loc>
+    <loc>https://voxlaci.com/ensembles/quorum</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/quorum.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/quorum.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/quorum.html"/>
@@ -219,7 +219,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ensembles/kyma.html</loc>
+    <loc>https://voxlaci.com/ensembles/kyma</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/kyma.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/kyma.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/kyma.html"/>
@@ -228,7 +228,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ensembles/voxpetrus.html</loc>
+    <loc>https://voxlaci.com/ensembles/voxpetrus</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxpetrus.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxpetrus.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxpetrus.html"/>
@@ -293,7 +293,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ensembles/voxpueri.html</loc>
+    <loc>https://voxlaci.com/en/ensembles/voxpueri</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxpueri.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxpueri.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxpueri.html"/>
@@ -302,7 +302,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ensembles/voxsoul.html</loc>
+    <loc>https://voxlaci.com/en/ensembles/voxsoul</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxsoul.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxsoul.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxsoul.html"/>
@@ -311,7 +311,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ensembles/voxatma.html</loc>
+    <loc>https://voxlaci.com/en/ensembles/voxatma</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxatma.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxatma.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxatma.html"/>
@@ -320,7 +320,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ensembles/voxcor.html</loc>
+    <loc>https://voxlaci.com/en/ensembles/voxcor</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxcor.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxcor.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxcor.html"/>
@@ -329,7 +329,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ensembles/tutti.html</loc>
+    <loc>https://voxlaci.com/en/ensembles/tutti</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/tutti.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/tutti.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/tutti.html"/>
@@ -338,7 +338,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ensembles/intuicao.html</loc>
+    <loc>https://voxlaci.com/en/ensembles/intuicao</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/intuicao.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/intuicao.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/intuicao.html"/>
@@ -347,7 +347,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ensembles/hirmandade.html</loc>
+    <loc>https://voxlaci.com/en/ensembles/hirmandade</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/hirmandade.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/hirmandade.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/hirmandade.html"/>
@@ -356,7 +356,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ensembles/quorum.html</loc>
+    <loc>https://voxlaci.com/en/ensembles/quorum</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/quorum.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/quorum.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/quorum.html"/>
@@ -365,7 +365,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ensembles/kyma.html</loc>
+    <loc>https://voxlaci.com/en/ensembles/kyma</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/kyma.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/kyma.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/kyma.html"/>
@@ -374,7 +374,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ensembles/voxpetrus.html</loc>
+    <loc>https://voxlaci.com/en/ensembles/voxpetrus</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ensembles/voxpetrus.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxpetrus.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxpetrus.html"/>
@@ -399,7 +399,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2028.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2028</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2028.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2028.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2028.html"/>
@@ -408,7 +408,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2027.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2027</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2027.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2027.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2027.html"/>
@@ -417,7 +417,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2026.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2026</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2026.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2026.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2026.html"/>
@@ -426,7 +426,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2025.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2025</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2025.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2025.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2025.html"/>
@@ -435,7 +435,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2024.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2024</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2024.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2024.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2024.html"/>
@@ -444,7 +444,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2023.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2023</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2023.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2023.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2023.html"/>
@@ -453,7 +453,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2022.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2022</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2022.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2022.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2022.html"/>
@@ -462,7 +462,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2021.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2021</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2021.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2021.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2021.html"/>
@@ -471,7 +471,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2019.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2019</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2019.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2019.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2019.html"/>
@@ -480,7 +480,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2018.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2018</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2018.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2018.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2018.html"/>
@@ -489,7 +489,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2017.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2017</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2017.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2017.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2017.html"/>
@@ -498,7 +498,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2014.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2014</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2014.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2014.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2014.html"/>
@@ -507,7 +507,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2013.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2013</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2013.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2013.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2013.html"/>
@@ -516,7 +516,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2012.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2012</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2012.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2012.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2012.html"/>
@@ -525,7 +525,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2011.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2011</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2011.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2011.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2011.html"/>
@@ -534,7 +534,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2010.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2010</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2010.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2010.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2010.html"/>
@@ -543,7 +543,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2009.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2009</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2009.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2009.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2009.html"/>
@@ -552,7 +552,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2008.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2008</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2008.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2008.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2008.html"/>
@@ -561,7 +561,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2007.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2007</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2007.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2007.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2007.html"/>
@@ -570,7 +570,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2006.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2006</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2006.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2006.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2006.html"/>
@@ -579,7 +579,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ramos/edicoes/2005.html</loc>
+    <loc>https://voxlaci.com/ramos/edicoes/2005</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2005.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2005.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2005.html"/>
@@ -596,7 +596,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2028.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2028</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2028.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2028.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2028.html"/>
@@ -605,7 +605,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2027.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2027</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2027.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2027.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2027.html"/>
@@ -614,7 +614,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2026.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2026</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2026.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2026.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2026.html"/>
@@ -623,7 +623,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2025.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2025</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2025.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2025.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2025.html"/>
@@ -632,7 +632,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2024.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2024</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2024.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2024.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2024.html"/>
@@ -641,7 +641,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2023.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2023</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2023.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2023.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2023.html"/>
@@ -650,7 +650,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2022.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2022</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2022.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2022.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2022.html"/>
@@ -659,7 +659,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2021.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2021</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2021.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2021.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2021.html"/>
@@ -668,7 +668,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2019.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2019</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2019.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2019.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2019.html"/>
@@ -677,7 +677,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2018.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2018</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2018.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2018.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2018.html"/>
@@ -686,7 +686,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2017.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2017</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2017.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2017.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2017.html"/>
@@ -695,7 +695,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2014.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2014</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2014.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2014.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2014.html"/>
@@ -704,7 +704,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2013.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2013</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2013.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2013.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2013.html"/>
@@ -713,7 +713,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2012.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2012</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2012.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2012.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2012.html"/>
@@ -722,7 +722,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2011.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2011</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2011.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2011.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2011.html"/>
@@ -731,7 +731,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2010.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2010</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2010.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2010.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2010.html"/>
@@ -740,7 +740,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2009.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2009</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2009.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2009.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2009.html"/>
@@ -749,7 +749,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2008.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2008</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2008.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2008.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2008.html"/>
@@ -758,7 +758,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2007.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2007</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2007.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2007.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2007.html"/>
@@ -767,7 +767,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2006.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2006</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2006.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2006.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2006.html"/>
@@ -776,7 +776,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/en/ramos/editions/2005.html</loc>
+    <loc>https://voxlaci.com/en/ramos/editions/2005</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/editions/2005.html"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/edicoes/2005.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ramos/edicoes/2005.html"/>
