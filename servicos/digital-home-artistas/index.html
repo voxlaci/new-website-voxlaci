@@ -56,6 +56,8 @@
     .ct-antonieta {background-image:url("/assets/digital-homes/antoaneta-radocaj-hero.jpg");background-position:center 24%}
     .ct-glass     {background-image:url("/assets/digital-homes/glass-marcano-hero.jpg");background-position:center 35%}
     .ct-gene      {background-image:url("/assets/digital-homes/gene-peterson-hero.jpg")}
+    .ct-felicia   {background-image:url("/assets/digital-homes/felicia-barber-hero.jpg");background-position:center 30%}
+    .ct-barrett   {background-color:#0d0d0d}
     .concept-body{padding:24px;flex:1;display:flex;flex-direction:column}
     .concept-tag{display:inline-block;padding:4px 11px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin-bottom:14px;align-self:start}
     .concept-tag--live{color:#fff;background:#050505}
@@ -374,6 +376,30 @@
           </div>
         </article>
 
+        <!-- 17 — Dr. Felicia Barber (Private Preview) -->
+        <article class="concept-card">
+          <div class="concept-thumb ct-felicia" aria-hidden="true">FB</div>
+          <div class="concept-body">
+            <span class="concept-tag concept-tag--private">Private Preview</span>
+            <h3>Dr. Felicia Barber</h3>
+            <p class="concept-cat">Conductor · Educator · Scholar</p>
+            <p class="concept-desc">Concept digital home for Dr. Felicia Barber, choral conductor, educator and scholar — Associate Professor of Choral Conducting at Yale University and Conductor of the Yale Camerata.</p>
+            <button class="concept-btn concept-btn--coming js-private-preview" type="button" data-modal-message="This Digital Home concept is currently a private preview and is not yet publicly available.">Coming Soon</button>
+          </div>
+        </article>
+
+        <!-- 18 — Dr. Michael Joseph Barrett (Private Preview) -->
+        <article class="concept-card">
+          <div class="concept-thumb ct-barrett" aria-hidden="true">MJB</div>
+          <div class="concept-body">
+            <span class="concept-tag concept-tag--private">Private Preview</span>
+            <h3>Dr. Michael Joseph Barrett</h3>
+            <p class="concept-cat">Conductor · Composer · Educator</p>
+            <p class="concept-desc">Concept digital home for Dr. Michael Joseph Barrett, conductor, composer and educator — a dedicated digital presence for an internationally active artistic career.</p>
+            <button class="concept-btn concept-btn--coming js-private-preview" type="button" data-modal-message="This Digital Home concept is currently a private preview and is not yet publicly available.">Coming Soon</button>
+          </div>
+        </article>
+
       </div>
 
       <p class="concepts-legal">These are independent design concepts created for portfolio and demonstration purposes. Concept websites are not official websites and are not affiliated with, endorsed by, or commissioned by the artists unless explicitly stated. VoxLaci and Miguel Castro are official live websites.</p>
@@ -406,16 +432,18 @@
         <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
       <h4 id="cmodalTitle">Private Preview</h4>
-      <p>This concept website is currently under review by the artist. It will be published here if and when the artist approves its public release. Thank you for your understanding.</p>
+      <p id="cmodalText">This concept website is currently under review by the artist. It will be published here if and when the artist approves its public release. Thank you for your understanding.</p>
     </div>
   </div>
   <script>
     (function(){
       var overlay=document.getElementById('conceptsModal');
       var closeBtn=document.getElementById('cmodalClose');
-      function openModal(){overlay.classList.add('is-open');closeBtn.focus();}
+      var textEl=document.getElementById('cmodalText');
+      var defaultText=textEl.textContent;
+      function openModal(msg){textEl.textContent=msg||defaultText;overlay.classList.add('is-open');closeBtn.focus();}
       function closeModal(){overlay.classList.remove('is-open');}
-      document.querySelectorAll('.js-private-preview').forEach(function(btn){btn.addEventListener('click',openModal);});
+      document.querySelectorAll('.js-private-preview').forEach(function(btn){btn.addEventListener('click',function(){openModal(btn.getAttribute('data-modal-message'));});});
       closeBtn.addEventListener('click',closeModal);
       overlay.addEventListener('click',function(e){if(e.target===overlay)closeModal();});
       document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
