@@ -54,7 +54,7 @@ Foram pesquisadas referências em:
 
 - `/eventos/`
 - `/eventos/janeiras/`
-- `/eventos/ramos/`
+- `/eventos/ramos/` → redirecionado para `/ramos/`
 - `/eventos/voxpueri-festival/`
 - `/eventos/reis/`
 - `/eventos/stella/`

@@ -7,6 +7,11 @@
   status = 301
 
 [[redirects]]
+  from = "/eventos/ramos/"
+  to = "/ramos/"
+  status = 301
+
+[[redirects]]
   from = "/eventos/ramos-palm-sunday-festival/"
   to = "/ramos/"
   status = 301
