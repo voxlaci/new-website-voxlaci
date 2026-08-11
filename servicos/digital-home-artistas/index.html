@@ -95,6 +95,27 @@
     .concept-btn--coming{color:var(--silver);border-color:var(--line);background:transparent}
     .concept-btn--coming:hover{color:var(--ink);border-color:var(--muted)}
     .concepts-legal{margin-top:40px;padding:18px 22px;border:1px solid var(--line);border-radius:4px;font-size:.78rem;line-height:1.65;color:var(--silver)}
+    /* ── Launch Edition Offer ─────────────────────────────────────────── */
+    .launch-offer{background:#070707;color:#f7f3ea}
+    .launch-wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);gap:42px;align-items:center}
+    .launch-visual{margin:0;overflow:hidden;border:1px solid rgba(199,158,92,.34);box-shadow:0 28px 80px rgba(0,0,0,.28);background:#111}
+    .launch-visual img{display:block;width:100%;height:auto}
+    .launch-copy{max-width:640px}
+    .launch-copy .eyebrow{color:#c79e5c}
+    .launch-copy h2{margin:8px 0 12px;font:700 clamp(2.9rem,7vw,7rem)/.86 Manrope,sans-serif;letter-spacing:-.075em;color:#fff}
+    .launch-tagline{margin:0 0 22px;font:italic 1.45rem/1.35 Georgia,serif;color:#c79e5c}
+    .launch-copy p{color:rgba(247,243,234,.78)}
+    .launch-price{margin:26px 0;padding:24px;border:1px solid rgba(199,158,92,.42);background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02))}
+    .launch-price small{display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;color:rgba(247,243,234,.62)}
+    .launch-price strong{display:block;font:700 clamp(2.6rem,6vw,5.8rem)/.95 Manrope,sans-serif;letter-spacing:-.07em;color:#c79e5c}
+    .launch-price span{display:block;margin-top:6px;color:rgba(247,243,234,.72)}
+    .launch-list{display:grid;gap:8px;margin:0 0 26px;padding:0;list-style:none;color:#fff}
+    .launch-list li{display:flex;gap:10px;align-items:flex-start;color:rgba(247,243,234,.86)}
+    .launch-list li::before{content:"✓";color:#c79e5c;font-weight:800}
+    .launch-update{margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);font-size:.95rem}
+    .launch-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+    .launch-actions .button{border-color:rgba(255,255,255,.26);color:#fff}
+    .launch-actions .button.primary{background:#c79e5c;border-color:#c79e5c;color:#070707}
     /* ── Private Preview Modal ─────────────────────────────────────────── */
     .cmodal-overlay{position:fixed;inset:0;z-index:300;background:rgba(5,5,5,.55);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .22s ease}
     .cmodal-overlay.is-open{opacity:1;pointer-events:auto}
@@ -116,8 +137,8 @@
     .footer-news-form input:focus{outline:none;border-color:var(--gold)}
     .footer-news-form button{padding:11px 20px;border:1.5px solid var(--gold);border-radius:99px;background:var(--gold);color:#fff;font:700 .85rem Inter,sans-serif;cursor:pointer;transition:opacity .2s}
     .footer-news-form button:hover{opacity:.85}
-    @media(max-width:1000px){.concepts-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:600px){.concepts-grid{grid-template-columns:1fr}.concept-thumb{height:140px;font-size:2.2rem}.cmodal{padding:36px 22px 30px}}
+    @media(max-width:1000px){.concepts-grid{grid-template-columns:repeat(2,1fr)}.launch-wrap{grid-template-columns:1fr}}
+    @media(max-width:600px){.concepts-grid{grid-template-columns:1fr}.concept-thumb{height:140px;font-size:2.2rem}.cmodal{padding:36px 22px 30px}.launch-price{padding:20px}.launch-actions{flex-direction:column}.launch-actions .button{justify-content:center}}
   </style>
 </head>
 <body>
@@ -181,6 +202,37 @@
         <details open><summary>Maestros, cantores e instrumentistas</summary><div><p>Uma página que apresenta autoridade artística, agenda, repertório, imprensa, vídeos e contactos para convites profissionais.</p></div></details>
         <details><summary>Coros, ensembles e projetos culturais</summary><div><p>Uma estrutura clara para missão, grupos, inscrições, eventos, pagamentos, equipa artística e arquivo histórico.</p></div></details>
         <details><summary>Escolas, academias e festivais</summary><div><p>Informação organizada para participantes, pais, professores, parceiros e público, com formulários, FAQ e páginas bilingues.</p></div></details>
+      </div>
+    </section>
+
+    <section class="section launch-offer" id="launch-edition">
+      <div class="launch-wrap">
+        <figure class="launch-visual">
+          <img src="/assets/digital-homes/digital-home-launch-edition.png" alt="Digital Home for Artists — Launch Edition by VoxLaci">
+        </figure>
+        <div class="launch-copy">
+          <p class="eyebrow">Digital Home for Artists</p>
+          <h2>Your name.<br>Your story.<br>Your home.</h2>
+          <p class="launch-tagline">yourname.com</p>
+          <p>Descubra o conceito Digital Home e explore alguns dos sites de artistas que já criámos e que estamos a apresentar como conceitos privados ou em preview enquanto aguardamos revisão, feedback e aprovação final.</p>
+          <div class="launch-price">
+            <small>Launch Edition</small>
+            <strong>€4,950</strong>
+            <span>Preço regular: €6,950 · Disponível para as primeiras 10 Digital Homes.</span>
+          </div>
+          <ul class="launch-list">
+            <li>Bespoke Digital Home</li>
+            <li>Domínio pessoal .com</li>
+            <li>Design e desenvolvimento completos</li>
+            <li>3 anos de Digital Home Care</li>
+            <li>Sem mensalidades</li>
+          </ul>
+          <p class="launch-update"><strong>Digital Home Update — €290</strong><br>Uma atualização agrupada de conteúdos. Sem subscrição.</p>
+          <div class="launch-actions">
+            <a class="button primary" href="#conceitos">Ver artistas e conceitos</a>
+            <a class="button" href="mailto:info@voxlaci.com?subject=Digital%20Home%20for%20Artists">Imaginar a minha Digital Home</a>
+          </div>
+        </div>
       </div>
     </section>
 
