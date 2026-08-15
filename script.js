@@ -244,7 +244,7 @@ const uiTranslations = {
     "Identidade, palco e mundo.": "身份、舞台与世界。",
     "Segunda · 18h00–19h30": "周一 · 18h00–19h30",
     "Respirar. Reencontrar. Transformar.": "呼吸。重新相遇。转变。",
-    "Segunda · 20h00–21h15": "周一 · 20h00–21h15",
+    "Segunda · 19h45–21h00": "周一 · 19h45–21h00",
     "Coro adulto. Voz, repertório e comunidade.": "成人合唱团。声音、曲目与社区。",
     "Cantar coletivo": "集体歌唱",
     "Cantar em grupo, criar ligações e fazer coro.": "集体歌唱，建立联结，组成合唱团。",
@@ -399,7 +399,7 @@ const details = {
   atma: {
     title: "Vox Atma",
     body: "Coro de adultos com ou sem experiência musical. Um espaço seguro para respirar, cantar repertório variado, criar relações e reencontrar a própria voz.",
-    meta: "Segunda-feira · 20h00–21h15"
+    meta: "Segunda-feira · 19h45–21h00"
   },
   voxcor: {
     title: "VoxCor",

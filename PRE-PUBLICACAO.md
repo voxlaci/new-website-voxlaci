@@ -24,7 +24,7 @@ Não deve ligar `voxlaci.com` nesta fase.
 
 - Vox Pueri: 4–9/10 anos, segunda-feira 17h–17h50.
 - Vox Soul: 10–18 anos, segunda-feira 18h00–19h30.
-- Vox Atma: +18 anos, segunda-feira 20h00–21h15.
+- Vox Atma: +18 anos, segunda-feira 19h45–21h00.
 - Relações públicas/WhatsApp: (+351) 925 075 186.
 - Contacto: (+351) 925 075 186.
 - Email: info@voxlaci.com.
