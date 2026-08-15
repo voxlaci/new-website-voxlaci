@@ -21,7 +21,33 @@
     <p class="overline">Casting recebido</p>
     <h1>Obrigado.<br>A sua voz chegou.</h1>
     <p>A equipa VoxLaci entrará em contacto através dos dados indicados. Receberá também uma cópia da sua candidatura por email, quando o envio automático estiver disponível.</p>
+    <section class="casting-share" aria-labelledby="casting-share-title">
+      <h2 id="casting-share-title">Inscrição recebida.</h2>
+      <p>Conhece alguém que também deveria fazer este casting? Partilhe agora.</p>
+      <div class="casting-share-actions">
+        <a class="pill primary" href="https://wa.me/?text=Conhece%20algu%C3%A9m%20que%20deveria%20fazer%20o%20casting%20VoxLaci%3F%20https%3A%2F%2Fvoxlaci.com%2F%23inscricao" target="_blank" rel="noopener">Partilhar por WhatsApp</a>
+        <a class="pill outline" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvoxlaci.com%2F%23inscricao" target="_blank" rel="noopener">Partilhar no Facebook</a>
+        <button class="pill outline copy-casting-link" type="button">Copiar ligação</button>
+      </div>
+      <p class="copy-feedback" aria-live="polite"></p>
+    </section>
     <a class="pill primary" href="/">Voltar ao site</a>
   </main>
+<script>
+  (() => {
+    const button = document.querySelector(".copy-casting-link");
+    const feedback = document.querySelector(".copy-feedback");
+    const link = "https://voxlaci.com/#inscricao";
+    if (!button) return;
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(link);
+        feedback.textContent = "Ligação copiada.";
+      } catch {
+        feedback.textContent = link;
+      }
+    });
+  })();
+</script>
 <script src="/universal-share.js?v=14" defer></script></body>
 </html>

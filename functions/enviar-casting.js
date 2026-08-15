@@ -152,6 +152,7 @@ export async function onRequestPost(context) {
   const experiencia     = sanitize(formData.get("experiencia"));
   const leituraMusical  = sanitize(formData.get("leitura-musical"));
   const origem          = sanitize(formData.get("origem"));
+  const recomendacao    = sanitize(formData.get("recomendacao"));
   const motivacao       = sanitize(formData.get("motivacao"));
   const pagamentoMetodo = sanitize(formData.get("pagamento-inscricao"));
   const nomePagamento   = sanitize(formData.get("nome-pagamento"));
@@ -203,6 +204,7 @@ export async function onRequestPost(context) {
     ${linha("Experiência coral", experiencia)}
     ${linha("Leitura musical", leituraMusical)}
     ${linha("Como conheceu a VoxLaci", origem)}
+    ${linha("Quem recomendou este casting", recomendacao)}
     ${linha("Motivação", motivacao)}
     ${linha("Forma de pagamento", pagamentoMetodo)}
     ${linha("Nome no pagamento", nomePagamento)}
@@ -232,6 +234,7 @@ export async function onRequestPost(context) {
     ${linha("Experiência coral", experiencia)}
     ${linha("Leitura musical", leituraMusical)}
     ${linha("Como conheceu a VoxLaci", origem)}
+    ${linha("Quem recomendou este casting", recomendacao)}
     ${linha("Motivação", motivacao)}
     ${linha("Forma de pagamento", pagamentoMetodo)}
     ${linha("Nome no pagamento", nomePagamento)}
