@@ -419,17 +419,17 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
         <div id="form-erro" class="form-erro" hidden></div>
         <input type="hidden" name="form-name" value="inscricao-voxlaci">
         <p class="form-hidden" aria-hidden="true"><label>Leave blank: <input name="campo-secreto" tabindex="-1" autocomplete="off"><input name="website" tabindex="-1" autocomplete="off"></label></p>
-        <label class="span-2"><span>Nome completo / Full name *</span><input name="nome" required autocomplete="name"></label>
-        <label><span>Idade / Age *</span><input type="number" name="idade" min="2" max="114" required></label>
-        <label><span>País / Country</span><input name="pais" autocomplete="country-name"></label>
-        <label><span>Telefone / Telephone *</span><input type="tel" name="telefone" required autocomplete="tel"></label>
+        <label class="span-2"><span data-pt="Nome completo *" data-en="Full name *">Nome completo *</span><input name="nome" required autocomplete="name"></label>
+        <label><span data-pt="Idade *" data-en="Age *">Idade *</span><input type="number" name="idade" min="2" max="114" required></label>
+        <label><span data-pt="País" data-en="Country">País</span><input name="pais" autocomplete="country-name"></label>
+        <label><span data-pt="Telefone *" data-en="Telephone *">Telefone *</span><input type="tel" name="telefone" required autocomplete="tel"></label>
         <label><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
-        <label class="span-2"><span>Morada e localidade / Address and city</span><input name="morada" autocomplete="street-address"></label>
+        <label class="span-2"><span data-pt="Morada e localidade" data-en="Address and city">Morada e localidade</span><input name="morada" autocomplete="street-address"></label>
         <label><span data-pt="Ensemble de interesse" data-en="Ensemble of interest">Ensemble de interesse</span><select name="ensemble"><option value="" data-pt="Ainda não sei" data-en="I don't know yet">Ainda não sei</option><option>VoxPueri</option><option>VoxSoul</option><option>VoxAtma</option><option>VoxCor</option><option>Tutti</option><option>Intuição</option><option>Hirmandade</option><option>KYMA</option><option>Qūórum</option><option>Vox Petrus</option></select></label>
         <label><span data-pt="Já cantou num coro?" data-en="Have you sung in a choir before?">Já cantou num coro?</span><select name="experiencia"><option data-pt="Não" data-en="No">Não</option><option data-pt="Sim" data-en="Yes">Sim</option></select></label>
         <label><span data-pt="Sabe ler música?" data-en="Can you read music?">Sabe ler música?</span><select name="leitura-musical"><option data-pt="Não" data-en="No">Não</option><option data-pt="Sim" data-en="Yes">Sim</option><option data-pt="Um pouco" data-en="A little">Um pouco</option></select></label>
         <label><span data-pt="Como conheceu a VoxLaci?" data-en="How did you hear about VoxLaci?">Como conheceu a VoxLaci?</span><select name="origem"><option>Google</option><option>Instagram</option><option>Facebook</option><option>YouTube</option><option data-pt="Família ou amigos" data-en="Family or friends">Família ou amigos</option><option data-pt="Evento" data-en="Event">Evento</option><option data-pt="Outro" data-en="Other">Outro</option></select></label>
-        <label class="span-2"><span>Quem lhe recomendou este casting? / Who recommended this casting?</span><input name="recomendacao" autocomplete="off"></label>
+        <label class="span-2"><span data-pt="Quem lhe recomendou este casting?" data-en="Who recommended this casting?">Quem lhe recomendou este casting?</span><input name="recomendacao" autocomplete="off"></label>
         <label class="span-2"><span data-pt="Porque gostaria de fazer parte da VoxLaci?" data-en="Why would you like to be part of VoxLaci?">Porque gostaria de fazer parte da VoxLaci?</span><textarea name="motivacao" rows="4"></textarea></label>
         <fieldset class="payment-registration span-2">
           <legend data-pt="Pagamento obrigatório da inscrição / audição — 20€" data-en="Mandatory registration / audition payment — €20">Pagamento obrigatório da inscrição / audição — 20€</legend>
@@ -442,7 +442,7 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
         <label class="form-consent span-2"><input type="checkbox" name="privacidade" required><span data-pt="Aceito que estes dados sejam usados para responder ao meu casting e receber a confirmação por email." data-en="I agree that this data may be used to respond to my casting and send me an email confirmation.">Aceito que estes dados sejam usados para responder ao meu casting e receber a confirmação por email.</span></label>
         <div class="turnstile-wrap span-2">
           <label class="turnstile-label" data-pt="Verificação de segurança — confirme que é humano" data-en="Security check — confirm you are human">Verificação de segurança — confirme que é humano</label>
-          <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="pt"></div>
+          <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="auto"></div>
         </div>
         <button class="form-submit span-2" type="submit" data-pt="Enviar casting e receber confirmação →" data-en="Submit casting and receive confirmation →">Enviar casting e receber confirmação →</button>
       </form>
@@ -602,23 +602,49 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
 <script>
 (function () {
   const ERROS = {
-    "comprovativo-ausente":   "Para concluir a inscrição, é necessário anexar o comprovativo de pagamento dos 20€.",
-    "captcha":                "Não foi possível validar a submissão. Tente novamente.",
-    "rate":                   "Demasiadas tentativas. Aguarde alguns minutos antes de tentar novamente.",
-    "campos-obrigatorios":    "Por favor, preencha todos os campos obrigatórios.",
-    "envio-falhou":           "Não foi possível enviar a candidatura. Tente novamente ou contacte info@voxlaci.com.",
+    pt: {
+      "comprovativo-ausente":   "Para concluir a inscrição, é necessário anexar o comprovativo de pagamento dos 20€.",
+      "captcha":                "Não foi possível validar a submissão. Tente novamente.",
+      "rate":                   "Demasiadas tentativas. Aguarde alguns minutos antes de tentar novamente.",
+      "campos-obrigatorios":    "Por favor, preencha todos os campos obrigatórios.",
+      "envio-falhou":           "Não foi possível enviar a candidatura. Tente novamente ou contacte info@voxlaci.com.",
+    },
+    en: {
+      "comprovativo-ausente":   "To complete the registration, please attach proof of the €20 payment.",
+      "captcha":                "We could not validate the submission. Please try again.",
+      "rate":                   "Too many attempts. Please wait a few minutes before trying again.",
+      "campos-obrigatorios":    "Please complete all required fields.",
+      "envio-falhou":           "We could not send your application. Please try again or contact info@voxlaci.com.",
+    },
   };
 
   const MSGS = {
-    nome:                  "Por favor, indica o teu nome completo.",
-    idade:                 "Por favor, indica a tua idade.",
-    telefone:              "Por favor, indica o teu telefone.",
-    email:                 "Por favor, indica um email válido.",
-    "pagamento-inscricao": "Por favor, seleciona a forma de pagamento.",
-    "nome-pagamento":      "Por favor, indica o nome usado no pagamento.",
-    comprovativo:          "Por favor, anexa o comprovativo de pagamento.",
-    privacidade:           "É necessário aceitar para continuar.",
+    pt: {
+      nome:                  "Por favor, indica o teu nome completo.",
+      idade:                 "Por favor, indica a tua idade.",
+      telefone:              "Por favor, indica o teu telefone.",
+      email:                 "Por favor, indica um email válido.",
+      "pagamento-inscricao": "Por favor, seleciona a forma de pagamento.",
+      "nome-pagamento":      "Por favor, indica o nome usado no pagamento.",
+      comprovativo:          "Por favor, anexa o comprovativo de pagamento.",
+      privacidade:           "É necessário aceitar para continuar.",
+    },
+    en: {
+      nome:                  "Please enter your full name.",
+      idade:                 "Please enter your age.",
+      telefone:              "Please enter your telephone number.",
+      email:                 "Please enter a valid email address.",
+      "pagamento-inscricao": "Please choose a payment method.",
+      "nome-pagamento":      "Please enter the name used for payment.",
+      comprovativo:          "Please attach proof of payment.",
+      privacidade:           "You must accept this to continue.",
+    },
   };
+  const FORM_BANNER = {
+    pt: "Por favor, preencha todos os campos obrigatórios assinalados a vermelho.",
+    en: "Please complete all required fields highlighted in red.",
+  };
+  const currentFormLanguage = () => document.documentElement.lang === "en" ? "en" : "pt";
 
   // ── Banner de erro geral ──────────────────────────────────────────────
   function showBanner(msg) {
@@ -636,8 +662,8 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
   // ── Mostrar erro do servidor via ?erro= ──────────────────────────────
   const params = new URLSearchParams(window.location.search);
   const serverCode = params.get("erro");
-  if (serverCode && ERROS[serverCode]) {
-    showBanner(ERROS[serverCode]);
+  if (serverCode && ERROS[currentFormLanguage()]?.[serverCode]) {
+    showBanner(ERROS[currentFormLanguage()][serverCode]);
     const url = new URL(window.location);
     url.searchParams.delete("erro");
     history.replaceState(null, "", url);
@@ -700,7 +726,8 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
 
     required.forEach(function (field) {
       if (!isValid(field)) {
-        setError(field, MSGS[field.name] || "Campo obrigatório.");
+        const formLanguage = currentFormLanguage();
+        setError(field, MSGS[formLanguage]?.[field.name] || (formLanguage === "en" ? "Required field." : "Campo obrigatório."));
         errorFields.push(field);
       } else {
         clearError(field);
@@ -709,7 +736,7 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
 
     if (errorFields.length > 0) {
       e.preventDefault();
-      showBanner("Por favor, preencha todos os campos obrigatórios assinalados a vermelho.");
+      showBanner(FORM_BANNER[currentFormLanguage()]);
       const first = errorFields[0];
       first.scrollIntoView({ behavior: "smooth", block: "center" });
       if (first.type !== "file") first.focus();
