@@ -242,9 +242,9 @@ const uiTranslations = {
     "Segunda · 17h–17h50": "周一 · 17h–17h50",
     "Segunda · 12h–13h15": "周一 · 12h–13h15",
     "Identidade, palco e mundo.": "身份、舞台与世界。",
-    "Segunda · 18h–19h15": "周一 · 18h–19h15",
+    "Segunda · 18h00–19h30": "周一 · 18h00–19h30",
     "Respirar. Reencontrar. Transformar.": "呼吸。重新相遇。转变。",
-    "Segunda · 20h15–21h30": "周一 · 20h15–21h30",
+    "Segunda · 20h00–21h15": "周一 · 20h00–21h15",
     "Coro adulto. Voz, repertório e comunidade.": "成人合唱团。声音、曲目与社区。",
     "Cantar coletivo": "集体歌唱",
     "Cantar em grupo, criar ligações e fazer coro.": "集体歌唱，建立联结，组成合唱团。",
@@ -394,12 +394,12 @@ const details = {
   soul: {
     title: "Vox Soul",
     body: "Para jovens dos 10 aos 18 anos. Técnica vocal, repertório, palco, amizades e oportunidades para atuar e viajar em Portugal e no estrangeiro.",
-    meta: "Segundas-feiras · 18h–19h15"
+    meta: "Segunda-feira · 18h00–19h30"
   },
   atma: {
     title: "Vox Atma",
     body: "Coro de adultos com ou sem experiência musical. Um espaço seguro para respirar, cantar repertório variado, criar relações e reencontrar a própria voz.",
-    meta: "Segundas-feiras · 20h15–21h30"
+    meta: "Segunda-feira · 20h00–21h15"
   },
   voxcor: {
     title: "VoxCor",
