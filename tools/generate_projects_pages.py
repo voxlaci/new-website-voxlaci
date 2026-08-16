@@ -418,7 +418,7 @@ PROJECTS = [
 
 
 def attrs(texts: dict[str, str]) -> str:
-    return " ".join(f"data-{lang}={json.dumps(texts.get(lang, texts.get('pt', '')))}" for lang in LANGS)
+    return " ".join(f"data-{lang}={json.dumps(texts.get(lang, texts.get('pt', '')), ensure_ascii=False)}" for lang in LANGS)
 
 
 def tkey(key: str) -> str:

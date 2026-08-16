@@ -36,7 +36,7 @@ EVENTS = [
 ]
 
 def attrs(texts):
-    return " ".join(f"data-{lang}={json.dumps(texts.get(lang, texts.get('pt','')))}" for lang in LANGS)
+    return " ".join(f"data-{lang}={json.dumps(texts.get(lang, texts.get('pt','')), ensure_ascii=False)}" for lang in LANGS)
 def ui(key):
     return attrs({lang:UI[lang][key] for lang in LANGS})
 def lis(items):
