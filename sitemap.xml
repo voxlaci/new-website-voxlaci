@@ -931,60 +931,60 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/voxpop/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/voxpop/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/voxpop/"/>
-    <lastmod>2026-06-21</lastmod>
+    <loc>https://voxlaci.com/eventos/voxpop/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/voxpop/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/voxpop/"/>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/cascaisvoxpop/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/cascaisvoxpop/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/cascaisvoxpop/"/>
-    <lastmod>2026-06-21</lastmod>
+    <loc>https://voxlaci.com/eventos/voxpop/lisboa/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/voxpop/lisboa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/voxpop/lisboa/"/>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/lisboavoxpop/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/lisboavoxpop/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/lisboavoxpop/"/>
-    <lastmod>2026-06-21</lastmod>
+    <loc>https://voxlaci.com/eventos/voxpop/cascais/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/voxpop/cascais/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/voxpop/cascais/"/>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/portovoxpop/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/portovoxpop/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/portovoxpop/"/>
-    <lastmod>2026-06-21</lastmod>
+    <loc>https://voxlaci.com/eventos/voxpop/porto/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/voxpop/porto/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/voxpop/porto/"/>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/londonvoxpop/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/londonvoxpop/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/londonvoxpop/"/>
-    <lastmod>2026-06-21</lastmod>
+    <loc>https://voxlaci.com/eventos/voxpop/monopoli/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/voxpop/monopoli/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/voxpop/monopoli/"/>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/dakarvoxpop/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/dakarvoxpop/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/dakarvoxpop/"/>
-    <lastmod>2026-06-21</lastmod>
+    <loc>https://voxlaci.com/eventos/voxpop/london/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/voxpop/london/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/voxpop/london/"/>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/monopolivoxpop/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/monopolivoxpop/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/monopolivoxpop/"/>
-    <lastmod>2026-06-21</lastmod>
+    <loc>https://voxlaci.com/eventos/voxpop/dakar/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/voxpop/dakar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/eventos/voxpop/dakar/"/>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/dakar-singing-festival/</loc>

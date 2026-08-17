@@ -1,0 +1,57 @@
+/* voX±Pop — shared styles for the hub + city pages. Reuses .pricing-card, .choice-cards,
+   .accordion, .fact-grid, .entry-cards, .whatsapp-float from subpage.css / ramos-residency.css. */
+
+.city-status-badge{display:inline-block;padding:3px 12px;border-radius:99px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.city-status-badge.open{background:#e0f6e6;color:#146c2e}
+.city-status-badge.coming_soon{background:#eef1fb;color:#3b4bb0}
+.city-status-badge.sold_out{background:#f4f4f4;color:#777}
+.city-status-badge.past{background:#f4f4f4;color:#777}
+
+.voxpop-city-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+.voxpop-city-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:4px;overflow:hidden;text-decoration:none;color:inherit;background:#fff;transition:transform .15s,box-shadow .15s}
+.voxpop-city-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.voxpop-city-card img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.voxpop-city-card .voxpop-city-card-body{padding:18px}
+.voxpop-city-card b{display:block;font:700 1.2rem Manrope;letter-spacing:-.02em;margin:8px 0 4px}
+.voxpop-city-card span.dates{display:block;color:var(--muted);font-size:13px;margin-bottom:8px}
+.voxpop-city-card span.price{display:block;font-weight:700;font-size:14px}
+@media(max-width:900px){.voxpop-city-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.voxpop-city-grid{grid-template-columns:1fr}}
+
+.capacity-note{padding:14px 18px;border:1px solid var(--line);background:var(--ivory);border-radius:2px;font-size:13px;color:var(--muted);margin:16px 0}
+.capacity-note b{color:var(--ink)}
+
+.conductor-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0}
+.conductor-card{padding:20px;border:1px solid var(--line);border-radius:4px;background:#fff}
+.conductor-card img{width:64px;height:64px;border-radius:50%;object-fit:cover;margin-bottom:12px}
+.conductor-card b{display:block;font-size:1rem;margin-bottom:2px}
+.conductor-card .role{display:block;font-size:12px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.conductor-card p{color:var(--muted);font-size:13px;line-height:1.6;margin:0 0 10px}
+.conductor-card details summary{cursor:pointer;font-size:12px;font-weight:700;color:var(--ink)}
+.conductor-card details[open] summary{margin-bottom:8px}
+.conductor-card details div{font-size:13px;color:var(--muted);line-height:1.7}
+
+.addon-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}
+.addon-card{padding:16px;border:1px solid var(--line);border-radius:4px;text-align:center;background:#fff}
+.addon-card .addon-category{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);margin-bottom:6px}
+.addon-card b{display:block;font-size:14px}
+
+.voxpop-sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:45;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:#111;color:#fff;box-shadow:0 -6px 20px rgba(0,0,0,.15)}
+.voxpop-sticky-cta b{font-size:14px}
+.voxpop-sticky-cta a.button{min-height:auto;padding:10px 18px;font-size:13px}
+@media(min-width:900px){.voxpop-sticky-cta{display:none}}
+
+.gallery-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin:20px 0}
+.gallery-strip img{aspect-ratio:4/3;object-fit:cover;width:100%;border-radius:2px}
+
+.this-and-this{font:700 clamp(1.6rem,3vw,2.4rem) Manrope;letter-spacing:-.02em;line-height:1.3;margin:0}
+.this-and-this .op{color:var(--gold)}
+
+.faq-list details{border-top:1px solid var(--line);padding:18px 0}
+.faq-list summary{cursor:pointer;font-weight:700;font-size:1rem}
+.faq-list details>div{padding-top:10px;color:var(--muted);font-size:14px;line-height:1.7}
+
+.social-links{display:flex;gap:12px;margin:20px 0}
+.social-links a{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--line);border-radius:50%;color:var(--ink)}
+.social-links a:hover{border-color:var(--gold);color:var(--gold)}
+.social-links svg{width:18px;height:18px;fill:currentColor}

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<title>Administração · voX±Pop</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../../../subpage.css"><link rel="stylesheet" href="../../../ramos-residency.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  .admin-tabs{display:flex;gap:8px;margin-bottom:24px}
+  .admin-tabs button{padding:8px 18px;border:1px solid var(--line);border-radius:99px;background:#fff;font-size:13px;font-weight:700;cursor:pointer}
+  .admin-tabs button.is-active{background:#111;color:#fff;border-color:#111}
+  .admin-tab-panel{display:none}
+  .admin-tab-panel.is-active{display:block}
+</style>
+</head>
+<body style="background:#fff">
+<div class="admin-wrap">
+  <h1>voX±Pop</h1>
+  <p class="lead">Painel de administração — acesso restrito via Cloudflare Access.</p>
+
+  <div class="stat-cards" id="stat-cards"></div>
+
+  <div class="admin-tabs">
+    <button type="button" class="is-active" data-tab="registrations">Inscrições</button>
+    <button type="button" data-tab="proposals">Propostas de cidade</button>
+  </div>
+
+  <div class="admin-tab-panel is-active" data-tab-panel="registrations">
+    <div class="admin-filters">
+      <select id="filter-city">
+        <option value="">Todas as cidades</option>
+        <option value="lisboa">Lisboa</option>
+        <option value="cascais">Cascais</option>
+        <option value="porto">Porto</option>
+        <option value="monopoli">Monopoli</option>
+        <option value="london">London</option>
+        <option value="dakar">Dakar</option>
+      </select>
+      <select id="filter-type">
+        <option value="">Todos os tipos</option>
+        <option value="individual">Individual</option>
+        <option value="choir">Coro</option>
+        <option value="group">Grupo</option>
+        <option value="conductor">Maestro</option>
+        <option value="other">Outro</option>
+      </select>
+    </div>
+    <div class="export-links" style="margin:0 0 20px">
+      <a class="button" href="../admin/export?type=registrations" target="_blank" rel="noopener">Exportar CSV</a>
+    </div>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead><tr><th>ID</th><th>Data</th><th>Cidade</th><th>Tipo</th><th>Nome</th><th>Coro</th><th>Opção</th><th>Contacto</th></tr></thead>
+        <tbody id="reg-tbody"><tr><td colspan="8">A carregar…</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="admin-tab-panel" data-tab-panel="proposals">
+    <div class="export-links" style="margin:0 0 20px">
+      <a class="button" href="../admin/export?type=proposals" target="_blank" rel="noopener">Exportar CSV</a>
+    </div>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead><tr><th>ID</th><th>Data</th><th>Cidade</th><th>Nome</th><th>Organização</th><th>Contacto</th><th>Mensagem</th></tr></thead>
+        <tbody id="prop-tbody"><tr><td colspan="7">A carregar…</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var TYPE_LABEL = { individual: "Individual", choir: "Coro", group: "Grupo", conductor: "Maestro", other: "Outro" };
+  var OPTION_LABEL = { festival_only: "Festival (99€)", festival_dinner: "Festival + Jantar (124€)" };
+
+  document.querySelectorAll(".admin-tabs button").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      document.querySelectorAll(".admin-tabs button").forEach(function(b){ b.classList.toggle("is-active", b === btn); });
+      document.querySelectorAll(".admin-tab-panel").forEach(function(p){ p.classList.toggle("is-active", p.dataset.tabPanel === btn.dataset.tab); });
+    });
+  });
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function fmtDate(iso){ if (!iso) return "—"; var d = new Date(iso + "Z"); return d.toLocaleDateString("pt-PT", { day: "2-digit", month: "2-digit", year: "numeric" }); }
+
+  var allRegs = [];
+  var regTbody = document.getElementById("reg-tbody");
+  var filterCity = document.getElementById("filter-city");
+  var filterType = document.getElementById("filter-type");
+
+  function renderStats(){
+    var byCity = {};
+    allRegs.forEach(function(r){ byCity[r.city_slug] = (byCity[r.city_slug] || 0) + 1; });
+    var cards = [["Inscrições", allRegs.length]].concat(Object.keys(byCity).map(function(c){ return [c, byCity[c]]; }));
+    document.getElementById("stat-cards").innerHTML = cards.map(function(c){ return "<div><b>" + c[1] + "</b><span>" + c[0] + "</span></div>"; }).join("");
+  }
+
+  function renderRegs(){
+    var rows = allRegs.filter(function(r){
+      return (!filterCity.value || r.city_slug === filterCity.value) && (!filterType.value || r.participation_type === filterType.value);
+    });
+    if (!rows.length) { regTbody.innerHTML = '<tr><td colspan="8">Sem inscrições.</td></tr>'; return; }
+    regTbody.innerHTML = rows.map(function(r){
+      return "<tr><td><b>" + esc(r.voxpop_id) + "</b></td><td>" + fmtDate(r.created_at) + "</td><td>" + esc(r.city_slug) +
+        "</td><td>" + (TYPE_LABEL[r.participation_type] || r.participation_type) + "</td><td>" + esc(r.full_name) +
+        "</td><td>" + esc(r.choir_name || "—") + "</td><td>" + (OPTION_LABEL[r.participation_option] || r.participation_option) +
+        "</td><td>" + esc(r.email) + " · " + esc(r.whatsapp || "—") + "</td></tr>";
+    }).join("");
+  }
+
+  filterCity.addEventListener("change", renderRegs);
+  filterType.addEventListener("change", renderRegs);
+
+  fetch("../admin/list?type=registrations").then(function(r){ return r.json(); }).then(function(d){
+    if (!d.ok) { regTbody.innerHTML = '<tr><td colspan="8">Erro: ' + esc(d.error) + "</td></tr>"; return; }
+    allRegs = d.registrations || [];
+    renderStats();
+    renderRegs();
+  }).catch(function(err){ regTbody.innerHTML = '<tr><td colspan="8">Erro: ' + esc(err.message) + "</td></tr>"; });
+
+  var propTbody = document.getElementById("prop-tbody");
+  fetch("../admin/list?type=proposals").then(function(r){ return r.json(); }).then(function(d){
+    if (!d.ok) { propTbody.innerHTML = '<tr><td colspan="7">Erro: ' + esc(d.error) + "</td></tr>"; return; }
+    var rows = d.proposals || [];
+    if (!rows.length) { propTbody.innerHTML = '<tr><td colspan="7">Sem propostas.</td></tr>'; return; }
+    propTbody.innerHTML = rows.map(function(p){
+      return "<tr><td><b>" + esc(p.voxpop_id) + "</b></td><td>" + fmtDate(p.created_at) + "</td><td>" + esc(p.city) +
+        "</td><td>" + esc(p.full_name) + "</td><td>" + esc(p.organisation || "—") + "</td><td>" + esc(p.email) + " · " + esc(p.whatsapp || "—") +
+        "</td><td>" + esc(p.message || "—") + "</td></tr>";
+    }).join("");
+  }).catch(function(err){ propTbody.innerHTML = '<tr><td colspan="7">Erro: ' + esc(err.message) + "</td></tr>"; });
+})();
+</script>
+</body></html>
