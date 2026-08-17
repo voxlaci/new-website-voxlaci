@@ -17,95 +17,110 @@
 <form class="residency-form" id="residency-form" novalidate>
   <p class="eyebrow" style="color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin:110px 0 10px">Residência Artística RAMOS 2027</p>
   <h1>15–22 de março de 2027<br>Portugal · 7 noites</h1>
-  <p class="lead">Preencha os seus dados, escolha o quarto e submeta o comprovativo de pagamento. A sua inscrição fica pendente de validação — não é automaticamente confirmada.</p>
+  <p class="lead">Preencha os seus dados em 5 passos. A sua inscrição fica pendente de validação — não é automaticamente confirmada.</p>
 
-  <div class="residency-summary">
-    <div><b>Check-in</b>15 de março de 2027, entre as 15h e as 18h</div>
-    <div><b>Check-out</b>22 de março de 2027, depois do pequeno-almoço</div>
-    <div><b>Inclui</b>Alojamento, refeições, 2 ensaios, transporte oficial</div>
+  <div class="wizard-progress">
+    <span class="wizard-step-dot" data-step="1">1</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="2">2</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="3">3</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="4">4</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="5">5</span>
   </div>
-  <p class="residency-note">Jantar às 18h no dia de chegada, antes do primeiro ensaio às 19h. Local: Seminário Torre d'Águilha, São Domingos de Rana, 2785 Cascais, Portugal · Tel. +351 214 458 440.</p>
 
   <p class="form-erro" id="residency-error" style="display:none;padding:14px 18px;background:#fdeeee;color:#a3241f;border:1px solid #f3c6c4;margin-bottom:24px"></p>
 
   <input type="hidden" name="language" value="pt">
   <p style="position:absolute;left:-9999px" aria-hidden="true"><label>Não preencher: <input name="website" tabindex="-1" autocomplete="off"><input name="campo-secreto" tabindex="-1" autocomplete="off"></label></p>
 
-  <fieldset class="residency-fieldset">
-    <legend>Dados pessoais</legend>
-    <div class="residency-grid">
-      <label class="span-2"><span>Nome completo *</span><input type="text" name="full_name" required autocomplete="name"></label>
-      <label><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
-      <label><span>Telemóvel / WhatsApp *</span><input type="tel" name="mobile" required autocomplete="tel"></label>
-      <label><span>País</span><input type="text" name="country" autocomplete="country-name"></label>
-      <label><span>Coro ou Instituição</span><input type="text" name="choir_institution"></label>
-      <label class="span-2"><span>Função *</span><select name="role" required>
-        <option value="">Escolher</option>
-        <option value="Cantor(a)">Cantor(a)</option>
-        <option value="Maestro(a)">Maestro(a)</option>
-        <option value="Compositor(a)">Compositor(a)</option>
-        <option value="Estudante">Estudante</option>
-        <option value="Outro">Outro</option>
-      </select></label>
-    </div>
-  </fieldset>
-
-  <fieldset class="residency-fieldset">
-    <legend>Opção de alojamento</legend>
-    <div class="room-options">
-      <label class="room-option"><input type="radio" name="room_type" value="single" required><b>Quarto Individual</b><span>1.127 € por pessoa</span></label>
-      <label class="room-option"><input type="radio" name="room_type" value="shared" required><b>Quarto Duplo / Triplo</b><span>987 € por pessoa</span></label>
-    </div>
-    <div class="residency-total" id="residency-total" hidden>Total a pagar: <span id="residency-total-value">—</span></div>
-
-    <div id="share-questions" hidden style="margin-top:24px">
-      <label class="span-2" style="margin-bottom:10px;display:block"><span style="font-size:12px;font-weight:700">Já sabe com quem gostaria de partilhar o quarto?</span></label>
-      <div class="payment-options">
-        <label class="payment-option"><input type="radio" name="share_known" value="yes"> Sim</label>
-        <label class="payment-option"><input type="radio" name="share_known" value="no"> Não — gostaria que o RAMOS me atribuísse um quarto partilhado</label>
+  <div class="wizard-panel is-active" data-panel="1">
+    <fieldset class="residency-fieldset">
+      <legend>1/5 · Dados pessoais</legend>
+      <div class="residency-grid">
+        <label class="span-2"><span>Nome completo *</span><input type="text" name="full_name" required autocomplete="name"></label>
+        <label><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
+        <label><span>Telemóvel / WhatsApp *</span><input type="tel" name="mobile" required autocomplete="tel"></label>
+        <label><span>País</span><input type="text" name="country" autocomplete="country-name"></label>
+        <label><span>Coro ou Instituição</span><input type="text" name="choir_institution"></label>
+        <label class="span-2"><span>Função *</span><select name="role" required>
+          <option value="">Escolher</option>
+          <option value="Cantor(a)">Cantor(a)</option>
+          <option value="Maestro(a)">Maestro(a)</option>
+          <option value="Compositor(a)">Compositor(a)</option>
+          <option value="Estudante">Estudante</option>
+          <option value="Outro">Outro</option>
+        </select></label>
       </div>
-      <label id="share-names-wrap" hidden><span>Nome da(s) pessoa(s) com quem gostaria de partilhar o quarto</span><input type="text" name="share_names"></label>
-    </div>
-  </fieldset>
+    </fieldset>
+    <div class="wizard-nav"><span></span><button type="button" class="wizard-next">Seguinte →</button></div>
+  </div>
 
-  <fieldset class="residency-fieldset">
-    <legend>Modalidade de pagamento</legend>
-    <div class="payment-options">
-      <label class="payment-option"><input type="radio" name="payment_method" value="bank_transfer" required> Transferência Bancária</label>
-      <label class="payment-option"><input type="radio" name="payment_method" value="paypal" required> PayPal</label>
-    </div>
-    <p class="residency-note">O pagamento por Revolut será disponibilizado brevemente. Por agora, escolha Transferência Bancária ou PayPal.</p>
+  <div class="wizard-panel" data-panel="2">
+    <fieldset class="residency-fieldset">
+      <legend>2/5 · Opção de alojamento</legend>
+      <div class="room-options">
+        <label class="room-option"><input type="radio" name="room_type" value="single" required><b>Quarto Individual</b><span>1.127 € por pessoa</span></label>
+        <label class="room-option"><input type="radio" name="room_type" value="shared" required><b>Quarto Duplo / Triplo</b><span>987 € por pessoa</span></label>
+      </div>
+      <div class="residency-total" id="residency-total" hidden>Total a pagar: <span id="residency-total-value">—</span></div>
+      <div id="share-questions" hidden style="margin-top:24px">
+        <label class="span-2" style="margin-bottom:10px;display:block"><span style="font-size:12px;font-weight:700">Já sabe com quem gostaria de partilhar o quarto?</span></label>
+        <div class="payment-options">
+          <label class="payment-option"><input type="radio" name="share_known" value="yes"> Sim</label>
+          <label class="payment-option"><input type="radio" name="share_known" value="no"> Não — gostaria que o RAMOS me atribuísse um quarto partilhado</label>
+        </div>
+        <label id="share-names-wrap" hidden><span>Nome da(s) pessoa(s) com quem gostaria de partilhar o quarto</span><input type="text" name="share_names"></label>
+      </div>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Anterior</button><button type="button" class="wizard-next">Seguinte →</button></div>
+  </div>
 
-    <div class="payment-details-box" id="details-bank_transfer" hidden>
-      <b>Beneficiário:</b> ASSOCIAÇÃO VOX SDR<br>
-      <b>IBAN:</b> PT50 0036 0196 9910 0035 3991 7<br>
-      <b>BIC / SWIFT:</b> MPIOPTPL<br>
-      <b>Banco:</b> Banco Montepio Geral<br>
-      <b>Agência:</b> Parede – Machado dos Santos
-    </div>
-    <div class="payment-details-box" id="details-paypal" hidden>
-      <b>PayPal:</b> info@voxlaci.com
-    </div>
+  <div class="wizard-panel" data-panel="3">
+    <fieldset class="residency-fieldset">
+      <legend>3/5 · Modalidade de pagamento</legend>
+      <div class="payment-options">
+        <label class="payment-option"><input type="radio" name="payment_method" value="bank_transfer" required> Transferência Bancária</label>
+        <label class="payment-option"><input type="radio" name="payment_method" value="paypal" required> PayPal</label>
+      </div>
+      <p class="residency-note">O pagamento por Revolut será disponibilizado brevemente. Por agora, escolha Transferência Bancária ou PayPal.</p>
+      <div class="payment-details-box" id="details-bank_transfer" hidden>
+        <b>Beneficiário:</b> ASSOCIAÇÃO VOX SDR<br>
+        <b>IBAN:</b> PT50 0036 0196 9910 0035 3991 7<br>
+        <b>BIC / SWIFT:</b> MPIOPTPL<br>
+        <b>Banco:</b> Banco Montepio Geral<br>
+        <b>Agência:</b> Parede – Machado dos Santos
+      </div>
+      <div class="payment-details-box" id="details-paypal" hidden>
+        <b>PayPal:</b> info@voxlaci.com
+      </div>
+      <label><span>Comprovativo de Pagamento *</span>
+        <input type="file" name="proof" accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf" required>
+      </label>
+      <p class="residency-note">Envie uma cópia, captura de ecrã, fotografia ou PDF que comprove o pagamento efetuado. Formatos aceites: JPG, PNG, PDF (máx. 8MB).</p>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Anterior</button><button type="button" class="wizard-next">Seguinte →</button></div>
+  </div>
 
-    <label><span>Comprovativo de Pagamento *</span>
-      <input type="file" name="proof" accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf" required>
-    </label>
-    <p class="residency-note">Envie uma cópia, captura de ecrã, fotografia ou PDF que comprove o pagamento efetuado. Formatos aceites: JPG, PNG, PDF (máx. 8MB).</p>
-  </fieldset>
+  <div class="wizard-panel" data-panel="4">
+    <fieldset class="residency-fieldset">
+      <legend>4/5 · Dados para faturação</legend>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7">ASSOCIAÇÃO VOX SDR<br>Rua Avelino de Almeida 27<br>Areias de S. Pedro do Estoril<br>Portugal<br>NIF: 508439949</p>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Anterior</button><button type="button" class="wizard-next">Seguinte →</button></div>
+  </div>
 
-  <fieldset class="residency-fieldset">
-    <legend>Dados para faturação</legend>
-    <p style="font-size:13px;color:var(--muted);line-height:1.7">ASSOCIAÇÃO VOX SDR<br>Rua Avelino de Almeida 27<br>Areias de S. Pedro do Estoril<br>Portugal<br>NIF: 508439949</p>
-  </fieldset>
+  <div class="wizard-panel" data-panel="5">
+    <fieldset class="residency-fieldset">
+      <legend>5/5 · Rever &amp; submeter</legend>
+      <div class="wizard-review" id="wizard-review"></div>
+      <label style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin:24px 0 20px">
+        <input type="checkbox" required style="width:20px;min-height:20px">
+        <span style="font-size:13px;color:var(--muted)">Aceito que estes dados sejam usados para processar a minha inscrição na Residência Artística RAMOS e para contacto relacionado.</span>
+      </label>
+      <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="pt" style="margin-bottom:20px"></div>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Anterior</button><button class="residency-submit" type="submit" style="width:auto;min-width:220px">Submeter inscrição</button></div>
+  </div>
 
-  <label style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin-bottom:20px">
-    <input type="checkbox" required style="width:20px;min-height:20px">
-    <span style="font-size:13px;color:var(--muted)">Aceito que estes dados sejam usados para processar a minha inscrição na Residência Artística RAMOS e para contacto relacionado.</span>
-  </label>
-
-  <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="pt" style="margin-bottom:20px"></div>
-
-  <button class="residency-submit" type="submit">Submeter inscrição</button>
   <div class="residency-status" id="residency-status"></div>
 </form>
 </main>
@@ -122,6 +137,8 @@
   var shareNamesWrap = document.getElementById("share-names-wrap");
   var shareNamesInput = form.querySelector('input[name="share_names"]');
   var PRICES = { single: 1127, shared: 987 };
+  var ROOM_LABEL = { single: "Quarto Individual", shared: "Quarto Duplo / Triplo" };
+  var PAYMENT_LABEL = { bank_transfer: "Transferência Bancária", paypal: "PayPal" };
 
   roomInputs.forEach(function(input){
     input.addEventListener("change", function(){
@@ -135,7 +152,6 @@
       }
     });
   });
-
   shareKnownInputs.forEach(function(input){
     input.addEventListener("change", function(){
       var isYes = input.value === "yes";
@@ -144,7 +160,6 @@
       else { shareNamesInput.removeAttribute("required"); shareNamesInput.value = ""; }
     });
   });
-
   form.querySelectorAll('input[name="payment_method"]').forEach(function(input){
     input.addEventListener("change", function(){
       form.querySelectorAll(".payment-details-box").forEach(function(box){ box.hidden = true; });
@@ -152,6 +167,51 @@
       if (box) box.hidden = false;
     });
   });
+
+  // ── Wizard navigation ─────────────────────────────────────────────────
+  var panels = Array.prototype.slice.call(form.querySelectorAll(".wizard-panel"));
+  var dots = Array.prototype.slice.call(document.querySelectorAll(".wizard-step-dot"));
+  var current = 1;
+
+  function showStep(n){
+    current = n;
+    panels.forEach(function(p){ p.classList.toggle("is-active", Number(p.dataset.panel) === n); });
+    dots.forEach(function(d){
+      var s = Number(d.dataset.step);
+      d.classList.toggle("is-active", s === n);
+      d.classList.toggle("is-done", s < n);
+    });
+    if (n === 5) renderReview();
+    form.closest("main").scrollIntoView({ behavior: "smooth" });
+  }
+  function validateStep(n){
+    var panel = form.querySelector('.wizard-panel[data-panel="' + n + '"]');
+    var fields = panel.querySelectorAll("input, select, textarea");
+    for (var i = 0; i < fields.length; i++) {
+      if (!fields[i].checkValidity()) { fields[i].reportValidity(); return false; }
+    }
+    return true;
+  }
+  form.querySelectorAll(".wizard-next").forEach(function(btn){
+    btn.addEventListener("click", function(){ if (!validateStep(current)) return; if (current < 5) showStep(current + 1); });
+  });
+  form.querySelectorAll(".wizard-back").forEach(function(btn){
+    btn.addEventListener("click", function(){ if (current > 1) showStep(current - 1); });
+  });
+
+  function renderReview(){
+    var room = form.querySelector('input[name="room_type"]:checked');
+    var payment = form.querySelector('input[name="payment_method"]:checked');
+    var rows = [
+      ["Nome", form.full_name.value || "—"],
+      ["Email", form.email.value || "—"],
+      ["Telemóvel", form.mobile.value || "—"],
+      ["Função", form.role.value || "—"],
+      ["Quarto", room ? ROOM_LABEL[room.value] : "—"],
+      ["Pagamento", payment ? PAYMENT_LABEL[payment.value] : "—"],
+    ];
+    document.getElementById("wizard-review").innerHTML = "<dl>" + rows.map(function(r){ return "<dt>" + r[0] + "</dt><dd>" + r[1] + "</dd>"; }).join("") + "</dl>";
+  }
 
   form.addEventListener("submit", function(e){
     e.preventDefault();
@@ -167,9 +227,10 @@
       .then(function(r){ return r.json().then(function(d){ return { status: r.status, data: d }; }); })
       .then(function(res){
         if (res.data && res.data.ok) {
-          form.hidden = true;
+          form.querySelectorAll(".wizard-panel, .wizard-progress").forEach(function(el){ el.hidden = true; });
           statusBox.classList.add("is-visible", "ok");
-          statusBox.innerHTML = "<b>Inscrição recebida.</b><br>Referência: <b>" + res.data.reference + "</b><br>Vai receber um email de confirmação. A sua inscrição será validada pela equipa RAMOS.";
+          var areaLink = res.data.portalToken ? ("../residency/area/?token=" + res.data.portalToken) : "../residency/area/";
+          statusBox.innerHTML = "<b>Inscrição recebida.</b><br>Referência: <b>" + res.data.reference + "</b><br>Enviámos um comprovativo para <b>" + (form.email.value || "o seu email") + "</b>.<br>A sua inscrição será validada pela equipa RAMOS.<br><br><a href=\"" + areaLink + "\">Ver o estado da minha inscrição →</a>";
           statusBox.scrollIntoView({ behavior: "smooth" });
         } else {
           throw new Error((res.data && res.data.error) || "erro");

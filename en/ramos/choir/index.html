@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<title>RAMOS 2027 Choir Inquiry | VoxLaci</title>
+<meta name="description" content="Choir participation inquiry for the Ramos Palm Sunday Festival 2027. Cascais, Portugal.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://voxlaci.com/en/ramos/choir/"><link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/coro/"><link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/choir/">
+<link rel="stylesheet" href="../../../subpage.css"><link rel="stylesheet" href="../../../ramos-residency.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/universal-share.css?v=14">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+<header class="page-nav"><a href="../../../"><img src="../../../assets/voxlaci-logo-white.png" alt="VoxLaci"></a><nav><a href="/en/ramos/#choir-ramos">Ramos 2027</a></nav><a class="page-language" href="/ramos/coro/">PT</a><a class="cta" href="mailto:info@voxlaci.com?subject=Ramos%202027">Contact</a></header>
+<main>
+<form class="residency-form" id="ramos-coro-form" novalidate>
+  <p class="eyebrow" style="color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin:110px 0 10px">Ramos Palm Sunday Festival 2027</p>
+  <h1>Choir inquiry</h1>
+  <p class="lead">Fill in your choir's details. Conditions (number of singers, repertoire, rehearsals, meals and transport) are confirmed directly with the organisation — there is no fixed per-person price.</p>
+
+  <p class="form-erro" id="ramos-coro-error" style="display:none;padding:14px 18px;background:#fdeeee;color:#a3241f;border:1px solid #f3c6c4;margin-bottom:24px"></p>
+  <input type="hidden" name="language" value="en">
+  <p style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave blank: <input name="website" tabindex="-1" autocomplete="off"><input name="campo-secreto" tabindex="-1" autocomplete="off"></label></p>
+
+  <fieldset class="residency-fieldset">
+    <legend>Choir details</legend>
+    <div class="residency-grid">
+      <label class="span-2"><span>Choir name *</span><input type="text" name="choir_name" required></label>
+      <label><span>Country *</span><input type="text" name="country" required autocomplete="country-name"></label>
+      <label><span>City</span><input type="text" name="city"></label>
+      <label><span>Conductor</span><input type="text" name="conductor_name"></label>
+      <label><span>Contact person *</span><input type="text" name="contact_person" required></label>
+      <label><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
+      <label><span>Phone</span><input type="tel" name="phone" autocomplete="tel"></label>
+      <label><span>WhatsApp</span><input type="tel" name="whatsapp"></label>
+      <label><span>Approximate number of singers</span><input type="number" name="num_singers" min="1"></label>
+    </div>
+    <label><span>Notes (dates of interest, repertoire, availability…)</span><textarea name="notes" maxlength="2000"></textarea></label>
+  </fieldset>
+
+  <label style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin-bottom:20px">
+    <input type="checkbox" required style="width:20px;min-height:20px">
+    <span style="font-size:13px;color:var(--muted)">I agree that this data may be used to process my choir's participation inquiry for the Ramos Palm Sunday Festival 2027 and for related contact.</span>
+  </label>
+
+  <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="en" style="margin-bottom:20px"></div>
+
+  <button class="residency-submit" type="submit">Send inquiry</button>
+  <div class="residency-status" id="ramos-coro-status"></div>
+</form>
+</main>
+<footer class="page-footer"><div><img src="../../../assets/voxlaci-logo-white.png" alt="VoxLaci"><p>Ramos Palm Sunday Festival · Portugal</p></div><div><a href="mailto:info@voxlaci.com">info@voxlaci.com</a><a href="tel:+351925075186">(+351) 925 075 186</a><a href="../../../">Back to the VoxLaci website</a></div></footer>
+<script src="/universal-share.js?v=14" defer></script>
+<script>
+(function(){
+  var form = document.getElementById("ramos-coro-form");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var errorBox = document.getElementById("ramos-coro-error");
+    var statusBox = document.getElementById("ramos-coro-status");
+    errorBox.style.display = "none";
+    statusBox.className = "residency-status";
+    var submitBtn = form.querySelector(".residency-submit");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
+
+    fetch("/ramos/choir/api/inquire", { method: "POST", body: new FormData(form) })
+      .then(function(r){ return r.json().then(function(d){ return { status: r.status, data: d }; }); })
+      .then(function(res){
+        if (res.data && res.data.ok) {
+          form.hidden = true;
+          statusBox.classList.add("is-visible", "ok");
+          statusBox.innerHTML = "<b>Inquiry received.</b><br>ID: <b>" + res.data.ramosId + "</b><br>A confirmation has been sent to the email provided. The organisation will be in touch to arrange conditions.";
+          statusBox.scrollIntoView({ behavior: "smooth" });
+        } else {
+          throw new Error((res.data && res.data.error) || "error");
+        }
+      })
+      .catch(function(err){
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send inquiry";
+        errorBox.style.display = "block";
+        errorBox.textContent = "We could not send your inquiry (" + err.message + "). Please check the required fields or contact info@voxlaci.com.";
+        errorBox.scrollIntoView({ behavior: "smooth" });
+      });
+  });
+})();
+</script>
+</body></html>

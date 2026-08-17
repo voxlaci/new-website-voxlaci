@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<title>Área Ramos | VoxLaci</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../../../subpage.css"><link rel="stylesheet" href="../../../ramos-residency.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="page-nav"><a href="../../../"><img src="../../../assets/voxlaci-logo-white.png" alt="VoxLaci"></a><a class="cta" href="mailto:info@voxlaci.com?subject=Ramos%202027">Contact</a></header>
+<main>
+<div class="portal-wrap" id="portal-root"><p style="padding:120px 0 40px;color:var(--muted)">A carregar… / Loading…</p></div>
+</main>
+<footer class="page-footer"><div><img src="../../../assets/voxlaci-logo-white.png" alt="VoxLaci"></div><div><a href="mailto:info@voxlaci.com">info@voxlaci.com</a></div></footer>
+<script>
+(function(){
+  var T = {
+    pt: {
+      title: "Área privada Ramos", loadError: "Não foi possível carregar a sua candidatura. Verifique o link recebido por email ou contacte info@voxlaci.com.",
+      summary: "Resumo", name: "Nome", track: "Percurso", status: "Estado", total: "Total", paid: "Pago", balance: "Saldo",
+      payments: "Pagamentos", noPayments: "Ainda não foi submetido nenhum comprovativo.",
+      addPayment: "Submeter novo comprovativo", amountLabel: "Valor (€) *", methodLabel: "Modalidade de pagamento *",
+      bank: "Transferência Bancária", paypal: "PayPal", mbway: "MB Way", proofLabel: "Comprovativo *", submitPayment: "Submeter comprovativo",
+      paymentDetails: "IBAN: PT50 0036 0196 9910 0035 3991 7 · BIC: MPIOPTPL · PayPal: info@voxlaci.com · MB Way: 938 407 985",
+      saved: "Guardado.", sending: "A enviar…", error: "Ocorreu um erro. Tente novamente ou contacte info@voxlaci.com.",
+      statusLabels: { application_received: "Candidatura recebida", under_review: "Em análise", accepted: "Aceite", payment_pending: "Pagamento pendente", partially_paid: "Parcialmente pago", paid: "Pago", confirmed: "Confirmado", cancelled: "Cancelado" },
+      trackLabels: { international: "Cantor Individual Internacional", resident: "Cantor Residente em Portugal" },
+    },
+    en: {
+      title: "Private Ramos area", loadError: "We could not load your application. Please check the link you received by email or contact info@voxlaci.com.",
+      summary: "Summary", name: "Name", track: "Track", status: "Status", total: "Total", paid: "Paid", balance: "Balance",
+      payments: "Payments", noPayments: "No proof of payment has been submitted yet.",
+      addPayment: "Submit a new proof of payment", amountLabel: "Amount (€) *", methodLabel: "Payment method *",
+      bank: "Bank Transfer", paypal: "PayPal", mbway: "MB Way", proofLabel: "Proof of payment *", submitPayment: "Submit proof",
+      paymentDetails: "IBAN: PT50 0036 0196 9910 0035 3991 7 · BIC: MPIOPTPL · PayPal: info@voxlaci.com · MB Way: 938 407 985",
+      saved: "Saved.", sending: "Sending…", error: "Something went wrong. Please try again or contact info@voxlaci.com.",
+      statusLabels: { application_received: "Application received", under_review: "Under review", accepted: "Accepted", payment_pending: "Payment pending", partially_paid: "Partially paid", paid: "Paid", confirmed: "Confirmed", cancelled: "Cancelled" },
+      trackLabels: { international: "International Individual Singer", resident: "Singer Resident in Portugal" },
+    },
+  };
+
+  var params = new URLSearchParams(location.search);
+  var token = params.get("token") || "";
+  var root = document.getElementById("portal-root");
+  function euros(cents){ return ((cents||0)/100).toLocaleString("pt-PT", { minimumFractionDigits: 0, maximumFractionDigits: 2 }); }
+
+  function render(t, app, payments){
+    document.documentElement.lang = app.language;
+    var balance = app.amount_total_cents - app.amount_paid_cents;
+    var html = "";
+    html += "<h1>" + t.title + "</h1>";
+    html += "<div class=\"portal-status-banner\">" + (t.statusLabels[app.status] || app.status) + "</div>";
+    html += "<div class=\"portal-section\"><h2>" + t.summary + "</h2><div class=\"portal-summary\">";
+    html += "<div><b>" + t.name + "</b>" + app.full_name + "</div>";
+    html += "<div><b>ID</b>" + app.ramos_id + "</div>";
+    html += "<div><b>" + t.track + "</b>" + (t.trackLabels[app.track] || app.track) + "</div>";
+    html += "<div><b>" + t.total + "</b>" + euros(app.amount_total_cents) + " €</div>";
+    html += "<div><b>" + t.paid + "</b>" + euros(app.amount_paid_cents) + " €</div>";
+    html += "<div><b>" + t.balance + "</b>" + euros(balance) + " €</div>";
+    html += "</div></div>";
+
+    html += "<div class=\"portal-section\"><h2>" + t.payments + "</h2>";
+    if (!payments.length) html += "<p class=\"residency-note\">" + t.noPayments + "</p>";
+    else {
+      html += "<div class=\"admin-table-wrap\"><table class=\"admin-table\"><tbody>";
+      payments.forEach(function(p){
+        html += "<tr><td>" + euros(p.amount_cents) + " €</td><td>" + p.payment_method + "</td><td><span class=\"status-pill " + p.status + "\">" + p.status + "</span></td><td>" + (p.created_at || "") + "</td></tr>";
+      });
+      html += "</tbody></table></div>";
+    }
+    if (["accepted", "payment_pending", "partially_paid"].indexOf(app.status) !== -1) {
+      html += "<h3 style=\"font-size:1rem;margin-top:24px\">" + t.addPayment + "</h3>";
+      html += "<p class=\"residency-note\">" + t.paymentDetails + "</p>";
+      html += "<form id=\"payment-form\">";
+      html += "<div class=\"residency-grid\"><label><span>" + t.amountLabel + "</span><input type=\"number\" step=\"0.01\" min=\"0.01\" name=\"amount_eur\" required></label>";
+      html += "<label><span>" + t.methodLabel + "</span><select name=\"payment_method\" required><option value=\"bank_transfer\">" + t.bank + "</option><option value=\"paypal\">" + t.paypal + "</option><option value=\"mbway\">" + t.mbway + "</option></select></label></div>";
+      html += "<label><span>" + t.proofLabel + "</span><input type=\"file\" name=\"proof\" accept=\".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf\" required></label>";
+      html += "<button class=\"residency-submit\" type=\"submit\">" + t.submitPayment + "</button>";
+      html += "<div class=\"residency-status\" id=\"payment-status\"></div></form>";
+    }
+    html += "</div>";
+    root.innerHTML = html;
+
+    var paymentForm = document.getElementById("payment-form");
+    if (paymentForm) {
+      paymentForm.addEventListener("submit", function(e){
+        e.preventDefault();
+        var statusBox = document.getElementById("payment-status");
+        var btn = paymentForm.querySelector(".residency-submit");
+        btn.disabled = true; btn.textContent = t.sending;
+        var fd = new FormData(paymentForm);
+        fd.append("token", token);
+        fetch("/ramos/individual/api/portal", { method: "POST", body: fd })
+          .then(function(r){ return r.json(); })
+          .then(function(d){
+            if (!d.ok) throw new Error(d.error || "error");
+            statusBox.className = "residency-status is-visible ok";
+            statusBox.textContent = t.saved;
+            paymentForm.reset();
+            btn.disabled = false; btn.textContent = t.submitPayment;
+          })
+          .catch(function(){
+            statusBox.className = "residency-status is-visible error";
+            statusBox.textContent = t.error;
+            btn.disabled = false; btn.textContent = t.submitPayment;
+          });
+      });
+    }
+  }
+
+  if (!token) {
+    root.innerHTML = "<p style=\"padding:120px 0 40px;color:var(--muted)\">" + T.pt.loadError + "</p>";
+  } else {
+    fetch("/ramos/individual/api/portal?token=" + encodeURIComponent(token))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (!d.ok) throw new Error(d.error || "error");
+        var lang = T[d.application.language] ? d.application.language : "pt";
+        render(T[lang], d.application, d.payments || []);
+      })
+      .catch(function(){
+        root.innerHTML = "<p style=\"padding:120px 0 40px;color:var(--muted)\">" + T.pt.loadError + "</p>";
+      });
+  }
+})();
+</script>
+</body></html>

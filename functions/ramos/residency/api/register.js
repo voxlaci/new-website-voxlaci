@@ -125,6 +125,7 @@ export async function onRequestPost(context) {
 
   const reference = await generateReference(db);
   const key = randomKey(reference, validation.ext);
+  const privateToken = crypto.randomUUID();
 
   try {
     await env.RESIDENCY_PROOFS.put(key, proofFile.stream(), {
@@ -141,13 +142,13 @@ export async function onRequestPost(context) {
         `INSERT INTO residency_registrations
          (reference, language, full_name, email, country, mobile, choir_institution, role,
           room_type, amount_due_cents, share_known, share_names, payment_method,
-          proof_key, proof_original_filename, proof_mime, proof_size, status)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'payment_submitted')`
+          proof_key, proof_original_filename, proof_mime, proof_size, private_token, status)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'payment_submitted')`
       )
       .bind(
         reference, language, fullName, email, country, mobile, choirInstitution, role,
         roomType, amountDueCents, shareKnown, shareNames, paymentMethod,
-        key, proofFile.name || null, proofFile.type || null, proofFile.size
+        key, proofFile.name || null, proofFile.type || null, proofFile.size, privateToken
       )
       .run();
   } catch (err) {
@@ -182,7 +183,7 @@ export async function onRequestPost(context) {
     console.error(`[residency] ${reference} — email interno falhou: ${err.message}`);
   }
 
-  return new Response(JSON.stringify({ ok: true, reference }), {
+  return new Response(JSON.stringify({ ok: true, reference, portalToken: privateToken }), {
     headers: { "Content-Type": "application/json" },
   });
 }

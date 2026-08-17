@@ -17,58 +17,91 @@
 <form class="residency-form" id="stella-form" novalidate>
   <p class="eyebrow" style="color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin:110px 0 10px">STELLA Festival 2026</p>
   <h1>Choir application</h1>
-  <p class="lead">Fill in your choir's details. The application will be reviewed — we will be in touch about the next steps, including payment and, for the Choral Residence, the rooming list.</p>
+  <p class="lead">Fill in your choir's details in 5 steps. The application will be reviewed — we will be in touch about the next steps, including payment and, for the Choral Residence, the rooming list.</p>
+
+  <div class="wizard-progress" id="wizard-progress">
+    <span class="wizard-step-dot" data-step="1">1</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="2">2</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="3">3</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="4">4</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="5">5</span>
+  </div>
 
   <p class="form-erro" id="stella-error" style="display:none;padding:14px 18px;background:#fdeeee;color:#a3241f;border:1px solid #f3c6c4;margin-bottom:24px"></p>
-  <p id="stella-min-warning" hidden class="editor-warning">The number of singers entered is below 20. You can still submit — we will confirm feasibility with you.</p>
 
   <input type="hidden" name="language" value="en">
   <p style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave blank: <input name="website" tabindex="-1" autocomplete="off"><input name="campo-secreto" tabindex="-1" autocomplete="off"></label></p>
 
-  <fieldset class="residency-fieldset">
-    <legend>Modality</legend>
-    <div class="room-options cols-3">
-      <label class="room-option"><input type="radio" name="application_type" value="choir_residence" required><b>Choral Residence</b><span>€249 / €309 pp · 3 nights</span></label>
-      <label class="room-option"><input type="radio" name="application_type" value="choir_weekend" required><b>Choral Weekend</b><span>€69 per singer</span></label>
-      <label class="room-option"><input type="radio" name="application_type" value="choir_day" required><b>Choir Day</b><span>€42 per singer</span></label>
-    </div>
-    <label><span>Preferred dates *</span><select name="preferred_dates" required><option value="">Choose a modality first</option></select></label>
-    <div class="residency-total" id="stella-total" hidden>Estimated total: <span id="stella-total-value">—</span></div>
-  </fieldset>
+  <div class="wizard-panel is-active" data-panel="1">
+    <fieldset class="residency-fieldset">
+      <legend>1/5 · Choose the modality</legend>
+      <div class="room-options cols-3">
+        <label class="room-option"><input type="radio" name="application_type" value="choir_residence" required><b>Choral Residence</b><span>€249 / €309 pp · 3 nights</span></label>
+        <label class="room-option"><input type="radio" name="application_type" value="choir_weekend" required><b>Choral Weekend</b><span>€69 per singer</span></label>
+        <label class="room-option"><input type="radio" name="application_type" value="choir_day" required><b>Choir Day</b><span>€42 per singer</span></label>
+      </div>
+    </fieldset>
+    <div class="wizard-nav"><span></span><button type="button" class="wizard-next">Next →</button></div>
+  </div>
 
-  <fieldset class="residency-fieldset">
-    <legend>Choir details</legend>
-    <div class="residency-grid">
-      <label class="span-2"><span>Choir name *</span><input type="text" name="choir_name" required></label>
-      <label><span>Country *</span><input type="text" name="country" required autocomplete="country-name"></label>
-      <label><span>City</span><input type="text" name="city"></label>
-      <label><span>Conductor</span><input type="text" name="conductor_name"></label>
-      <label><span>Contact person *</span><input type="text" name="contact_person" required></label>
-      <label><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
-      <label><span>Phone</span><input type="tel" name="phone" autocomplete="tel"></label>
-      <label><span>WhatsApp</span><input type="tel" name="whatsapp"></label>
-      <label><span>Website</span><input type="url" name="website_url" placeholder="https://"></label>
-      <label><span>Social media</span><input type="text" name="social_media" placeholder="Instagram, Facebook…"></label>
-      <label><span>Number of singers *</span><input type="number" name="num_singers" min="1" required></label>
-      <label><span>Number of companions</span><input type="number" name="num_companions" min="0" value="0"></label>
-    </div>
-  </fieldset>
+  <div class="wizard-panel" data-panel="2">
+    <fieldset class="residency-fieldset">
+      <legend>2/5 · Choir information</legend>
+      <div class="residency-grid">
+        <label class="span-2"><span>Choir name *</span><input type="text" name="choir_name" required></label>
+        <label><span>Country *</span><input type="text" name="country" required autocomplete="country-name"></label>
+        <label><span>City</span><input type="text" name="city"></label>
+        <label><span>Conductor</span><input type="text" name="conductor_name"></label>
+        <label><span>Website</span><input type="url" name="website_url" placeholder="https://"></label>
+        <label class="span-2"><span>Social media</span><input type="text" name="social_media" placeholder="Instagram, Facebook…"></label>
+      </div>
+      <label><span>Biography / presentation</span><textarea name="biography" maxlength="3000"></textarea></label>
+      <label><span>Video link (YouTube, Vimeo…)</span><input type="url" name="video_link" placeholder="https://"></label>
+      <label><span>Additional notes</span><textarea name="notes" maxlength="2000"></textarea></label>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Back</button><button type="button" class="wizard-next">Next →</button></div>
+  </div>
 
-  <fieldset class="residency-fieldset">
-    <legend>About the choir</legend>
-    <label><span>Biography / presentation</span><textarea name="biography" maxlength="3000"></textarea></label>
-    <label><span>Video link (YouTube, Vimeo…)</span><input type="url" name="video_link" placeholder="https://"></label>
-    <label><span>Additional notes</span><textarea name="notes" maxlength="2000"></textarea></label>
-  </fieldset>
+  <div class="wizard-panel" data-panel="3">
+    <fieldset class="residency-fieldset">
+      <legend>3/5 · Participants &amp; dates</legend>
+      <p id="stella-min-warning" hidden class="editor-warning">The number of singers entered is below 20. You can still submit — we will confirm feasibility with you.</p>
+      <div class="residency-grid">
+        <label><span>Number of singers *</span><input type="number" name="num_singers" min="1" required></label>
+        <label><span>Number of companions</span><input type="number" name="num_companions" min="0" value="0"></label>
+      </div>
+      <label><span>Preferred dates *</span><select name="preferred_dates" required><option value="">Choose the modality in step 1 first</option></select></label>
+      <div class="residency-total" id="stella-total" hidden>Estimated total: <span id="stella-total-value">—</span></div>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Back</button><button type="button" class="wizard-next">Next →</button></div>
+  </div>
 
-  <label style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin-bottom:20px">
-    <input type="checkbox" required style="width:20px;min-height:20px">
-    <span style="font-size:13px;color:var(--muted)">I agree that this data may be used to process my choir's application to STELLA Festival 2026 and for related contact.</span>
-  </label>
+  <div class="wizard-panel" data-panel="4">
+    <fieldset class="residency-fieldset">
+      <legend>4/5 · Contact information</legend>
+      <div class="residency-grid">
+        <label><span>Contact person *</span><input type="text" name="contact_person" required></label>
+        <label><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
+        <label><span>Phone</span><input type="tel" name="phone" autocomplete="tel"></label>
+        <label><span>WhatsApp</span><input type="tel" name="whatsapp"></label>
+      </div>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Back</button><button type="button" class="wizard-next">Next →</button></div>
+  </div>
 
-  <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="en" style="margin-bottom:20px"></div>
+  <div class="wizard-panel" data-panel="5">
+    <fieldset class="residency-fieldset">
+      <legend>5/5 · Review &amp; submit</legend>
+      <div class="wizard-review" id="wizard-review"></div>
+      <label style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin:24px 0 20px">
+        <input type="checkbox" required style="width:20px;min-height:20px">
+        <span style="font-size:13px;color:var(--muted)">I agree that this data may be used to process my choir's application to STELLA Festival 2026 and for related contact.</span>
+      </label>
+      <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="en" style="margin-bottom:20px"></div>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Back</button><button class="residency-submit" type="submit" style="width:auto;min-width:220px">Submit application</button></div>
+  </div>
 
-  <button class="residency-submit" type="submit">Submit application</button>
   <div class="residency-status" id="stella-status"></div>
 </form>
 </main>
@@ -90,6 +123,7 @@
     choir_day: ["5 December 2026", "6 December 2026", "12 December 2026", "13 December 2026"],
   };
   var PRICE_PER_SINGER = { choir_weekend: 69, choir_day: 42 };
+  var MODALITY_LABEL = { choir_residence: "Choral Residence", choir_weekend: "Choral Weekend", choir_day: "Choir Day" };
 
   function updateTotal(){
     var type = form.querySelector('input[name="application_type"]:checked');
@@ -111,6 +145,69 @@
     minWarning.hidden = !numSingers.value || parseInt(numSingers.value, 10) >= 20;
   });
 
+  // ── Wizard navigation ─────────────────────────────────────────────────
+  var panels = Array.prototype.slice.call(form.querySelectorAll(".wizard-panel"));
+  var dots = Array.prototype.slice.call(document.querySelectorAll(".wizard-step-dot"));
+  var current = 1;
+
+  function showStep(n){
+    current = n;
+    panels.forEach(function(p){ p.classList.toggle("is-active", Number(p.dataset.panel) === n); });
+    dots.forEach(function(d){
+      var s = Number(d.dataset.step);
+      d.classList.toggle("is-active", s === n);
+      d.classList.toggle("is-done", s < n);
+    });
+    if (n === 5) renderReview();
+    form.closest("main").scrollIntoView({ behavior: "smooth" });
+  }
+
+  function validateStep(n){
+    var panel = form.querySelector('.wizard-panel[data-panel="' + n + '"]');
+    var fields = panel.querySelectorAll("input, select, textarea");
+    for (var i = 0; i < fields.length; i++) {
+      if (!fields[i].checkValidity()) { fields[i].reportValidity(); return false; }
+    }
+    return true;
+  }
+
+  form.querySelectorAll(".wizard-next").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      if (!validateStep(current)) return;
+      if (current < 5) showStep(current + 1);
+    });
+  });
+  form.querySelectorAll(".wizard-back").forEach(function(btn){
+    btn.addEventListener("click", function(){ if (current > 1) showStep(current - 1); });
+  });
+
+  function renderReview(){
+    var type = form.querySelector('input[name="application_type"]:checked');
+    var rows = [
+      ["Modality", type ? MODALITY_LABEL[type.value] : "—"],
+      ["Choir", form.choir_name.value || "—"],
+      ["Country / City", (form.country.value || "—") + " / " + (form.city.value || "—")],
+      ["Conductor", form.conductor_name.value || "—"],
+      ["Number of singers", form.num_singers.value || "—"],
+      ["Number of companions", form.num_companions.value || "0"],
+      ["Preferred dates", form.preferred_dates.value || "—"],
+      ["Contact", form.contact_person.value || "—"],
+      ["Email", form.email.value || "—"],
+      ["Phone", form.phone.value || "—"],
+    ];
+    document.getElementById("wizard-review").innerHTML = "<dl>" + rows.map(function(r){
+      return "<dt>" + r[0] + "</dt><dd>" + r[1] + "</dd>";
+    }).join("") + "</dl>";
+  }
+
+  // Pre-select modality from a #hash coming from the public page (e.g. #choir-day).
+  var hash = (location.hash || "").replace("#", "");
+  var HASH_TO_TYPE = { "residencia-coral": "choir_residence", "fim-de-semana-coral": "choir_weekend", "choir-day": "choir_day" };
+  if (HASH_TO_TYPE[hash]) {
+    var pre = form.querySelector('input[name="application_type"][value="' + HASH_TO_TYPE[hash] + '"]');
+    if (pre) { pre.checked = true; pre.dispatchEvent(new Event("change")); }
+  }
+
   form.addEventListener("submit", function(e){
     e.preventDefault();
     var errorBox = document.getElementById("stella-error");
@@ -125,9 +222,9 @@
       .then(function(r){ return r.json().then(function(d){ return { status: r.status, data: d }; }); })
       .then(function(res){
         if (res.data && res.data.ok) {
-          form.hidden = true;
+          form.querySelectorAll(".wizard-panel, .wizard-progress").forEach(function(el){ el.hidden = true; });
           statusBox.classList.add("is-visible", "ok");
-          statusBox.innerHTML = "<b>Application received.</b><br>STELLA ID: <b>" + res.data.stellaId + "</b><br>You will receive a confirmation email. Your application will be reviewed by the STELLA team.";
+          statusBox.innerHTML = "<b>Application received.</b><br>Application ID: <b>" + res.data.stellaId + "</b><br>A confirmation has been sent to <b>" + (form.email.value || "your email") + "</b>.<br>You can use your Application ID whenever you contact STELLA.";
           statusBox.scrollIntoView({ behavior: "smooth" });
         } else {
           throw new Error((res.data && res.data.error) || "error");

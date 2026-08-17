@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<title>RAMOS 2027 Individual Singer Application | VoxLaci</title>
+<meta name="description" content="Individual singer application for the Ramos Palm Sunday Festival 2027. €295 Ramos fee, Cascais, Portugal.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://voxlaci.com/en/ramos/individual/"><link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/individual/"><link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/individual/">
+<link rel="stylesheet" href="../../../subpage.css"><link rel="stylesheet" href="../../../ramos-residency.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/universal-share.css?v=14">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+<header class="page-nav"><a href="../../../"><img src="../../../assets/voxlaci-logo-white.png" alt="VoxLaci"></a><nav><a href="/en/ramos/#individual-ramos">Ramos 2027</a></nav><a class="page-language" href="/ramos/individual/">PT</a><a class="cta" href="mailto:info@voxlaci.com?subject=Ramos%202027">Contact</a></header>
+<main>
+<form class="residency-form" id="ramos-ind-form" novalidate>
+  <p class="eyebrow" style="color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin:110px 0 10px">Ramos Palm Sunday Festival 2027</p>
+  <h1>Individual application</h1>
+  <p class="lead">Apply as an individual singer in 4 steps. Ramos fee: €295, paid only after acceptance.</p>
+
+  <div class="wizard-progress">
+    <span class="wizard-step-dot" data-step="1">1</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="2">2</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="3">3</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="4">4</span>
+  </div>
+
+  <p class="form-erro" id="ramos-ind-error" style="display:none;padding:14px 18px;background:#fdeeee;color:#a3241f;border:1px solid #f3c6c4;margin-bottom:24px"></p>
+  <input type="hidden" name="language" value="en">
+  <p style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave blank: <input name="website" tabindex="-1" autocomplete="off"><input name="campo-secreto" tabindex="-1" autocomplete="off"></label></p>
+
+  <div class="wizard-panel is-active" data-panel="1">
+    <fieldset class="residency-fieldset">
+      <legend>1/4 · Track</legend>
+      <div class="room-options">
+        <label class="room-option"><input type="radio" name="track" value="international" required><b>International Individual Singer</b><span>€295 Ramos fee</span></label>
+        <label class="room-option"><input type="radio" name="track" value="resident" required><b>Singer Resident in Portugal</b><span>€295 Ramos fee · free preparation rehearsals</span></label>
+      </div>
+    </fieldset>
+    <div class="wizard-nav"><span></span><button type="button" class="wizard-next">Next →</button></div>
+  </div>
+
+  <div class="wizard-panel" data-panel="2">
+    <fieldset class="residency-fieldset">
+      <legend>2/4 · Personal information</legend>
+      <div class="residency-grid">
+        <label class="span-2"><span>Full name *</span><input type="text" name="full_name" required></label>
+        <label><span>Country *</span><input type="text" name="country" required autocomplete="country-name"></label>
+        <label><span>Choir / Institution</span><input type="text" name="choir_institution"></label>
+        <label><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
+        <label><span>Phone</span><input type="tel" name="phone" autocomplete="tel"></label>
+        <label><span>WhatsApp</span><input type="tel" name="whatsapp"></label>
+      </div>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Back</button><button type="button" class="wizard-next">Next →</button></div>
+  </div>
+
+  <div class="wizard-panel" data-panel="3">
+    <fieldset class="residency-fieldset">
+      <legend>3/4 · Works, video and biography</legend>
+      <label><span>Two works chosen from the edition's repertoire *</span><input type="text" name="works_chosen" placeholder="E.g.: Work 1, Work 2" required></label>
+      <label><span>Video link (singing the works in full) *</span><input type="url" name="video_link" placeholder="https://" required></label>
+      <label><span>Short musical biography</span><textarea name="biography" maxlength="3000"></textarea></label>
+      <label><span>Additional notes</span><textarea name="notes" maxlength="2000"></textarea></label>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Back</button><button type="button" class="wizard-next">Next →</button></div>
+  </div>
+
+  <div class="wizard-panel" data-panel="4">
+    <fieldset class="residency-fieldset">
+      <legend>4/4 · Review &amp; submit</legend>
+      <div class="wizard-review" id="wizard-review"></div>
+      <label style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin:24px 0 20px">
+        <input type="checkbox" required style="width:20px;min-height:20px">
+        <span style="font-size:13px;color:var(--muted)">I agree that this data may be used to process my application to the Ramos Palm Sunday Festival 2027 and for related contact.</span>
+      </label>
+      <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="en" style="margin-bottom:20px"></div>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Back</button><button class="residency-submit" type="submit" style="width:auto;min-width:220px">Submit application</button></div>
+  </div>
+
+  <div class="residency-status" id="ramos-ind-status"></div>
+</form>
+</main>
+<footer class="page-footer"><div><img src="../../../assets/voxlaci-logo-white.png" alt="VoxLaci"><p>Ramos Palm Sunday Festival · Portugal</p></div><div><a href="mailto:info@voxlaci.com">info@voxlaci.com</a><a href="tel:+351925075186">(+351) 925 075 186</a><a href="../../../">Back to the VoxLaci website</a></div></footer>
+<script src="/universal-share.js?v=14" defer></script>
+<script>
+(function(){
+  var form = document.getElementById("ramos-ind-form");
+  var TRACK_LABEL = { international: "International Individual Singer", resident: "Singer Resident in Portugal" };
+
+  var panels = Array.prototype.slice.call(form.querySelectorAll(".wizard-panel"));
+  var dots = Array.prototype.slice.call(document.querySelectorAll(".wizard-step-dot"));
+  var current = 1;
+
+  function showStep(n){
+    current = n;
+    panels.forEach(function(p){ p.classList.toggle("is-active", Number(p.dataset.panel) === n); });
+    dots.forEach(function(d){
+      var s = Number(d.dataset.step);
+      d.classList.toggle("is-active", s === n);
+      d.classList.toggle("is-done", s < n);
+    });
+    if (n === 4) renderReview();
+    form.closest("main").scrollIntoView({ behavior: "smooth" });
+  }
+  function validateStep(n){
+    var panel = form.querySelector('.wizard-panel[data-panel="' + n + '"]');
+    var fields = panel.querySelectorAll("input, select, textarea");
+    for (var i = 0; i < fields.length; i++) {
+      if (!fields[i].checkValidity()) { fields[i].reportValidity(); return false; }
+    }
+    return true;
+  }
+  form.querySelectorAll(".wizard-next").forEach(function(btn){
+    btn.addEventListener("click", function(){ if (!validateStep(current)) return; if (current < 4) showStep(current + 1); });
+  });
+  form.querySelectorAll(".wizard-back").forEach(function(btn){
+    btn.addEventListener("click", function(){ if (current > 1) showStep(current - 1); });
+  });
+
+  function renderReview(){
+    var track = form.querySelector('input[name="track"]:checked');
+    var rows = [
+      ["Track", track ? TRACK_LABEL[track.value] : "—"],
+      ["Name", form.full_name.value || "—"],
+      ["Country", form.country.value || "—"],
+      ["Email", form.email.value || "—"],
+      ["Works chosen", form.works_chosen.value || "—"],
+      ["Video", form.video_link.value || "—"],
+    ];
+    document.getElementById("wizard-review").innerHTML = "<dl>" + rows.map(function(r){ return "<dt>" + r[0] + "</dt><dd>" + r[1] + "</dd>"; }).join("") + "</dl>";
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var errorBox = document.getElementById("ramos-ind-error");
+    var statusBox = document.getElementById("ramos-ind-status");
+    errorBox.style.display = "none";
+    statusBox.className = "residency-status";
+    var submitBtn = form.querySelector(".residency-submit");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting…";
+
+    fetch("/ramos/individual/api/apply", { method: "POST", body: new FormData(form) })
+      .then(function(r){ return r.json().then(function(d){ return { status: r.status, data: d }; }); })
+      .then(function(res){
+        if (res.data && res.data.ok) {
+          form.querySelectorAll(".wizard-panel, .wizard-progress").forEach(function(el){ el.hidden = true; });
+          statusBox.classList.add("is-visible", "ok");
+          statusBox.innerHTML = "<b>Application received.</b><br>ID: <b>" + res.data.ramosId + "</b><br>A confirmation has been sent to <b>" + (form.email.value || "your email") + "</b>.<br>Use this ID whenever you contact Ramos.";
+          statusBox.scrollIntoView({ behavior: "smooth" });
+        } else {
+          throw new Error((res.data && res.data.error) || "error");
+        }
+      })
+      .catch(function(err){
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit application";
+        errorBox.style.display = "block";
+        errorBox.textContent = "We could not submit your application (" + err.message + "). Please check the required fields or contact info@voxlaci.com.";
+        errorBox.scrollIntoView({ behavior: "smooth" });
+      });
+  });
+})();
+</script>
+</body></html>

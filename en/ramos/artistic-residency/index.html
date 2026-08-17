@@ -17,95 +17,110 @@
 <form class="residency-form" id="residency-form" novalidate>
   <p class="eyebrow" style="color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin:110px 0 10px">RAMOS 2027 Artistic Residency</p>
   <h1>15–22 March 2027<br>Portugal · 7 nights</h1>
-  <p class="lead">Fill in your details, choose your room and submit your proof of payment. Your registration is left pending validation — it is not automatically confirmed.</p>
+  <p class="lead">Fill in your details in 5 steps. Your registration is left pending validation — it is not automatically confirmed.</p>
 
-  <div class="residency-summary">
-    <div><b>Check-in</b>15 March 2027, between 3pm and 6pm</div>
-    <div><b>Check-out</b>22 March 2027, after breakfast</div>
-    <div><b>Includes</b>Accommodation, meals, 2 rehearsals, official transportation</div>
+  <div class="wizard-progress">
+    <span class="wizard-step-dot" data-step="1">1</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="2">2</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="3">3</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="4">4</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="5">5</span>
   </div>
-  <p class="residency-note">Dinner at 6pm on arrival day, before the first rehearsal at 7pm. Location: Seminário Torre d'Águilha, São Domingos de Rana, 2785 Cascais, Portugal · Tel. +351 214 458 440.</p>
 
   <p class="form-erro" id="residency-error" style="display:none;padding:14px 18px;background:#fdeeee;color:#a3241f;border:1px solid #f3c6c4;margin-bottom:24px"></p>
 
   <input type="hidden" name="language" value="en">
   <p style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave blank: <input name="website" tabindex="-1" autocomplete="off"><input name="campo-secreto" tabindex="-1" autocomplete="off"></label></p>
 
-  <fieldset class="residency-fieldset">
-    <legend>Personal Information</legend>
-    <div class="residency-grid">
-      <label class="span-2"><span>Full Name *</span><input type="text" name="full_name" required autocomplete="name"></label>
-      <label><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
-      <label><span>Mobile / WhatsApp *</span><input type="tel" name="mobile" required autocomplete="tel"></label>
-      <label><span>Country</span><input type="text" name="country" autocomplete="country-name"></label>
-      <label><span>Choir or Institution</span><input type="text" name="choir_institution"></label>
-      <label class="span-2"><span>Role *</span><select name="role" required>
-        <option value="">Choose</option>
-        <option value="Singer">Singer</option>
-        <option value="Conductor">Conductor</option>
-        <option value="Composer">Composer</option>
-        <option value="Student">Student</option>
-        <option value="Other">Other</option>
-      </select></label>
-    </div>
-  </fieldset>
-
-  <fieldset class="residency-fieldset">
-    <legend>Residency Option</legend>
-    <div class="room-options">
-      <label class="room-option"><input type="radio" name="room_type" value="single" required><b>Single Room</b><span>€1,127 per person</span></label>
-      <label class="room-option"><input type="radio" name="room_type" value="shared" required><b>Double / Triple Room</b><span>€987 per person</span></label>
-    </div>
-    <div class="residency-total" id="residency-total" hidden>Total to pay: <span id="residency-total-value">—</span></div>
-
-    <div id="share-questions" hidden style="margin-top:24px">
-      <label class="span-2" style="margin-bottom:10px;display:block"><span style="font-size:12px;font-weight:700">Do you already know who you would like to share your room with?</span></label>
-      <div class="payment-options">
-        <label class="payment-option"><input type="radio" name="share_known" value="yes"> Yes</label>
-        <label class="payment-option"><input type="radio" name="share_known" value="no"> No — I would like RAMOS to allocate a shared room</label>
+  <div class="wizard-panel is-active" data-panel="1">
+    <fieldset class="residency-fieldset">
+      <legend>1/5 · Personal Information</legend>
+      <div class="residency-grid">
+        <label class="span-2"><span>Full Name *</span><input type="text" name="full_name" required autocomplete="name"></label>
+        <label><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
+        <label><span>Mobile / WhatsApp *</span><input type="tel" name="mobile" required autocomplete="tel"></label>
+        <label><span>Country</span><input type="text" name="country" autocomplete="country-name"></label>
+        <label><span>Choir or Institution</span><input type="text" name="choir_institution"></label>
+        <label class="span-2"><span>Role *</span><select name="role" required>
+          <option value="">Choose</option>
+          <option value="Singer">Singer</option>
+          <option value="Conductor">Conductor</option>
+          <option value="Composer">Composer</option>
+          <option value="Student">Student</option>
+          <option value="Other">Other</option>
+        </select></label>
       </div>
-      <label id="share-names-wrap" hidden><span>Name of participant(s) you would like to share with</span><input type="text" name="share_names"></label>
-    </div>
-  </fieldset>
+    </fieldset>
+    <div class="wizard-nav"><span></span><button type="button" class="wizard-next">Next →</button></div>
+  </div>
 
-  <fieldset class="residency-fieldset">
-    <legend>Payment Method</legend>
-    <div class="payment-options">
-      <label class="payment-option"><input type="radio" name="payment_method" value="bank_transfer" required> Bank Transfer</label>
-      <label class="payment-option"><input type="radio" name="payment_method" value="paypal" required> PayPal</label>
-    </div>
-    <p class="residency-note">Revolut payment will be available soon. For now, please choose Bank Transfer or PayPal.</p>
+  <div class="wizard-panel" data-panel="2">
+    <fieldset class="residency-fieldset">
+      <legend>2/5 · Residency Option</legend>
+      <div class="room-options">
+        <label class="room-option"><input type="radio" name="room_type" value="single" required><b>Single Room</b><span>€1,127 per person</span></label>
+        <label class="room-option"><input type="radio" name="room_type" value="shared" required><b>Double / Triple Room</b><span>€987 per person</span></label>
+      </div>
+      <div class="residency-total" id="residency-total" hidden>Total to pay: <span id="residency-total-value">—</span></div>
+      <div id="share-questions" hidden style="margin-top:24px">
+        <label class="span-2" style="margin-bottom:10px;display:block"><span style="font-size:12px;font-weight:700">Do you already know who you would like to share your room with?</span></label>
+        <div class="payment-options">
+          <label class="payment-option"><input type="radio" name="share_known" value="yes"> Yes</label>
+          <label class="payment-option"><input type="radio" name="share_known" value="no"> No — I would like RAMOS to allocate a shared room</label>
+        </div>
+        <label id="share-names-wrap" hidden><span>Name of participant(s) you would like to share with</span><input type="text" name="share_names"></label>
+      </div>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Back</button><button type="button" class="wizard-next">Next →</button></div>
+  </div>
 
-    <div class="payment-details-box" id="details-bank_transfer" hidden>
-      <b>Beneficiary:</b> ASSOCIAÇÃO VOX SDR<br>
-      <b>IBAN:</b> PT50 0036 0196 9910 0035 3991 7<br>
-      <b>BIC / SWIFT:</b> MPIOPTPL<br>
-      <b>Bank:</b> Banco Montepio Geral<br>
-      <b>Branch:</b> Parede – Machado dos Santos
-    </div>
-    <div class="payment-details-box" id="details-paypal" hidden>
-      <b>PayPal:</b> info@voxlaci.com
-    </div>
+  <div class="wizard-panel" data-panel="3">
+    <fieldset class="residency-fieldset">
+      <legend>3/5 · Payment Method</legend>
+      <div class="payment-options">
+        <label class="payment-option"><input type="radio" name="payment_method" value="bank_transfer" required> Bank Transfer</label>
+        <label class="payment-option"><input type="radio" name="payment_method" value="paypal" required> PayPal</label>
+      </div>
+      <p class="residency-note">Revolut payment will be available soon. For now, please choose Bank Transfer or PayPal.</p>
+      <div class="payment-details-box" id="details-bank_transfer" hidden>
+        <b>Beneficiary:</b> ASSOCIAÇÃO VOX SDR<br>
+        <b>IBAN:</b> PT50 0036 0196 9910 0035 3991 7<br>
+        <b>BIC / SWIFT:</b> MPIOPTPL<br>
+        <b>Bank:</b> Banco Montepio Geral<br>
+        <b>Branch:</b> Parede – Machado dos Santos
+      </div>
+      <div class="payment-details-box" id="details-paypal" hidden>
+        <b>PayPal:</b> info@voxlaci.com
+      </div>
+      <label><span>Proof of Payment *</span>
+        <input type="file" name="proof" accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf" required>
+      </label>
+      <p class="residency-note">Please upload a copy, screenshot, photo or PDF confirming your payment. Accepted formats: JPG, PNG, PDF (max 8MB).</p>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Back</button><button type="button" class="wizard-next">Next →</button></div>
+  </div>
 
-    <label><span>Proof of Payment *</span>
-      <input type="file" name="proof" accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf" required>
-    </label>
-    <p class="residency-note">Please upload a copy, screenshot, photo or PDF confirming your payment. Accepted formats: JPG, PNG, PDF (max 8MB).</p>
-  </fieldset>
+  <div class="wizard-panel" data-panel="4">
+    <fieldset class="residency-fieldset">
+      <legend>4/5 · Billing Information</legend>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7">ASSOCIAÇÃO VOX SDR<br>Rua Avelino de Almeida 27<br>Areias de S. Pedro do Estoril<br>Portugal<br>Tax ID / NIF: 508439949</p>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Back</button><button type="button" class="wizard-next">Next →</button></div>
+  </div>
 
-  <fieldset class="residency-fieldset">
-    <legend>Billing Information</legend>
-    <p style="font-size:13px;color:var(--muted);line-height:1.7">ASSOCIAÇÃO VOX SDR<br>Rua Avelino de Almeida 27<br>Areias de S. Pedro do Estoril<br>Portugal<br>Tax ID / NIF: 508439949</p>
-  </fieldset>
+  <div class="wizard-panel" data-panel="5">
+    <fieldset class="residency-fieldset">
+      <legend>5/5 · Review &amp; Submit</legend>
+      <div class="wizard-review" id="wizard-review"></div>
+      <label style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin:24px 0 20px">
+        <input type="checkbox" required style="width:20px;min-height:20px">
+        <span style="font-size:13px;color:var(--muted)">I agree that this data may be used to process my RAMOS Artistic Residency registration and for related contact.</span>
+      </label>
+      <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="en" style="margin-bottom:20px"></div>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Back</button><button class="residency-submit" type="submit" style="width:auto;min-width:220px">Submit registration</button></div>
+  </div>
 
-  <label style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin-bottom:20px">
-    <input type="checkbox" required style="width:20px;min-height:20px">
-    <span style="font-size:13px;color:var(--muted)">I agree that this data may be used to process my RAMOS Artistic Residency registration and for related contact.</span>
-  </label>
-
-  <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="en" style="margin-bottom:20px"></div>
-
-  <button class="residency-submit" type="submit">Submit registration</button>
   <div class="residency-status" id="residency-status"></div>
 </form>
 </main>
@@ -122,6 +137,8 @@
   var shareNamesWrap = document.getElementById("share-names-wrap");
   var shareNamesInput = form.querySelector('input[name="share_names"]');
   var PRICES = { single: 1127, shared: 987 };
+  var ROOM_LABEL = { single: "Single Room", shared: "Double / Triple Room" };
+  var PAYMENT_LABEL = { bank_transfer: "Bank Transfer", paypal: "PayPal" };
 
   roomInputs.forEach(function(input){
     input.addEventListener("change", function(){
@@ -135,7 +152,6 @@
       }
     });
   });
-
   shareKnownInputs.forEach(function(input){
     input.addEventListener("change", function(){
       var isYes = input.value === "yes";
@@ -144,7 +160,6 @@
       else { shareNamesInput.removeAttribute("required"); shareNamesInput.value = ""; }
     });
   });
-
   form.querySelectorAll('input[name="payment_method"]').forEach(function(input){
     input.addEventListener("change", function(){
       form.querySelectorAll(".payment-details-box").forEach(function(box){ box.hidden = true; });
@@ -152,6 +167,51 @@
       if (box) box.hidden = false;
     });
   });
+
+  // ── Wizard navigation ─────────────────────────────────────────────────
+  var panels = Array.prototype.slice.call(form.querySelectorAll(".wizard-panel"));
+  var dots = Array.prototype.slice.call(document.querySelectorAll(".wizard-step-dot"));
+  var current = 1;
+
+  function showStep(n){
+    current = n;
+    panels.forEach(function(p){ p.classList.toggle("is-active", Number(p.dataset.panel) === n); });
+    dots.forEach(function(d){
+      var s = Number(d.dataset.step);
+      d.classList.toggle("is-active", s === n);
+      d.classList.toggle("is-done", s < n);
+    });
+    if (n === 5) renderReview();
+    form.closest("main").scrollIntoView({ behavior: "smooth" });
+  }
+  function validateStep(n){
+    var panel = form.querySelector('.wizard-panel[data-panel="' + n + '"]');
+    var fields = panel.querySelectorAll("input, select, textarea");
+    for (var i = 0; i < fields.length; i++) {
+      if (!fields[i].checkValidity()) { fields[i].reportValidity(); return false; }
+    }
+    return true;
+  }
+  form.querySelectorAll(".wizard-next").forEach(function(btn){
+    btn.addEventListener("click", function(){ if (!validateStep(current)) return; if (current < 5) showStep(current + 1); });
+  });
+  form.querySelectorAll(".wizard-back").forEach(function(btn){
+    btn.addEventListener("click", function(){ if (current > 1) showStep(current - 1); });
+  });
+
+  function renderReview(){
+    var room = form.querySelector('input[name="room_type"]:checked');
+    var payment = form.querySelector('input[name="payment_method"]:checked');
+    var rows = [
+      ["Name", form.full_name.value || "—"],
+      ["Email", form.email.value || "—"],
+      ["Mobile", form.mobile.value || "—"],
+      ["Role", form.role.value || "—"],
+      ["Room", room ? ROOM_LABEL[room.value] : "—"],
+      ["Payment", payment ? PAYMENT_LABEL[payment.value] : "—"],
+    ];
+    document.getElementById("wizard-review").innerHTML = "<dl>" + rows.map(function(r){ return "<dt>" + r[0] + "</dt><dd>" + r[1] + "</dd>"; }).join("") + "</dl>";
+  }
 
   form.addEventListener("submit", function(e){
     e.preventDefault();
@@ -167,9 +227,10 @@
       .then(function(r){ return r.json().then(function(d){ return { status: r.status, data: d }; }); })
       .then(function(res){
         if (res.data && res.data.ok) {
-          form.hidden = true;
+          form.querySelectorAll(".wizard-panel, .wizard-progress").forEach(function(el){ el.hidden = true; });
           statusBox.classList.add("is-visible", "ok");
-          statusBox.innerHTML = "<b>Registration received.</b><br>Reference: <b>" + res.data.reference + "</b><br>You will receive a confirmation email. Your registration will be validated by the RAMOS team.";
+          var areaLink = res.data.portalToken ? ("/ramos/residency/area/?token=" + res.data.portalToken) : "/ramos/residency/area/";
+          statusBox.innerHTML = "<b>Registration received.</b><br>Reference: <b>" + res.data.reference + "</b><br>A confirmation has been sent to <b>" + (form.email.value || "your email") + "</b>.<br>Your registration will be validated by the RAMOS team.<br><br><a href=\"" + areaLink + "\">Check my registration status →</a>";
           statusBox.scrollIntoView({ behavior: "smooth" });
         } else {
           throw new Error((res.data && res.data.error) || "error");

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<title>Candidatura Individual RAMOS 2027 | VoxLaci</title>
+<meta name="description" content="Candidatura de cantores individuais ao Ramos Palm Sunday Festival 2027. Taxa Ramos de 295€, Cascais, Portugal.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://voxlaci.com/ramos/individual/"><link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/individual/"><link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/individual/">
+<link rel="stylesheet" href="../../subpage.css"><link rel="stylesheet" href="../../ramos-residency.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/universal-share.css?v=14">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+<header class="page-nav"><a href="../../"><img src="../../assets/voxlaci-logo-white.png" alt="VoxLaci"></a><nav><a href="../#individual-ramos">Ramos 2027</a></nav><a class="page-language" href="../../en/ramos/individual/">EN</a><a class="cta" href="mailto:info@voxlaci.com?subject=Ramos%202027">Contactar</a></header>
+<main>
+<form class="residency-form" id="ramos-ind-form" novalidate>
+  <p class="eyebrow" style="color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin:110px 0 10px">Ramos Palm Sunday Festival 2027</p>
+  <h1>Candidatura individual</h1>
+  <p class="lead">Candidate-se como cantor/a individual em 4 passos. Taxa Ramos: 295€, paga apenas depois de aceite.</p>
+
+  <div class="wizard-progress">
+    <span class="wizard-step-dot" data-step="1">1</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="2">2</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="3">3</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="4">4</span>
+  </div>
+
+  <p class="form-erro" id="ramos-ind-error" style="display:none;padding:14px 18px;background:#fdeeee;color:#a3241f;border:1px solid #f3c6c4;margin-bottom:24px"></p>
+  <input type="hidden" name="language" value="pt">
+  <p style="position:absolute;left:-9999px" aria-hidden="true"><label>Não preencher: <input name="website" tabindex="-1" autocomplete="off"><input name="campo-secreto" tabindex="-1" autocomplete="off"></label></p>
+
+  <div class="wizard-panel is-active" data-panel="1">
+    <fieldset class="residency-fieldset">
+      <legend>1/4 · Percurso</legend>
+      <div class="room-options">
+        <label class="room-option"><input type="radio" name="track" value="international" required><b>Cantor Individual Internacional</b><span>295 € taxa Ramos</span></label>
+        <label class="room-option"><input type="radio" name="track" value="resident" required><b>Cantor Residente em Portugal</b><span>295 € taxa Ramos · ensaios de preparação gratuitos</span></label>
+      </div>
+    </fieldset>
+    <div class="wizard-nav"><span></span><button type="button" class="wizard-next">Seguinte →</button></div>
+  </div>
+
+  <div class="wizard-panel" data-panel="2">
+    <fieldset class="residency-fieldset">
+      <legend>2/4 · Dados pessoais</legend>
+      <div class="residency-grid">
+        <label class="span-2"><span>Nome completo *</span><input type="text" name="full_name" required></label>
+        <label><span>País *</span><input type="text" name="country" required autocomplete="country-name"></label>
+        <label><span>Coro / Instituição</span><input type="text" name="choir_institution"></label>
+        <label><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
+        <label><span>Telefone</span><input type="tel" name="phone" autocomplete="tel"></label>
+        <label><span>WhatsApp</span><input type="tel" name="whatsapp"></label>
+      </div>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Anterior</button><button type="button" class="wizard-next">Seguinte →</button></div>
+  </div>
+
+  <div class="wizard-panel" data-panel="3">
+    <fieldset class="residency-fieldset">
+      <legend>3/4 · Obras, vídeo e biografia</legend>
+      <label><span>Duas obras escolhidas do repertório da edição *</span><input type="text" name="works_chosen" placeholder="Ex.: Obra 1, Obra 2" required></label>
+      <label><span>Link de vídeo (a cantar as obras na íntegra) *</span><input type="url" name="video_link" placeholder="https://" required></label>
+      <label><span>Breve biografia musical</span><textarea name="biography" maxlength="3000"></textarea></label>
+      <label><span>Notas adicionais</span><textarea name="notes" maxlength="2000"></textarea></label>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Anterior</button><button type="button" class="wizard-next">Seguinte →</button></div>
+  </div>
+
+  <div class="wizard-panel" data-panel="4">
+    <fieldset class="residency-fieldset">
+      <legend>4/4 · Rever &amp; submeter</legend>
+      <div class="wizard-review" id="wizard-review"></div>
+      <label style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin:24px 0 20px">
+        <input type="checkbox" required style="width:20px;min-height:20px">
+        <span style="font-size:13px;color:var(--muted)">Aceito que estes dados sejam usados para processar a minha candidatura ao Ramos Palm Sunday Festival 2027 e para contacto relacionado.</span>
+      </label>
+      <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="pt" style="margin-bottom:20px"></div>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Anterior</button><button class="residency-submit" type="submit" style="width:auto;min-width:220px">Submeter candidatura</button></div>
+  </div>
+
+  <div class="residency-status" id="ramos-ind-status"></div>
+</form>
+</main>
+<footer class="page-footer"><div><img src="../../assets/voxlaci-logo-white.png" alt="VoxLaci"><p>Ramos Palm Sunday Festival · Portugal</p></div><div><a href="mailto:info@voxlaci.com">info@voxlaci.com</a><a href="tel:+351925075186">(+351) 925 075 186</a><a href="../../">Voltar ao site VoxLaci</a></div></footer>
+<script src="/universal-share.js?v=14" defer></script>
+<script>
+(function(){
+  var form = document.getElementById("ramos-ind-form");
+  var TRACK_LABEL = { international: "Cantor Individual Internacional", resident: "Cantor Residente em Portugal" };
+
+  var panels = Array.prototype.slice.call(form.querySelectorAll(".wizard-panel"));
+  var dots = Array.prototype.slice.call(document.querySelectorAll(".wizard-step-dot"));
+  var current = 1;
+
+  function showStep(n){
+    current = n;
+    panels.forEach(function(p){ p.classList.toggle("is-active", Number(p.dataset.panel) === n); });
+    dots.forEach(function(d){
+      var s = Number(d.dataset.step);
+      d.classList.toggle("is-active", s === n);
+      d.classList.toggle("is-done", s < n);
+    });
+    if (n === 4) renderReview();
+    form.closest("main").scrollIntoView({ behavior: "smooth" });
+  }
+  function validateStep(n){
+    var panel = form.querySelector('.wizard-panel[data-panel="' + n + '"]');
+    var fields = panel.querySelectorAll("input, select, textarea");
+    for (var i = 0; i < fields.length; i++) {
+      if (!fields[i].checkValidity()) { fields[i].reportValidity(); return false; }
+    }
+    return true;
+  }
+  form.querySelectorAll(".wizard-next").forEach(function(btn){
+    btn.addEventListener("click", function(){ if (!validateStep(current)) return; if (current < 4) showStep(current + 1); });
+  });
+  form.querySelectorAll(".wizard-back").forEach(function(btn){
+    btn.addEventListener("click", function(){ if (current > 1) showStep(current - 1); });
+  });
+
+  function renderReview(){
+    var track = form.querySelector('input[name="track"]:checked');
+    var rows = [
+      ["Percurso", track ? TRACK_LABEL[track.value] : "—"],
+      ["Nome", form.full_name.value || "—"],
+      ["País", form.country.value || "—"],
+      ["Email", form.email.value || "—"],
+      ["Obras escolhidas", form.works_chosen.value || "—"],
+      ["Vídeo", form.video_link.value || "—"],
+    ];
+    document.getElementById("wizard-review").innerHTML = "<dl>" + rows.map(function(r){ return "<dt>" + r[0] + "</dt><dd>" + r[1] + "</dd>"; }).join("") + "</dl>";
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var errorBox = document.getElementById("ramos-ind-error");
+    var statusBox = document.getElementById("ramos-ind-status");
+    errorBox.style.display = "none";
+    statusBox.className = "residency-status";
+    var submitBtn = form.querySelector(".residency-submit");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "A submeter…";
+
+    fetch("/ramos/individual/api/apply", { method: "POST", body: new FormData(form) })
+      .then(function(r){ return r.json().then(function(d){ return { status: r.status, data: d }; }); })
+      .then(function(res){
+        if (res.data && res.data.ok) {
+          form.querySelectorAll(".wizard-panel, .wizard-progress").forEach(function(el){ el.hidden = true; });
+          statusBox.classList.add("is-visible", "ok");
+          statusBox.innerHTML = "<b>Candidatura recebida.</b><br>ID: <b>" + res.data.ramosId + "</b><br>Enviámos um comprovativo para <b>" + (form.email.value || "o seu email") + "</b>.<br>Utilize este ID sempre que contactar o Ramos.";
+          statusBox.scrollIntoView({ behavior: "smooth" });
+        } else {
+          throw new Error((res.data && res.data.error) || "erro");
+        }
+      })
+      .catch(function(err){
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submeter candidatura";
+        errorBox.style.display = "block";
+        errorBox.textContent = "Não foi possível submeter a candidatura (" + err.message + "). Verifique os campos obrigatórios ou contacte info@voxlaci.com.";
+        errorBox.scrollIntoView({ behavior: "smooth" });
+      });
+  });
+})();
+</script>
+</body></html>

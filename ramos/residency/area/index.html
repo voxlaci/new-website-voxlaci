@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<title>Área Residência Artística RAMOS | VoxLaci</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../../../subpage.css"><link rel="stylesheet" href="../../../ramos-residency.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="page-nav"><a href="../../../"><img src="../../../assets/voxlaci-logo-white.png" alt="VoxLaci"></a><a class="cta" href="mailto:info@voxlaci.com?subject=Ramos%202027">Contact</a></header>
+<main>
+<div class="portal-wrap" id="portal-root"><p style="padding:120px 0 40px;color:var(--muted)">A carregar… / Loading…</p></div>
+</main>
+<footer class="page-footer"><div><img src="../../../assets/voxlaci-logo-white.png" alt="VoxLaci"></div><div><a href="mailto:info@voxlaci.com">info@voxlaci.com</a></div></footer>
+<script>
+(function(){
+  var T = {
+    pt: {
+      title: "Área privada — Residência Artística", loadError: "Não foi possível carregar a sua inscrição. Verifique o link recebido por email ou contacte info@voxlaci.com.",
+      summary: "Resumo", name: "Nome", room: "Quarto", status: "Estado", amount: "Valor",
+      single: "Individual", shared: "Duplo / Triplo",
+      shareTitle: "Preferência de partilha de quarto", shareHint: "Indique com quem gostaria de partilhar o quarto (ou deixe em branco para o RAMOS atribuir).",
+      shareLabel: "Nome(s) da(s) pessoa(s)", saveShare: "Guardar preferência",
+      saved: "Guardado.", sending: "A enviar…", error: "Ocorreu um erro. Tente novamente ou contacte info@voxlaci.com.",
+      statusLabels: { pending_payment: "Pendente", payment_submitted: "Comprovativo enviado", confirmed: "Confirmado", cancelled: "Cancelado", expired: "Expirado" },
+    },
+    en: {
+      title: "Private area — Artistic Residency", loadError: "We could not load your registration. Please check the link you received by email or contact info@voxlaci.com.",
+      summary: "Summary", name: "Name", room: "Room", status: "Status", amount: "Amount",
+      single: "Single", shared: "Double / Triple",
+      shareTitle: "Roommate preference", shareHint: "Let us know who you'd like to share your room with (or leave blank for RAMOS to allocate).",
+      shareLabel: "Name(s)", saveShare: "Save preference",
+      saved: "Saved.", sending: "Sending…", error: "Something went wrong. Please try again or contact info@voxlaci.com.",
+      statusLabels: { pending_payment: "Pending", payment_submitted: "Proof submitted", confirmed: "Confirmed", cancelled: "Cancelled", expired: "Expired" },
+    },
+  };
+
+  var params = new URLSearchParams(location.search);
+  var token = params.get("token") || "";
+  var root = document.getElementById("portal-root");
+  function euros(cents){ return ((cents||0)/100).toLocaleString("pt-PT") + " €"; }
+
+  function render(t, reg){
+    document.documentElement.lang = reg.language;
+    var html = "";
+    html += "<h1>" + t.title + "</h1>";
+    html += "<div class=\"portal-status-banner\">" + (t.statusLabels[reg.status] || reg.status) + "</div>";
+    html += "<div class=\"portal-section\"><h2>" + t.summary + "</h2><div class=\"portal-summary\">";
+    html += "<div><b>" + t.name + "</b>" + reg.full_name + "</div>";
+    html += "<div><b>Ref.</b>" + reg.reference + "</div>";
+    html += "<div><b>" + t.room + "</b>" + (reg.room_type === "single" ? t.single : t.shared) + "</div>";
+    html += "<div><b>" + t.amount + "</b>" + euros(reg.amount_due_cents) + "</div>";
+    html += "</div></div>";
+
+    if (reg.room_type === "shared" && reg.status !== "cancelled") {
+      html += "<div class=\"portal-section\"><h2>" + t.shareTitle + "</h2><p class=\"residency-note\">" + t.shareHint + "</p>";
+      html += "<form id=\"share-form\"><label><span>" + t.shareLabel + "</span><input type=\"text\" name=\"share_names\" value=\"" + (reg.share_names || "").replace(/"/g, "&quot;") + "\"></label>";
+      html += "<button class=\"residency-submit\" type=\"submit\" style=\"width:auto;min-width:200px\">" + t.saveShare + "</button>";
+      html += "<div class=\"residency-status\" id=\"share-status\"></div></form></div>";
+    }
+    root.innerHTML = html;
+
+    var shareForm = document.getElementById("share-form");
+    if (shareForm) {
+      shareForm.addEventListener("submit", function(e){
+        e.preventDefault();
+        var statusBox = document.getElementById("share-status");
+        var btn = shareForm.querySelector(".residency-submit");
+        btn.disabled = true; btn.textContent = t.sending;
+        fetch("/ramos/residency/api/portal", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token: token, share_names: shareForm.share_names.value }),
+        }).then(function(r){ return r.json(); }).then(function(d){
+          if (!d.ok) throw new Error(d.error || "error");
+          statusBox.className = "residency-status is-visible ok";
+          statusBox.textContent = t.saved;
+          btn.disabled = false; btn.textContent = t.saveShare;
+        }).catch(function(){
+          statusBox.className = "residency-status is-visible error";
+          statusBox.textContent = t.error;
+          btn.disabled = false; btn.textContent = t.saveShare;
+        });
+      });
+    }
+  }
+
+  if (!token) {
+    root.innerHTML = "<p style=\"padding:120px 0 40px;color:var(--muted)\">" + T.pt.loadError + "</p>";
+  } else {
+    fetch("/ramos/residency/api/portal?token=" + encodeURIComponent(token))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (!d.ok) throw new Error(d.error || "error");
+        var lang = T[d.registration.language] ? d.registration.language : "pt";
+        render(T[lang], d.registration);
+      })
+      .catch(function(){
+        root.innerHTML = "<p style=\"padding:120px 0 40px;color:var(--muted)\">" + T.pt.loadError + "</p>";
+      });
+  }
+})();
+</script>
+</body></html>

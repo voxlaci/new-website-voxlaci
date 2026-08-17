@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<title>Administração · Ramos 2027 Individual &amp; Coros</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../../../subpage.css"><link rel="stylesheet" href="../../../ramos-residency.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  .detail-row{background:var(--ivory)}
+  .detail-row>td{padding:24px!important}
+  .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .detail-grid h4{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  .detail-grid textarea{width:100%;min-height:70px;padding:8px;border:1px solid var(--line);font:inherit;font-size:13px}
+  .detail-grid select{padding:8px;border:1px solid var(--line);font:inherit;font-size:13px}
+  .admin-tabs{display:flex;gap:8px;margin-bottom:24px}
+  .admin-tabs button{padding:8px 18px;border:1px solid var(--line);border-radius:99px;background:#fff;font-size:13px;font-weight:700;cursor:pointer}
+  .admin-tabs button.is-active{background:#111;color:#fff;border-color:#111}
+  .admin-tab-panel{display:none}
+  .admin-tab-panel.is-active{display:block}
+  @media(max-width:800px){.detail-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body style="background:#fff">
+<div class="admin-wrap">
+  <h1>Ramos 2027 — Individual &amp; Coros</h1>
+  <p class="lead">Painel de administração — acesso restrito via Cloudflare Access.</p>
+
+  <div class="admin-tabs">
+    <button type="button" class="is-active" data-tab="individual">Cantores Individuais</button>
+    <button type="button" data-tab="choirs">Coros</button>
+  </div>
+
+  <div class="admin-tab-panel is-active" data-tab-panel="individual">
+    <div class="admin-filters">
+      <select id="filter-status"><option value="">Todos os estados</option></select>
+      <select id="filter-track">
+        <option value="">Todos os percursos</option>
+        <option value="international">Internacional</option>
+        <option value="resident">Residente</option>
+      </select>
+    </div>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead><tr><th>ID</th><th>Data</th><th>Nome</th><th>País</th><th>Percurso</th><th>Total</th><th>Pago</th><th>Estado</th><th>Ações</th></tr></thead>
+        <tbody id="admin-tbody"><tr><td colspan="9">A carregar…</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="admin-tab-panel" data-tab-panel="choirs">
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead><tr><th>ID</th><th>Data</th><th>Coro</th><th>País</th><th>Contacto</th><th>Cantores</th><th>Estado</th><th>Ações</th></tr></thead>
+        <tbody id="choirs-tbody"><tr><td colspan="8">A carregar…</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var STATUS_LABEL = {
+    application_received: "Candidatura recebida", under_review: "Em análise", accepted: "Aceite",
+    payment_pending: "Pagamento pendente", partially_paid: "Parcialmente pago", paid: "Pago",
+    confirmed: "Confirmado", cancelled: "Cancelado",
+  };
+  var TRACK_LABEL = { international: "Internacional", resident: "Residente" };
+  var STATUSES = Object.keys(STATUS_LABEL);
+
+  document.querySelectorAll(".admin-tabs button").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      document.querySelectorAll(".admin-tabs button").forEach(function(b){ b.classList.toggle("is-active", b === btn); });
+      document.querySelectorAll(".admin-tab-panel").forEach(function(p){ p.classList.toggle("is-active", p.dataset.tabPanel === btn.dataset.tab); });
+    });
+  });
+
+  var tbody = document.getElementById("admin-tbody");
+  var filterStatus = document.getElementById("filter-status");
+  var filterTrack = document.getElementById("filter-track");
+  var allApps = [];
+  var openId = null;
+
+  STATUSES.forEach(function(s){ var o = document.createElement("option"); o.value = s; o.textContent = STATUS_LABEL[s]; filterStatus.appendChild(o); });
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function euros(cents){ return cents == null ? "—" : (cents / 100).toLocaleString("pt-PT") + " €"; }
+  function fmtDate(iso){ if (!iso) return "—"; var d = new Date(iso + "Z"); return d.toLocaleDateString("pt-PT", { day: "2-digit", month: "2-digit", year: "numeric" }); }
+
+  function filtered(){
+    return allApps.filter(function(a){
+      return (!filterStatus.value || a.status === filterStatus.value) && (!filterTrack.value || a.track === filterTrack.value);
+    });
+  }
+
+  function renderTable(){
+    var apps = filtered();
+    if (!apps.length) { tbody.innerHTML = '<tr><td colspan="9">Sem candidaturas.</td></tr>'; return; }
+    tbody.innerHTML = apps.map(function(a){
+      var rows = '<tr data-row="' + a.id + '">' +
+        "<td><b>" + esc(a.ramos_id) + "</b></td>" +
+        "<td>" + fmtDate(a.created_at) + "</td>" +
+        "<td>" + esc(a.full_name) + "</td>" +
+        "<td>" + esc(a.country || "—") + "</td>" +
+        "<td>" + TRACK_LABEL[a.track] + "</td>" +
+        "<td>" + euros(a.amount_total_cents) + "</td>" +
+        "<td>" + euros(a.amount_paid_cents) + "</td>" +
+        '<td><span class="status-pill ' + a.status + '">' + STATUS_LABEL[a.status] + "</span></td>" +
+        '<td class="admin-actions"><button data-action="toggle" data-id="' + a.id + '">' + (openId === a.id ? "Fechar" : "Detalhe") + "</button></td>" +
+        "</tr>";
+      if (openId === a.id) rows += detailRow(a);
+      return rows;
+    }).join("");
+    if (openId != null) loadDetail(openId);
+  }
+
+  function detailRow(a){
+    var statusOptions = STATUSES.map(function(s){ return '<option value="' + s + '"' + (s === a.status ? " selected" : "") + '>' + STATUS_LABEL[s] + "</option>"; }).join("");
+    return '<tr class="detail-row" data-detail="' + a.id + '"><td colspan="9">' +
+      '<div class="detail-grid">' +
+      '<div><h4>Contacto</h4>' +
+        '<p style="margin:0 0 4px">' + esc(a.email) + " · " + esc(a.phone || a.whatsapp || "—") + "</p>" +
+        '<p style="margin:0 0 4px">Coro/Instituição: ' + esc(a.choir_institution || "—") + "</p>" +
+        '<p style="margin:0 0 4px">Obras: ' + esc(a.works_chosen || "—") + "</p>" +
+        (a.video_link ? '<p style="margin:0 0 14px"><a href="' + esc(a.video_link) + '" target="_blank" rel="noopener">Ver vídeo →</a></p>' : "") +
+        "<h4>Estado</h4>" +
+        '<select class="f-status">' + statusOptions + "</select> " +
+        '<button data-action="save-status" data-id="' + a.id + '">Guardar</button><br>' +
+        '<textarea class="f-note" placeholder="Nota interna">' + esc(a.admin_note || "") + "</textarea>" +
+        '<button data-action="request-info" data-id="' + a.id + '" style="margin-top:8px">Pedir mais informação</button>' +
+      "</div>" +
+      '<div><h4>Pagamentos</h4><div class="payments-list" data-payments="' + a.id + '">A carregar…</div></div>' +
+      "</div></td></tr>";
+  }
+
+  function loadDetail(id){
+    var el = document.querySelector('[data-payments="' + id + '"]');
+    if (!el) return;
+    fetch("../admin/payments?application_id=" + id).then(function(r){ return r.json(); }).then(function(d){
+      if (!d.ok || !d.payments.length) { el.textContent = "Sem pagamentos submetidos."; return; }
+      el.innerHTML = d.payments.map(function(p){
+        var proofLink = p.proof_original_filename ? '<a href="../admin/proof/' + p.id + '" target="_blank" rel="noopener">comprovativo</a>' : "sem ficheiro";
+        var actions = p.status === "submitted"
+          ? '<button data-action="confirm-payment" data-payment-id="' + p.id + '">Confirmar</button><button data-action="reject-payment" data-payment-id="' + p.id + '">Rejeitar</button>'
+          : "";
+        return "<p style=\"margin:0 0 8px;font-size:13px\">" + euros(p.amount_cents) + " · " + esc(p.payment_method) + " · " +
+          '<span class="status-pill ' + p.status + '">' + esc(p.status) + "</span> · " + proofLink + "<br>" + actions + "</p>";
+      }).join("");
+    });
+  }
+
+  document.getElementById("filter-status").addEventListener("change", renderTable);
+  document.getElementById("filter-track").addEventListener("change", renderTable);
+
+  document.querySelector('[data-tab-panel="individual"]').addEventListener("click", function(e){
+    var btn = e.target.closest("button[data-action]");
+    if (!btn) return;
+    var action = btn.dataset.action;
+    var id = Number(btn.dataset.id);
+
+    if (action === "toggle") { openId = openId === id ? null : id; renderTable(); return; }
+    var row = document.querySelector('[data-detail="' + id + '"]') || document.querySelector('[data-row="' + id + '"]');
+
+    if (action === "save-status") {
+      var statusSel = row.querySelector(".f-status").value;
+      var note = row.querySelector(".f-note").value;
+      fetch("../admin/update-status", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: id, status: statusSel, admin_note: note }) })
+        .then(function(r){ return r.json(); }).then(function(d){ if (d.ok) load(); else alert("Erro: " + d.error); });
+    }
+    if (action === "request-info") {
+      var message = prompt("Mensagem a pedir mais informação:");
+      if (!message) return;
+      fetch("../admin/update-status", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: id, action: "request_info", message: message }) })
+        .then(function(r){ return r.json(); }).then(function(d){ if (d.ok) alert("Email enviado."); else alert("Erro: " + d.error); });
+    }
+    if (action === "confirm-payment" || action === "reject-payment") {
+      fetch("../admin/confirm-payment", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ payment_id: Number(btn.dataset.paymentId), action: action === "confirm-payment" ? "confirm" : "reject" }) })
+        .then(function(r){ return r.json(); }).then(function(d){ if (d.ok) load(); else alert("Erro: " + d.error); });
+    }
+  });
+
+  function load(){
+    fetch("../admin/list").then(function(r){ return r.json(); }).then(function(d){
+      if (!d.ok) { tbody.innerHTML = '<tr><td colspan="9">Erro: ' + esc(d.error) + "</td></tr>"; return; }
+      allApps = d.applications || [];
+      renderTable();
+    }).catch(function(err){ tbody.innerHTML = '<tr><td colspan="9">Erro: ' + esc(err.message) + "</td></tr>"; });
+  }
+
+  // Choir inquiries tab
+  var choirsTbody = document.getElementById("choirs-tbody");
+  var CHOIR_STATUS_LABEL = { received: "Recebido", contacted: "Contactado", closed: "Fechado" };
+  function loadChoirs(){
+    fetch("../admin/choir-inquiries").then(function(r){ return r.json(); }).then(function(d){
+      if (!d.ok || !d.inquiries.length) { choirsTbody.innerHTML = '<tr><td colspan="8">Sem pedidos de coros.</td></tr>'; return; }
+      choirsTbody.innerHTML = d.inquiries.map(function(c){
+        var opts = Object.keys(CHOIR_STATUS_LABEL).map(function(s){ return '<option value="' + s + '"' + (s === c.status ? " selected" : "") + '>' + CHOIR_STATUS_LABEL[s] + "</option>"; }).join("");
+        return "<tr><td><b>" + esc(c.ramos_id) + "</b></td><td>" + fmtDate(c.created_at) + "</td><td>" + esc(c.choir_name) +
+          "</td><td>" + esc(c.country || "—") + "</td><td>" + esc(c.contact_person) + " · " + esc(c.email) +
+          "</td><td>" + (c.num_singers || "—") + '</td><td><span class="status-pill">' + CHOIR_STATUS_LABEL[c.status] +
+          '</span></td><td><select class="choir-status" data-id="' + c.id + '">' + opts + "</select></td></tr>";
+      }).join("");
+    });
+  }
+  choirsTbody.addEventListener("change", function(e){
+    var sel = e.target.closest(".choir-status");
+    if (!sel) return;
+    fetch("../admin/choir-inquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: Number(sel.dataset.id), status: sel.value }) })
+      .then(function(r){ return r.json(); }).then(function(d){ if (!d.ok) alert("Erro: " + d.error); });
+  });
+
+  load();
+  loadChoirs();
+})();
+</script>
+</body></html>

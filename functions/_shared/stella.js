@@ -43,6 +43,12 @@ export async function generateStellaId(db, id) {
   return stellaId;
 }
 
+export async function generateIndividualInterestId(db, id) {
+  const stellaId = `STELLA26-IND-${String(id).padStart(4, "0")}`;
+  await db.prepare("UPDATE stella_individual_interest SET stella_id = ? WHERE id = ?").bind(stellaId, id).run();
+  return stellaId;
+}
+
 function shell(title, body) {
   return `<div style="font-family:sans-serif;max-width:640px;margin:0 auto">
   <h2 style="margin-bottom:4px;color:#111">${esc(title)}</h2>
@@ -145,6 +151,29 @@ export function cancelledEmail(lang, app) {
     ? { subject: `STELLA — Inscrição cancelada (${app.stella_id})`, title: "Inscrição cancelada", body: `<p>A inscrição do coro <b>${esc(app.choir_name)}</b> foi cancelada. Se isto não era esperado, contacte-nos.</p>` }
     : { subject: `STELLA — Registration cancelled (${app.stella_id})`, title: "Registration cancelled", body: `<p><b>${esc(app.choir_name)}</b>'s registration has been cancelled. If this was not expected, please contact us.</p>` };
   return { subject: t.subject, html: shell(t.title, t.body + summaryTable(lang, app)) };
+}
+
+export function individualInterestReceivedEmail(lang, entry) {
+  const t = lang === "pt"
+    ? { subject: `STELLA — Interesse registado (${entry.stella_id})`, title: "Interesse registado", body: `<p>Obrigado, <b>${esc(entry.full_name)}</b> — registámos o seu interesse em participar no STELLA Festival 2026 como cantor/a individual.</p><p>Assim que os workshops, passes e preços forem confirmados, vamos contactá-lo(a) diretamente para <b>${esc(entry.email)}</b>.</p><p>ID: <b>${entry.stella_id}</b></p>` }
+    : { subject: `STELLA — Interest registered (${entry.stella_id})`, title: "Interest registered", body: `<p>Thank you, <b>${esc(entry.full_name)}</b> — we've registered your interest in taking part in STELLA Festival 2026 as an individual singer.</p><p>As soon as workshops, passes and pricing are confirmed, we'll contact you directly at <b>${esc(entry.email)}</b>.</p><p>ID: <b>${entry.stella_id}</b></p>` };
+  return { subject: t.subject, html: shell(t.title, t.body) };
+}
+
+export function individualInterestInternalEmail(entry) {
+  const rows = [
+    ["ID", entry.stella_id],
+    ["Nome", entry.full_name],
+    ["Email", entry.email],
+    ["País", entry.country || "—"],
+    ["Telefone", entry.phone || "—"],
+    ["Interesses", entry.interests || "—"],
+    ["Notas", entry.notes || "—"],
+  ];
+  const table = `<table style="width:100%;border-collapse:collapse;margin-top:16px;font-size:14px">
+    ${rows.map(([k, v]) => `<tr><td style="padding:8px 12px;background:#f5f5f5;font-weight:700;width:35%">${esc(k)}</td><td style="padding:8px 12px;border-bottom:1px solid #eee">${esc(v)}</td></tr>`).join("")}
+  </table>`;
+  return { subject: `[STELLA] Novo interesse individual — ${entry.full_name} (${entry.stella_id})`, html: shell("Novo interesse — Cantor Individual", table) };
 }
 
 export function internalNotificationEmail(app, adminUrl) {

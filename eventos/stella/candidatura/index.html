@@ -17,58 +17,91 @@
 <form class="residency-form" id="stella-form" novalidate>
   <p class="eyebrow" style="color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin:110px 0 10px">STELLA Festival 2026</p>
   <h1>Candidatura de coro</h1>
-  <p class="lead">Preencha os dados do seu coro. A candidatura fica em análise — vamos entrar em contacto para os próximos passos, incluindo pagamento e, para a Residência Coral, a lista de quartos.</p>
+  <p class="lead">Preencha os dados do seu coro em 5 passos. A candidatura fica em análise — vamos entrar em contacto para os próximos passos, incluindo pagamento e, para a Residência Coral, a lista de quartos.</p>
+
+  <div class="wizard-progress" id="wizard-progress">
+    <span class="wizard-step-dot" data-step="1">1</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="2">2</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="3">3</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="4">4</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="5">5</span>
+  </div>
 
   <p class="form-erro" id="stella-error" style="display:none;padding:14px 18px;background:#fdeeee;color:#a3241f;border:1px solid #f3c6c4;margin-bottom:24px"></p>
-  <p id="stella-min-warning" hidden class="editor-warning">O número de cantores indicado é inferior a 20. A candidatura pode ainda assim ser submetida — vamos confirmar convosco a viabilidade.</p>
 
   <input type="hidden" name="language" value="pt">
   <p style="position:absolute;left:-9999px" aria-hidden="true"><label>Não preencher: <input name="website" tabindex="-1" autocomplete="off"><input name="campo-secreto" tabindex="-1" autocomplete="off"></label></p>
 
-  <fieldset class="residency-fieldset">
-    <legend>Modalidade</legend>
-    <div class="room-options cols-3">
-      <label class="room-option"><input type="radio" name="application_type" value="choir_residence" required><b>Residência Coral</b><span>249 € / 309 € pp · 3 noites</span></label>
-      <label class="room-option"><input type="radio" name="application_type" value="choir_weekend" required><b>Fim de Semana Coral</b><span>69 € por cantor</span></label>
-      <label class="room-option"><input type="radio" name="application_type" value="choir_day" required><b>Choir Day</b><span>42 € por cantor</span></label>
-    </div>
-    <label><span>Datas preferidas *</span><select name="preferred_dates" required><option value="">Escolha primeiro a modalidade</option></select></label>
-    <div class="residency-total" id="stella-total" hidden>Total estimado: <span id="stella-total-value">—</span></div>
-  </fieldset>
+  <div class="wizard-panel is-active" data-panel="1">
+    <fieldset class="residency-fieldset">
+      <legend>1/5 · Escolha a modalidade</legend>
+      <div class="room-options cols-3">
+        <label class="room-option"><input type="radio" name="application_type" value="choir_residence" required><b>Residência Coral</b><span>249 € / 309 € pp · 3 noites</span></label>
+        <label class="room-option"><input type="radio" name="application_type" value="choir_weekend" required><b>Fim de Semana Coral</b><span>69 € por cantor</span></label>
+        <label class="room-option"><input type="radio" name="application_type" value="choir_day" required><b>Choir Day</b><span>42 € por cantor</span></label>
+      </div>
+    </fieldset>
+    <div class="wizard-nav"><span></span><button type="button" class="wizard-next">Seguinte →</button></div>
+  </div>
 
-  <fieldset class="residency-fieldset">
-    <legend>Dados do coro</legend>
-    <div class="residency-grid">
-      <label class="span-2"><span>Nome do coro *</span><input type="text" name="choir_name" required></label>
-      <label><span>País *</span><input type="text" name="country" required autocomplete="country-name"></label>
-      <label><span>Cidade</span><input type="text" name="city"></label>
-      <label><span>Maestro(a)</span><input type="text" name="conductor_name"></label>
-      <label><span>Pessoa de contacto *</span><input type="text" name="contact_person" required></label>
-      <label><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
-      <label><span>Telefone</span><input type="tel" name="phone" autocomplete="tel"></label>
-      <label><span>WhatsApp</span><input type="tel" name="whatsapp"></label>
-      <label><span>Website</span><input type="url" name="website_url" placeholder="https://"></label>
-      <label><span>Redes sociais</span><input type="text" name="social_media" placeholder="Instagram, Facebook…"></label>
-      <label><span>N.º de cantores *</span><input type="number" name="num_singers" min="1" required></label>
-      <label><span>N.º de acompanhantes</span><input type="number" name="num_companions" min="0" value="0"></label>
-    </div>
-  </fieldset>
+  <div class="wizard-panel" data-panel="2">
+    <fieldset class="residency-fieldset">
+      <legend>2/5 · Dados do coro</legend>
+      <div class="residency-grid">
+        <label class="span-2"><span>Nome do coro *</span><input type="text" name="choir_name" required></label>
+        <label><span>País *</span><input type="text" name="country" required autocomplete="country-name"></label>
+        <label><span>Cidade</span><input type="text" name="city"></label>
+        <label><span>Maestro(a)</span><input type="text" name="conductor_name"></label>
+        <label><span>Website</span><input type="url" name="website_url" placeholder="https://"></label>
+        <label class="span-2"><span>Redes sociais</span><input type="text" name="social_media" placeholder="Instagram, Facebook…"></label>
+      </div>
+      <label><span>Biografia / apresentação</span><textarea name="biography" maxlength="3000"></textarea></label>
+      <label><span>Link de vídeo (YouTube, Vimeo…)</span><input type="url" name="video_link" placeholder="https://"></label>
+      <label><span>Notas adicionais</span><textarea name="notes" maxlength="2000"></textarea></label>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Anterior</button><button type="button" class="wizard-next">Seguinte →</button></div>
+  </div>
 
-  <fieldset class="residency-fieldset">
-    <legend>Sobre o coro</legend>
-    <label><span>Biografia / apresentação</span><textarea name="biography" maxlength="3000"></textarea></label>
-    <label><span>Link de vídeo (YouTube, Vimeo…)</span><input type="url" name="video_link" placeholder="https://"></label>
-    <label><span>Notas adicionais</span><textarea name="notes" maxlength="2000"></textarea></label>
-  </fieldset>
+  <div class="wizard-panel" data-panel="3">
+    <fieldset class="residency-fieldset">
+      <legend>3/5 · Participantes &amp; datas</legend>
+      <p id="stella-min-warning" hidden class="editor-warning">O número de cantores indicado é inferior a 20. A candidatura pode ainda assim ser submetida — vamos confirmar convosco a viabilidade.</p>
+      <div class="residency-grid">
+        <label><span>N.º de cantores *</span><input type="number" name="num_singers" min="1" required></label>
+        <label><span>N.º de acompanhantes</span><input type="number" name="num_companions" min="0" value="0"></label>
+      </div>
+      <label><span>Datas preferidas *</span><select name="preferred_dates" required><option value="">Escolha primeiro a modalidade no passo 1</option></select></label>
+      <div class="residency-total" id="stella-total" hidden>Total estimado: <span id="stella-total-value">—</span></div>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Anterior</button><button type="button" class="wizard-next">Seguinte →</button></div>
+  </div>
 
-  <label style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin-bottom:20px">
-    <input type="checkbox" required style="width:20px;min-height:20px">
-    <span style="font-size:13px;color:var(--muted)">Aceito que estes dados sejam usados para processar a candidatura do meu coro ao STELLA Festival 2026 e para contacto relacionado.</span>
-  </label>
+  <div class="wizard-panel" data-panel="4">
+    <fieldset class="residency-fieldset">
+      <legend>4/5 · Contacto</legend>
+      <div class="residency-grid">
+        <label><span>Pessoa de contacto *</span><input type="text" name="contact_person" required></label>
+        <label><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
+        <label><span>Telefone</span><input type="tel" name="phone" autocomplete="tel"></label>
+        <label><span>WhatsApp</span><input type="tel" name="whatsapp"></label>
+      </div>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Anterior</button><button type="button" class="wizard-next">Seguinte →</button></div>
+  </div>
 
-  <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="pt" style="margin-bottom:20px"></div>
+  <div class="wizard-panel" data-panel="5">
+    <fieldset class="residency-fieldset">
+      <legend>5/5 · Rever &amp; submeter</legend>
+      <div class="wizard-review" id="wizard-review"></div>
+      <label style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin:24px 0 20px">
+        <input type="checkbox" required style="width:20px;min-height:20px">
+        <span style="font-size:13px;color:var(--muted)">Aceito que estes dados sejam usados para processar a candidatura do meu coro ao STELLA Festival 2026 e para contacto relacionado.</span>
+      </label>
+      <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="pt" style="margin-bottom:20px"></div>
+    </fieldset>
+    <div class="wizard-nav"><button type="button" class="wizard-back">← Anterior</button><button class="residency-submit" type="submit" style="width:auto;min-width:220px">Submeter candidatura</button></div>
+  </div>
 
-  <button class="residency-submit" type="submit">Submeter candidatura</button>
   <div class="residency-status" id="stella-status"></div>
 </form>
 </main>
@@ -90,6 +123,7 @@
     choir_day: ["5 dezembro 2026", "6 dezembro 2026", "12 dezembro 2026", "13 dezembro 2026"],
   };
   var PRICE_PER_SINGER = { choir_weekend: 69, choir_day: 42 };
+  var MODALITY_LABEL = { choir_residence: "Residência Coral", choir_weekend: "Fim de Semana Coral", choir_day: "Choir Day" };
 
   function updateTotal(){
     var type = form.querySelector('input[name="application_type"]:checked');
@@ -111,6 +145,69 @@
     minWarning.hidden = !numSingers.value || parseInt(numSingers.value, 10) >= 20;
   });
 
+  // ── Wizard navigation ─────────────────────────────────────────────────
+  var panels = Array.prototype.slice.call(form.querySelectorAll(".wizard-panel"));
+  var dots = Array.prototype.slice.call(document.querySelectorAll(".wizard-step-dot"));
+  var current = 1;
+
+  function showStep(n){
+    current = n;
+    panels.forEach(function(p){ p.classList.toggle("is-active", Number(p.dataset.panel) === n); });
+    dots.forEach(function(d){
+      var s = Number(d.dataset.step);
+      d.classList.toggle("is-active", s === n);
+      d.classList.toggle("is-done", s < n);
+    });
+    if (n === 5) renderReview();
+    form.closest("main").scrollIntoView({ behavior: "smooth" });
+  }
+
+  function validateStep(n){
+    var panel = form.querySelector('.wizard-panel[data-panel="' + n + '"]');
+    var fields = panel.querySelectorAll("input, select, textarea");
+    for (var i = 0; i < fields.length; i++) {
+      if (!fields[i].checkValidity()) { fields[i].reportValidity(); return false; }
+    }
+    return true;
+  }
+
+  form.querySelectorAll(".wizard-next").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      if (!validateStep(current)) return;
+      if (current < 5) showStep(current + 1);
+    });
+  });
+  form.querySelectorAll(".wizard-back").forEach(function(btn){
+    btn.addEventListener("click", function(){ if (current > 1) showStep(current - 1); });
+  });
+
+  function renderReview(){
+    var type = form.querySelector('input[name="application_type"]:checked');
+    var rows = [
+      ["Modalidade", type ? MODALITY_LABEL[type.value] : "—"],
+      ["Coro", form.choir_name.value || "—"],
+      ["País / Cidade", (form.country.value || "—") + " / " + (form.city.value || "—")],
+      ["Maestro(a)", form.conductor_name.value || "—"],
+      ["N.º de cantores", form.num_singers.value || "—"],
+      ["N.º de acompanhantes", form.num_companions.value || "0"],
+      ["Datas preferidas", form.preferred_dates.value || "—"],
+      ["Contacto", form.contact_person.value || "—"],
+      ["Email", form.email.value || "—"],
+      ["Telefone", form.phone.value || "—"],
+    ];
+    document.getElementById("wizard-review").innerHTML = "<dl>" + rows.map(function(r){
+      return "<dt>" + r[0] + "</dt><dd>" + r[1] + "</dd>";
+    }).join("") + "</dl>";
+  }
+
+  // Pre-select modality from a #hash coming from the public page (e.g. #choir-day).
+  var hash = (location.hash || "").replace("#", "");
+  var HASH_TO_TYPE = { "residencia-coral": "choir_residence", "fim-de-semana-coral": "choir_weekend", "choir-day": "choir_day" };
+  if (HASH_TO_TYPE[hash]) {
+    var pre = form.querySelector('input[name="application_type"][value="' + HASH_TO_TYPE[hash] + '"]');
+    if (pre) { pre.checked = true; pre.dispatchEvent(new Event("change")); }
+  }
+
   form.addEventListener("submit", function(e){
     e.preventDefault();
     var errorBox = document.getElementById("stella-error");
@@ -125,9 +222,9 @@
       .then(function(r){ return r.json().then(function(d){ return { status: r.status, data: d }; }); })
       .then(function(res){
         if (res.data && res.data.ok) {
-          form.hidden = true;
+          form.querySelectorAll(".wizard-panel, .wizard-progress").forEach(function(el){ el.hidden = true; });
           statusBox.classList.add("is-visible", "ok");
-          statusBox.innerHTML = "<b>Candidatura recebida.</b><br>ID STELLA: <b>" + res.data.stellaId + "</b><br>Vai receber um email de confirmação. A candidatura será analisada pela equipa STELLA.";
+          statusBox.innerHTML = "<b>Candidatura recebida.</b><br>ID da candidatura: <b>" + res.data.stellaId + "</b><br>Enviámos um comprovativo para <b>" + (form.email.value || "o seu email") + "</b>.<br>Utilize o ID da candidatura sempre que contactar o STELLA.";
           statusBox.scrollIntoView({ behavior: "smooth" });
         } else {
           throw new Error((res.data && res.data.error) || "erro");
