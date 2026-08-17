@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<title>Área STELLA | VoxLaci</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../../../subpage.css"><link rel="stylesheet" href="../../../ramos-residency.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="page-nav"><a href="../../../"><img src="../../../assets/voxlaci-logo-white.png" alt="VoxLaci"></a><a class="cta" href="mailto:info@voxlaci.com?subject=STELLA%202026">Contact</a></header>
+<main>
+<div class="portal-wrap" id="portal-root">
+  <p id="portal-loading" style="padding:120px 0 40px;color:var(--muted)">A carregar… / Loading…</p>
+</div>
+</main>
+<footer class="page-footer"><div><img src="../../../assets/voxlaci-logo-white.png" alt="VoxLaci"></div><div><a href="mailto:info@voxlaci.com">info@voxlaci.com</a></div></footer>
+<script>
+(function(){
+  var T = {
+    pt: {
+      title: "Área privada STELLA", loadError: "Não foi possível carregar a sua candidatura. Verifique o link recebido por email ou contacte info@voxlaci.com.",
+      summary: "Resumo", choir: "Coro", modality: "Modalidade", dates: "Datas", singers: "Cantores", companions: "Acompanhantes",
+      status: "Estado", total: "Total", paid: "Pago", balance: "Saldo", toConfirm: "a confirmar",
+      payments: "Pagamentos", noPayments: "Ainda não foi submetido nenhum comprovativo.",
+      addPayment: "Submeter novo comprovativo", amountLabel: "Valor (€) *", methodLabel: "Modalidade de pagamento *",
+      bank: "Transferência Bancária", paypal: "PayPal", revolut: "Revolut", proofLabel: "Comprovativo *", submitPayment: "Submeter comprovativo",
+      paymentDetails: "IBAN: PT50 0036 0196 9910 0035 3991 7 · BIC: MPIOPTPL · PayPal: info@voxlaci.com",
+      rooms: "Lista de quartos", roomsHint: "Disponível após a aceitação da candidatura.", addRoom: "Adicionar quarto", saveRooms: "Guardar lista de quartos",
+      roomRef: "Referência", roomType: "Tipo", single: "Individual", twin: "Duplo (2 camas)", double: "Duplo (1 cama)", triple: "Triplo",
+      guest: "Hóspede", role: "Função", remove: "Remover", guestMismatch: "Atenção: o número de hóspedes indicado não corresponde ao total de cantores + acompanhantes.",
+      meals: "Refeições", mealsHint: "Indique quantas pessoas participam em cada jantar e eventuais restrições alimentares.",
+      saveMeals: "Guardar refeições", vegetarian: "Vegetariano", vegan: "Vegan", glutenFree: "Sem glúten", allergies: "Outras alergias",
+      saved: "Guardado.", sending: "A enviar…", error: "Ocorreu um erro. Tente novamente ou contacte info@voxlaci.com.",
+      statusLabels: { application_received: "Candidatura recebida", under_review: "Em análise", accepted: "Aceite", payment_pending: "Pagamento pendente", partially_paid: "Parcialmente pago", paid: "Pago", confirmed: "Confirmado", cancelled: "Cancelado" },
+      mealKeys: { dinner_friday: "Jantar sexta-feira", dinner_saturday: "Jantar sábado", dinner_sunday: "Jantar domingo", choir_day_dinner: "Jantar (Choir Day)" },
+    },
+    en: {
+      title: "Private STELLA area", loadError: "We could not load your application. Please check the link you received by email or contact info@voxlaci.com.",
+      summary: "Summary", choir: "Choir", modality: "Modality", dates: "Dates", singers: "Singers", companions: "Companions",
+      status: "Status", total: "Total", paid: "Paid", balance: "Balance", toConfirm: "to be confirmed",
+      payments: "Payments", noPayments: "No proof of payment has been submitted yet.",
+      addPayment: "Submit a new proof of payment", amountLabel: "Amount (€) *", methodLabel: "Payment method *",
+      bank: "Bank Transfer", paypal: "PayPal", revolut: "Revolut", proofLabel: "Proof of payment *", submitPayment: "Submit proof",
+      paymentDetails: "IBAN: PT50 0036 0196 9910 0035 3991 7 · BIC: MPIOPTPL · PayPal: info@voxlaci.com",
+      rooms: "Rooming list", roomsHint: "Available once your application has been accepted.", addRoom: "Add room", saveRooms: "Save rooming list",
+      roomRef: "Reference", roomType: "Type", single: "Single", twin: "Twin (2 beds)", double: "Double (1 bed)", triple: "Triple",
+      guest: "Guest", role: "Role", remove: "Remove", guestMismatch: "Note: the number of guests entered does not match the total number of singers + companions.",
+      meals: "Meals", mealsHint: "Let us know how many people join each dinner and any dietary requirements.",
+      saveMeals: "Save meals", vegetarian: "Vegetarian", vegan: "Vegan", glutenFree: "Gluten-free", allergies: "Other allergies",
+      saved: "Saved.", sending: "Sending…", error: "Something went wrong. Please try again or contact info@voxlaci.com.",
+      statusLabels: { application_received: "Application received", under_review: "Under review", accepted: "Accepted", payment_pending: "Payment pending", partially_paid: "Partially paid", paid: "Paid", confirmed: "Confirmed", cancelled: "Cancelled" },
+      mealKeys: { dinner_friday: "Friday dinner", dinner_saturday: "Saturday dinner", dinner_sunday: "Sunday dinner", choir_day_dinner: "Dinner (Choir Day)" },
+    },
+  };
+
+  var params = new URLSearchParams(location.search);
+  var token = params.get("token") || "";
+  var root = document.getElementById("portal-root");
+
+  function euros(cents){ return ((cents||0)/100).toLocaleString("pt-PT", { minimumFractionDigits: 0, maximumFractionDigits: 2 }); }
+
+  function render(t, app, rooms, meals, payments){
+    document.documentElement.lang = app.language;
+    document.title = T[app.language] ? (app.language === "pt" ? "Área STELLA" : "STELLA Area") + " — " + app.stella_id : document.title;
+
+    var mealKeys = app.application_type === "choir_day" ? ["choir_day_dinner"] : ["dinner_friday", "dinner_saturday", "dinner_sunday"];
+    var balance = app.amount_total_cents != null ? app.amount_total_cents - app.amount_paid_cents : null;
+
+    var html = "";
+    html += "<h1>" + t.title + "</h1>";
+    html += "<div class=\"portal-status-banner\">" + (t.statusLabels[app.status] || app.status) + "</div>";
+
+    html += "<div class=\"portal-section\"><h2>" + t.summary + "</h2><div class=\"portal-summary\">";
+    html += "<div><b>" + t.choir + "</b>" + app.choir_name + "</div>";
+    html += "<div><b>ID</b>" + app.stella_id + "</div>";
+    html += "<div><b>" + t.modality + "</b>" + app.application_type.replace("choir_", "") + "</div>";
+    html += "<div><b>" + t.dates + "</b>" + (app.preferred_dates || "—") + "</div>";
+    html += "<div><b>" + t.singers + "</b>" + app.num_singers + "</div>";
+    html += "<div><b>" + t.companions + "</b>" + (app.num_companions || 0) + "</div>";
+    html += "<div><b>" + t.total + "</b>" + (app.amount_total_cents != null ? euros(app.amount_total_cents) + " €" : t.toConfirm) + "</div>";
+    html += "<div><b>" + t.paid + "</b>" + euros(app.amount_paid_cents) + " €</div>";
+    html += "<div><b>" + t.balance + "</b>" + (balance != null ? euros(balance) + " €" : t.toConfirm) + "</div>";
+    html += "</div></div>";
+
+    html += "<div class=\"portal-section\"><h2>" + t.payments + "</h2>";
+    if (!payments.length) html += "<p class=\"residency-note\">" + t.noPayments + "</p>";
+    else {
+      html += "<div class=\"admin-table-wrap\"><table class=\"admin-table\"><thead><tr><th>€</th><th>—</th><th>—</th><th>—</th></tr></thead><tbody>";
+      payments.forEach(function(p){
+        html += "<tr><td>" + euros(p.amount_cents) + " €</td><td>" + p.payment_method + "</td><td><span class=\"status-pill " + p.status + "\">" + p.status + "</span></td><td>" + (p.created_at || "") + "</td></tr>";
+      });
+      html += "</tbody></table></div>";
+    }
+    if (["accepted", "payment_pending", "partially_paid"].indexOf(app.status) !== -1) {
+      html += "<h3 style=\"font-size:1rem;margin-top:24px\">" + t.addPayment + "</h3>";
+      html += "<p class=\"residency-note\">" + t.paymentDetails + "</p>";
+      html += "<form id=\"payment-form\">";
+      html += "<div class=\"residency-grid\"><label><span>" + t.amountLabel + "</span><input type=\"number\" step=\"0.01\" min=\"0.01\" name=\"amount_eur\" required></label>";
+      html += "<label><span>" + t.methodLabel + "</span><select name=\"payment_method\" required><option value=\"bank_transfer\">" + t.bank + "</option><option value=\"paypal\">" + t.paypal + "</option><option value=\"revolut\">" + t.revolut + "</option></select></label></div>";
+      html += "<label><span>" + t.proofLabel + "</span><input type=\"file\" name=\"proof\" accept=\".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf\" required></label>";
+      html += "<button class=\"residency-submit\" type=\"submit\">" + t.submitPayment + "</button>";
+      html += "<div class=\"residency-status\" id=\"payment-status\"></div></form>";
+    }
+    html += "</div>";
+
+    if (app.application_type === "choir_residence") {
+      html += "<div class=\"portal-section\"><h2>" + t.rooms + "</h2>";
+      if (app.status === "application_received" || app.status === "under_review") {
+        html += "<p class=\"residency-note\">" + t.roomsHint + "</p>";
+      } else {
+        html += "<div id=\"room-editor\" class=\"room-editor\"></div>";
+        html += "<button type=\"button\" class=\"editor-add-row\" id=\"add-room\">+ " + t.addRoom + "</button>";
+        html += "<div id=\"room-warning\" hidden class=\"editor-warning\"></div>";
+        html += "<button class=\"residency-submit\" id=\"save-rooms\" type=\"button\">" + t.saveRooms + "</button>";
+        html += "<div class=\"residency-status\" id=\"rooms-status\"></div>";
+      }
+      html += "</div>";
+    }
+
+    if (["choir_residence", "choir_day"].indexOf(app.application_type) !== -1 && app.status !== "application_received" && app.status !== "under_review") {
+      html += "<div class=\"portal-section\"><h2>" + t.meals + "</h2><p class=\"residency-note\">" + t.mealsHint + "</p>";
+      html += "<div id=\"meal-editor\" class=\"meal-editor\"></div>";
+      html += "<button class=\"residency-submit\" id=\"save-meals\" type=\"button\">" + t.saveMeals + "</button>";
+      html += "<div class=\"residency-status\" id=\"meals-status\"></div></div>";
+    }
+
+    root.innerHTML = html;
+
+    // Payment form
+    var paymentForm = document.getElementById("payment-form");
+    if (paymentForm) {
+      paymentForm.addEventListener("submit", function(e){
+        e.preventDefault();
+        var statusBox = document.getElementById("payment-status");
+        var btn = paymentForm.querySelector(".residency-submit");
+        btn.disabled = true; btn.textContent = t.sending;
+        var fd = new FormData(paymentForm);
+        fd.append("token", token);
+        fd.append("action", "payment");
+        fetch("/eventos/stella/api/portal", { method: "POST", body: fd })
+          .then(function(r){ return r.json(); })
+          .then(function(d){
+            if (!d.ok) throw new Error(d.error || "error");
+            statusBox.className = "residency-status is-visible ok";
+            statusBox.textContent = t.saved;
+            paymentForm.reset();
+            btn.disabled = false; btn.textContent = t.submitPayment;
+          })
+          .catch(function(){
+            statusBox.className = "residency-status is-visible error";
+            statusBox.textContent = t.error;
+            btn.disabled = false; btn.textContent = t.submitPayment;
+          });
+      });
+    }
+
+    // Room editor
+    var roomEditor = document.getElementById("room-editor");
+    if (roomEditor) {
+      function roomRow(r){
+        r = r || {};
+        var row = document.createElement("div");
+        row.className = "room-editor-row";
+        row.innerHTML =
+          "<label><span>" + t.roomRef + "</span><input class=\"f-ref\" value=\"" + (r.room_ref || "") + "\"></label>" +
+          "<label><span>" + t.roomType + "</span><select class=\"f-type\">" +
+            ["single","twin","double","triple"].map(function(v){ return "<option value=\"" + v + "\"" + (r.room_type === v ? " selected" : "") + ">" + t[v] + "</option>"; }).join("") +
+          "</select></label>" +
+          "<label><span>" + t.guest + " 1</span><input class=\"f-g1\" value=\"" + (r.guest1 || "") + "\"></label>" +
+          "<label><span>" + t.role + "</span><input class=\"f-g1r\" value=\"" + (r.guest1_role || "") + "\"></label>" +
+          "<label><span>" + t.guest + " 2</span><input class=\"f-g2\" value=\"" + (r.guest2 || "") + "\"></label>" +
+          "<label><span>" + t.role + "</span><input class=\"f-g2r\" value=\"" + (r.guest2_role || "") + "\"></label>" +
+          "<label><span>" + t.guest + " 3</span><input class=\"f-g3\" value=\"" + (r.guest3 || "") + "\"></label>" +
+          "<label><span>" + t.role + "</span><input class=\"f-g3r\" value=\"" + (r.guest3_role || "") + "\"></label>" +
+          "<button type=\"button\" class=\"remove-row\">" + t.remove + "</button>";
+        row.querySelector(".remove-row").addEventListener("click", function(){ row.remove(); });
+        return row;
+      }
+      (rooms.length ? rooms : [{}]).forEach(function(r){ roomEditor.appendChild(roomRow(r)); });
+      document.getElementById("add-room").addEventListener("click", function(){ roomEditor.appendChild(roomRow({})); });
+
+      document.getElementById("save-rooms").addEventListener("click", function(){
+        var payload = Array.prototype.map.call(roomEditor.querySelectorAll(".room-editor-row"), function(row){
+          return {
+            room_ref: row.querySelector(".f-ref").value, room_type: row.querySelector(".f-type").value,
+            guest1: row.querySelector(".f-g1").value, guest1_role: row.querySelector(".f-g1r").value,
+            guest2: row.querySelector(".f-g2").value, guest2_role: row.querySelector(".f-g2r").value,
+            guest3: row.querySelector(".f-g3").value, guest3_role: row.querySelector(".f-g3r").value,
+          };
+        });
+        var statusBox = document.getElementById("rooms-status");
+        var fd = new FormData();
+        fd.append("token", token); fd.append("action", "rooms"); fd.append("rooms", JSON.stringify(payload));
+        fetch("/eventos/stella/api/portal", { method: "POST", body: fd })
+          .then(function(r){ return r.json(); })
+          .then(function(d){
+            if (!d.ok) throw new Error(d.error || "error");
+            statusBox.className = "residency-status is-visible ok";
+            statusBox.textContent = t.saved;
+            var warn = document.getElementById("room-warning");
+            if (d.warning) { warn.hidden = false; warn.textContent = t.guestMismatch + " (" + d.guestTotal + " / " + d.expected + ")"; }
+            else warn.hidden = true;
+          })
+          .catch(function(){ statusBox.className = "residency-status is-visible error"; statusBox.textContent = t.error; });
+      });
+    }
+
+    // Meal editor
+    var mealEditor = document.getElementById("meal-editor");
+    if (mealEditor) {
+      mealKeys.forEach(function(key){
+        var existing = meals.find(function(m){ return m.meal_key === key; }) || {};
+        var row = document.createElement("div");
+        row.className = "meal-editor-row";
+        row.dataset.key = key;
+        row.innerHTML =
+          "<label><span>" + (t.mealKeys[key] || key) + "</span><input class=\"f-count\" type=\"number\" min=\"0\" value=\"" + (existing.count || 0) + "\"></label>" +
+          "<label><span>" + t.vegetarian + "</span><input class=\"f-veg\" type=\"number\" min=\"0\" value=\"" + (existing.vegetarian || 0) + "\"></label>" +
+          "<label><span>" + t.vegan + "</span><input class=\"f-vegan\" type=\"number\" min=\"0\" value=\"" + (existing.vegan || 0) + "\"></label>" +
+          "<label><span>" + t.glutenFree + "</span><input class=\"f-gf\" type=\"number\" min=\"0\" value=\"" + (existing.gluten_free || 0) + "\"></label>" +
+          "<label><span>" + t.allergies + "</span><input class=\"f-allergies\" value=\"" + (existing.other_allergies || "") + "\"></label>";
+        mealEditor.appendChild(row);
+      });
+
+      document.getElementById("save-meals").addEventListener("click", function(){
+        var payload = Array.prototype.map.call(mealEditor.querySelectorAll(".meal-editor-row"), function(row){
+          return {
+            meal_key: row.dataset.key, count: row.querySelector(".f-count").value,
+            vegetarian: row.querySelector(".f-veg").value, vegan: row.querySelector(".f-vegan").value,
+            gluten_free: row.querySelector(".f-gf").value, other_allergies: row.querySelector(".f-allergies").value,
+          };
+        });
+        var statusBox = document.getElementById("meals-status");
+        var fd = new FormData();
+        fd.append("token", token); fd.append("action", "meals"); fd.append("meals", JSON.stringify(payload));
+        fetch("/eventos/stella/api/portal", { method: "POST", body: fd })
+          .then(function(r){ return r.json(); })
+          .then(function(d){
+            if (!d.ok) throw new Error(d.error || "error");
+            statusBox.className = "residency-status is-visible ok";
+            statusBox.textContent = t.saved;
+          })
+          .catch(function(){ statusBox.className = "residency-status is-visible error"; statusBox.textContent = t.error; });
+      });
+    }
+  }
+
+  if (!token) {
+    root.innerHTML = "<p style=\"padding:120px 0 40px;color:var(--muted)\">" + T.pt.loadError + "</p>";
+  } else {
+    fetch("/eventos/stella/api/portal?token=" + encodeURIComponent(token))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (!d.ok) throw new Error(d.error || "error");
+        var lang = T[d.application.language] ? d.application.language : "pt";
+        render(T[lang], d.application, d.rooms || [], d.meals || [], d.payments || []);
+      })
+      .catch(function(){
+        root.innerHTML = "<p style=\"padding:120px 0 40px;color:var(--muted)\">" + T.pt.loadError + "</p>";
+      });
+  }
+})();
+</script>
+</body></html>

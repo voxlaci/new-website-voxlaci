@@ -12,3 +12,4 @@ backup/
 work/
 *.log
 .dev.vars
+.wrangler/

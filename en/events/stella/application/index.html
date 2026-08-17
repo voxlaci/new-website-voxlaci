@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<title>STELLA Festival 2026 Application | VoxLaci</title>
+<meta name="description" content="Choir application for STELLA Festival 2026 — Choral Residence, Choral Weekend and Choir Day. Cascais, Portugal.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://voxlaci.com/en/events/stella/application/"><link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/stella/candidatura/"><link rel="alternate" hreflang="en" href="https://voxlaci.com/en/events/stella/application/">
+<link rel="stylesheet" href="../../../../subpage.css"><link rel="stylesheet" href="../../../../ramos-residency.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/universal-share.css?v=14">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+<header class="page-nav"><a href="../../../../"><img src="../../../../assets/voxlaci-logo-white.png" alt="VoxLaci"></a><nav><a href="/eventos/stella/">STELLA 2026</a><a href="/eventos/stella/#modalidades">Modalities</a></nav><a class="page-language" href="/eventos/stella/candidatura/">PT</a><a class="cta" href="mailto:info@voxlaci.com?subject=STELLA%202026">Contact</a></header>
+<main>
+<form class="residency-form" id="stella-form" novalidate>
+  <p class="eyebrow" style="color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin:110px 0 10px">STELLA Festival 2026</p>
+  <h1>Choir application</h1>
+  <p class="lead">Fill in your choir's details. The application will be reviewed — we will be in touch about the next steps, including payment and, for the Choral Residence, the rooming list.</p>
+
+  <p class="form-erro" id="stella-error" style="display:none;padding:14px 18px;background:#fdeeee;color:#a3241f;border:1px solid #f3c6c4;margin-bottom:24px"></p>
+  <p id="stella-min-warning" hidden class="editor-warning">The number of singers entered is below 20. You can still submit — we will confirm feasibility with you.</p>
+
+  <input type="hidden" name="language" value="en">
+  <p style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave blank: <input name="website" tabindex="-1" autocomplete="off"><input name="campo-secreto" tabindex="-1" autocomplete="off"></label></p>
+
+  <fieldset class="residency-fieldset">
+    <legend>Modality</legend>
+    <div class="room-options cols-3">
+      <label class="room-option"><input type="radio" name="application_type" value="choir_residence" required><b>Choral Residence</b><span>€249 / €309 pp · 3 nights</span></label>
+      <label class="room-option"><input type="radio" name="application_type" value="choir_weekend" required><b>Choral Weekend</b><span>€69 per singer</span></label>
+      <label class="room-option"><input type="radio" name="application_type" value="choir_day" required><b>Choir Day</b><span>€42 per singer</span></label>
+    </div>
+    <label><span>Preferred dates *</span><select name="preferred_dates" required><option value="">Choose a modality first</option></select></label>
+    <div class="residency-total" id="stella-total" hidden>Estimated total: <span id="stella-total-value">—</span></div>
+  </fieldset>
+
+  <fieldset class="residency-fieldset">
+    <legend>Choir details</legend>
+    <div class="residency-grid">
+      <label class="span-2"><span>Choir name *</span><input type="text" name="choir_name" required></label>
+      <label><span>Country *</span><input type="text" name="country" required autocomplete="country-name"></label>
+      <label><span>City</span><input type="text" name="city"></label>
+      <label><span>Conductor</span><input type="text" name="conductor_name"></label>
+      <label><span>Contact person *</span><input type="text" name="contact_person" required></label>
+      <label><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
+      <label><span>Phone</span><input type="tel" name="phone" autocomplete="tel"></label>
+      <label><span>WhatsApp</span><input type="tel" name="whatsapp"></label>
+      <label><span>Website</span><input type="url" name="website_url" placeholder="https://"></label>
+      <label><span>Social media</span><input type="text" name="social_media" placeholder="Instagram, Facebook…"></label>
+      <label><span>Number of singers *</span><input type="number" name="num_singers" min="1" required></label>
+      <label><span>Number of companions</span><input type="number" name="num_companions" min="0" value="0"></label>
+    </div>
+  </fieldset>
+
+  <fieldset class="residency-fieldset">
+    <legend>About the choir</legend>
+    <label><span>Biography / presentation</span><textarea name="biography" maxlength="3000"></textarea></label>
+    <label><span>Video link (YouTube, Vimeo…)</span><input type="url" name="video_link" placeholder="https://"></label>
+    <label><span>Additional notes</span><textarea name="notes" maxlength="2000"></textarea></label>
+  </fieldset>
+
+  <label style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin-bottom:20px">
+    <input type="checkbox" required style="width:20px;min-height:20px">
+    <span style="font-size:13px;color:var(--muted)">I agree that this data may be used to process my choir's application to STELLA Festival 2026 and for related contact.</span>
+  </label>
+
+  <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="en" style="margin-bottom:20px"></div>
+
+  <button class="residency-submit" type="submit">Submit application</button>
+  <div class="residency-status" id="stella-status"></div>
+</form>
+</main>
+<footer class="page-footer"><div><img src="../../../../assets/voxlaci-logo-white.png" alt="VoxLaci"><p>STELLA Festival · Portugal</p></div><div><a href="mailto:info@voxlaci.com">info@voxlaci.com</a><a href="tel:+351925075186">(+351) 925 075 186</a><a href="../../../../">Back to the VoxLaci website</a></div></footer>
+<script src="/universal-share.js?v=14" defer></script>
+<script>
+(function(){
+  var form = document.getElementById("stella-form");
+  var typeInputs = form.querySelectorAll('input[name="application_type"]');
+  var datesSelect = form.querySelector('select[name="preferred_dates"]');
+  var totalBox = document.getElementById("stella-total");
+  var totalValue = document.getElementById("stella-total-value");
+  var numSingers = form.querySelector('input[name="num_singers"]');
+  var minWarning = document.getElementById("stella-min-warning");
+
+  var DATE_OPTIONS = {
+    choir_residence: ["4–7 December 2026", "11–14 December 2026"],
+    choir_weekend: ["5–6 December 2026", "12–13 December 2026"],
+    choir_day: ["5 December 2026", "6 December 2026", "12 December 2026", "13 December 2026"],
+  };
+  var PRICE_PER_SINGER = { choir_weekend: 69, choir_day: 42 };
+
+  function updateTotal(){
+    var type = form.querySelector('input[name="application_type"]:checked');
+    var n = parseInt(numSingers.value, 10) || 0;
+    if (!type || !PRICE_PER_SINGER[type.value] || !n) { totalBox.hidden = true; return; }
+    totalBox.hidden = false;
+    totalValue.textContent = "€" + (PRICE_PER_SINGER[type.value] * n).toLocaleString("en-US");
+  }
+
+  typeInputs.forEach(function(input){
+    input.addEventListener("change", function(){
+      var opts = DATE_OPTIONS[input.value] || [];
+      datesSelect.innerHTML = "<option value=\"\">Choose a date</option>" + opts.map(function(d){ return "<option value=\"" + d + "\">" + d + "</option>"; }).join("");
+      if (input.value === "choir_residence") totalBox.hidden = true; else updateTotal();
+    });
+  });
+  numSingers.addEventListener("input", function(){
+    updateTotal();
+    minWarning.hidden = !numSingers.value || parseInt(numSingers.value, 10) >= 20;
+  });
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var errorBox = document.getElementById("stella-error");
+    var statusBox = document.getElementById("stella-status");
+    errorBox.style.display = "none";
+    statusBox.className = "residency-status";
+    var submitBtn = form.querySelector(".residency-submit");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting…";
+
+    fetch("/eventos/stella/api/apply", { method: "POST", body: new FormData(form) })
+      .then(function(r){ return r.json().then(function(d){ return { status: r.status, data: d }; }); })
+      .then(function(res){
+        if (res.data && res.data.ok) {
+          form.hidden = true;
+          statusBox.classList.add("is-visible", "ok");
+          statusBox.innerHTML = "<b>Application received.</b><br>STELLA ID: <b>" + res.data.stellaId + "</b><br>You will receive a confirmation email. Your application will be reviewed by the STELLA team.";
+          statusBox.scrollIntoView({ behavior: "smooth" });
+        } else {
+          throw new Error((res.data && res.data.error) || "error");
+        }
+      })
+      .catch(function(err){
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit application";
+        errorBox.style.display = "block";
+        errorBox.textContent = "We could not submit your application (" + err.message + "). Please check the required fields or contact info@voxlaci.com.";
+        errorBox.scrollIntoView({ behavior: "smooth" });
+      });
+  });
+})();
+</script>
+</body></html>

@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<title>Administração · STELLA Festival 2026</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../../../subpage.css"><link rel="stylesheet" href="../../../ramos-residency.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  .detail-row{background:var(--ivory)}
+  .detail-row>td{padding:24px!important}
+  .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .detail-grid h4{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  .detail-grid textarea{width:100%;min-height:70px;padding:8px;border:1px solid var(--line);font:inherit;font-size:13px}
+  .detail-grid select,.detail-grid input[type=number]{padding:8px;border:1px solid var(--line);font:inherit;font-size:13px}
+  .admin-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+  .admin-filters select{padding:8px 10px;border:1px solid var(--line);border-radius:2px;font:inherit;font-size:13px}
+  .stat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);margin-bottom:30px}
+  .stat-cards div{padding:16px;background:#fff}
+  .stat-cards b{display:block;font:700 1.6rem Manrope}
+  .stat-cards span{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  .catalogue-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:20px;align-items:end}
+  .catalogue-form label{display:grid;gap:4px;font-size:11px;font-weight:700;color:var(--muted)}
+  .catalogue-form input,.catalogue-form select{padding:8px;border:1px solid var(--line);font:inherit;font-size:13px}
+  .export-links{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 50px}
+  @media(max-width:800px){.detail-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body style="background:#fff">
+<div class="admin-wrap">
+  <h1>STELLA Festival 2026</h1>
+  <p class="lead">Painel de administração — acesso restrito via Cloudflare Access.</p>
+
+  <div class="stat-cards" id="stat-cards"></div>
+
+  <div class="admin-filters">
+    <select id="filter-status"><option value="">Todos os estados</option></select>
+    <select id="filter-type">
+      <option value="">Todas as modalidades</option>
+      <option value="choir_residence">Residência Coral</option>
+      <option value="choir_weekend">Fim de Semana Coral</option>
+      <option value="choir_day">Choir Day</option>
+    </select>
+  </div>
+
+  <div class="admin-table-wrap">
+    <table class="admin-table">
+      <thead><tr><th>ID</th><th>Data</th><th>Coro</th><th>País</th><th>Modalidade</th><th>Cantores</th><th>Total</th><th>Pago</th><th>Estado</th><th>Ações</th></tr></thead>
+      <tbody id="admin-tbody"><tr><td colspan="10">A carregar…</td></tr></tbody>
+    </table>
+  </div>
+
+  <h2 style="font:700 1.6rem Manrope;margin:60px 0 6px">Exportações</h2>
+  <div class="export-links">
+    <a class="button" href="../admin/export?type=applications" target="_blank" rel="noopener">Candidaturas (CSV)</a>
+    <a class="button" href="../admin/export?type=rooms" target="_blank" rel="noopener">Quartos (CSV)</a>
+    <a class="button" href="../admin/export?type=meals" target="_blank" rel="noopener">Refeições (CSV)</a>
+  </div>
+
+  <h2 style="font:700 1.6rem Manrope;margin:0 0 20px">Workshops</h2>
+  <form class="catalogue-form" id="workshop-form">
+    <label>Título<input name="title" required></label>
+    <label>Orientador<input name="leader"></label>
+    <label>Idioma<input name="language" placeholder="pt / en"></label>
+    <label>Data<input name="date" type="date"></label>
+    <label>Hora<input name="start_time" type="time"></label>
+    <label>Duração (min)<input name="duration_minutes" type="number"></label>
+    <label>Capacidade<input name="capacity" type="number"></label>
+    <label>Preço (€)<input name="price_eur" type="number" step="0.01"></label>
+    <button class="residency-submit" type="submit" style="min-height:38px">Adicionar</button>
+  </form>
+  <div class="admin-table-wrap" style="margin-bottom:50px">
+    <table class="admin-table"><thead><tr><th>Título</th><th>Orientador</th><th>Data</th><th>Hora</th><th>Capacidade</th><th>Inscritos</th><th>Preço</th><th>Ações</th></tr></thead>
+    <tbody id="workshops-tbody"><tr><td colspan="8">A carregar…</td></tr></tbody></table>
+  </div>
+
+  <h2 style="font:700 1.6rem Manrope;margin:0 0 20px">Concertos</h2>
+  <form class="catalogue-form" id="concert-form">
+    <label>Título<input name="title" required></label>
+    <label>Local<input name="venue"></label>
+    <label>Data<input name="date" type="date"></label>
+    <label>Hora<input name="start_time" type="time"></label>
+    <label>Capacidade<input name="capacity" type="number"></label>
+    <label>Preço (€)<input name="price_eur" type="number" step="0.01"></label>
+    <button class="residency-submit" type="submit" style="min-height:38px">Adicionar</button>
+  </form>
+  <div class="admin-table-wrap" style="margin-bottom:80px">
+    <table class="admin-table"><thead><tr><th>Título</th><th>Local</th><th>Data</th><th>Hora</th><th>Capacidade</th><th>Vendidos</th><th>Preço</th><th>Ações</th></tr></thead>
+    <tbody id="concerts-tbody"><tr><td colspan="8">A carregar…</td></tr></tbody></table>
+  </div>
+</div>
+
+<script>
+(function(){
+  var STATUS_LABEL = {
+    application_received: "Candidatura recebida", under_review: "Em análise", accepted: "Aceite",
+    payment_pending: "Pagamento pendente", partially_paid: "Parcialmente pago", paid: "Pago",
+    confirmed: "Confirmado", cancelled: "Cancelado",
+  };
+  var TYPE_LABEL = { choir_residence: "Residência Coral", choir_weekend: "Fim de Semana Coral", choir_day: "Choir Day" };
+  var STATUSES = Object.keys(STATUS_LABEL);
+
+  var tbody = document.getElementById("admin-tbody");
+  var statCards = document.getElementById("stat-cards");
+  var filterStatus = document.getElementById("filter-status");
+  var filterType = document.getElementById("filter-type");
+  var allApps = [];
+  var openId = null;
+
+  STATUSES.forEach(function(s){
+    var o = document.createElement("option"); o.value = s; o.textContent = STATUS_LABEL[s]; filterStatus.appendChild(o);
+  });
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function euros(cents){ return cents == null ? "—" : (cents / 100).toLocaleString("pt-PT") + " €"; }
+  function fmtDate(iso){ if (!iso) return "—"; var d = new Date(iso + "Z"); return d.toLocaleDateString("pt-PT", { day: "2-digit", month: "2-digit", year: "numeric" }); }
+
+  function renderStats(apps){
+    var byStatus = {}; var revenuePaid = 0, revenueOutstanding = 0;
+    apps.forEach(function(a){
+      byStatus[a.status] = (byStatus[a.status] || 0) + 1;
+      revenuePaid += a.amount_paid_cents || 0;
+      if (a.amount_total_cents != null) revenueOutstanding += Math.max(0, a.amount_total_cents - a.amount_paid_cents);
+    });
+    var cards = [
+      ["Candidaturas", apps.length],
+      ["Aceites", byStatus.accepted || 0],
+      ["Confirmadas", byStatus.confirmed || 0],
+      ["Receita paga", euros(revenuePaid)],
+      ["Saldo em aberto", euros(revenueOutstanding)],
+    ];
+    statCards.innerHTML = cards.map(function(c){ return "<div><b>" + c[1] + "</b><span>" + c[0] + "</span></div>"; }).join("");
+  }
+
+  function filtered(){
+    return allApps.filter(function(a){
+      return (!filterStatus.value || a.status === filterStatus.value) && (!filterType.value || a.application_type === filterType.value);
+    });
+  }
+
+  function renderTable(){
+    var apps = filtered();
+    if (!apps.length) { tbody.innerHTML = '<tr><td colspan="10">Sem candidaturas.</td></tr>'; return; }
+    tbody.innerHTML = apps.map(function(a){
+      var rows = '<tr data-row="' + a.id + '">' +
+        "<td><b>" + esc(a.stella_id) + "</b></td>" +
+        "<td>" + fmtDate(a.created_at) + "</td>" +
+        "<td>" + esc(a.choir_name) + "</td>" +
+        "<td>" + esc(a.country || "—") + "</td>" +
+        "<td>" + TYPE_LABEL[a.application_type] + "</td>" +
+        "<td>" + a.num_singers + "</td>" +
+        "<td>" + euros(a.amount_total_cents) + "</td>" +
+        "<td>" + euros(a.amount_paid_cents) + "</td>" +
+        '<td><span class="status-pill ' + a.status + '">' + STATUS_LABEL[a.status] + "</span></td>" +
+        '<td class="admin-actions"><button data-action="toggle" data-id="' + a.id + '">' + (openId === a.id ? "Fechar" : "Detalhe") + "</button></td>" +
+        "</tr>";
+      if (openId === a.id) rows += detailRow(a);
+      return rows;
+    }).join("");
+    if (openId != null) loadDetail(openId);
+  }
+
+  function detailRow(a){
+    var statusOptions = STATUSES.map(function(s){ return '<option value="' + s + '"' + (s === a.status ? " selected" : "") + '>' + STATUS_LABEL[s] + "</option>"; }).join("");
+    return '<tr class="detail-row" data-detail="' + a.id + '"><td colspan="10">' +
+      '<div class="detail-grid">' +
+      '<div><h4>Contacto</h4>' +
+        '<p style="margin:0 0 4px">' + esc(a.contact_person || "—") + " · " + esc(a.email) + "</p>" +
+        '<p style="margin:0 0 4px">' + esc(a.phone || a.whatsapp || "—") + " · " + esc(a.conductor_name || "—") + "</p>" +
+        '<p style="margin:0 0 4px">Datas preferidas: ' + esc(a.preferred_dates) + "</p>" +
+        '<p style="margin:0 0 14px">Cantores: ' + a.num_singers + " · Acompanhantes: " + (a.num_companions || 0) + "</p>" +
+        (a.video_link ? '<p style="margin:0 0 14px"><a href="' + esc(a.video_link) + '" target="_blank" rel="noopener">Ver vídeo →</a></p>' : "") +
+        "<h4>Estado</h4>" +
+        '<select class="f-status">' + statusOptions + "</select> " +
+        '<input class="f-amount" type="number" step="0.01" placeholder="Total (€)" value="' + (a.amount_total_cents != null ? (a.amount_total_cents / 100) : "") + '" style="width:120px"> ' +
+        '<button data-action="save-status" data-id="' + a.id + '">Guardar</button><br>' +
+        '<textarea class="f-note" placeholder="Nota interna">' + esc(a.admin_note || "") + "</textarea>" +
+        '<button data-action="request-info" data-id="' + a.id + '" style="margin-top:8px">Pedir mais informação</button> ' +
+        '<button data-action="final-info" data-id="' + a.id + '" style="margin-top:8px">Enviar informação final</button>' +
+      "</div>" +
+      '<div><h4>Pagamentos</h4><div class="payments-list" data-payments="' + a.id + '">A carregar…</div>' +
+        "<h4 style=\"margin-top:20px\">Quartos</h4><div class=\"rooms-list\" data-rooms=\"" + a.id + "\">A carregar…</div>" +
+        "<h4 style=\"margin-top:20px\">Refeições</h4><div class=\"meals-list\" data-meals=\"" + a.id + "\">A carregar…</div>" +
+      "</div></div></td></tr>";
+  }
+
+  function loadDetail(id){
+    fetch("../admin/rooms?application_id=" + id).then(function(r){ return r.json(); }).then(function(d){
+      var el = document.querySelector('[data-rooms="' + id + '"]');
+      if (!el) return;
+      if (!d.ok || !d.rooms.length) { el.textContent = "Sem quartos definidos."; return; }
+      el.innerHTML = d.rooms.map(function(r){
+        var guests = [r.guest1, r.guest2, r.guest3].filter(Boolean).join(", ");
+        return "<p style=\"margin:0 0 4px;font-size:13px\">" + esc(r.room_ref) + " (" + esc(r.room_type) + "): " + esc(guests || "—") + "</p>";
+      }).join("");
+    });
+    fetch("../admin/meals?application_id=" + id).then(function(r){ return r.json(); }).then(function(d){
+      var el = document.querySelector('[data-meals="' + id + '"]');
+      if (!el) return;
+      if (!d.ok || !d.meals.length) { el.textContent = "Sem refeições definidas."; return; }
+      el.innerHTML = d.meals.map(function(m){
+        return "<p style=\"margin:0 0 4px;font-size:13px\">" + esc(m.meal_key) + ": " + m.count + " (veg " + m.vegetarian + " · vegan " + m.vegan + " · s/glúten " + m.gluten_free + ")</p>";
+      }).join("");
+    });
+    loadPayments(id);
+  }
+
+  function loadPayments(id){
+    var el = document.querySelector('[data-payments="' + id + '"]');
+    if (!el) return;
+    fetch("../admin/payments?application_id=" + id).then(function(r){ return r.json(); }).then(function(d){
+      if (!d.ok || !d.payments.length) { el.textContent = "Sem pagamentos submetidos."; return; }
+      el.innerHTML = d.payments.map(function(p){
+        var proofLink = p.proof_original_filename ? '<a href="../admin/proof/' + p.id + '" target="_blank" rel="noopener">comprovativo</a>' : "sem ficheiro";
+        var actions = p.status === "submitted"
+          ? '<button data-action="confirm-payment" data-payment-id="' + p.id + '">Confirmar</button><button data-action="reject-payment" data-payment-id="' + p.id + '">Rejeitar</button>'
+          : "";
+        return "<p style=\"margin:0 0 8px;font-size:13px\">" + euros(p.amount_cents) + " · " + esc(p.payment_method) + " · " +
+          '<span class="status-pill ' + p.status + '">' + esc(p.status) + "</span> · " + proofLink + "<br>" + actions + "</p>";
+      }).join("");
+    });
+  }
+
+  document.getElementById("filter-status").addEventListener("change", renderTable);
+  document.getElementById("filter-type").addEventListener("change", renderTable);
+
+  document.querySelector(".admin-wrap").addEventListener("click", function(e){
+    var btn = e.target.closest("button[data-action]");
+    if (!btn) return;
+    var action = btn.dataset.action;
+    var id = Number(btn.dataset.id);
+
+    if (action === "toggle") { openId = openId === id ? null : id; renderTable(); return; }
+
+    var row = document.querySelector('[data-detail="' + id + '"]') || document.querySelector('[data-row="' + id + '"]');
+
+    if (action === "save-status") {
+      var statusSel = row.querySelector(".f-status").value;
+      var amountEur = row.querySelector(".f-amount").value;
+      var note = row.querySelector(".f-note").value;
+      fetch("../admin/update-status", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id, status: statusSel, admin_note: note, amount_total_cents: amountEur ? Math.round(parseFloat(amountEur) * 100) : null }),
+      }).then(function(r){ return r.json(); }).then(function(d){
+        if (d.ok) load(); else alert("Erro: " + d.error);
+      });
+    }
+
+    if (action === "request-info" || action === "final-info") {
+      var message = prompt(action === "request-info" ? "Mensagem a pedir mais informação:" : "Mensagem com informação final do festival:");
+      if (!message) return;
+      fetch("../admin/update-status", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id, action: action === "request-info" ? "request_info" : "final_info", message: message }),
+      }).then(function(r){ return r.json(); }).then(function(d){
+        if (d.ok) alert("Email enviado."); else alert("Erro: " + d.error);
+      });
+    }
+
+    if (action === "confirm-payment" || action === "reject-payment") {
+      fetch("../admin/confirm-payment", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ payment_id: Number(btn.dataset.paymentId), action: action === "confirm-payment" ? "confirm" : "reject" }),
+      }).then(function(r){ return r.json(); }).then(function(d){
+        if (d.ok) load(); else alert("Erro: " + d.error);
+      });
+    }
+  });
+
+  function load(){
+    fetch("../admin/list").then(function(r){ return r.json(); }).then(function(d){
+      if (!d.ok) { tbody.innerHTML = '<tr><td colspan="10">Erro: ' + esc(d.error) + "</td></tr>"; return; }
+      allApps = d.applications || [];
+      renderStats(allApps);
+      renderTable();
+    }).catch(function(err){ tbody.innerHTML = '<tr><td colspan="10">Erro: ' + esc(err.message) + "</td></tr>"; });
+  }
+
+  // Workshops
+  function loadWorkshops(){
+    fetch("../admin/workshops").then(function(r){ return r.json(); }).then(function(d){
+      var tb = document.getElementById("workshops-tbody");
+      if (!d.ok || !d.workshops.length) { tb.innerHTML = '<tr><td colspan="8">Sem workshops.</td></tr>'; return; }
+      tb.innerHTML = d.workshops.map(function(w){
+        return "<tr><td>" + esc(w.title) + "</td><td>" + esc(w.leader || "—") + "</td><td>" + esc(w.date || "—") + "</td><td>" + esc(w.start_time || "—") + "</td><td>" + (w.capacity || "—") + "</td><td>" + w.registered_count + "</td><td>" + euros(w.price_cents) + '</td><td><button data-wid="' + w.id + '" class="wk-delete">Remover</button></td></tr>';
+      }).join("");
+    });
+  }
+  document.getElementById("workshop-form").addEventListener("submit", function(e){
+    e.preventDefault();
+    var fd = new FormData(e.target);
+    fetch("../admin/workshops", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: fd.get("title"), leader: fd.get("leader"), language: fd.get("language"),
+        date: fd.get("date"), start_time: fd.get("start_time"), duration_minutes: fd.get("duration_minutes"),
+        capacity: fd.get("capacity"), price_cents: Math.round((parseFloat(fd.get("price_eur")) || 0) * 100),
+      }),
+    }).then(function(r){ return r.json(); }).then(function(d){ if (d.ok) { e.target.reset(); loadWorkshops(); } else alert("Erro: " + d.error); });
+  });
+  document.getElementById("workshops-tbody").addEventListener("click", function(e){
+    var btn = e.target.closest(".wk-delete"); if (!btn) return;
+    fetch("../admin/workshops", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "delete", id: Number(btn.dataset.wid) }) })
+      .then(function(r){ return r.json(); }).then(function(d){ if (d.ok) loadWorkshops(); });
+  });
+
+  // Concerts
+  function loadConcerts(){
+    fetch("../admin/concerts").then(function(r){ return r.json(); }).then(function(d){
+      var tb = document.getElementById("concerts-tbody");
+      if (!d.ok || !d.concerts.length) { tb.innerHTML = '<tr><td colspan="8">Sem concertos.</td></tr>'; return; }
+      tb.innerHTML = d.concerts.map(function(c){
+        return "<tr><td>" + esc(c.title) + "</td><td>" + esc(c.venue || "—") + "</td><td>" + esc(c.date || "—") + "</td><td>" + esc(c.start_time || "—") + "</td><td>" + (c.capacity || "—") + "</td><td>" + c.tickets_sold + "</td><td>" + euros(c.price_cents) + '</td><td><button data-cid="' + c.id + '" class="ct-delete">Remover</button></td></tr>';
+      }).join("");
+    });
+  }
+  document.getElementById("concert-form").addEventListener("submit", function(e){
+    e.preventDefault();
+    var fd = new FormData(e.target);
+    fetch("../admin/concerts", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: fd.get("title"), venue: fd.get("venue"), date: fd.get("date"), start_time: fd.get("start_time"),
+        capacity: fd.get("capacity"), price_cents: Math.round((parseFloat(fd.get("price_eur")) || 0) * 100),
+      }),
+    }).then(function(r){ return r.json(); }).then(function(d){ if (d.ok) { e.target.reset(); loadConcerts(); } else alert("Erro: " + d.error); });
+  });
+  document.getElementById("concerts-tbody").addEventListener("click", function(e){
+    var btn = e.target.closest(".ct-delete"); if (!btn) return;
+    fetch("../admin/concerts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "delete", id: Number(btn.dataset.cid) }) })
+      .then(function(r){ return r.json(); }).then(function(d){ if (d.ok) loadConcerts(); });
+  });
+
+  load();
+  loadWorkshops();
+  loadConcerts();
+})();
+</script>
+</body></html>
