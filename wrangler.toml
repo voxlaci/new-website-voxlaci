@@ -1,0 +1,12 @@
+name = "new-website-voxlaci"
+pages_build_output_dir = "."
+compatibility_date = "2026-07-07"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "voxlaci-ramos"
+database_id = "c2ab7acb-f985-4d7f-8e91-de7ac7559ab5"
+
+[[r2_buckets]]
+binding = "RESIDENCY_PROOFS"
+bucket_name = "voxlaci-ramos-proofs"

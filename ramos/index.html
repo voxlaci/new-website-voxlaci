@@ -80,6 +80,36 @@
       <details><summary>Chegada, alojamento e local</summary><div><p>Os ensaios decorrem no Seminário Torre d’Águilha, São Domingos de Rana, Cascais, a cerca de 30 minutos de Lisboa. Cada participante trata da própria viagem e alojamento. É possível chegar de metro até Cais do Sodré e seguir de comboio para Cascais.</p></div></details>
       <details><summary>Pagamento</summary><div><p><b>Associação Vox SDR</b><br>IBAN: PT50 0036 0196 9910 0035 3991 7<br>BIC/SWIFT: MPIOPTPL<br>Banco Montepio Geral<br>PayPal: info@voxlaci.com<br>MB Way: 938 407 985</p></div></details>
     </div></section>
+    <section class="section white" id="residencia-artistica"><div class="section-head"><p class="eyebrow">Novidade RAMOS 2027</p><h2>Residência Artística RAMOS 2027</h2></div>
+    <div class="fact-grid">
+      <div><b>Datas</b><span>15–22 de março de 2027 · 7 noites</span></div>
+      <div><b>Quarto Individual</b><span>1.127 € por pessoa</span></div>
+      <div><b>Quarto Duplo / Triplo</b><span>987 € por pessoa</span></div>
+    </div>
+    <p style="margin:24px 12px 0;font-weight:700" id="residency-availability">A carregar disponibilidade…</p>
+    <div class="page-hero-actions" style="margin:16px 12px 30px">
+      <a class="button primary" href="/ramos/residencia-artistica/">Inscrever-me na Residência Artística</a>
+    </div>
+    <div class="accordion">
+      <details><summary>O que está incluído</summary><div><ul>
+        <li>7 noites de alojamento</li>
+        <li>Entrada / check-in a 15 de março de 2027</li>
+        <li>Saída / check-out a 22 de março de 2027, depois do pequeno-almoço</li>
+        <li>Pequeno-almoço todos os dias</li>
+        <li>Uma refeição quente por dia — almoço ou jantar, dependendo do programa do festival</li>
+        <li>2 ensaios</li>
+        <li>Transporte oficial durante o festival</li>
+        <li>Participação em toda a programação artística do RAMOS</li>
+      </ul><p>A Residência Artística é uma opção de alojamento organizado, adicional aos caminhos de participação acima. Quem preferir tratar da própria viagem e alojamento pode continuar a fazê-lo normalmente.</p></div></details>
+    </div>
+    <script>(function(){
+      var el = document.getElementById("residency-availability");
+      fetch("/ramos/residency/api/availability").then(function(r){return r.json();}).then(function(d){
+        el.textContent = d.available + " de " + d.total + " quartos disponíveis";
+        if (d.available <= 0) el.textContent = "Residência Artística esgotada — contacte info@voxlaci.com para lista de espera.";
+      }).catch(function(){ el.textContent = "Consulte a disponibilidade em info@voxlaci.com."; });
+    })();</script>
+    </section>
     <section class="section" id="edicoes"><div class="section-head"><p class="eyebrow">VoxLaci 2005–2028</p><h2>Cada edição deixa uma voz.</h2><p>Clique numa edição para descobrir o maestro, o programa e o repertório.</p></div>
     <div class="ramos-grid">
       <button class="ramos-card" type="button" data-year="2005"><div class="ramos-card-img"><img src="../assets/ramos/ramos-2005.jpg" alt="Ramos 2005"><span class="ramos-card-plus" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="11" fill="var(--gold,#6c63ff)"/><path d="M12 7v10M7 12h10" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></span></div><div class="ramos-card-body"><b>2005</b><span>Walter Bially · Alemanha</span></div></button>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<title>Residência Artística RAMOS 2027 | VoxLaci</title>
+<meta name="description" content="Inscrição na Residência Artística RAMOS 2027 — 15 a 22 de março de 2027, 7 noites, Cascais, Portugal.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://voxlaci.com/ramos/residencia-artistica/"><link rel="alternate" hreflang="pt" href="https://voxlaci.com/ramos/residencia-artistica/"><link rel="alternate" hreflang="en" href="https://voxlaci.com/en/ramos/artistic-residency/">
+<link rel="stylesheet" href="../../subpage.css"><link rel="stylesheet" href="../../ramos-residency.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/universal-share.css?v=14">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+<header class="page-nav"><a href="../../"><img src="../../assets/voxlaci-logo-white.png" alt="VoxLaci"></a><nav><a href="../#2027">Ramos 2027</a><a href="../#residencia-artistica">Residência Artística</a></nav><a class="page-language" href="../../en/ramos/artistic-residency/">EN</a><a class="cta" href="mailto:info@voxlaci.com?subject=Ramos%202027">Contactar</a></header>
+<main>
+<form class="residency-form" id="residency-form" novalidate>
+  <p class="eyebrow" style="color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin:110px 0 10px">Residência Artística RAMOS 2027</p>
+  <h1>15–22 de março de 2027<br>Portugal · 7 noites</h1>
+  <p class="lead">Preencha os seus dados, escolha o quarto e submeta o comprovativo de pagamento. A sua inscrição fica pendente de validação — não é automaticamente confirmada.</p>
+
+  <div class="residency-summary">
+    <div><b>Check-in</b>15 de março de 2027</div>
+    <div><b>Check-out</b>22 de março de 2027, depois do pequeno-almoço</div>
+    <div><b>Inclui</b>Alojamento, refeições, 2 ensaios, transporte oficial</div>
+  </div>
+
+  <p class="form-erro" id="residency-error" style="display:none;padding:14px 18px;background:#fdeeee;color:#a3241f;border:1px solid #f3c6c4;margin-bottom:24px"></p>
+
+  <input type="hidden" name="language" value="pt">
+  <p style="position:absolute;left:-9999px" aria-hidden="true"><label>Não preencher: <input name="website" tabindex="-1" autocomplete="off"><input name="campo-secreto" tabindex="-1" autocomplete="off"></label></p>
+
+  <fieldset class="residency-fieldset">
+    <legend>Dados pessoais</legend>
+    <div class="residency-grid">
+      <label class="span-2"><span>Nome completo *</span><input type="text" name="full_name" required autocomplete="name"></label>
+      <label><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
+      <label><span>Telemóvel / WhatsApp *</span><input type="tel" name="mobile" required autocomplete="tel"></label>
+      <label><span>País</span><input type="text" name="country" autocomplete="country-name"></label>
+      <label><span>Coro ou Instituição</span><input type="text" name="choir_institution"></label>
+      <label class="span-2"><span>Função *</span><select name="role" required>
+        <option value="">Escolher</option>
+        <option value="Cantor(a)">Cantor(a)</option>
+        <option value="Maestro(a)">Maestro(a)</option>
+        <option value="Compositor(a)">Compositor(a)</option>
+        <option value="Estudante">Estudante</option>
+        <option value="Outro">Outro</option>
+      </select></label>
+    </div>
+  </fieldset>
+
+  <fieldset class="residency-fieldset">
+    <legend>Opção de alojamento</legend>
+    <div class="room-options">
+      <label class="room-option"><input type="radio" name="room_type" value="single" required><b>Quarto Individual</b><span>1.127 € por pessoa</span></label>
+      <label class="room-option"><input type="radio" name="room_type" value="shared" required><b>Quarto Duplo / Triplo</b><span>987 € por pessoa</span></label>
+    </div>
+    <div class="residency-total" id="residency-total" hidden>Total a pagar: <span id="residency-total-value">—</span></div>
+
+    <div id="share-questions" hidden style="margin-top:24px">
+      <label class="span-2" style="margin-bottom:10px;display:block"><span style="font-size:12px;font-weight:700">Já sabe com quem gostaria de partilhar o quarto?</span></label>
+      <div class="payment-options">
+        <label class="payment-option"><input type="radio" name="share_known" value="yes"> Sim</label>
+        <label class="payment-option"><input type="radio" name="share_known" value="no"> Não — gostaria que o RAMOS me atribuísse um quarto partilhado</label>
+      </div>
+      <label id="share-names-wrap" hidden><span>Nome da(s) pessoa(s) com quem gostaria de partilhar o quarto</span><input type="text" name="share_names"></label>
+    </div>
+  </fieldset>
+
+  <fieldset class="residency-fieldset">
+    <legend>Modalidade de pagamento</legend>
+    <div class="payment-options">
+      <label class="payment-option"><input type="radio" name="payment_method" value="bank_transfer" required> Transferência Bancária</label>
+      <label class="payment-option"><input type="radio" name="payment_method" value="paypal" required> PayPal</label>
+    </div>
+    <p class="residency-note">O pagamento por Revolut será disponibilizado brevemente. Por agora, escolha Transferência Bancária ou PayPal.</p>
+
+    <div class="payment-details-box" id="details-bank_transfer" hidden>
+      <b>Beneficiário:</b> ASSOCIAÇÃO VOX SDR<br>
+      <b>IBAN:</b> PT50 0036 0196 9910 0035 3991 7<br>
+      <b>BIC / SWIFT:</b> MPIOPTPL<br>
+      <b>Banco:</b> Banco Montepio Geral<br>
+      <b>Agência:</b> Parede – Machado dos Santos
+    </div>
+    <div class="payment-details-box" id="details-paypal" hidden>
+      <b>PayPal:</b> info@voxlaci.com
+    </div>
+
+    <label><span>Comprovativo de Pagamento *</span>
+      <input type="file" name="proof" accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf" required>
+    </label>
+    <p class="residency-note">Envie uma cópia, captura de ecrã, fotografia ou PDF que comprove o pagamento efetuado. Formatos aceites: JPG, PNG, PDF (máx. 8MB).</p>
+  </fieldset>
+
+  <fieldset class="residency-fieldset">
+    <legend>Dados para faturação</legend>
+    <p style="font-size:13px;color:var(--muted);line-height:1.7">ASSOCIAÇÃO VOX SDR<br>Rua Avelino de Almeida 27<br>Areias de S. Pedro do Estoril<br>Portugal<br>NIF: 508439949</p>
+  </fieldset>
+
+  <label style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin-bottom:20px">
+    <input type="checkbox" required style="width:20px;min-height:20px">
+    <span style="font-size:13px;color:var(--muted)">Aceito que estes dados sejam usados para processar a minha inscrição na Residência Artística RAMOS e para contacto relacionado.</span>
+  </label>
+
+  <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="pt" style="margin-bottom:20px"></div>
+
+  <button class="residency-submit" type="submit">Submeter inscrição</button>
+  <div class="residency-status" id="residency-status"></div>
+</form>
+</main>
+<footer class="page-footer"><div><img src="../../assets/voxlaci-logo-white.png" alt="VoxLaci"><p>Ramos Palm Sunday Festival · Portugal</p></div><div><a href="mailto:info@voxlaci.com">info@voxlaci.com</a><a href="tel:+351925075186">(+351) 925 075 186</a><a href="../../">Voltar ao site VoxLaci</a></div></footer>
+<script src="/universal-share.js?v=14" defer></script>
+<script>
+(function(){
+  var form = document.getElementById("residency-form");
+  var roomInputs = form.querySelectorAll('input[name="room_type"]');
+  var totalBox = document.getElementById("residency-total");
+  var totalValue = document.getElementById("residency-total-value");
+  var shareQuestions = document.getElementById("share-questions");
+  var shareKnownInputs = form.querySelectorAll('input[name="share_known"]');
+  var shareNamesWrap = document.getElementById("share-names-wrap");
+  var shareNamesInput = form.querySelector('input[name="share_names"]');
+  var PRICES = { single: 1127, shared: 987 };
+
+  roomInputs.forEach(function(input){
+    input.addEventListener("change", function(){
+      totalBox.hidden = false;
+      totalValue.textContent = PRICES[input.value].toLocaleString("pt-PT") + " €";
+      shareQuestions.hidden = input.value !== "shared";
+      if (input.value !== "shared") {
+        shareKnownInputs.forEach(function(r){ r.checked = false; });
+        shareNamesWrap.hidden = true;
+        shareNamesInput.removeAttribute("required");
+      }
+    });
+  });
+
+  shareKnownInputs.forEach(function(input){
+    input.addEventListener("change", function(){
+      var isYes = input.value === "yes";
+      shareNamesWrap.hidden = !isYes;
+      if (isYes) shareNamesInput.setAttribute("required", "required");
+      else { shareNamesInput.removeAttribute("required"); shareNamesInput.value = ""; }
+    });
+  });
+
+  form.querySelectorAll('input[name="payment_method"]').forEach(function(input){
+    input.addEventListener("change", function(){
+      form.querySelectorAll(".payment-details-box").forEach(function(box){ box.hidden = true; });
+      var box = document.getElementById("details-" + input.value);
+      if (box) box.hidden = false;
+    });
+  });
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var errorBox = document.getElementById("residency-error");
+    var statusBox = document.getElementById("residency-status");
+    errorBox.style.display = "none";
+    statusBox.className = "residency-status";
+    var submitBtn = form.querySelector(".residency-submit");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "A submeter…";
+
+    fetch("/ramos/residency/api/register", { method: "POST", body: new FormData(form) })
+      .then(function(r){ return r.json().then(function(d){ return { status: r.status, data: d }; }); })
+      .then(function(res){
+        if (res.data && res.data.ok) {
+          form.hidden = true;
+          statusBox.classList.add("is-visible", "ok");
+          statusBox.innerHTML = "<b>Inscrição recebida.</b><br>Referência: <b>" + res.data.reference + "</b><br>Vai receber um email de confirmação. A sua inscrição será validada pela equipa RAMOS.";
+          statusBox.scrollIntoView({ behavior: "smooth" });
+        } else {
+          throw new Error((res.data && res.data.error) || "erro");
+        }
+      })
+      .catch(function(err){
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submeter inscrição";
+        errorBox.style.display = "block";
+        errorBox.textContent = "Não foi possível submeter a inscrição (" + err.message + "). Verifique os campos obrigatórios e o comprovativo, ou contacte info@voxlaci.com.";
+        errorBox.scrollIntoView({ behavior: "smooth" });
+      });
+  });
+})();
+</script>
+</body></html>

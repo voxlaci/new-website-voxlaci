@@ -1,6 +1,7 @@
 .DS_Store
 *.zip
 *.sql
+!migrations/*.sql
 *.sqlite
 *.db
 .env
@@ -10,3 +11,4 @@ backups/
 backup/
 work/
 *.log
+.dev.vars

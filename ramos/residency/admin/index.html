@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<title>Administração · Residência Artística RAMOS 2027</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../../../subpage.css"><link rel="stylesheet" href="../../../ramos-residency.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="background:#fff">
+<div class="admin-wrap">
+  <h1>Residência Artística RAMOS 2027</h1>
+  <p class="lead">Painel de administração — acesso restrito via Cloudflare Access. <span id="admin-summary"></span></p>
+  <div class="admin-table-wrap">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Referência</th><th>Data</th><th>Nome</th><th>Email</th><th>País</th>
+          <th>Quarto</th><th>Partilha</th><th>Valor</th><th>Pagamento</th>
+          <th>Comprovativo</th><th>Estado</th><th>Seminário</th><th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="admin-tbody">
+        <tr><td colspan="13">A carregar…</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+(function(){
+  var tbody = document.getElementById("admin-tbody");
+  var summary = document.getElementById("admin-summary");
+
+  var STATUS_LABEL = {
+    pending_payment: "Pendente",
+    payment_submitted: "Comprovativo enviado",
+    confirmed: "Confirmado",
+    cancelled: "Cancelado",
+    expired: "Expirado",
+  };
+  var ROOM_LABEL = { single: "Individual", shared: "Duplo/Triplo" };
+
+  function fmtDate(iso) {
+    if (!iso) return "—";
+    var d = new Date(iso + "Z");
+    return d.toLocaleString("pt-PT", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
+  }
+  function euros(cents) { return (cents / 100).toLocaleString("pt-PT") + " €"; }
+
+  function render(registrations) {
+    if (!registrations.length) {
+      tbody.innerHTML = '<tr><td colspan="13">Sem inscrições ainda.</td></tr>';
+      return;
+    }
+    var counts = {};
+    registrations.forEach(function(r){ counts[r.status] = (counts[r.status] || 0) + 1; });
+    summary.textContent = Object.keys(counts).map(function(k){ return STATUS_LABEL[k] + ": " + counts[k]; }).join(" · ");
+
+    tbody.innerHTML = registrations.map(function(r){
+      var share = r.room_type === "shared" ? (r.share_known ? ("Sim: " + (r.share_names || "—")) : "Atribuir") : "—";
+      var proofLink = r.proof_original_filename
+        ? '<a href="../../residency/admin/proof/' + r.id + '" target="_blank" rel="noopener">Ver</a>'
+        : "—";
+      var actions = "";
+      if (r.status === "payment_submitted") {
+        actions += '<button class="confirm" data-action="confirm" data-id="' + r.id + '">Confirmar</button>';
+        actions += '<button class="reject" data-action="reject" data-id="' + r.id + '">Rejeitar</button>';
+      }
+      if (r.status !== "cancelled") {
+        actions += '<button data-action="cancel" data-id="' + r.id + '">Cancelar</button>';
+      }
+      return '<tr data-row="' + r.id + '">' +
+        "<td><b>" + r.reference + "</b></td>" +
+        "<td>" + fmtDate(r.created_at) + "</td>" +
+        "<td>" + escHtml(r.full_name) + "</td>" +
+        "<td>" + escHtml(r.email) + "</td>" +
+        "<td>" + escHtml(r.country || "—") + "</td>" +
+        "<td>" + ROOM_LABEL[r.room_type] + "</td>" +
+        "<td>" + escHtml(share) + "</td>" +
+        "<td>" + euros(r.amount_due_cents) + "</td>" +
+        "<td>" + escHtml(r.payment_method) + "</td>" +
+        "<td>" + proofLink + "</td>" +
+        '<td><span class="status-pill ' + r.status + '">' + STATUS_LABEL[r.status] + "</span></td>" +
+        "<td>" + (r.seminario_email_sent_at ? "Enviado" : "—") + "</td>" +
+        '<td class="admin-actions">' + actions + "</td>" +
+        "</tr>";
+    }).join("");
+  }
+
+  function escHtml(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function load() {
+    fetch("../../residency/admin/list").then(function(r){ return r.json(); }).then(function(d){
+      if (d.ok) render(d.registrations);
+      else tbody.innerHTML = '<tr><td colspan="13">Erro ao carregar: ' + escHtml(d.error) + "</td></tr>";
+    }).catch(function(err){
+      tbody.innerHTML = '<tr><td colspan="13">Erro ao carregar: ' + escHtml(err.message) + "</td></tr>";
+    });
+  }
+
+  tbody.addEventListener("click", function(e){
+    var btn = e.target.closest("button[data-action]");
+    if (!btn) return;
+    var action = btn.dataset.action;
+    var id = btn.dataset.id;
+    if (action === "confirm" && !confirm("Confirmar pagamento e enviar email ao Seminário?")) return;
+    if (action === "reject" && !confirm("Rejeitar comprovativo e libertar o quarto?")) return;
+    if (action === "cancel" && !confirm("Cancelar esta inscrição?")) return;
+
+    var row = document.querySelector('tr[data-row="' + id + '"]');
+    row.querySelectorAll("button").forEach(function(b){ b.disabled = true; });
+
+    fetch("../../residency/admin/" + action, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: Number(id) }),
+    }).then(function(r){ return r.json(); }).then(function(d){
+      if (d.ok) load();
+      else { alert("Erro: " + d.error); row.querySelectorAll("button").forEach(function(b){ b.disabled = false; }); }
+    }).catch(function(err){
+      alert("Erro: " + err.message);
+      row.querySelectorAll("button").forEach(function(b){ b.disabled = false; });
+    });
+  });
+
+  load();
+})();
+</script>
+</body></html>
