@@ -7,6 +7,13 @@ binding = "DB"
 database_name = "voxlaci-ramos"
 database_id = "c2ab7acb-f985-4d7f-8e91-de7ac7559ab5"
 
-[[r2_buckets]]
-binding = "RESIDENCY_PROOFS"
-bucket_name = "voxlaci-ramos-proofs"
+# R2 binding intentionally omitted until the "voxlaci-ramos-proofs" bucket
+# exists (R2 is not yet enabled on this Cloudflare account — see final report).
+# Cloudflare Pages reads bindings straight from this file on every deploy,
+# so referencing a bucket that doesn't exist yet fails the ENTIRE Functions
+# deploy, not just the residency ones. Add this block back once R2 is enabled
+# and the bucket has been created:
+#
+# [[r2_buckets]]
+# binding = "RESIDENCY_PROOFS"
+# bucket_name = "voxlaci-ramos-proofs"
