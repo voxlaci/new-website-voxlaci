@@ -7,11 +7,27 @@
 <link rel="stylesheet" href="../../../subpage.css"><link rel="stylesheet" href="../../../ramos-residency.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-  .admin-tabs{display:flex;gap:8px;margin-bottom:24px}
+  .admin-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
   .admin-tabs button{padding:8px 18px;border:1px solid var(--line);border-radius:99px;background:#fff;font-size:13px;font-weight:700;cursor:pointer}
   .admin-tabs button.is-active{background:#111;color:#fff;border-color:#111}
   .admin-tab-panel{display:none}
   .admin-tab-panel.is-active{display:block}
+  .edition-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:24px}
+  .edition-admin-card{border:1px solid var(--line);border-radius:4px;padding:18px;background:#fff}
+  .edition-admin-card h3{margin:0 0 10px;font-size:1.05rem}
+  .edition-admin-card .stat-row{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;border-bottom:1px solid #f0f0f0}
+  .edition-admin-card .stat-row b{font-weight:700}
+  .edition-admin-card .edit-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+  .edition-admin-card .edit-row label{display:grid;gap:2px;font-size:11px;font-weight:700;color:var(--muted)}
+  .edition-admin-card input,.edition-admin-card select{padding:6px 8px;border:1px solid var(--line);border-radius:2px;font:inherit;font-size:13px}
+  .edition-admin-card button{margin-top:10px;padding:8px 14px;border:1px solid var(--line);border-radius:2px;background:#111;color:#fff;font-size:12px;font-weight:700;cursor:pointer}
+  .detail-row{background:var(--ivory)}
+  .detail-row>td{padding:20px!important}
+  .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .detail-grid h4{margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  .detail-grid textarea{width:100%;min-height:60px;padding:8px;border:1px solid var(--line);font:inherit;font-size:13px}
+  .detail-grid select{padding:8px;border:1px solid var(--line);font:inherit;font-size:13px}
+  @media(max-width:800px){.detail-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body style="background:#fff">
@@ -22,37 +38,41 @@
   <div class="stat-cards" id="stat-cards"></div>
 
   <div class="admin-tabs">
-    <button type="button" class="is-active" data-tab="registrations">Inscrições</button>
+    <button type="button" class="is-active" data-tab="editions">Edições</button>
+    <button type="button" data-tab="registrations">Inscrições</button>
     <button type="button" data-tab="proposals">Propostas de cidade</button>
   </div>
 
-  <div class="admin-tab-panel is-active" data-tab-panel="registrations">
+  <div class="admin-tab-panel is-active" data-tab-panel="editions">
+    <div class="edition-cards" id="edition-cards"><p>A carregar…</p></div>
+  </div>
+
+  <div class="admin-tab-panel" data-tab-panel="registrations">
     <div class="admin-filters">
-      <select id="filter-city">
-        <option value="">Todas as cidades</option>
-        <option value="lisboa">Lisboa</option>
-        <option value="cascais">Cascais</option>
-        <option value="porto">Porto</option>
-        <option value="monopoli">Monopoli</option>
-        <option value="london">London</option>
-        <option value="dakar">Dakar</option>
+      <select id="filter-edition"><option value="">Todas as edições</option></select>
+      <select id="filter-status">
+        <option value="">Todos os estados</option>
+        <option value="received">Recebida</option>
+        <option value="payment_pending">A aguardar pagamento</option>
+        <option value="payment_review">Pagamento em verificação</option>
+        <option value="confirmed">Confirmada</option>
+        <option value="waitlist">Lista de espera</option>
+        <option value="cancelled">Cancelada</option>
       </select>
       <select id="filter-type">
         <option value="">Todos os tipos</option>
         <option value="individual">Individual</option>
-        <option value="choir">Coro</option>
-        <option value="group">Grupo</option>
-        <option value="conductor">Maestro</option>
-        <option value="other">Outro</option>
+        <option value="group">Grupo / Coro</option>
       </select>
+      <input type="search" id="filter-search" placeholder="Procurar nome, email…" style="padding:8px 12px;border:1px solid var(--line);border-radius:2px;font:inherit;font-size:13px">
     </div>
     <div class="export-links" style="margin:0 0 20px">
-      <a class="button" href="../admin/export?type=registrations" target="_blank" rel="noopener">Exportar CSV</a>
+      <a class="button" id="export-link" href="../admin/export?type=registrations" target="_blank" rel="noopener">Exportar CSV</a>
     </div>
     <div class="admin-table-wrap">
       <table class="admin-table">
-        <thead><tr><th>ID</th><th>Data</th><th>Cidade</th><th>Tipo</th><th>Nome</th><th>Coro</th><th>Opção</th><th>Contacto</th></tr></thead>
-        <tbody id="reg-tbody"><tr><td colspan="8">A carregar…</td></tr></tbody>
+        <thead><tr><th>ID</th><th>Data</th><th>Edição</th><th>Tipo</th><th>Nome</th><th>Participantes</th><th>Total</th><th>Estado</th><th>Ações</th></tr></thead>
+        <tbody id="reg-tbody"><tr><td colspan="9">A carregar…</td></tr></tbody>
       </table>
     </div>
   </div>
@@ -72,8 +92,16 @@
 
 <script>
 (function(){
-  var TYPE_LABEL = { individual: "Individual", choir: "Coro", group: "Grupo", conductor: "Maestro", other: "Outro" };
-  var OPTION_LABEL = { festival_only: "Festival (99€)", festival_dinner: "Festival + Jantar (124€)" };
+  var STATUS_LABEL = {
+    received: "Recebida", payment_pending: "A aguardar pagamento", payment_review: "Pagamento em verificação",
+    confirmed: "Confirmada", cancelled: "Cancelada", waitlist: "Lista de espera",
+  };
+  var TYPE_LABEL = { individual: "Individual", group: "Grupo / Coro" };
+  var STATUS_ORDER = ["received", "payment_pending", "payment_review", "confirmed", "waitlist", "cancelled"];
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function euros(cents){ return cents == null ? "—" : (cents / 100).toLocaleString("pt-PT") + " €"; }
+  function fmtDate(iso){ if (!iso) return "—"; var d = new Date(iso + "Z"); return d.toLocaleDateString("pt-PT", { day: "2-digit", month: "2-digit", year: "numeric" }); }
 
   document.querySelectorAll(".admin-tabs button").forEach(function(btn){
     btn.addEventListener("click", function(){
@@ -82,55 +110,227 @@
     });
   });
 
-  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
-  function fmtDate(iso){ if (!iso) return "—"; var d = new Date(iso + "Z"); return d.toLocaleDateString("pt-PT", { day: "2-digit", month: "2-digit", year: "numeric" }); }
-
-  var allRegs = [];
-  var regTbody = document.getElementById("reg-tbody");
-  var filterCity = document.getElementById("filter-city");
-  var filterType = document.getElementById("filter-type");
+  // ── Editions ─────────────────────────────────────────────────────────────
+  var editionsCache = [];
+  function loadEditions(){
+    return fetch("../admin/editions").then(function(r){ return r.json(); }).then(function(d){
+      if (!d.ok) throw new Error(d.error);
+      editionsCache = d.editions;
+      renderEditionCards();
+      renderStats();
+      var sel = document.getElementById("filter-edition");
+      sel.innerHTML = '<option value="">Todas as edições</option>' + editionsCache.map(function(e){ return '<option value="' + e.slug + '">' + esc(e.city) + "</option>"; }).join("");
+    });
+  }
 
   function renderStats(){
-    var byCity = {};
-    allRegs.forEach(function(r){ byCity[r.city_slug] = (byCity[r.city_slug] || 0) + 1; });
-    var cards = [["Inscrições", allRegs.length]].concat(Object.keys(byCity).map(function(c){ return [c, byCity[c]]; }));
+    var totalConfirmed = editionsCache.reduce(function(s, e){ return s + e.confirmed_count; }, 0);
+    var totalPending = editionsCache.reduce(function(s, e){ return s + e.pending; }, 0);
+    var totalWaitlist = editionsCache.reduce(function(s, e){ return s + e.waitlisted; }, 0);
+    var totalAvailable = editionsCache.reduce(function(s, e){ return s + e.available; }, 0);
+    var cards = [
+      ["Edições", editionsCache.length],
+      ["Confirmados", totalConfirmed],
+      ["Pendentes", totalPending],
+      ["Lista de espera", totalWaitlist],
+      ["Lugares disponíveis", totalAvailable],
+    ];
     document.getElementById("stat-cards").innerHTML = cards.map(function(c){ return "<div><b>" + c[1] + "</b><span>" + c[0] + "</span></div>"; }).join("");
   }
 
-  function renderRegs(){
-    var rows = allRegs.filter(function(r){
-      return (!filterCity.value || r.city_slug === filterCity.value) && (!filterType.value || r.participation_type === filterType.value);
-    });
-    if (!rows.length) { regTbody.innerHTML = '<tr><td colspan="8">Sem inscrições.</td></tr>'; return; }
-    regTbody.innerHTML = rows.map(function(r){
-      return "<tr><td><b>" + esc(r.voxpop_id) + "</b></td><td>" + fmtDate(r.created_at) + "</td><td>" + esc(r.city_slug) +
-        "</td><td>" + (TYPE_LABEL[r.participation_type] || r.participation_type) + "</td><td>" + esc(r.full_name) +
-        "</td><td>" + esc(r.choir_name || "—") + "</td><td>" + (OPTION_LABEL[r.participation_option] || r.participation_option) +
-        "</td><td>" + esc(r.email) + " · " + esc(r.whatsapp || "—") + "</td></tr>";
+  function renderEditionCards(){
+    var wrap = document.getElementById("edition-cards");
+    if (!editionsCache.length) { wrap.innerHTML = "<p>Sem edições.</p>"; return; }
+    wrap.innerHTML = editionsCache.map(function(e){
+      var statusOptions = ["preparing","coming_soon","open","last_spots","sold_out","waitlist","closed","done"].map(function(s){
+        return '<option value="' + s + '"' + (s === e.status ? " selected" : "") + ">" + s + "</option>";
+      }).join("");
+      return '<div class="edition-admin-card" data-edition-id="' + e.id + '">' +
+        "<h3>" + esc(e.city) + " <span style=\"font-weight:400;color:var(--muted);font-size:12px\">" + esc(e.slug) + "</span></h3>" +
+        '<div class="stat-row"><span>Capacidade</span><b>' + e.capacity + "</b></div>" +
+        '<div class="stat-row"><span>Confirmados</span><b>' + e.confirmed_count + "</b></div>" +
+        '<div class="stat-row"><span>Pendentes</span><b>' + e.pending + "</b></div>" +
+        '<div class="stat-row"><span>Disponíveis</span><b>' + e.available + "</b></div>" +
+        '<div class="stat-row"><span>Lista de espera</span><b>' + e.waitlisted + "</b></div>" +
+        '<div class="edit-row">' +
+          '<label>Capacidade<input type="number" class="f-capacity" value="' + e.capacity + '" min="0"></label>' +
+          '<label>Estado<select class="f-status">' + statusOptions + "</select></label>" +
+          '<label>Preço individual (€)<input type="number" step="0.01" class="f-price" value="' + (e.price_individual_cents != null ? (e.price_individual_cents / 100).toFixed(2) : "") + '"></label>' +
+          '<label>Jantar +€ (opcional)<input type="number" step="0.01" class="f-dinner" value="' + (e.dinner_addon_cents != null ? (e.dinner_addon_cents / 100).toFixed(2) : "") + '"></label>' +
+        "</div>" +
+        '<button type="button" data-action="save-edition" data-id="' + e.id + '">Guardar</button>' +
+        '<span class="edition-save-status" style="margin-left:10px;font-size:12px"></span>' +
+        "</div>";
     }).join("");
   }
 
-  filterCity.addEventListener("change", renderRegs);
-  filterType.addEventListener("change", renderRegs);
+  document.getElementById("edition-cards").addEventListener("click", function(e){
+    var btn = e.target.closest('button[data-action="save-edition"]');
+    if (!btn) return;
+    var card = btn.closest(".edition-admin-card");
+    var id = Number(btn.dataset.id);
+    var capacity = parseInt(card.querySelector(".f-capacity").value, 10);
+    var status = card.querySelector(".f-status").value;
+    var priceEur = card.querySelector(".f-price").value;
+    var dinnerEur = card.querySelector(".f-dinner").value;
+    var body = { id: id, capacity: capacity, status: status };
+    if (priceEur !== "") body.price_individual_cents = Math.round(parseFloat(priceEur) * 100);
+    if (dinnerEur !== "") body.dinner_addon_cents = Math.round(parseFloat(dinnerEur) * 100);
+    var statusEl = card.querySelector(".edition-save-status");
+    statusEl.textContent = "A guardar…";
+    fetch("../admin/editions", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (!d.ok) {
+          statusEl.style.color = "#a3241f";
+          statusEl.textContent = d.error === "capacity_below_confirmed" ? "Capacidade não pode ser inferior a " + d.confirmed + " (já confirmados)." : "Erro: " + d.error;
+          return;
+        }
+        statusEl.style.color = "#146c2e";
+        statusEl.textContent = "Guardado.";
+        loadEditions();
+      });
+  });
 
-  fetch("../admin/list?type=registrations").then(function(r){ return r.json(); }).then(function(d){
-    if (!d.ok) { regTbody.innerHTML = '<tr><td colspan="8">Erro: ' + esc(d.error) + "</td></tr>"; return; }
-    allRegs = d.registrations || [];
-    renderStats();
-    renderRegs();
-  }).catch(function(err){ regTbody.innerHTML = '<tr><td colspan="8">Erro: ' + esc(err.message) + "</td></tr>"; });
+  // ── Registrations ────────────────────────────────────────────────────────
+  var allRegs = [];
+  var regTbody = document.getElementById("reg-tbody");
+  var openDetailId = null;
+  var filterEdition = document.getElementById("filter-edition");
+  var filterStatus = document.getElementById("filter-status");
+  var filterType = document.getElementById("filter-type");
+  var filterSearch = document.getElementById("filter-search");
 
-  var propTbody = document.getElementById("prop-tbody");
-  fetch("../admin/list?type=proposals").then(function(r){ return r.json(); }).then(function(d){
-    if (!d.ok) { propTbody.innerHTML = '<tr><td colspan="7">Erro: ' + esc(d.error) + "</td></tr>"; return; }
-    var rows = d.proposals || [];
-    if (!rows.length) { propTbody.innerHTML = '<tr><td colspan="7">Sem propostas.</td></tr>'; return; }
-    propTbody.innerHTML = rows.map(function(p){
-      return "<tr><td><b>" + esc(p.voxpop_id) + "</b></td><td>" + fmtDate(p.created_at) + "</td><td>" + esc(p.city) +
-        "</td><td>" + esc(p.full_name) + "</td><td>" + esc(p.organisation || "—") + "</td><td>" + esc(p.email) + " · " + esc(p.whatsapp || "—") +
-        "</td><td>" + esc(p.message || "—") + "</td></tr>";
+  function filtered(){
+    var q = filterSearch.value.trim().toLowerCase();
+    return allRegs.filter(function(r){
+      if (filterEdition.value && r.edition_slug !== filterEdition.value) return false;
+      if (filterStatus.value && r.status !== filterStatus.value) return false;
+      if (filterType.value && r.participation_type !== filterType.value) return false;
+      if (q && (r.full_name || "").toLowerCase().indexOf(q) === -1 && (r.email || "").toLowerCase().indexOf(q) === -1) return false;
+      return true;
+    });
+  }
+
+  function renderRegs(){
+    var rows = filtered();
+    if (!rows.length) { regTbody.innerHTML = '<tr><td colspan="9">Sem inscrições.</td></tr>'; return; }
+    regTbody.innerHTML = rows.map(function(r){
+      var main = '<tr data-row="' + r.id + '">' +
+        "<td><b>" + esc(r.voxpop_id) + "</b></td>" +
+        "<td>" + fmtDate(r.created_at) + "</td>" +
+        "<td>" + esc(r.edition_city || r.city_slug) + "</td>" +
+        "<td>" + (TYPE_LABEL[r.participation_type] || r.participation_type) + "</td>" +
+        "<td>" + esc(r.full_name) + (r.choir_name ? " · " + esc(r.choir_name) : "") + "</td>" +
+        "<td>" + r.num_participants + "</td>" +
+        "<td>" + euros(r.amount_total_cents) + "</td>" +
+        '<td><span class="status-pill ' + r.status + '">' + (STATUS_LABEL[r.status] || r.status) + "</span></td>" +
+        '<td class="admin-actions"><button data-action="toggle" data-id="' + r.id + '">' + (openDetailId === r.id ? "Fechar" : "Detalhe") + "</button></td>" +
+        "</tr>";
+      if (openDetailId === r.id) main += detailRow(r);
+      return main;
     }).join("");
-  }).catch(function(err){ propTbody.innerHTML = '<tr><td colspan="7">Erro: ' + esc(err.message) + "</td></tr>"; });
+    if (openDetailId != null) loadPayments(openDetailId);
+  }
+
+  function detailRow(r){
+    var statusOptions = STATUS_ORDER.map(function(s){ return '<option value="' + s + '"' + (s === r.status ? " selected" : "") + '>' + STATUS_LABEL[s] + "</option>"; }).join("");
+    return '<tr class="detail-row" data-detail="' + r.id + '"><td colspan="9">' +
+      '<div class="detail-grid">' +
+      "<div><h4>Contacto</h4>" +
+        '<p style="margin:0 0 4px">' + esc(r.email) + " · " + esc(r.whatsapp || "—") + "</p>" +
+        '<p style="margin:0 0 4px">País: ' + esc(r.country || "—") + "</p>" +
+        (r.participation_type === "group" ? '<p style="margin:0 0 4px">Maestro/responsável: ' + esc(r.conductor_name || "—") + " · Distribuição: " + esc(r.voice_distribution || "—") + "</p>" : '<p style="margin:0 0 4px">Naipe: ' + esc(r.voice_type || "—") + " · Lê música: " + esc(r.reads_music || "—") + "</p>") +
+        '<p style="margin:0 0 14px">Notas: ' + esc(r.notes || "—") + "</p>" +
+        "<h4>Estado</h4>" +
+        '<select class="f-status">' + statusOptions + "</select> " +
+        '<button data-action="save-status" data-id="' + r.id + '">Guardar</button><br>' +
+        '<textarea class="f-note" placeholder="Nota interna">' + esc(r.admin_note || "") + "</textarea>" +
+      "</div>" +
+      '<div><h4>Pagamentos (' + euros(r.amount_paid_cents) + " de " + euros(r.amount_total_cents) + " pagos)</h4><div class=\"payments-list\" data-payments=\"" + r.id + '">A carregar…</div></div>' +
+      "</div></td></tr>";
+  }
+
+  function loadPayments(id){
+    var el = document.querySelector('[data-payments="' + id + '"]');
+    if (!el) return;
+    fetch("../admin/payments?registration_id=" + id).then(function(r){ return r.json(); }).then(function(d){
+      if (!d.ok || !d.payments.length) { el.textContent = "Sem pagamentos submetidos."; return; }
+      el.innerHTML = d.payments.map(function(p){
+        var proofLink = p.proof_original_filename ? '<a href="../admin/proof/' + p.id + '" target="_blank" rel="noopener">comprovativo</a>' : "sem ficheiro";
+        var actions = p.status === "submitted"
+          ? '<button data-action="confirm-payment" data-payment-id="' + p.id + '">Confirmar</button><button data-action="reject-payment" data-payment-id="' + p.id + '">Rejeitar</button>'
+          : "";
+        return "<p style=\"margin:0 0 8px;font-size:13px\">" + euros(p.amount_cents) + " · " + esc(p.payment_method) + " · " +
+          '<span class="status-pill ' + p.status + '">' + esc(p.status) + "</span> · " + proofLink + "<br>" + actions + "</p>";
+      }).join("");
+    });
+  }
+
+  [filterEdition, filterStatus, filterType].forEach(function(el){ el.addEventListener("change", renderRegs); });
+  filterSearch.addEventListener("input", renderRegs);
+  document.getElementById("export-link").addEventListener("click", function(){
+    var params = new URLSearchParams();
+    if (filterEdition.value) params.set("edition", filterEdition.value);
+    if (filterStatus.value) params.set("status", filterStatus.value);
+    this.href = "../admin/export?type=registrations" + (params.toString() ? "&" + params.toString() : "");
+  });
+
+  document.querySelector('[data-tab-panel="registrations"]').addEventListener("click", function(e){
+    var btn = e.target.closest("button[data-action]");
+    if (!btn) return;
+    var action = btn.dataset.action;
+    var id = Number(btn.dataset.id);
+
+    if (action === "toggle") { openDetailId = openDetailId === id ? null : id; renderRegs(); return; }
+    var row = document.querySelector('[data-detail="' + id + '"]');
+
+    if (action === "save-status") {
+      var statusSel = row.querySelector(".f-status").value;
+      var note = row.querySelector(".f-note").value;
+      fetch("../admin/update-status", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: id, status: statusSel, admin_note: note }) })
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          if (!d.ok) { alert(d.error === "not_enough_capacity" ? "Sem lugares suficientes — disponíveis: " + d.available : "Erro: " + d.error); return; }
+          loadAll();
+        });
+    }
+    if (action === "confirm-payment" || action === "reject-payment") {
+      fetch("../admin/confirm-payment", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ payment_id: Number(btn.dataset.paymentId), action: action === "confirm-payment" ? "confirm" : "reject" }) })
+        .then(function(r){ return r.json(); })
+        .then(function(d){ if (d.ok) loadAll(); else alert("Erro: " + d.error); });
+    }
+  });
+
+  function loadRegistrations(){
+    return fetch("../admin/list").then(function(r){ return r.json(); }).then(function(d){
+      if (!d.ok) { regTbody.innerHTML = '<tr><td colspan="9">Erro: ' + esc(d.error) + "</td></tr>"; return; }
+      allRegs = d.registrations || [];
+      renderRegs();
+    }).catch(function(err){ regTbody.innerHTML = '<tr><td colspan="9">Erro: ' + esc(err.message) + "</td></tr>"; });
+  }
+
+  // ── Proposals ────────────────────────────────────────────────────────────
+  var propTbody = document.getElementById("prop-tbody");
+  function loadProposals(){
+    return fetch("../admin/list?type=proposals").then(function(r){ return r.json(); }).then(function(d){
+      if (!d.ok) { propTbody.innerHTML = '<tr><td colspan="7">Erro: ' + esc(d.error) + "</td></tr>"; return; }
+      var rows = d.proposals || [];
+      if (!rows.length) { propTbody.innerHTML = '<tr><td colspan="7">Sem propostas.</td></tr>'; return; }
+      propTbody.innerHTML = rows.map(function(p){
+        return "<tr><td><b>" + esc(p.voxpop_id) + "</b></td><td>" + fmtDate(p.created_at) + "</td><td>" + esc(p.city) +
+          "</td><td>" + esc(p.full_name) + "</td><td>" + esc(p.organisation || "—") + "</td><td>" + esc(p.email) + " · " + esc(p.whatsapp || "—") +
+          "</td><td>" + esc(p.message || "—") + "</td></tr>";
+      }).join("");
+    }).catch(function(err){ propTbody.innerHTML = '<tr><td colspan="7">Erro: ' + esc(err.message) + "</td></tr>"; });
+  }
+
+  function loadAll(){
+    loadEditions();
+    loadRegistrations();
+  }
+  loadAll();
+  loadProposals();
 })();
 </script>
 </body></html>

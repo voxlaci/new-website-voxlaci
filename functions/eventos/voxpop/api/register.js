@@ -1,17 +1,12 @@
-// voX±Pop — registration/interest capture. This is NOT a paid ticket: actual payment happens
-// on Eventbrite. We record the interest, confirm by email, and point to the real Eventbrite link.
+// voX±Pop — full registration: individual or group/choir, real edition pricing computed
+// server-side, proof-of-payment upload, capacity-aware (informational check here; the
+// hard, overbooking-safe check happens atomically when an admin confirms — see
+// admin/update-status.js). Mirrors functions/eventos/stella/api/apply.js + RAMOS residency.
 import {
-  sanitize, sendEmail, FROM, VOXLACI_EMAIL,
-  generateVoxpopId, registrationReceivedEmail, registrationInternalEmail, CITY_LABELS,
+  sanitize, sendEmail, validateProofFile, FROM, VOXLACI_EMAIL,
+  generateVoxpopId, calcTotal, availableSeats, publicStatus,
+  registrationReceivedEmail, waitlistEmail, registrationInternalEmail,
 } from "../../../_shared/voxpop.js";
-
-// Real, verified Eventbrite links for currently open editions (checked live — never invent these).
-const CITY_EVENTBRITE = {
-  lisboa: "https://www.eventbrite.pt/e/lisboa-vox-pop-september-2026-tickets-1759362824569",
-  cascais: "https://www.eventbrite.pt/e/cascais-vox-pop-june-2027-tickets-1750076809849",
-  porto: "https://www.eventbrite.pt/e/porto-vox-pop-february-2027-tickets-1750029468249",
-  monopoli: "https://www.eventbrite.pt/e/monopoli-vox-pop-may-2027-tickets-1759248793499",
-};
 
 function json(obj, status = 200) {
   return new Response(JSON.stringify(obj), { status, headers: { "Content-Type": "application/json" } });
@@ -31,6 +26,7 @@ function checkRateLimit(ip) {
 }
 
 export async function onRequestPost({ request, env }) {
+  const base = new URL(request.url);
   const ip = request.headers.get("CF-Connecting-IP") || "unknown";
   if (!checkRateLimit(ip)) return json({ ok: false, error: "rate_limit" }, 429);
   if (!env.DB) return json({ ok: false, error: "not_configured" }, 500);
@@ -47,32 +43,61 @@ export async function onRequestPost({ request, env }) {
   }
 
   const language = formData.get("language") === "en" ? "en" : "pt";
-  const citySlug = sanitize(formData.get("city_slug"), 30);
-  if (!CITY_LABELS[citySlug]) return json({ ok: false, error: "invalid_city" }, 400);
+  const editionSlug = sanitize(formData.get("edition_slug") || formData.get("city_slug"), 30);
+  const edition = await env.DB.prepare("SELECT * FROM voxpop_editions WHERE slug = ?").bind(editionSlug).first();
+  if (!edition) return json({ ok: false, error: "invalid_edition" }, 400);
+  if (!["open", "last_spots", "sold_out", "waitlist"].includes(edition.status)) {
+    return json({ ok: false, error: "registrations_not_open" }, 400);
+  }
 
-  const participationType = sanitize(formData.get("participation_type"), 20);
-  if (!["individual", "choir", "group", "conductor", "other"].includes(participationType)) {
-    return json({ ok: false, error: "invalid_participation_type" }, 400);
-  }
-  const participationOption = sanitize(formData.get("participation_option"), 20);
-  if (!["festival_only", "festival_dinner"].includes(participationOption)) {
-    return json({ ok: false, error: "invalid_option" }, 400);
-  }
+  const participationType = formData.get("participation_type") === "group" ? "group" : "individual";
+  const wantsWaitlist = formData.get("join_waitlist") === "1";
 
   const fullName = sanitize(formData.get("full_name"), 200);
   const email = sanitize(formData.get("email"), 200);
   if (!fullName || !email) return json({ ok: false, error: "missing_fields" }, 400);
 
   const choirName = sanitize(formData.get("choir_name"), 200);
+  const conductorName = sanitize(formData.get("conductor_name"), 200);
   const country = sanitize(formData.get("country"), 100);
   const whatsapp = sanitize(formData.get("whatsapp"), 60);
   const voiceType = sanitize(formData.get("voice_type"), 60);
   const choirExperience = sanitize(formData.get("choir_experience"), 500);
   const readsMusic = sanitize(formData.get("reads_music"), 10);
-  const numSingers = parseInt(formData.get("num_singers"), 10) || null;
   const voiceDistribution = sanitize(formData.get("voice_distribution"), 300);
-  const conductorName = sanitize(formData.get("conductor_name"), 200);
   const notes = sanitize(formData.get("notes"), 2000);
+
+  let numParticipants = 1;
+  let numSingers = null;
+  if (participationType === "group") {
+    numSingers = parseInt(formData.get("num_singers"), 10) || 0;
+    if (numSingers < 1) return json({ ok: false, error: "invalid_group_size" }, 400);
+    numParticipants = numSingers;
+  }
+
+  const dinnerSelected = formData.get("dinner_selected") === "1" && !!edition.dinner_addon_cents;
+
+  // Informational capacity check — the authoritative, overbooking-safe check happens
+  // atomically at admin confirmation time (only "confirmed" occupies real seats).
+  const available = availableSeats(edition);
+  if (!wantsWaitlist && numParticipants > available) {
+    return json({
+      ok: false,
+      error: available <= 0 ? "sold_out" : "insufficient_capacity",
+      available,
+    }, 409);
+  }
+
+  const paymentMethod = sanitize(formData.get("payment_method"), 30);
+  if (!["bank_transfer", "paypal", "revolut", "mbway"].includes(paymentMethod)) {
+    return json({ ok: false, error: "invalid_payment_method" }, 400);
+  }
+  const proof = formData.get("proof");
+  const proofCheck = await validateProofFile(proof);
+  if (!proofCheck.ok) return json({ ok: false, error: `invalid_proof_${proofCheck.reason}` }, 400);
+
+  const amountTotalCents = calcTotal(edition, { participationType, numParticipants, dinnerSelected });
+  const status = wantsWaitlist ? "waitlist" : "payment_review";
 
   const db = env.DB;
   let insertedId;
@@ -80,15 +105,15 @@ export async function onRequestPost({ request, env }) {
     const result = await db
       .prepare(
         `INSERT INTO voxpop_registrations
-         (language, city_slug, participation_type, full_name, choir_name, country, email, whatsapp,
+         (language, city_slug, edition_id, participation_type, full_name, choir_name, country, email, whatsapp,
           participation_option, voice_type, choir_experience, reads_music, num_singers, voice_distribution,
-          conductor_name, notes)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+          conductor_name, notes, status, num_participants, amount_total_cents, dinner_selected)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
       )
       .bind(
-        language, citySlug, participationType, fullName, choirName, country, email, whatsapp,
-        participationOption, voiceType, choirExperience, readsMusic, numSingers, voiceDistribution,
-        conductorName, notes
+        language, edition.slug, edition.id, participationType, fullName, choirName, country, email, whatsapp,
+        dinnerSelected ? "festival_dinner" : "festival_only", voiceType, choirExperience, readsMusic, numSingers, voiceDistribution,
+        conductorName, notes, status, numParticipants, amountTotalCents, dinnerSelected ? 1 : 0
       )
       .run();
     insertedId = result.meta.last_row_id;
@@ -97,30 +122,59 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, error: "db_failed" }, 500);
   }
 
-  const voxpopId = await generateVoxpopId(db, citySlug, insertedId);
-  console.info(`[voxpop] ${voxpopId} — inscrição criada · cidade=${citySlug} · nome=${fullName} · IP=${ip}`);
+  const voxpopId = await generateVoxpopId(db, edition.slug, insertedId);
+
+  let proofKey = null;
+  if (env.RESIDENCY_PROOFS) {
+    proofKey = `voxpop/${voxpopId}/${crypto.randomUUID()}.${proofCheck.ext}`;
+    try {
+      await env.RESIDENCY_PROOFS.put(proofKey, await proof.arrayBuffer(), {
+        httpMetadata: { contentType: proof.type || "application/octet-stream" },
+      });
+    } catch (err) {
+      console.error(`[voxpop] ${voxpopId} — falha ao guardar comprovativo no R2: ${err.message}`);
+    }
+  }
+  try {
+    await db
+      .prepare(
+        `INSERT INTO voxpop_payments (registration_id, amount_cents, payment_method, proof_key, proof_original_filename, proof_mime, status)
+         VALUES (?, ?, ?, ?, ?, ?, 'submitted')`
+      )
+      .bind(insertedId, amountTotalCents, paymentMethod, proofKey, sanitize(proof.name, 200), proof.type || null)
+      .run();
+  } catch (err) {
+    console.error(`[voxpop] ${voxpopId} — falha ao gravar pagamento: ${err.message}`);
+  }
+
+  console.info(`[voxpop] ${voxpopId} — inscrição criada · edição=${edition.slug} · tipo=${participationType} · participantes=${numParticipants} · estado=${status} · IP=${ip}`);
 
   const reg = {
-    voxpop_id: voxpopId, city_slug: citySlug, participation_type: participationType,
-    full_name: fullName, choir_name: choirName, country, email, whatsapp,
-    participation_option: participationOption, num_singers: numSingers, notes,
+    voxpop_id: voxpopId, participation_type: participationType, full_name: fullName, choir_name: choirName,
+    country, email, whatsapp, num_participants: numParticipants, amount_total_cents: amountTotalCents,
+    amount_paid_cents: 0, status, notes,
   };
-  const eventbriteUrl = CITY_EVENTBRITE[citySlug] || null;
 
   if (env.RESEND_API_KEY) {
     try {
-      const { subject, html } = registrationReceivedEmail(language, reg, eventbriteUrl);
+      const { subject, html } = status === "waitlist"
+        ? waitlistEmail(language, reg, edition)
+        : registrationReceivedEmail(language, reg, edition);
       await sendEmail(env.RESEND_API_KEY, { from: FROM, to: [email], reply_to: VOXLACI_EMAIL, subject, html });
     } catch (err) {
       console.error(`[voxpop] ${voxpopId} — email ao participante falhou: ${err.message}`);
     }
     try {
-      const { subject, html } = registrationInternalEmail(reg);
+      const adminUrl = new URL("/eventos/voxpop/admin/", base).toString();
+      const { subject, html } = registrationInternalEmail(reg, edition, adminUrl);
       await sendEmail(env.RESEND_API_KEY, { from: FROM, to: [VOXLACI_EMAIL], reply_to: email, subject, html });
     } catch (err) {
       console.error(`[voxpop] ${voxpopId} — email interno falhou: ${err.message}`);
     }
   }
 
-  return json({ ok: true, voxpopId, eventbriteUrl });
+  return json({
+    ok: true, voxpopId, status, amountTotalCents, numParticipants,
+    eventbriteUrl: edition.eventbrite_url || null,
+  });
 }

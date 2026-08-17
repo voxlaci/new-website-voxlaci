@@ -15,6 +15,7 @@
 .voxpop-city-card b{display:block;font:700 1.2rem Manrope;letter-spacing:-.02em;margin:8px 0 4px}
 .voxpop-city-card span.dates{display:block;color:var(--muted);font-size:13px;margin-bottom:8px}
 .voxpop-city-card span.price{display:block;font-weight:700;font-size:14px}
+.voxpop-city-card span.availability{display:block;color:var(--muted);font-size:12px;margin-top:2px}
 @media(max-width:900px){.voxpop-city-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.voxpop-city-grid{grid-template-columns:1fr}}
 

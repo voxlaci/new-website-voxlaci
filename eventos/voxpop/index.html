@@ -53,40 +53,44 @@
     <h2 data-pt="Escolha a sua cidade." data-en="Choose your city." data-es="Elija su ciudad." data-fr="Choisissez votre ville." data-it="Scegli la tua città." data-zh="选择您的城市。">Escolha a sua cidade.</h2>
   </div>
   <div class="voxpop-city-grid">
-    <a class="voxpop-city-card" href="lisboa/">
+    <a class="voxpop-city-card" href="lisboa/" data-city="lisboa">
       <picture><source srcset="/legacy-media/2c245e640344.webp" type="image/webp"><img src="/legacy-media/2c245e640344.jpg" alt="Lisboa voX±Pop"></picture>
       <div class="voxpop-city-card-body">
-        <span class="city-status-badge open">OPEN</span>
+        <span class="city-status-badge open" data-badge>OPEN</span>
         <b>Lisboa</b>
         <span class="dates">10–13 setembro 2026</span>
         <span class="price">99 € · 124 €</span>
+        <span class="availability" data-availability></span>
       </div>
     </a>
-    <a class="voxpop-city-card" href="cascais/">
+    <a class="voxpop-city-card" href="cascais/" data-city="cascais">
       <picture><source srcset="/legacy-media/3e18580f3c59.webp" type="image/webp"><img src="/legacy-media/3e18580f3c59.jpg" alt="Cascais voX±Pop"></picture>
       <div class="voxpop-city-card-body">
-        <span class="city-status-badge open">OPEN</span>
+        <span class="city-status-badge open" data-badge>OPEN</span>
         <b>Cascais</b>
         <span class="dates">10–13 junho 2027</span>
         <span class="price" data-pt="desde 99 €" data-en="from €99" data-es="desde 99 €" data-fr="dès 99 €" data-it="da 99 €" data-zh="从99欧元起">desde 99 €</span>
+        <span class="availability" data-availability></span>
       </div>
     </a>
-    <a class="voxpop-city-card" href="porto/">
+    <a class="voxpop-city-card" href="porto/" data-city="porto">
       <picture><source srcset="/legacy-media/9e7f4b8b141b.webp" type="image/webp"><img src="/legacy-media/9e7f4b8b141b.jpg" alt="Porto voX±Pop"></picture>
       <div class="voxpop-city-card-body">
-        <span class="city-status-badge open">OPEN</span>
+        <span class="city-status-badge open" data-badge>OPEN</span>
         <b>Porto</b>
         <span class="dates">4–7 fevereiro 2027</span>
         <span class="price" data-pt="desde 99 €" data-en="from €99" data-es="desde 99 €" data-fr="dès 99 €" data-it="da 99 €" data-zh="从99欧元起">desde 99 €</span>
+        <span class="availability" data-availability></span>
       </div>
     </a>
-    <a class="voxpop-city-card" href="monopoli/">
+    <a class="voxpop-city-card" href="monopoli/" data-city="monopoli">
       <picture><source srcset="/legacy-media/56f4487ed78a.webp" type="image/webp"><img src="/legacy-media/56f4487ed78a.jpg" alt="Monopoli voX±Pop"></picture>
       <div class="voxpop-city-card-body">
-        <span class="city-status-badge open">OPEN</span>
+        <span class="city-status-badge open" data-badge>OPEN</span>
         <b>Monopoli</b>
         <span class="dates">6–9 maio 2027</span>
         <span class="price" data-pt="desde 99 €" data-en="from €99" data-es="desde 99 €" data-fr="dès 99 €" data-it="da 99 €" data-zh="从99欧元起">desde 99 €</span>
+        <span class="availability" data-availability></span>
       </div>
     </a>
     <a class="voxpop-city-card" href="london/">
@@ -399,6 +403,27 @@
         statusBox.textContent = document.documentElement.lang === "pt" ? "Não foi possível submeter. Tente novamente." : "Could not submit. Please try again.";
       });
   });
+
+  fetch("/eventos/voxpop/api/editions").then(function(r){ return r.json(); }).then(function(d){
+    if (!d.ok) return;
+    var lang = document.documentElement.lang || "pt";
+    d.editions.forEach(function(ed){
+      var card = document.querySelector('.voxpop-city-card[data-city="' + ed.slug + '"]');
+      if (!card) return;
+      var badge = card.querySelector("[data-badge]");
+      var avail = card.querySelector("[data-availability]");
+      if (ed.status === "coming_soon" || ed.status === "preparing") return;
+      if (badge) {
+        badge.className = "city-status-badge " + ed.status;
+        badge.textContent = ed.status === "sold_out" ? "SOLD OUT" : (ed.status === "last_spots" ? (lang === "pt" ? "ÚLTIMOS LUGARES" : "LAST SPOTS") : "OPEN");
+      }
+      if (avail) {
+        avail.textContent = ed.status === "sold_out"
+          ? (lang === "pt" ? "Esgotado" : "Sold out")
+          : (lang === "pt" ? ed.available_seats + " lugares disponíveis" : ed.available_seats + " places available");
+      }
+    });
+  }).catch(function(){});
 })();
 </script>
 </body>

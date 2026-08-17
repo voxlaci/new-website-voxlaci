@@ -98,62 +98,113 @@
 
 <section class="section" id="inscricao">
   <div class="section-head"><p class="eyebrow" data-pt="Inscrição" data-en="Registration">Inscrição</p><h2 data-pt="Inscreva-se para Lisboa." data-en="Register for Lisbon.">Inscreva-se para Lisboa.</h2></div>
-  <p style="max-width:700px;color:var(--muted);margin-bottom:24px" data-pt="Este registo confirma o seu interesse — para garantir o lugar, complete a compra no Eventbrite." data-en="This registration confirms your interest — to secure your place, complete your purchase on Eventbrite.">Este registo confirma o seu interesse — para garantir o lugar, complete a compra no Eventbrite.</p>
+  <p id="voxpop-availability" style="margin-bottom:16px"></p>
+  <p style="max-width:700px;color:var(--muted);margin-bottom:24px" data-pt="A sua inscrição fica registada e a aguardar pagamento até enviar o comprovativo. Só é considerada confirmada depois de validada pela organização." data-en="Your registration is recorded and awaiting payment until you send proof of payment. It is only considered confirmed once validated by the organisation.">A sua inscrição fica registada e a aguardar pagamento até enviar o comprovativo. Só é considerada confirmada depois de validada pela organização.</p>
+  <p id="voxpop-waitlist-note" hidden class="editor-warning" data-pt="Esta edição está esgotada. Pode inscrever-se na lista de espera — entraremos em contacto se houver desistências." data-en="This edition is sold out. You can join the waitlist — we'll be in touch if a place opens up.">Esta edição está esgotada. Pode inscrever-se na lista de espera — entraremos em contacto se houver desistências.</p>
+
+  <div class="wizard-progress">
+    <span class="wizard-step-dot" data-step="1">1</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="2">2</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="3">3</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="4">4</span><span class="wizard-step-line"></span>
+    <span class="wizard-step-dot" data-step="5">5</span>
+  </div>
+
   <form class="residency-form" id="voxpop-form" data-city="lisboa" style="padding:0;max-width:700px" novalidate>
-    <input type="hidden" name="language" value="pt"><input type="hidden" name="city_slug" value="lisboa">
+    <input type="hidden" name="language" value="pt"><input type="hidden" name="edition_slug" value="lisboa">
     <p style="position:absolute;left:-9999px" aria-hidden="true"><label>Não preencher: <input name="website" tabindex="-1" autocomplete="off"><input name="campo-secreto" tabindex="-1" autocomplete="off"></label></p>
     <p class="form-erro" style="display:none;padding:14px 18px;background:#fdeeee;color:#a3241f;border:1px solid #f3c6c4;margin-bottom:24px"></p>
 
-    <fieldset class="residency-fieldset">
-      <legend data-pt="Como quer participar?" data-en="How would you like to participate?">Como quer participar?</legend>
-      <div class="room-options cols-3">
-        <label class="room-option"><input type="radio" name="participation_type" value="individual" required><b data-pt="Individual" data-en="Individual">Individual</b></label>
-        <label class="room-option"><input type="radio" name="participation_type" value="choir" required><b data-pt="Coro" data-en="Choir">Coro</b></label>
-        <label class="room-option"><input type="radio" name="participation_type" value="group" required><b data-pt="Grupo / Ensemble" data-en="Group / Ensemble">Grupo / Ensemble</b></label>
-      </div>
-    </fieldset>
+    <div class="wizard-panel is-active" data-panel="1">
+      <fieldset class="residency-fieldset">
+        <legend data-pt="1/5 · Como quer participar?" data-en="1/5 · How would you like to participate?">1/5 · Como quer participar?</legend>
+        <div class="room-options">
+          <label class="room-option"><input type="radio" name="participation_type" value="individual" required checked><b data-pt="Individualmente" data-en="Individually">Individualmente</b></label>
+          <label class="room-option"><input type="radio" name="participation_type" value="group" required><b data-pt="Grupo / Coro" data-en="Group / Choir">Grupo / Coro</b></label>
+        </div>
+      </fieldset>
+      <div class="wizard-nav"><span></span><button type="button" class="wizard-next" data-pt="Seguinte →" data-en="Next →">Seguinte →</button></div>
+    </div>
 
-    <fieldset class="residency-fieldset">
-      <legend data-pt="Opção de participação" data-en="Participation option">Opção de participação</legend>
-      <div class="room-options">
-        <label class="room-option"><input type="radio" name="participation_option" value="festival_dinner" required><b data-pt="Festival + Jantar Final" data-en="Festival + Final Dinner">Festival + Jantar Final</b><span>124 €</span></label>
-        <label class="room-option"><input type="radio" name="participation_option" value="festival_only" required><b data-pt="Só Festival" data-en="Festival only">Só Festival</b><span>99 €</span></label>
-      </div>
-      <p class="residency-note" data-pt="A opção de jantar está sujeita à disponibilidade da edição." data-en="The dinner option is subject to the edition's availability.">A opção de jantar está sujeita à disponibilidade da edição.</p>
-    </fieldset>
+    <div class="wizard-panel" data-panel="2">
+      <fieldset class="residency-fieldset">
+        <legend data-pt="2/5 · Dados" data-en="2/5 · Details">2/5 · Dados</legend>
+        <div class="residency-grid">
+          <label><span data-pt="Nome completo *" data-en="Full name *">Nome completo *</span><input type="text" name="full_name" required></label>
+          <label><span>Email *</span><input type="email" name="email" required></label>
+          <label><span data-pt="País" data-en="Country">País</span><input type="text" name="country"></label>
+          <label><span>WhatsApp</span><input type="tel" name="whatsapp"></label>
+        </div>
+      </fieldset>
+      <fieldset class="residency-fieldset" data-fields="group" hidden>
+        <legend data-pt="Dados do grupo/coro" data-en="Group/choir details">Dados do grupo/coro</legend>
+        <div class="residency-grid">
+          <label><span data-pt="Nome do coro/grupo" data-en="Choir/group name">Nome do coro/grupo</span><input type="text" name="choir_name"></label>
+          <label><span data-pt="Maestro/a ou responsável" data-en="Conductor or lead">Maestro/a ou responsável</span><input type="text" name="conductor_name"></label>
+          <label><span data-pt="N.º total de participantes *" data-en="Total number of participants *">N.º total de participantes *</span><input type="number" name="num_singers" min="1" value="1"></label>
+          <label><span data-pt="Distribuição de vozes" data-en="Voice distribution">Distribuição de vozes</span><input type="text" name="voice_distribution" placeholder="S/A/T/B"></label>
+        </div>
+      </fieldset>
+      <fieldset class="residency-fieldset" data-fields="individual">
+        <legend data-pt="Sobre si" data-en="About you">Sobre si</legend>
+        <div class="residency-grid">
+          <label><span data-pt="Naipe (se souber)" data-en="Voice type, if known">Naipe (se souber)</span><input type="text" name="voice_type" placeholder="Soprano, Alto, Tenor, Baixo…"></label>
+          <label><span data-pt="Experiência coral" data-en="Choir experience">Experiência coral</span><input type="text" name="choir_experience"></label>
+          <label><span data-pt="Lê música?" data-en="Reads music?">Lê música?</span><select name="reads_music"><option value="">—</option><option value="yes" data-pt="Sim" data-en="Yes">Sim</option><option value="no" data-pt="Não" data-en="No">Não</option></select></label>
+        </div>
+      </fieldset>
+      <div class="wizard-nav"><button type="button" class="wizard-back" data-pt="← Anterior" data-en="← Back">← Anterior</button><button type="button" class="wizard-next" data-pt="Seguinte →" data-en="Next →">Seguinte →</button></div>
+    </div>
 
-    <fieldset class="residency-fieldset">
-      <legend data-pt="Dados de contacto" data-en="Contact details">Dados de contacto</legend>
-      <div class="residency-grid">
-        <label><span data-pt="Nome completo *" data-en="Full name *">Nome completo *</span><input type="text" name="full_name" required></label>
-        <label><span>Email *</span><input type="email" name="email" required></label>
-        <label><span data-pt="País" data-en="Country">País</span><input type="text" name="country"></label>
-        <label><span>WhatsApp</span><input type="tel" name="whatsapp"></label>
-      </div>
-    </fieldset>
+    <div class="wizard-panel" data-panel="3">
+      <fieldset class="residency-fieldset">
+        <legend data-pt="3/5 · Opções" data-en="3/5 · Options">3/5 · Opções</legend>
+        <label id="voxpop-dinner-field" class="payment-option" hidden style="display:flex;gap:10px;align-items:center">
+          <input type="checkbox" name="dinner_selected" value="1">
+          <span><b data-pt="Festival + Jantar Final" data-en="Festival + Final Dinner">Festival + Jantar Final</b> <span class="dinner-price">+25 €</span></span>
+        </label>
+        <p class="residency-note" data-pt="Sem esta opção, participa apenas no programa do festival (sem o Jantar Final)." data-en="Without this option, you take part in the festival programme only (no Final Dinner).">Sem esta opção, participa apenas no programa do festival (sem o Jantar Final).</p>
+        <label><span data-pt="Notas / necessidades especiais" data-en="Notes / special needs">Notas / necessidades especiais</span><textarea name="notes" maxlength="2000"></textarea></label>
+      </fieldset>
+      <div class="wizard-nav"><button type="button" class="wizard-back" data-pt="← Anterior" data-en="← Back">← Anterior</button><button type="button" class="wizard-next" data-pt="Seguinte →" data-en="Next →">Seguinte →</button></div>
+    </div>
 
-    <fieldset class="residency-fieldset" data-fields="choir" hidden>
-      <legend data-pt="Dados do coro" data-en="Choir details">Dados do coro</legend>
-      <div class="residency-grid">
-        <label><span data-pt="Nome do coro" data-en="Choir name">Nome do coro</span><input type="text" name="choir_name"></label>
-        <label><span data-pt="Maestro/a" data-en="Conductor">Maestro/a</span><input type="text" name="conductor_name"></label>
-        <label><span data-pt="N.º de cantores" data-en="Number of singers">N.º de cantores</span><input type="number" name="num_singers" min="1"></label>
-        <label><span data-pt="Distribuição de vozes" data-en="Voice distribution">Distribuição de vozes</span><input type="text" name="voice_distribution" placeholder="S/A/T/B"></label>
-      </div>
-    </fieldset>
+    <div class="wizard-panel" data-panel="4">
+      <fieldset class="residency-fieldset">
+        <legend data-pt="4/5 · Resumo e preço" data-en="4/5 · Summary and price">4/5 · Resumo e preço</legend>
+        <div class="wizard-review" id="voxpop-price-summary"></div>
+      </fieldset>
+      <div class="wizard-nav"><button type="button" class="wizard-back" data-pt="← Anterior" data-en="← Back">← Anterior</button><button type="button" class="wizard-next" data-pt="Seguinte →" data-en="Next →">Seguinte →</button></div>
+    </div>
 
-    <fieldset class="residency-fieldset" data-fields="individual" hidden>
-      <legend data-pt="Sobre si" data-en="About you">Sobre si</legend>
-      <div class="residency-grid">
-        <label><span data-pt="Naipe (se souber)" data-en="Voice type, if known">Naipe (se souber)</span><input type="text" name="voice_type" placeholder="Soprano, Alto, Tenor, Baixo…"></label>
-        <label><span data-pt="Experiência coral" data-en="Choir experience">Experiência coral</span><input type="text" name="choir_experience"></label>
-        <label><span data-pt="Lê música?" data-en="Reads music?">Lê música?</span><select name="reads_music"><option value="">—</option><option value="yes" data-pt="Sim" data-en="Yes">Sim</option><option value="no" data-pt="Não" data-en="No">Não</option></select></label>
-      </div>
-    </fieldset>
+    <div class="wizard-panel" data-panel="5">
+      <fieldset class="residency-fieldset">
+        <legend data-pt="5/5 · Pagamento" data-en="5/5 · Payment">5/5 · Pagamento</legend>
+        <div class="payment-options">
+          <label class="payment-option"><input type="radio" name="payment_method" value="bank_transfer" required> Transferência Bancária</label>
+          <label class="payment-option"><input type="radio" name="payment_method" value="paypal" required> PayPal</label>
+          <label class="payment-option"><input type="radio" name="payment_method" value="mbway" required> MB Way</label>
+        </div>
+        <div class="payment-details-box" id="details-bank_transfer" hidden>
+          <b>Beneficiário:</b> ASSOCIAÇÃO VOX SDR<br>
+          <b>IBAN:</b> PT50 0036 0196 9910 0035 3991 7<br>
+          <b>BIC / SWIFT:</b> MPIOPTPL<br>
+          <b>Banco:</b> Banco Montepio Geral
+        </div>
+        <div class="payment-details-box" id="details-paypal" hidden><b>PayPal:</b> info@voxlaci.com</div>
+        <div class="payment-details-box" id="details-mbway" hidden><b>MB Way:</b> 938 407 985</div>
+        <label><span data-pt="Comprovativo de pagamento *" data-en="Proof of payment *">Comprovativo de pagamento *</span>
+          <input type="file" name="proof" accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf" required>
+        </label>
+        <p class="residency-note" data-pt="Formatos aceites: JPG, PNG, PDF (máx. 8MB)." data-en="Accepted formats: JPG, PNG, PDF (max 8MB).">Formatos aceites: JPG, PNG, PDF (máx. 8MB).</p>
+        <label style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;margin:16px 0">
+          <input type="checkbox" required style="width:20px;min-height:20px">
+          <span style="font-size:13px;color:var(--muted)" data-pt="Aceito que estes dados sejam usados para processar a minha inscrição no voX±Pop e para contacto relacionado." data-en="I agree that this data may be used to process my voX±Pop registration and for related contact.">Aceito que estes dados sejam usados para processar a minha inscrição no voX±Pop e para contacto relacionado.</span>
+        </label>
+      </fieldset>
+      <div class="wizard-nav"><button type="button" class="wizard-back" data-pt="← Anterior" data-en="← Back">← Anterior</button><button class="residency-submit" type="submit" style="width:auto;min-width:220px" data-pt="Submeter inscrição" data-en="Submit registration">Submeter inscrição</button></div>
+    </div>
 
-    <label><span data-pt="Notas" data-en="Notes">Notas</span><textarea name="notes" maxlength="2000"></textarea></label>
-
-    <button class="residency-submit" type="submit" data-pt="Inscrever-me" data-en="Register">Inscrever-me</button>
     <div class="residency-status" id="voxpop-status"></div>
   </form>
 </section>
@@ -165,7 +216,7 @@
 </section>
 </main>
 
-<div class="voxpop-sticky-cta" id="sticky-cta"><b data-pt="Lisboa · 99 € / 124 €" data-en="Lisbon · €99 / €124">Lisboa · 99 € / 124 €</b><a class="button primary" href="#inscricao" data-pt="Participar" data-en="Join">Participar</a></div>
+<div class="voxpop-sticky-cta" id="sticky-cta"><b id="voxpop-sticky-availability">Lisboa</b><a class="button primary" href="#inscricao" data-pt="Participar" data-en="Join">Participar</a></div>
 
 <footer class="page-footer"><div><img src="/assets/voxlaci-logo-white.png" alt="VoxLaci"><p>voX±Pop · VoxLaci</p></div><div><a href="mailto:info@voxlaci.com">info@voxlaci.com</a><a href="/eventos/voxpop/" data-pt="Todas as cidades" data-en="All cities">Todas as cidades</a></div></footer>
 <script src="/project-language.js" defer></script>

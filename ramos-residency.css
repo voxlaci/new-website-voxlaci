@@ -66,6 +66,9 @@ table.admin-table tr:hover td{background:var(--ivory)}
 .status-pill.payment_pending{background:#fff4d6;color:#8a6100}
 .status-pill.partially_paid{background:#fff0e0;color:#a15c00}
 .status-pill.paid{background:#e0f6e6;color:#146c2e}
+.status-pill.received{background:#eef1fb;color:#3b4bb0}
+.status-pill.payment_review{background:#fff0e0;color:#a15c00}
+.status-pill.waitlist{background:#f0e6ff;color:#5b2ba1}
 
 /* Pricing-tier cards — used on the RAMOS and STELLA public pages to present per-modality pricing */
 .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:24px 0}
