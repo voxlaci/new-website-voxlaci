@@ -66,7 +66,7 @@
 
     var mealKeys = app.application_type === "choir_day" ? ["choir_day_dinner"]
       : app.application_type === "choir_weekend" ? ["dinner_saturday"]
-      : ["dinner_friday", "dinner_saturday", "dinner_sunday"];
+      : ["dinner_friday", "dinner_saturday"];
     var balance = app.amount_total_cents != null ? app.amount_total_cents - app.amount_paid_cents : null;
 
     var html = "";

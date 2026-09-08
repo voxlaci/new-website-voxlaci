@@ -36,7 +36,7 @@
     <fieldset class="residency-fieldset">
       <legend>1/5 · Escolha a modalidade</legend>
       <div class="room-options cols-3">
-        <label class="room-option"><input type="radio" name="application_type" value="choir_residence" required><b>Residência Coral</b><span>249 € / 309 € pp · 3 noites</span></label>
+        <label class="room-option"><input type="radio" name="application_type" value="choir_residence" required><b>Residência Coral</b><span>desde 249 € / 309 € pp · 2 noites</span></label>
         <label class="room-option"><input type="radio" name="application_type" value="choir_weekend" required><b>Fim de Semana Coral</b><span>79 € por cantor</span></label>
         <label class="room-option"><input type="radio" name="application_type" value="choir_day" required><b>Choir Day</b><span>42 € por cantor</span></label>
       </div>
@@ -118,9 +118,9 @@
   var minWarning = document.getElementById("stella-min-warning");
 
   var DATE_OPTIONS = {
-    choir_residence: ["4–7 dezembro 2026", "11–14 dezembro 2026"],
-    choir_weekend: ["5–6 dezembro 2026", "12–13 dezembro 2026"],
-    choir_day: ["5 dezembro 2026", "6 dezembro 2026", "12 dezembro 2026", "13 dezembro 2026"],
+    choir_residence: ["4–6 dezembro 2026", "11–13 dezembro 2026"],
+    choir_weekend: ["4–6 dezembro 2026", "11–13 dezembro 2026"],
+    choir_day: ["5 dezembro 2026", "6 dezembro 2026", "8 dezembro 2026", "12 dezembro 2026", "13 dezembro 2026"],
   };
   var PRICE_PER_SINGER = { choir_weekend: 79, choir_day: 42 };
   var MODALITY_LABEL = { choir_residence: "Residência Coral", choir_weekend: "Fim de Semana Coral", choir_day: "Choir Day" };
