@@ -1,30 +1,157 @@
 <!doctype html>
-<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<title>Inscrição Online | VoxLaci</title>
-<meta name="description" content="Ficha de inscrição online para audições e ensembles do VoxLaci.">
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<title>Reservar Casting VoxLaci por 20 EUR | Inscricao Online</title>
+<meta name="description" content="Reserva o casting VoxLaci por 20 EUR. Coros para criancas, jovens e adultos em Cascais: VoxPueri, VoxSoul, VoxAtma, VoxCor e Hirmandade.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://voxlaci.com/inscricoes/inscricao-online/">
-<meta property="og:title" content="Inscrição Online | VoxLaci">
-<meta property="og:description" content="Ficha de inscrição online para audições e ensembles do VoxLaci.">
+<meta property="og:title" content="Reservar Casting VoxLaci por 20 EUR">
+<meta property="og:description" content="Coros para criancas, jovens e adultos em Cascais. Inscricao/audicao: 20 EUR.">
 <meta property="og:url" content="https://voxlaci.com/inscricoes/inscricao-online/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://voxlaci.com/assets/hero-live.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Inscrição Online | VoxLaci">
-<meta name="twitter:description" content="Ficha de inscrição online para audições e ensembles do VoxLaci.">
+<meta name="twitter:title" content="Reservar Casting VoxLaci por 20 EUR">
+<meta name="twitter:description" content="Coros para criancas, jovens e adultos em Cascais. Inscricao/audicao: 20 EUR.">
 <meta name="twitter:image" content="https://voxlaci.com/assets/hero-live.jpg">
-<link rel="stylesheet" href="/subpage.css"><link rel="stylesheet" href="/universal-share.css?v=14"><!-- Metricool Tracking -->
+<link rel="stylesheet" href="/subpage.css">
+<link rel="stylesheet" href="/universal-share.css?v=14">
+<style>
+  .signup-hero{position:relative;min-height:88svh;display:grid;align-items:end;overflow:hidden;color:#fff;background:#050505}
+  .signup-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.08)}
+  .signup-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.9),rgba(0,0,0,.35) 58%,rgba(0,0,0,.15)),linear-gradient(0deg,rgba(0,0,0,.78),transparent 55%)}
+  .signup-copy{position:relative;z-index:1;width:min(1040px,calc(100% - 36px));margin:0 auto;padding:140px 0 72px}
+  .signup-copy h1{max-width:880px;margin:0;font:700 clamp(3.4rem,8vw,8.2rem)/.86 Manrope,Inter,sans-serif;letter-spacing:-.075em}
+  .signup-copy p{max-width:660px;color:rgba(255,255,255,.82);font-size:clamp(1rem,1.6vw,1.35rem)}
+  .signup-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  .signup-pill{min-height:52px;display:inline-flex;align-items:center;justify-content:center;padding:0 24px;border-radius:999px;font-weight:800}
+  .signup-pill.primary{color:#fff;background:#151515}
+  .signup-pill.light{color:#111;background:#fff}
+  .signup-stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
+  .signup-stats span{padding:9px 12px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(255,255,255,.08);font-size:.86rem}
+  .signup-section{padding:80px 7vw;background:#fff}
+  .signup-section.alt{background:#f5f5f7}
+  .signup-inner{width:min(1180px,100%);margin:auto}
+  .signup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .signup-card{padding:28px;background:#fff;border:1px solid #dcdce2}
+  .signup-card h2,.signup-card h3{margin:0 0 12px;font:700 clamp(1.7rem,3vw,3rem)/.96 Manrope,Inter,sans-serif;letter-spacing:-.045em}
+  .signup-card p,.signup-card li{color:#555}
+  .signup-card ul{margin:16px 0 0;padding-left:18px}
+  .signup-payment{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+  .signup-payment article{padding:24px;background:#111;color:#fff}
+  .signup-payment article:nth-child(2){background:#26352f}
+  .signup-payment strong{display:block;margin-bottom:8px;font-size:1.15rem}
+  .signup-payment p{margin:0;color:rgba(255,255,255,.78)}
+  .signup-testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}
+  .signup-testimonials blockquote{margin:0;padding:26px;background:#f5f5f7}
+  .signup-testimonials p{margin:0;color:#222}
+  .signup-testimonials cite{display:block;margin-top:18px;color:#666;font-style:normal;font-size:.9rem}
+  .sticky-signup{position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;background:#111;color:#fff;box-shadow:0 -14px 50px rgba(0,0,0,.28)}
+  .sticky-signup span{font-size:.88rem;font-weight:700}
+  .sticky-signup a{padding:11px 14px;border-radius:999px;background:#fff;color:#111;font-weight:800;white-space:nowrap}
+  @media(max-width:800px){.signup-grid,.signup-payment,.signup-testimonials{grid-template-columns:1fr}.signup-section{padding:58px 20px}.signup-copy{padding:118px 0 86px}.sticky-signup{display:flex}.signup-actions .signup-pill{width:100%}}
+</style>
+<!-- Metricool Tracking -->
 <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"218c291ab1fdaebf1e9485c2205c03e"})});</script>
 </head>
-<body><header class="page-nav"><a href="/"><img src="/assets/voxlaci-logo-white.png" alt="VoxLaci"></a>
-<nav><a href="/#vozes">Ensembles</a><a href="/eventos/">Eventos e Festivais</a><a href="/#servicos">Serviços</a></nav>
-<a class="cta" href="/#inscricao">Casting</a></header>
-<main><section class="page-hero"><img src="/assets/hero-live.jpg" alt="Inscrição Online">
-<div class="page-hero-copy"><p class="eyebrow">VoxLaci</p><h1>Inscrição Online</h1><p>Inscrição | Online | Registration</p></div></section>
-<section class="section white legacy-content"><div class="section-head"><p class="eyebrow">Informação</p>
-<h2>Conteúdo VoxLaci</h2></div><div class="legacy-copy"><p>Inscrição | Online | Registration</p></div></section></section>
+<body>
+<header class="page-nav">
+  <a href="/"><img src="/assets/voxlaci-logo-white.png" alt="VoxLaci"></a>
+  <nav><a href="/#vozes">Ensembles</a><a href="/#perguntas">Perguntas</a><a href="/contacto/">Contacto</a></nav>
+  <a class="cta" href="/#inscricao">Reservar 20 EUR</a>
+</header>
+<main>
+  <section class="signup-hero">
+    <img src="/assets/hero-live.jpg" alt="Coros VoxLaci em palco">
+    <div class="signup-copy">
+      <p class="eyebrow">Inscricao VoxLaci 2026/27</p>
+      <h1>Reserva agora o teu casting por 20 EUR.</h1>
+      <p>Coros para criancas, jovens e adultos em Cascais. Nao precisas de experiencia: nos ajudamos-te a encontrar o grupo certo.</p>
+      <div class="signup-actions">
+        <a class="signup-pill light" href="/#inscricao" data-track="click_pay_20">Reservar casting por 20 EUR</a>
+        <a class="signup-pill primary" href="https://wa.me/351938407985?text=Ola%20VoxLaci.%20Quero%20reservar%20um%20casting%20por%2020%20EUR%20e%20tenho%20uma%20duvida." target="_blank" rel="noopener" data-track="whatsapp_click">Tenho duvidas no WhatsApp</a>
+      </div>
+      <div class="signup-stats">
+        <span>8 inscricoes recebidas</span>
+        <span>Objetivo: 100 novas vozes esta semana</span>
+        <span>Vagas limitadas por grupo e naipe</span>
+      </div>
+    </div>
+  </section>
 
-<section class="page-cta"><p class="eyebrow">Mais do que unirmos vozes</p><h2>Transformamos mundos.</h2>
-<a class="button primary" href="/#inscricao">Fazer casting online</a></section></main>
-<footer class="page-footer"><div><img src="/assets/voxlaci-logo-white.png" alt="VoxLaci"></div>
-<div><a href="mailto:info@voxlaci.com">info@voxlaci.com</a><a href="/">Voltar ao site</a></div></footer><script src="/universal-share.js?v=14" defer></script></body></html>
+  <section class="signup-section">
+    <div class="signup-inner signup-grid">
+      <article class="signup-card">
+        <h2>3 passos</h2>
+        <ul>
+          <li>Escolhe o grupo ou deixa-nos orientar.</li>
+          <li>Confirma a inscricao/audicao de 20 EUR.</li>
+          <li>Recebe contacto da equipa VoxLaci para o proximo passo.</li>
+        </ul>
+      </article>
+      <article class="signup-card">
+        <h2>Grupos abertos</h2>
+        <p>VoxPueri para criancas, VoxSoul para jovens, VoxAtma e VoxCor para adultos, Hirmandade para vozes masculinas.</p>
+      </article>
+      <article class="signup-card">
+        <h2>Em Cascais</h2>
+        <p>Desde 1996, a VoxLaci cria comunidade coral com criancas, jovens e adultos. Ensaios no Seminario Torre d'Aguilha.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="signup-section alt">
+    <div class="signup-inner">
+      <p class="eyebrow">Inscricao / audicao</p>
+      <h2 style="max-width:850px;margin:0;font:700 clamp(2.8rem,6vw,6.5rem)/.9 Manrope,Inter,sans-serif;letter-spacing:-.065em">O pagamento de 20 EUR confirma que queres avancar.</h2>
+      <div class="signup-payment">
+        <article>
+          <strong>MB Way</strong>
+          <p>Enviar 20 EUR para 938 407 985 e indicar o nome da pessoa inscrita.</p>
+        </article>
+        <article>
+          <strong>PayPal ou transferencia</strong>
+          <p>Usar o formulario de inscricao para escolher a forma de pagamento e anexar comprovativo.</p>
+        </article>
+      </div>
+      <div class="signup-actions">
+        <a class="signup-pill primary" href="/#inscricao" data-track="start_form">Preencher formulario de inscricao</a>
+        <a class="signup-pill light" href="https://wa.me/351938407985?text=Ola.%20Ja%20paguei%20ou%20quero%20pagar%20a%20inscricao%20VoxLaci%20de%2020%20EUR." target="_blank" rel="noopener" data-track="whatsapp_click">Enviar comprovativo por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="signup-section">
+    <div class="signup-inner">
+      <p class="eyebrow">Quem entra encontra lugar</p>
+      <div class="signup-testimonials">
+        <blockquote><p>O meu filho entrou no VoxPueri com 5 anos sem nunca ter cantado num grupo. Passado um ano, chega a casa a cantar as musicas dos ensaios.</p><cite>Ana C., mae de membro VoxPueri</cite></blockquote>
+        <blockquote><p>Entrei no VoxAtma a meio da vida, sem qualquer experiencia coral. Tinha medo de nao conseguir acompanhar. Senti exactamente o oposto.</p><cite>Paulo M., membro VoxAtma</cite></blockquote>
+        <blockquote><p>Hoje os ensaios sao a parte da semana que mais espero. Aprendi a ouvir os outros enquanto canto.</p><cite>Beatriz N., membro VoxSoul</cite></blockquote>
+      </div>
+    </div>
+  </section>
+</main>
+<div class="sticky-signup"><span>Casting VoxLaci: 20 EUR</span><a href="/#inscricao" data-track="click_pay_20">Reservar agora</a></div>
+<footer class="page-footer"><div><img src="/assets/voxlaci-logo-white.png" alt="VoxLaci"></div><div><a href="mailto:info@voxlaci.com">info@voxlaci.com</a><a href="/">Voltar ao site</a></div></footer>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  document.querySelectorAll("[data-track]").forEach(function(link){
+    link.addEventListener("click", function(){
+      if (typeof gtag === "function") {
+        gtag("event", link.dataset.track, {event_category:"casting_96h", value:20});
+      }
+    });
+  });
+  if (typeof gtag === "function") {
+    gtag("event", "view_registration_landing", {event_category:"casting_96h", value:20});
+  }
+</script>
+<script src="/universal-share.js?v=14" defer></script>
+</body>
+</html>
