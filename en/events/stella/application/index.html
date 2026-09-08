@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <title>STELLA Festival 2026 Application | VoxLaci</title>
-<meta name="description" content="Choir application for STELLA Festival 2026 — Choral Residence, Choral Weekend and Choir Day. Cascais, Portugal.">
+<meta name="description" content="Choir application for STELLA Festival 2026 — Choral Residence, Choir Weekend and Choir Day. Cascais, Portugal.">
 <meta name="robots" content="noindex,follow">
 <link rel="canonical" href="https://voxlaci.com/en/events/stella/application/"><link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/stella/candidatura/"><link rel="alternate" hreflang="en" href="https://voxlaci.com/en/events/stella/application/">
 <link rel="stylesheet" href="../../../../subpage.css"><link rel="stylesheet" href="../../../../ramos-residency.css">
@@ -37,7 +37,7 @@
       <legend>1/5 · Choose the modality</legend>
       <div class="room-options cols-3">
         <label class="room-option"><input type="radio" name="application_type" value="choir_residence" required><b>Choral Residence</b><span>from €249 / €309 pp · 2 nights</span></label>
-        <label class="room-option"><input type="radio" name="application_type" value="choir_weekend" required><b>Choral Weekend</b><span>€79 per singer</span></label>
+        <label class="room-option"><input type="radio" name="application_type" value="choir_weekend" required><b>Choir Weekend</b><span>€79 per singer</span></label>
         <label class="room-option"><input type="radio" name="application_type" value="choir_day" required><b>Choir Day</b><span>€42 per singer</span></label>
       </div>
     </fieldset>
@@ -119,11 +119,11 @@
 
   var DATE_OPTIONS = {
     choir_residence: ["4–6 December 2026", "11–13 December 2026"],
-    choir_weekend: ["4–6 December 2026", "11–13 December 2026"],
+    choir_weekend: ["5–6 December 2026", "12–13 December 2026"],
     choir_day: ["5 December 2026", "6 December 2026", "8 December 2026", "12 December 2026", "13 December 2026"],
   };
   var PRICE_PER_SINGER = { choir_weekend: 79, choir_day: 42 };
-  var MODALITY_LABEL = { choir_residence: "Choral Residence", choir_weekend: "Choral Weekend", choir_day: "Choir Day" };
+  var MODALITY_LABEL = { choir_residence: "Choral Residence", choir_weekend: "Choir Weekend", choir_day: "Choir Day" };
 
   function updateTotal(){
     var type = form.querySelector('input[name="application_type"]:checked');

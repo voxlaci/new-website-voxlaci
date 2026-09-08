@@ -33,8 +33,8 @@ export const STATUS_LABELS = {
 };
 
 export const MODALITY_LABELS = {
-  pt: { choir_residence: "STELLA Choral Residence", choir_weekend: "STELLA Choral Weekend", choir_day: "STELLA Choir Day" },
-  en: { choir_residence: "STELLA Choral Residence", choir_weekend: "STELLA Choral Weekend", choir_day: "STELLA Choir Day" },
+  pt: { choir_residence: "STELLA Choral Residence", choir_weekend: "STELLA Choir Weekend", choir_day: "STELLA Choir Day" },
+  en: { choir_residence: "STELLA Choral Residence", choir_weekend: "STELLA Choir Weekend", choir_day: "STELLA Choir Day" },
 };
 
 export async function generateStellaId(db, id) {
