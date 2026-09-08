@@ -64,7 +64,9 @@
     document.documentElement.lang = app.language;
     document.title = T[app.language] ? (app.language === "pt" ? "Área STELLA" : "STELLA Area") + " — " + app.stella_id : document.title;
 
-    var mealKeys = app.application_type === "choir_day" ? ["choir_day_dinner"] : ["dinner_friday", "dinner_saturday", "dinner_sunday"];
+    var mealKeys = app.application_type === "choir_day" ? ["choir_day_dinner"]
+      : app.application_type === "choir_weekend" ? ["dinner_saturday"]
+      : ["dinner_friday", "dinner_saturday", "dinner_sunday"];
     var balance = app.amount_total_cents != null ? app.amount_total_cents - app.amount_paid_cents : null;
 
     var html = "";
@@ -118,7 +120,7 @@
       html += "</div>";
     }
 
-    if (["choir_residence", "choir_day"].indexOf(app.application_type) !== -1 && app.status !== "application_received" && app.status !== "under_review") {
+    if (["choir_residence", "choir_day", "choir_weekend"].indexOf(app.application_type) !== -1 && app.status !== "application_received" && app.status !== "under_review") {
       html += "<div class=\"portal-section\"><h2>" + t.meals + "</h2><p class=\"residency-note\">" + t.mealsHint + "</p>";
       html += "<div id=\"meal-editor\" class=\"meal-editor\"></div>";
       html += "<button class=\"residency-submit\" id=\"save-meals\" type=\"button\">" + t.saveMeals + "</button>";

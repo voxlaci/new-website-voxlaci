@@ -5,7 +5,7 @@ export { sanitize, esc, euros, sendEmail, validateProofFile, randomKey, FROM, VO
 
 export const PRICING = {
   choir_residence: { twin: 24900, single: 30900 }, // per person, cents — twin/double/triple share the same rate
-  choir_weekend: 6900,
+  choir_weekend: 7900,
   choir_day: 4200,
 };
 
