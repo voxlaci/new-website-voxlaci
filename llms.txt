@@ -7,10 +7,18 @@ VoxLaci é uma organização sem fins lucrativos dedicada à música coral, com 
 ## Principais páginas
 
 - [Homepage](https://voxlaci.com/): proposta de valor, ensembles, casting online, contactos
-- [Ensembles](https://voxlaci.com/ensembles/): grupos vocais por idade (VoxPueri, VoxSoul, VoxAtma, VoxCor, Tutti, Intuição, Hirmandade, Qūórum, KYMA, Vox Petrus)
+- [Coros em Cascais](https://voxlaci.com/coro-cascais/): página central — grupos por idade, local de ensaios, processo de entrada, preços, FAQ
+- [Ensembles](https://voxlaci.com/ensembles/): grupos vocais por idade — VoxPueri (coro infantil, 4–10 anos), VoxSoul (coro juvenil, 10–18), VoxAtma e VoxCor (coros de adultos; VoxCor sobretudo 60+), Tutti (canto coletivo sem audição), Intuição (vozes femininas), Hirmandade (vozes masculinas, 15+), Qūórum (coro de câmara), KYMA (ensemble profissional), Vox Petrus (litúrgico), Spóros (instrumental)
 - [Serviços](https://voxlaci.com/servicos/): team building musical, aprender instrumento, workshops
 - [Eventos e Festivais](https://voxlaci.com/eventos/): Ramos Palm Sunday Festival, voX±Pop, Gratias, Janeiras, Reis
 - [Projetos](https://voxlaci.com/projetos/): coros nas escolas, Espaço dos Avós, VoxFrater
+
+## Factos
+
+- Fundação: 1996, por Myguel Santos e Castro
+- Local de ensaios: Seminário Torre d'Águilha, Beco Anexo à Estrada Mata da Torre, São Domingos de Rana, Cascais, Portugal
+- Preços: audição 20€; mensalidade 57€/mês (10 meses) ou 390€/temporada; jóia anual 30€; desconto familiar 10% a partir do 2.º membro até aos 18 anos
+- Festival: Ramos Palm Sunday Festival (semana da Páscoa, Cascais), festival coral internacional
 
 ## Contacto
 
@@ -18,4 +26,4 @@ Email: info@voxlaci.com · Telefone: +351 925 075 186 · Local: Seminário Torre
 
 ## Fundador
 
-Myguel Santos e Castro — maestro, diretor artístico. Site pessoal: https://myguelcastro.com/
+Myguel Santos e Castro — maestro, diretor artístico. Site pessoal: https://myguelcastro.com/ · CV: https://voxlaci.com/vox-laci/cv-maestro/
