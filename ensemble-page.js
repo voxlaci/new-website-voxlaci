@@ -56,7 +56,8 @@ if (data) {
   document.querySelectorAll("[data-name-story-title]").forEach(x=>x.textContent=data.nameStoryTitle);
   document.querySelectorAll("[data-name-story-body]").forEach(x=>x.textContent=data.nameStoryBody);
   document.querySelectorAll("[data-para-quem]").forEach(x=>x.textContent=data.paraQuem);
-  const imagePath = pageLanguage === "en" ? data.image.replace("../assets/","../../assets/") : data.image;
+  // usa .webp (existe para todos os ensembles, ~30% mais leve; kyma já era .webp)
+  const imagePath = (pageLanguage === "en" ? data.image.replace("../assets/","../../assets/") : data.image).replace(/\.jpe?g(\?|$)/i, ".webp$1");
   const hero=document.querySelector("[data-image]"); if(hero){hero.src=imagePath;hero.alt=pageLanguage === "en" ? `${data.name}, VoxLaci choir and vocal group in Cascais` : `${data.name} — coro e grupo vocal VoxLaci em Cascais`;}
   const benefits=document.querySelector("[data-benefits]");
   if(benefits) benefits.innerHTML=data.benefits.map(([h,p],i)=>`<article><span class="eyebrow">0${i+1}</span><h3>${h}</h3><p>${p}</p></article>`).join("");
