@@ -13,3 +13,6 @@ work/
 *.log
 .dev.vars
 .wrangler/
+
+# Planning docs — not for public deploy
+SEO_GROWTH_MASTERPLAN.md
