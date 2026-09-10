@@ -382,6 +382,7 @@
       if (headerCta) headerCta.setAttribute("href", target === "pt" ? "/eventos/stella/candidatura/" : "/en/events/stella/application/");
     }
     document.addEventListener("click", function(e){ if (e.target.closest("[data-set-lang]")) setTimeout(syncApplyLinks, 0); });
+    document.addEventListener("voxlaci:langchange", syncApplyLinks);
     syncApplyLinks();
 
     function euros(cents){ return (cents/100).toLocaleString("pt-PT", { minimumFractionDigits: 0, maximumFractionDigits: 2 }); }

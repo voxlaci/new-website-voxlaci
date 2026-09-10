@@ -1,6 +1,11 @@
 (() => {
   const supported = ["pt","en","es","fr","it","zh"];
-  const saved = localStorage.getItem("voxlaci-project-lang") || document.documentElement.lang || "pt";
+  const fromUrl = new URLSearchParams(location.search).get("lang");
+  const saved =
+    (fromUrl && supported.includes(fromUrl) && fromUrl) ||
+    localStorage.getItem("voxlaci-project-lang") ||
+    document.documentElement.lang ||
+    "pt";
   function setLang(lang) {
     if (!supported.includes(lang)) return;
     document.documentElement.lang = lang;
@@ -10,6 +15,7 @@
       if (value) el.innerHTML = value;
     });
     document.querySelectorAll("[data-set-lang]").forEach((button) => button.classList.toggle("active", button.dataset.setLang === lang));
+    document.dispatchEvent(new CustomEvent("voxlaci:langchange", { detail: { lang } }));
   }
   document.addEventListener("click", (event) => {
     const button = event.target.closest("[data-set-lang]");
