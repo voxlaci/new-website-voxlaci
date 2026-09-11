@@ -37,3 +37,7 @@
 .events-grid .edition-card.featured p{color:#c9c9c9;-webkit-line-clamp:3}
 @media(max-width:1000px){.events-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:640px){.events-grid{grid-template-columns:repeat(2,1fr);gap:14px}.events-grid .edition-card{padding:13px}.events-grid .edition-card h3{font-size:1rem}.events-grid .edition-card.featured{grid-column:span 2}}
+
+/* STELLA 2026 video invitation */
+.stella-reels{background:#fff}.stella-reel-grid{display:grid;grid-template-columns:repeat(2,minmax(0,360px));gap:18px;justify-content:center;align-items:start}.stella-reel-grid article{display:grid;gap:12px}.stella-reel-grid video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#050505;border-radius:8px;box-shadow:0 24px 70px rgba(0,0,0,.18)}.stella-reel-grid b{font:800 .8rem Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#777;text-align:center}
+@media(max-width:800px){.stella-reel-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
