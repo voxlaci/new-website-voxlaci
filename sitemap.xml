@@ -899,30 +899,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/barbershop/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/barbershop/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/barbershop/"/>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://voxlaci.com/gratias/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/gratias/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/gratias/"/>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://voxlaci.com/hirmandade/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/hirmandade/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/hirmandade/"/>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://voxlaci.com/coromusicaeucaristia/</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/coromusicaeucaristia/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/coromusicaeucaristia/"/>
@@ -1249,30 +1225,6 @@
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://voxlaci.com/academia/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/academia/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/academia/"/>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://voxlaci.com/workshopprofessores/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/workshopprofessores/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/workshopprofessores/"/>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://voxlaci.com/espacodosavos/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/espacodosavos/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/espacodosavos/"/>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://voxlaci.com/transportedosavos/</loc>
