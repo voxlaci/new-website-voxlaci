@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="/subpage.css">
   <link rel="stylesheet" href="/ramos-residency.css">
   <link rel="stylesheet" href="/universal-share.css?v=14">
+  <script src="/utm-capture.js"></script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":["Organization","PerformingGroup"],"name":"VoxLaci","url":"https://voxlaci.com/","email":"info@voxlaci.com","telephone":"+351925075186","sameAs":["https://www.facebook.com/VoxLaci","https://www.instagram.com/VoxLaci","https://www.youtube.com/@VoxLaci"]}
   </script>
@@ -371,15 +372,16 @@
   <script src="/universal-share.js?v=14" defer></script>
   <script>
   (function(){
+    function withUTM(url){ return window.voxlaciAppendUTM ? window.voxlaciAppendUTM(url) : url; }
     function syncApplyLinks(){
       var lang = document.documentElement.lang || "pt";
       var target = lang === "pt" ? "pt" : "en";
       document.querySelectorAll("[data-href-pt][data-href-en]").forEach(function(a){
         var href = a.dataset["href" + (target === "pt" ? "Pt" : "En")];
-        if (href) a.setAttribute("href", href);
+        if (href) a.setAttribute("href", withUTM(href));
       });
       var headerCta = document.getElementById("header-apply-cta");
-      if (headerCta) headerCta.setAttribute("href", target === "pt" ? "/eventos/stella/candidatura/" : "/en/events/stella/application/");
+      if (headerCta) headerCta.setAttribute("href", withUTM(target === "pt" ? "/eventos/stella/candidatura/" : "/en/events/stella/application/"));
     }
     document.addEventListener("click", function(e){ if (e.target.closest("[data-set-lang]")) setTimeout(syncApplyLinks, 0); });
     document.addEventListener("voxlaci:langchange", syncApplyLinks);

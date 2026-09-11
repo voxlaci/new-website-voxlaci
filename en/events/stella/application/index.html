@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="../../../../subpage.css"><link rel="stylesheet" href="../../../../ramos-residency.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/universal-share.css?v=14">
+<script src="/utm-capture.js"></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
@@ -30,6 +31,7 @@
   <p class="form-erro" id="stella-error" style="display:none;padding:14px 18px;background:#fdeeee;color:#a3241f;border:1px solid #f3c6c4;margin-bottom:24px"></p>
 
   <input type="hidden" name="language" value="en">
+  <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term">
   <p style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave blank: <input name="website" tabindex="-1" autocomplete="off"><input name="campo-secreto" tabindex="-1" autocomplete="off"></label></p>
 
   <div class="wizard-panel is-active" data-panel="1">
@@ -110,6 +112,16 @@
 <script>
 (function(){
   var form = document.getElementById("stella-form");
+
+  // Carry utm_* captured by /utm-capture.js (from this page's URL, or from
+  // the marketing page if the visitor clicked through) into the hidden fields.
+  if (window.voxlaciUTM) {
+    ["utm_source","utm_medium","utm_campaign","utm_content","utm_term"].forEach(function(k){
+      var el = form.querySelector('input[name="' + k + '"]');
+      if (el && window.voxlaciUTM[k]) el.value = window.voxlaciUTM[k];
+    });
+  }
+
   var typeInputs = form.querySelectorAll('input[name="application_type"]');
   var datesSelect = form.querySelector('select[name="preferred_dates"]');
   var totalBox = document.getElementById("stella-total");

@@ -83,6 +83,11 @@ export async function onRequestPost(context) {
   const biography = sanitize(formData.get("biography"), 3000);
   const videoLink = sanitize(formData.get("video_link"), 500);
   const notes = sanitize(formData.get("notes"), 2000);
+  const utmSource = sanitize(formData.get("utm_source"), 100);
+  const utmMedium = sanitize(formData.get("utm_medium"), 100);
+  const utmCampaign = sanitize(formData.get("utm_campaign"), 100);
+  const utmContent = sanitize(formData.get("utm_content"), 100);
+  const utmTerm = sanitize(formData.get("utm_term"), 100);
 
   if (!choirName || !email || !preferredDates || !numSingers) return json({ ok: false, error: "missing_fields" }, 400);
 
@@ -104,13 +109,13 @@ export async function onRequestPost(context) {
         `INSERT INTO stella_applications
          (language, application_type, choir_name, country, city, conductor_name, contact_person, email, phone,
           whatsapp, website, social_media, num_singers, num_companions, preferred_dates, biography, video_link,
-          notes, amount_total_cents, private_token, status)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'application_received')`
+          notes, amount_total_cents, private_token, utm_source, utm_medium, utm_campaign, utm_content, utm_term, status)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'application_received')`
       )
       .bind(
         language, applicationType, choirName, country, city, conductorName, contactPerson, email, phone,
         whatsapp, website, socialMedia, numSingers, numCompanions, preferredDates, biography, videoLink,
-        notes, amountTotalCents, privateToken
+        notes, amountTotalCents, privateToken, utmSource, utmMedium, utmCampaign, utmContent, utmTerm
       )
       .run();
     insertedId = result.meta.last_row_id;

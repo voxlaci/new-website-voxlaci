@@ -41,7 +41,7 @@ export async function onRequestGet({ request, env }) {
       .prepare(
         `SELECT stella_id, application_type, choir_name, country, city, conductor_name, contact_person, email, phone,
                 whatsapp, num_singers, num_companions, preferred_dates, amount_total_cents, amount_paid_cents,
-                status, created_at
+                status, utm_source, utm_medium, utm_campaign, utm_content, utm_term, created_at
          FROM stella_applications ORDER BY created_at DESC`
       )
       .all();
