@@ -263,14 +263,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://voxlaci.com/ensembles/liturgico/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/liturgico/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/liturgico/"/>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://voxlaci.com/ensembles/mates/</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/mates/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/mates/"/>
@@ -282,30 +274,6 @@
     <loc>https://voxlaci.com/ensembles/newgroup/</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/newgroup/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/newgroup/"/>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://voxlaci.com/ensembles/pro/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/pro/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/pro/"/>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://voxlaci.com/ensembles/sporos/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/sporos/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/sporos/"/>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://voxlaci.com/ensembles/voxlfe/</loc>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/ensembles/voxlfe/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/ensembles/voxlfe/"/>
     <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
