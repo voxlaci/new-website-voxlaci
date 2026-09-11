@@ -40,6 +40,13 @@ const ensembleSeoPt = {
 const key = document.body.dataset.ensemble;
 const pageLanguage = document.body.dataset.language || "pt";
 const data = pageLanguage === "en" ? {...ensemblePages[key],...ensembleEnglish[key]} : ensemblePages[key];
+const ensembleVideos = {
+  voxpueri:{src:"../assets/ensembles/videos/voxpueri.mp4",poster:"../assets/ensembles/videos/voxpueri-poster.jpg",title:"VoxPueri em movimento",enTitle:"VoxPueri in motion"},
+  voxsoul:{src:"../assets/ensembles/videos/voxsoul.mp4",poster:"../assets/ensembles/videos/voxsoul-poster.jpg",title:"VoxSoul em movimento",enTitle:"VoxSoul in motion"},
+  voxatma:{src:"../assets/ensembles/videos/voxatma.mp4",poster:"../assets/ensembles/videos/voxatma-poster.jpg",title:"VoxAtma em movimento",enTitle:"VoxAtma in motion"},
+  voxcor:{src:"../assets/ensembles/videos/voxcor.mp4",poster:"../assets/ensembles/videos/voxcor-poster.jpg",title:"VoxCor em movimento",enTitle:"VoxCor in motion"},
+  hirmandade:{src:"../assets/ensembles/videos/hirmandade.mp4",poster:"../assets/ensembles/videos/hirmandade-poster.jpg",title:"Hirmandade em movimento",enTitle:"Hirmandade in motion"}
+};
 if (data) {
   const seoPt = (pageLanguage !== "en" && ensembleSeoPt[key]) ? ensembleSeoPt[key] : null;
   document.title = seoPt ? seoPt.seoTitle : `${data.name} | ${data.titleSuffix || "Coro e grupo vocal VoxLaci em Cascais"}`;
@@ -61,4 +68,22 @@ if (data) {
   const hero=document.querySelector("[data-image]"); if(hero){hero.src=imagePath;hero.alt=pageLanguage === "en" ? `${data.name}, VoxLaci choir and vocal group in Cascais` : `${data.name} — coro e grupo vocal VoxLaci em Cascais`;}
   const benefits=document.querySelector("[data-benefits]");
   if(benefits) benefits.innerHTML=data.benefits.map(([h,p],i)=>`<article><span class="eyebrow">0${i+1}</span><h3>${h}</h3><p>${p}</p></article>`).join("");
+  const videoData = ensembleVideos[key];
+  const videoSection = document.querySelector("[data-ensemble-video]");
+  if (videoSection && videoData) {
+    const videoSrc = pageLanguage === "en" ? videoData.src.replace("../assets/","../../assets/") : videoData.src;
+    const posterSrc = pageLanguage === "en" ? videoData.poster.replace("../assets/","../../assets/") : videoData.poster;
+    const title = pageLanguage === "en" ? videoData.enTitle : videoData.title;
+    const videoTitle = videoSection.querySelector("[data-video-title]");
+    const videoEyebrow = videoSection.querySelector("[data-video-eyebrow]");
+    const video = videoSection.querySelector("[data-video-player]");
+    if (videoTitle) videoTitle.textContent = title;
+    if (videoEyebrow) videoEyebrow.textContent = pageLanguage === "en" ? "Choir video" : "Vídeo do coro";
+    if (video) {
+      video.poster = posterSrc;
+      video.innerHTML = `<source src="${videoSrc}" type="video/mp4">`;
+      video.setAttribute("aria-label", title);
+    }
+    videoSection.hidden = false;
+  }
 }
