@@ -37,16 +37,31 @@ const ensembleSeoPt = {
   voxpetrus:{seoTitle:"Coro litúrgico para missas e cerimónias — Vox Petrus | VoxLaci",metaDescription:"O ensemble litúrgico da VoxLaci: música sacra para missas, casamentos, baptizados e homenagens no distrito de Lisboa. Ensaios no Estoril."},
   sporos:{seoTitle:"Projeto instrumental em Cascais — Spóros | VoxLaci",metaDescription:"O projeto instrumental da VoxLaci em Cascais: abrir a linguagem coral a instrumentistas, novos repertórios e colaborações entre voz e instrumento."},
 };
+const ensembleSeoEn = {
+  voxpueri:{seoTitle:"Children's Choir in Cascais (Ages 4–10) — VoxPueri | VoxLaci",metaDescription:"VoxLaci's children's choir in Cascais, for ages 4 to 10. Voice, movement and first instruments, no experience needed. Apply for casting online."},
+  voxsoul:{seoTitle:"Youth Choir in Cascais (Ages 10–18) — VoxSoul | VoxLaci",metaDescription:"VoxLaci's youth choir in Cascais, for ages 10 to 18. Vocal technique, stage and belonging, with or without experience. Apply for casting online."},
+  voxatma:{seoTitle:"Adult Choir in Cascais — VoxAtma | VoxLaci",metaDescription:"VoxLaci's adult choir in Cascais, with or without musical experience. Breathing, voice and repertoire on Monday evenings. Apply for casting."},
+  voxcor:{seoTitle:"Adult Choir (60+) in Cascais — VoxCor | VoxLaci",metaDescription:"VoxLaci's adult choir in Cascais, mostly for ages 60+, with transport to rehearsals. Repertoire, interpretation and community. Apply for casting."},
+  tutti:{seoTitle:"Sing in a Choir with No Audition in Cascais — Tutti | VoxLaci",metaDescription:"Sing in a choir with no audition, in Cascais, with VoxLaci. An accessible space for collective singing, open to everyone. Apply for casting."},
+  intuicao:{seoTitle:"Female Voice Ensemble in Cascais — Intuição | VoxLaci",metaDescription:"VoxLaci's female voice ensemble in Cascais, by audition. Female choral repertoire, vocal blend and interpretation. Apply for casting online."},
+  hirmandade:{seoTitle:"Male Voice Ensemble in Cascais — Hirmandade | VoxLaci",metaDescription:"VoxLaci's male voice ensemble in Cascais, from age 15. Technique, repertoire and shared sound on Monday evenings. Apply for casting online."},
+  quorum:{seoTitle:"Chamber Choir in Cascais — Qūórum | VoxLaci",metaDescription:"VoxLaci's chamber choir in Cascais, by audition. Demanding repertoire, precision, tuning and outstanding ensemble quality. Apply for casting."},
+  kyma:{seoTitle:"Professional Vocal Ensemble in Cascais — KYMA | VoxLaci",metaDescription:"VoxLaci's professionally-oriented vocal ensemble in Cascais. Advanced singers, by audition or invitation, host choir of the Ramos Festival."},
+  voxpetrus:{seoTitle:"Liturgical Choir for Masses & Ceremonies — Vox Petrus | VoxLaci",metaDescription:"VoxLaci's liturgical ensemble: sacred music for masses, weddings, baptisms and memorials in the Lisbon area. Rehearsals in Estoril."},
+  sporos:{seoTitle:"Instrumental Project in Cascais — Spóros | VoxLaci",metaDescription:"VoxLaci's instrumental project in Cascais: opening the choral language to instrumentalists, new repertoire and voice-instrument collaborations."},
+};
 const key = document.body.dataset.ensemble;
 const pageLanguage = document.body.dataset.language || "pt";
 const data = pageLanguage === "en" ? {...ensemblePages[key],...ensembleEnglish[key]} : ensemblePages[key];
 const ensembleVideos = {};
 if (data) {
   const seoPt = (pageLanguage !== "en" && ensembleSeoPt[key]) ? ensembleSeoPt[key] : null;
-  document.title = seoPt ? seoPt.seoTitle : `${data.name} | ${data.titleSuffix || "Coro e grupo vocal VoxLaci em Cascais"}`;
-  if (seoPt) {
+  const seoEn = (pageLanguage === "en" && ensembleSeoEn[key]) ? ensembleSeoEn[key] : null;
+  const seo = seoPt || seoEn;
+  document.title = seo ? seo.seoTitle : `${data.name} | ${data.titleSuffix || "Coro e grupo vocal VoxLaci em Cascais"}`;
+  if (seo) {
     const md = document.querySelector('meta[name="description"]');
-    if (md) md.setAttribute("content", seoPt.metaDescription);
+    if (md) md.setAttribute("content", seo.metaDescription);
   }
   document.querySelectorAll("[data-name]").forEach(x=>x.textContent=data.name);
   document.querySelectorAll("[data-tag]").forEach(x=>x.textContent=data.tag);
