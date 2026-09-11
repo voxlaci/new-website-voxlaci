@@ -41,9 +41,10 @@ const key = document.body.dataset.ensemble;
 const pageLanguage = document.body.dataset.language || "pt";
 const data = pageLanguage === "en" ? {...ensemblePages[key],...ensembleEnglish[key]} : ensemblePages[key];
 const ensembleVideos = {
-  voxsoul:{src:"../assets/ensembles/videos/voxsoul.mp4",poster:"../assets/ensembles/videos/voxsoul-poster.jpg",title:"VoxSoul em movimento",enTitle:"VoxSoul in motion"},
-  voxatma:{src:"../assets/ensembles/videos/voxatma.mp4",poster:"../assets/ensembles/videos/voxatma-poster.jpg",title:"VoxAtma em movimento",enTitle:"VoxAtma in motion"},
-  voxcor:{src:"../assets/ensembles/videos/voxcor.mp4",poster:"../assets/ensembles/videos/voxcor-poster.jpg",title:"VoxCor em movimento",enTitle:"VoxCor in motion"},
+  voxpueri:{src:"../assets/ensembles/videos/voxpueri-safe-v2.mp4",poster:"../assets/ensembles/videos/voxpueri-safe-v2-poster.jpg",title:"VoxPueri em movimento",enTitle:"VoxPueri in motion"},
+  voxsoul:{src:"../assets/ensembles/videos/voxsoul-safe-v2.mp4",poster:"../assets/ensembles/videos/voxsoul-safe-v2-poster.jpg",title:"VoxSoul em movimento",enTitle:"VoxSoul in motion"},
+  voxatma:{src:"../assets/ensembles/videos/voxatma-safe-v2.mp4",poster:"../assets/ensembles/videos/voxatma-safe-v2-poster.jpg",title:"VoxAtma em movimento",enTitle:"VoxAtma in motion"},
+  voxcor:{src:"../assets/ensembles/videos/voxcor-safe-v2.mp4",poster:"../assets/ensembles/videos/voxcor-safe-v2-poster.jpg",title:"VoxCor em movimento",enTitle:"VoxCor in motion"},
   hirmandade:{src:"../assets/ensembles/videos/hirmandade.mp4",poster:"../assets/ensembles/videos/hirmandade-poster.jpg",title:"Hirmandade em movimento",enTitle:"Hirmandade in motion"}
 };
 if (data) {
