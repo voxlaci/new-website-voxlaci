@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /eventos/*/admin/
+Disallow: /eventos/*/area/
+Disallow: /ramos/*/admin/
+Disallow: /ramos/*/area/
+Disallow: /casting-obrigado.html
+Disallow: /obrigado.html
+Disallow: /404.html
 
 Sitemap: https://voxlaci.com/sitemap.xml

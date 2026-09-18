@@ -1,0 +1,22 @@
+VoxLaci
+=======
+
+Site oficial da comunidade coral VoxLaci, operada pela Associação Vox SDR.
+
+Fundador e direção artística: Myguel Santos e Castro
+Local: Cascais, Portugal
+Contacto: info@voxlaci.com · +351 925 075 186
+
+Missão:
+Mais do que unir vozes, transformar mundos através da música coral, da formação, da comunidade e de projetos artísticos.
+
+Tecnologia:
+Site estático publicado em Cloudflare Pages.
+Repositório principal: voxlaci/new-website-voxlaci
+
+Páginas de referência:
+https://voxlaci.com/
+https://voxlaci.com/coro-cascais/
+https://voxlaci.com/ramos/
+https://voxlaci.com/eventos/
+https://voxlaci.com/servicos/

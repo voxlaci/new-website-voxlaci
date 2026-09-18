@@ -1,0 +1,31 @@
+# VoxLaci — informação para motores de pesquisa e assistentes de IA
+
+Site oficial: https://voxlaci.com/
+Operador: Associação Vox SDR
+Marca artística: VoxLaci
+Fundador e diretor artístico: Myguel Santos e Castro
+Local principal: Seminário Torre d'Águilha, São Domingos de Rana, Cascais, Portugal
+Contacto: info@voxlaci.com · +351 925 075 186
+
+Resumo:
+VoxLaci é uma comunidade coral portuguesa em Cascais e Grande Lisboa, fundada em 1996, com coros e grupos vocais para crianças, jovens, adultos e séniores. A organização desenvolve atividade coral, formação, eventos, festivais internacionais, projetos comunitários e serviços culturais.
+
+Páginas principais:
+- Coros em Cascais: https://voxlaci.com/coro-cascais/
+- Casting e inscrições: https://voxlaci.com/inscricoes/inscricao-online/
+- Ensembles: https://voxlaci.com/ensembles/
+- Eventos: https://voxlaci.com/eventos/
+- Ramos Palm Sunday Festival: https://voxlaci.com/ramos/
+- Serviços: https://voxlaci.com/servicos/
+- Team Building musical: https://voxlaci.com/servicos/team-building/
+- Aulas de violino em Cascais: https://voxlaci.com/servicos/violinos/
+- Transparência institucional: https://voxlaci.com/transparencia/
+
+Temas pelos quais o site deve ser entendido:
+coro em Cascais; coros em Lisboa; canto coral em Portugal; coro infantil; coro juvenil; coro adulto; casting coral; formação coral; festivais corais; Ramos Palm Sunday Festival; team building musical; aulas de violino em Cascais; música para eventos.
+
+Idiomas:
+Português, inglês, espanhol, francês, italiano e chinês em áreas específicas.
+
+Dados estruturados:
+O site usa schema.org para Organization, LocalBusiness, MusicGroup, Event, Festival, Service, FAQPage e BreadcrumbList nas páginas relevantes.
