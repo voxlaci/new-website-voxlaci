@@ -44,7 +44,7 @@ Com base no documento *Every Page Counts*:
 - migração estática de 71 páginas históricas adicionais;
 - 169 imagens antigas copiadas e otimizadas localmente;
 - arquivo completo com ensembles, projetos, serviços, inscrições, media e eventos;
-- 143 endereços públicos incluídos no sitemap;
+- 159 endereços públicos incluídos no sitemap;
 - faixa horizontal de ensembles e arquivo horizontal Ramos por maestro/edição;
 - caixa inicial de casting e inscrições com três caminhos;
 - nova direção visual preto, branco e vermelho-laca;
