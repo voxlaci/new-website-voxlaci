@@ -361,6 +361,8 @@ function translateItem(item) {
   const direct = item.dataset[language];
   const translated = uiTranslations[language]?.[item.dataset.pt];
   item.innerHTML = direct || translated || item.dataset.en || item.dataset.pt;
+  const hrefKey = `href${language.charAt(0).toUpperCase()}${language.slice(1)}`;
+  if (item.dataset[hrefKey]) item.setAttribute("href", item.dataset[hrefKey]);
 }
 
 function applySiteLanguage() {
