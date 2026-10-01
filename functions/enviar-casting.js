@@ -50,8 +50,9 @@ export async function onRequestPost({ request, env }) {
       applicationId: application.id, privateToken: application.privateToken, name: application.name,
       email: application.email, ensemble: application.ensemble, language: application.language, origin: base.origin,
     }));
-    if (!checkout.id?.startsWith("cs_test_") || !checkout.url || checkout.mode !== "payment") {
-      throw new Error("Stripe did not return a Test Mode one-time Checkout Session.");
+    const checkoutPrefix = /^(sk|rk)_live_/.test(env.STRIPE_SECRET_KEY) ? "cs_live_" : "cs_test_";
+    if (!checkout.id?.startsWith(checkoutPrefix) || !checkout.url || checkout.mode !== "payment") {
+      throw new Error("Stripe did not return a one-time Checkout Session for the configured mode.");
     }
     await env.DB.prepare(`UPDATE casting_applications SET stripe_checkout_session_id = ?, updated_at = datetime('now') WHERE id = ?`)
       .bind(checkout.id, application.id).run();
