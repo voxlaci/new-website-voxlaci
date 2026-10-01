@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#080808">
+  <title>Pagamento do Casting | VoxLaci</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=15">
+  <style>
+    body{min-height:100vh;display:grid;place-items:center;background:#080808;color:#fff;padding:24px}.casting-payment-status{width:min(760px,100%);padding:clamp(30px,7vw,72px);border:1px solid rgba(255,255,255,.16);border-radius:28px;background:#111}.casting-payment-status img{width:min(300px,75%);margin-bottom:50px}.casting-payment-status h1{font:700 clamp(2.7rem,7vw,6rem)/.9 Manrope,sans-serif;letter-spacing:-.06em}.casting-payment-status p{max-width:620px;color:#c7c7cc;font-size:1.05rem}.status-pill{display:inline-flex;padding:10px 16px;border-radius:999px;background:#6c63ff;font-weight:700}.status-pill.pending{color:#16120b;background:#f5d789}.casting-payment-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px}.casting-payment-actions a{padding:13px 20px;border:1px solid #fff;border-radius:999px;font-weight:700}.casting-payment-actions a:first-child{color:#080808;background:#fff}
+  </style>
+</head>
+<body>
+  <main class="casting-payment-status">
+    <img src="/assets/voxlaci-logo-white.png" alt="VoxLaci">
+    <p class="overline">Casting VoxLaci</p>
+    <div id="casting-status" aria-live="polite">
+      <span class="status-pill pending">A confirmar pagamento</span>
+      <h1>Estamos a verificar.</h1>
+      <p>A confirmação definitiva vem diretamente do Stripe. Não feche esta página enquanto verificamos o estado.</p>
+    </div>
+    <div class="casting-payment-actions"><a href="/">Voltar ao site</a><a href="mailto:info@voxlaci.com">Contactar VoxLaci</a></div>
+  </main>
+  <script>
+    (() => {
+      const target = document.getElementById("casting-status");
+      const params = new URLSearchParams(location.search);
+      const id = params.get("id");
+      const token = params.get("token");
+      const cancelled = params.get("cancelled") === "1";
+      let attempts = 0;
+      const render = (paid, name) => {
+        if (paid) {
+          target.innerHTML = `<span class="status-pill">PAGO / Casting pago</span><h1>Obrigado${name ? `, ${escapeHtml(name)}` : ""}.</h1><p>O Stripe confirmou o pagamento único de 20 € e a sua inscrição ficou associada ao respetivo casting.</p>`;
+        } else {
+          target.innerHTML = `<span class="status-pill pending">Pagamento pendente</span><h1>${cancelled ? "Pagamento não concluído." : "Ainda estamos a confirmar."}</h1><p>A inscrição foi guardada, mas permanece com pagamento pendente. Uma página de retorno ou um parâmetro no endereço nunca altera este estado.</p>`;
+        }
+      };
+      const check = async () => {
+        if (!id || !token) return render(false, "");
+        try {
+          const response = await fetch(`/api/casting/status?id=${encodeURIComponent(id)}&token=${encodeURIComponent(token)}`, { cache: "no-store" });
+          if (!response.ok) throw new Error("status unavailable");
+          const result = await response.json();
+          if (result.status === "paid") return render(true, result.name);
+          if (cancelled || attempts++ >= 8) return render(false, result.name);
+          setTimeout(check, 1500);
+        } catch { render(false, ""); }
+      };
+      const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+      check();
+    })();
+  </script>
+</body>
+</html>
