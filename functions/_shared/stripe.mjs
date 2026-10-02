@@ -9,8 +9,8 @@ export function stripeFormBody(entries) {
 }
 
 export async function stripeRequest(secretKey, path, entries) {
-  if (!secretKey || !/^(sk|rk)_test_/.test(secretKey)) {
-    throw new Error("Stripe Test Mode is not configured.");
+  if (!secretKey || !/^(sk|rk)_(test|live)_/.test(secretKey)) {
+    throw new Error("A valid Stripe secret key is not configured.");
   }
   const response = await fetch(`https://api.stripe.com/v1${path}`, {
     method: "POST",
