@@ -140,7 +140,7 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
         <a href="#inscricao"><strong>21h15-22h30</strong><span>Hirmandade · vozes masculinas adultas</span></a>
       </div>
       <div class="urgent-casting-actions">
-        <a class="pill primary" href="#inscricao">Fazer casting e pagar 20 € no Stripe</a>
+        <a class="pill primary" href="#inscricao">Fazer casting e enviar comprovativo</a>
         <a class="pill outline" href="#inscricao">Preencher inscrição online</a>
       </div>
     </section>
@@ -445,14 +445,14 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
       <div class="registration-intro reveal">
         <p class="overline" data-pt="Castings VoxLaci · 30.ª Temporada" data-en="VoxLaci Castings · 30th Season">Castings VoxLaci · 30.ª Temporada</p>
         <h2 data-pt="A sua voz<br>começa aqui." data-en="Your voice<br>starts here.">A sua voz<br>começa aqui.</h2>
-        <p data-pt="Os castings VoxLaci são um processo de seleção por audição, com vagas limitadas em cada naipe e ensemble. Preencha o formulário e será encaminhado automaticamente para o Stripe Checkout, onde poderá efetuar o pagamento único de 20 € por cartão ou MB WAY." data-en="VoxLaci castings are a selective audition process, with limited spots in each voice section and ensemble. Complete the form and you will be redirected automatically to Stripe Checkout, where you can make the one-time €20 payment by card or MB WAY.">Os castings VoxLaci são um processo de seleção por audição, com vagas limitadas em cada naipe e ensemble. Preencha o formulário e será encaminhado automaticamente para o Stripe Checkout, onde poderá efetuar o pagamento único de 20 € por cartão ou MB WAY.</p>
+        <p data-pt="Os castings VoxLaci são um processo de seleção por audição, com vagas limitadas em cada naipe e ensemble. Enquanto aguardamos a aprovação do Stripe, efetue o pagamento único de 20 € por MB WAY ou transferência bancária e anexe o comprovativo ao formulário." data-en="VoxLaci castings are a selective audition process, with limited places in each voice section and ensemble. While Stripe approval is pending, make the one-time €20 payment by MB WAY or bank transfer and attach the payment receipt to the form.">Os castings VoxLaci são um processo de seleção por audição, com vagas limitadas em cada naipe e ensemble. Enquanto aguardamos a aprovação do Stripe, efetue o pagamento único de 20 € por MB WAY ou transferência bancária e anexe o comprovativo ao formulário.</p>
         <div class="registration-fast-track">
           <strong>Caminho rápido</strong>
-          <span>1. Preencha e envie o formulário</span>
-          <span>2. Será encaminhado automaticamente para o Stripe Checkout</span>
-          <span>3. Pague 20 € por cartão ou MB WAY</span>
-          <span>4. A inscrição fica paga após confirmação automática do Stripe</span>
-          <a class="registration-whatsapp" href="https://wa.me/351925075186?text=Ol%C3%A1%20VoxLaci.%20Preciso%20de%20ajuda%20com%20o%20pagamento%20Stripe%20do%20casting." target="_blank" rel="noopener">Precisa de ajuda com o pagamento?</a>
+          <span>1. Preencha o formulário</span>
+          <span>2. Pague 20 € por MB WAY ou transferência bancária</span>
+          <span>3. Identifique o pagamento com o nome da pessoa inscrita</span>
+          <span>4. Anexe o comprovativo e receba a confirmação por email</span>
+          <a class="registration-whatsapp" href="https://wa.me/351925075186?text=Ol%C3%A1%20VoxLaci.%20Preciso%20de%20ajuda%20com%20o%20pagamento%20do%20casting." target="_blank" rel="noopener">Precisa de ajuda com o pagamento?</a>
         </div>
       </div>
       <form class="registration-form reveal" name="inscricao-voxlaci" method="POST" action="/enviar-casting" enctype="multipart/form-data" novalidate>
@@ -471,17 +471,20 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
         <label><span data-pt="Como conheceu a VoxLaci?" data-en="How did you hear about VoxLaci?">Como conheceu a VoxLaci?</span><select name="origem"><option>Google</option><option>Instagram</option><option>Facebook</option><option>YouTube</option><option data-pt="Família ou amigos" data-en="Family or friends">Família ou amigos</option><option data-pt="Evento" data-en="Event">Evento</option><option data-pt="Outro" data-en="Other">Outro</option></select></label>
         <label class="span-2"><span data-pt="Quem lhe recomendou este casting?" data-en="Who recommended this casting?">Quem lhe recomendou este casting?</span><input name="recomendacao" autocomplete="off"></label>
         <label class="span-2"><span data-pt="Porque gostaria de fazer parte da VoxLaci?" data-en="Why would you like to be part of VoxLaci?">Porque gostaria de fazer parte da VoxLaci?</span><textarea name="motivacao" rows="4"></textarea></label>
-        <fieldset class="payment-registration span-2 stripe-casting-payment">
-          <legend data-pt="Pagamento seguro do Casting — 20€" data-en="Secure Casting payment — €20">Pagamento seguro do Casting — 20€</legend>
-          <p data-pt="Depois de enviar a inscrição, será encaminhado para o Stripe Checkout. Pode pagar por cartão ou MB WAY. O estado só muda para PAGO após confirmação segura do Stripe." data-en="After submitting your application, you will be redirected to Stripe Checkout. You can pay by card or MB WAY. The status only changes to PAID after secure confirmation from Stripe.">Depois de enviar a inscrição, será encaminhado para o Stripe Checkout. Pode pagar por cartão ou MB WAY. O estado só muda para PAGO após confirmação segura do Stripe.</p>
-          <p class="secure-payment span-2" data-pt="Pagamento único de 20 €. Não existem subscrições e o VoxLaci não guarda os dados do cartão." data-en="One-time €20 payment. There are no subscriptions and VoxLaci does not store card details.">Pagamento único de 20 €. Não existem subscrições e o VoxLaci não guarda os dados do cartão.</p>
+        <fieldset class="payment-registration span-2">
+          <legend data-pt="Pagamento obrigatório do Casting — 20€" data-en="Mandatory Casting payment — €20">Pagamento obrigatório do Casting — 20€</legend>
+          <p data-pt="A inscrição fica em validação até a equipa confirmar o comprovativo. Indique sempre o nome da pessoa que se está a inscrever." data-en="The application remains under review until the team confirms the receipt. Always identify the person being registered.">A inscrição fica em validação até a equipa confirmar o comprovativo. Indique sempre o nome da pessoa que se está a inscrever.</p>
+          <label><span data-pt="Forma de pagamento *" data-en="Payment method *">Forma de pagamento *</span><select name="pagamento-inscricao" required><option value="" data-pt="Escolher" data-en="Choose">Escolher</option><option>MB WAY — 938 407 985</option><option value="Transferência bancária" data-pt="Transferência bancária" data-en="Bank transfer">Transferência bancária</option></select></label>
+          <label><span data-pt="Nome usado no pagamento *" data-en="Name used for payment *">Nome usado no pagamento *</span><input name="nome-pagamento" required></label>
+          <label class="span-2"><span data-pt="Comprovativo do pagamento de 20 € (fotografia ou PDF) *" data-en="€20 payment receipt (photo or PDF) *">Comprovativo do pagamento de 20 € (fotografia ou PDF) *</span><input type="file" name="comprovativo" accept="image/jpeg,image/png,image/webp,application/pdf" required></label>
+          <p class="secure-payment span-2" data-pt="Transferência: IBAN PT50 0036 0196 9910 0035 3991 7 · Associação Vox SDR. O pagamento automático por cartão e MB WAY será ativado quando o Stripe concluir a aprovação." data-en="Bank transfer: IBAN PT50 0036 0196 9910 0035 3991 7 · Associação Vox SDR. Automatic card and MB WAY payments will be enabled when Stripe approval is complete.">Transferência: IBAN PT50 0036 0196 9910 0035 3991 7 · Associação Vox SDR. O pagamento automático por cartão e MB WAY será ativado quando o Stripe concluir a aprovação.</p>
         </fieldset>
         <label class="form-consent span-2"><input type="checkbox" name="privacidade" required><span data-pt="Aceito que estes dados sejam usados para responder ao meu casting e receber a confirmação por email." data-en="I agree that this data may be used to respond to my casting and send me an email confirmation.">Aceito que estes dados sejam usados para responder ao meu casting e receber a confirmação por email.</span></label>
         <div class="turnstile-wrap span-2">
           <label class="turnstile-label" data-pt="Verificação de segurança — confirme que é humano" data-en="Security check — confirm you are human">Verificação de segurança — confirme que é humano</label>
           <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="auto"></div>
         </div>
-        <button class="form-submit span-2" type="submit" data-pt="Enviar casting e pagar 20 € no Stripe →" data-en="Submit casting and pay €20 with Stripe →">Enviar casting e pagar 20 € no Stripe →</button>
+        <button class="form-submit span-2" type="submit" data-pt="Enviar casting e comprovativo →" data-en="Submit casting and payment receipt →">Enviar casting e comprovativo →</button>
       </form>
     </section>
 
@@ -646,6 +649,8 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
       "captcha":                "Não foi possível validar a submissão. Tente novamente.",
       "rate":                   "Demasiadas tentativas. Aguarde alguns minutos antes de tentar novamente.",
       "campos-obrigatorios":    "Por favor, preencha todos os campos obrigatórios.",
+      "comprovativo-ausente":   "Anexe o comprovativo do pagamento de 20 € em fotografia ou PDF.",
+      "comprovativo-grande":    "O comprovativo não pode exceder 8 MB.",
       "envio-falhou":           "Não foi possível enviar a candidatura. Tente novamente ou contacte info@voxlaci.com.",
     },
     en: {
@@ -654,6 +659,8 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
       "captcha":                "We could not validate the submission. Please try again.",
       "rate":                   "Too many attempts. Please wait a few minutes before trying again.",
       "campos-obrigatorios":    "Please complete all required fields.",
+      "comprovativo-ausente":   "Attach the €20 payment receipt as a photo or PDF.",
+      "comprovativo-grande":    "The payment receipt cannot exceed 8 MB.",
       "envio-falhou":           "We could not send your application. Please try again or contact info@voxlaci.com.",
     },
   };

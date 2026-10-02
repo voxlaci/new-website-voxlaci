@@ -1,5 +1,3 @@
-import { castingCheckoutEntries, stripeRequest } from "./_shared/stripe.mjs";
-
 const RATE_LIMIT = 3;
 const RATE_WINDOW_MS = 60 * 60 * 1000;
 const rateLimiter = new Map();
@@ -13,7 +11,7 @@ export async function onRequestPost({ request, env }) {
   const base = new URL(request.url);
   const ip = request.headers.get("CF-Connecting-IP") || "unknown";
   if (!checkRateLimit(ip)) return errorRedirect(base, "rate");
-  if (!env.DB || !env.STRIPE_SECRET_KEY) return errorRedirect(base, "configuracao");
+  if (!env.DB || !env.RESEND_API_KEY) return errorRedirect(base, "configuracao");
 
   let formData;
   try { formData = await request.formData(); }
@@ -30,44 +28,34 @@ export async function onRequestPost({ request, env }) {
     musicReading: clean(formData.get("leitura-musical"), 100), source: clean(formData.get("origem"), 200),
     recommendation: clean(formData.get("recomendacao"), 200), motivation: clean(formData.get("motivacao"), 2000),
     language: detectLanguage(formData, request),
+    paymentMethod: clean(formData.get("pagamento-inscricao"), 100),
+    paymentName: clean(formData.get("nome-pagamento"), 200),
   };
-  if (!application.name || !application.age || !application.telephone || !validEmail(application.email)) {
+  const receipt = formData.get("comprovativo");
+  if (!application.name || !application.age || !application.telephone || !validEmail(application.email)
+    || !application.paymentMethod || !application.paymentName) {
     return errorRedirect(base, "campos-obrigatorios");
   }
+  if (!validReceipt(receipt)) return errorRedirect(base, "comprovativo-ausente");
+  if (receipt.size > 8 * 1024 * 1024) return errorRedirect(base, "comprovativo-grande");
 
   await env.DB.prepare(`INSERT INTO casting_applications
     (id, private_token, full_name, age, country, telephone, email, address, ensemble, experience,
      music_reading, source, recommendation, motivation, language, status, payment_label, amount_cents, currency)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'payment_pending', 'Pagamento pendente', 2000, 'eur')`
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'payment_review', 'Comprovativo em validação', 2000, 'eur')`
   ).bind(application.id, application.privateToken, application.name, application.age, application.country,
     application.telephone, application.email, application.address, application.ensemble, application.experience,
     application.musicReading, application.source, application.recommendation, application.motivation,
     application.language).run();
 
-  let checkout;
   try {
-    checkout = await stripeRequest(env.STRIPE_SECRET_KEY, "/checkout/sessions", castingCheckoutEntries({
-      applicationId: application.id, privateToken: application.privateToken, name: application.name,
-      email: application.email, ensemble: application.ensemble, language: application.language, origin: base.origin,
-    }));
-    const checkoutPrefix = /^(sk|rk)_live_/.test(env.STRIPE_SECRET_KEY) ? "cs_live_" : "cs_test_";
-    if (!checkout.id?.startsWith(checkoutPrefix) || !checkout.url || checkout.mode !== "payment") {
-      throw new Error("Stripe did not return a one-time Checkout Session for the configured mode.");
-    }
-    await env.DB.prepare(`UPDATE casting_applications SET stripe_checkout_session_id = ?, updated_at = datetime('now') WHERE id = ?`)
-      .bind(checkout.id, application.id).run();
+    await sendCastingEmails(env.RESEND_API_KEY, application, receipt);
   } catch (error) {
-    console.error(JSON.stringify({ scope: "casting", id: application.id, error: "checkout_creation_failed", detail: error.message }));
-    return errorRedirect(base, "pagamento-indisponivel");
+    console.error(JSON.stringify({ scope: "casting", id: application.id, error: "email_failed", detail: error.message }));
+    return errorRedirect(base, "envio-falhou");
   }
-
-  if (env.RESEND_API_KEY) {
-    await sendCastingEmails(env.RESEND_API_KEY, application, checkout.url).catch((error) => {
-      console.error(JSON.stringify({ scope: "casting", id: application.id, error: "email_failed", detail: error.message }));
-    });
-  }
-  console.info(JSON.stringify({ scope: "casting", id: application.id, status: "payment_pending", checkout: checkout.id }));
-  return Response.redirect(checkout.url, 303);
+  console.info(JSON.stringify({ scope: "casting", id: application.id, status: "payment_review", method: application.paymentMethod }));
+  return Response.redirect(new URL("/casting-obrigado.html", base), 303);
 }
 
 function createApplicationId() {
@@ -90,19 +78,21 @@ async function verifyTurnstile(formData, env, ip) {
   });
   return (await response.json().catch(() => ({}))).success === true;
 }
-async function sendCastingEmails(apiKey, application, checkoutUrl) {
+async function sendCastingEmails(apiKey, application, receipt) {
   const rows = [["ID da inscrição", application.id], ["Nome", application.name], ["Email", application.email],
     ["Telefone", application.telephone], ["Idade", application.age], ["País", application.country],
     ["Morada", application.address], ["Grupo/coro", application.ensemble], ["Experiência", application.experience],
     ["Leitura musical", application.musicReading], ["Origem", application.source],
     ["Recomendação", application.recommendation], ["Motivação", application.motivation],
-    ["Pagamento", "Pagamento pendente · Stripe Checkout · 20,00 EUR"]]
+    ["Forma de pagamento", application.paymentMethod], ["Nome no pagamento", application.paymentName],
+    ["Pagamento", "Comprovativo recebido · 20,00 EUR · em validação"]]
     .map(([label, value]) => `<tr><td style="padding:8px 12px;background:#f5f5f5;font-weight:700">${esc(label)}</td><td style="padding:8px 12px;border-bottom:1px solid #eee">${esc(value || "—")}</td></tr>`).join("");
-  const common = `<table style="width:100%;border-collapse:collapse">${rows}</table><p><a href="${esc(checkoutUrl)}">Concluir pagamento seguro de 20 €</a></p><p>O casting só será marcado como pago depois da confirmação segura do Stripe.</p>`;
+  const common = `<table style="width:100%;border-collapse:collapse">${rows}</table><p>O comprovativo segue em anexo. A inscrição fica em validação até a equipa VoxLaci confirmar o pagamento.</p>`;
+  const attachments = [{ filename: safeFilename(receipt.name), content: toBase64(await receipt.arrayBuffer()) }];
   await sendEmail(apiKey, { from: FROM, to: ["info@voxlaci.com"], reply_to: application.email,
-    subject: `[VoxLaci] Novo Casting · pagamento pendente (${application.id})`, html: common });
+    subject: `[VoxLaci] Novo Casting · comprovativo recebido (${application.id})`, html: common, attachments });
   await sendEmail(apiKey, { from: FROM, to: [application.email], reply_to: "info@voxlaci.com",
-    subject: `[VoxLaci] Casting recebido · pagamento pendente (${application.id})`,
+    subject: `[VoxLaci] Casting recebido · comprovativo em validação (${application.id})`,
     html: `<p>Olá, ${esc(application.name)}.</p><p>Recebemos a sua inscrição.</p>${common}` });
 }
 async function sendEmail(apiKey, payload) {
@@ -119,4 +109,14 @@ function checkRateLimit(ip) {
 function errorRedirect(base, code) { return Response.redirect(new URL(`/#inscricao?erro=${code}`, base), 303); }
 function clean(value, limit) { return String(value || "").trim().slice(0, limit); }
 function validEmail(value) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value); }
+function validReceipt(value) {
+  return value && typeof value === "object" && "arrayBuffer" in value && value.size > 0
+    && ["image/jpeg", "image/png", "image/webp", "application/pdf"].includes(value.type);
+}
+function safeFilename(value) { return String(value || "comprovativo").replace(/[^a-zA-Z0-9._-]/g, "-").slice(0, 120); }
+function toBase64(buffer) {
+  let binary = ""; const bytes = new Uint8Array(buffer);
+  for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  return btoa(binary);
+}
 function esc(value) { return String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
