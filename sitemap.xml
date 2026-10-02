@@ -537,7 +537,19 @@
   </url>
   <url>
     <loc>https://voxlaci.com/servicos/violinos/</loc>
-    <lastmod>2026-09-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/violinos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/servicos/violinos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/violinos/"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://voxlaci.com/en/servicos/violinos/</loc>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/servicos/violinos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/servicos/violinos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://voxlaci.com/servicos/violinos/"/>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
