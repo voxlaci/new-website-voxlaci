@@ -28,6 +28,9 @@
       paymentDetails: "IBAN: PT50 0036 0196 9910 0035 3991 7 · BIC: MPIOPTPL · PayPal: info@voxlaci.com",
       rooms: "Lista de quartos", roomsHint: "Disponível após a aceitação da candidatura.", addRoom: "Adicionar quarto", saveRooms: "Guardar lista de quartos",
       roomRef: "Referência", roomType: "Tipo", single: "Individual", twin: "Duplo (2 camas)", double: "Duplo (1 cama)", triple: "Triplo",
+      extraNight: "Noite extra · domingo para segunda-feira", extraNone: "Sem noite extra", extraWithDinner: "Com pequeno-almoço + jantar de domingo", extraWithoutDinner: "Com pequeno-almoço, sem jantar de domingo",
+      extraNightHint: "Opcional. Quarto duplo/twin/triplo: 95 € por pessoa com jantar ou 90 € sem jantar. Quarto individual: 125 € com jantar ou 120 € sem jantar.",
+      residenceEstimate: "Total da Choir Residence", baseResidence: "Estadia base", extraNightTotal: "Noite extra", completeRoomsFirst: "Preencha e guarde a lista de quartos para confirmar o total antes do pagamento.",
       guest: "Hóspede", role: "Função", remove: "Remover", guestMismatch: "Atenção: o número de hóspedes indicado não corresponde ao total de cantores + acompanhantes.",
       meals: "Refeições", mealsHint: "Indique quantas pessoas participam em cada jantar e eventuais restrições alimentares.",
       saveMeals: "Guardar refeições", vegetarian: "Vegetariano", vegan: "Vegan", glutenFree: "Sem glúten", allergies: "Outras alergias",
@@ -45,6 +48,9 @@
       paymentDetails: "IBAN: PT50 0036 0196 9910 0035 3991 7 · BIC: MPIOPTPL · PayPal: info@voxlaci.com",
       rooms: "Rooming list", roomsHint: "Available once your application has been accepted.", addRoom: "Add room", saveRooms: "Save rooming list",
       roomRef: "Reference", roomType: "Type", single: "Single", twin: "Twin (2 beds)", double: "Double (1 bed)", triple: "Triple",
+      extraNight: "Extra Night · Sunday to Monday", extraNone: "No extra night", extraWithDinner: "Breakfast + Sunday dinner included", extraWithoutDinner: "Breakfast included, without Sunday dinner",
+      extraNightHint: "Optional. Double/twin/triple: €95 per person with dinner or €90 without dinner. Single: €125 with dinner or €120 without dinner.",
+      residenceEstimate: "Choir Residence total", baseResidence: "Base stay", extraNightTotal: "Extra night", completeRoomsFirst: "Complete and save the rooming list to confirm the total before payment.",
       guest: "Guest", role: "Role", remove: "Remove", guestMismatch: "Note: the number of guests entered does not match the total number of singers + companions.",
       meals: "Meals", mealsHint: "Let us know how many people join each dinner and any dietary requirements.",
       saveMeals: "Save meals", vegetarian: "Vegetarian", vegan: "Vegan", glutenFree: "Gluten-free", allergies: "Other allergies",
@@ -80,7 +86,7 @@
     html += "<div><b>" + t.dates + "</b>" + (app.preferred_dates || "—") + "</div>";
     html += "<div><b>" + t.singers + "</b>" + app.num_singers + "</div>";
     html += "<div><b>" + t.companions + "</b>" + (app.num_companions || 0) + "</div>";
-    html += "<div><b>" + t.total + "</b>" + (app.amount_total_cents != null ? euros(app.amount_total_cents) + " €" : t.toConfirm) + "</div>";
+    html += "<div><b>" + t.total + "</b><span id=\"summary-total\">" + (app.amount_total_cents != null ? euros(app.amount_total_cents) + " €" : t.toConfirm) + "</span></div>";
     html += "<div><b>" + t.paid + "</b>" + euros(app.amount_paid_cents) + " €</div>";
     html += "<div><b>" + t.balance + "</b>" + (balance != null ? euros(balance) + " €" : t.toConfirm) + "</div>";
     html += "</div></div>";
@@ -94,7 +100,9 @@
       });
       html += "</tbody></table></div>";
     }
-    if (["accepted", "payment_pending", "partially_paid"].indexOf(app.status) !== -1) {
+    if (app.application_type === "choir_residence" && app.amount_total_cents == null) {
+      html += "<p class=\"editor-warning\">" + t.completeRoomsFirst + "</p>";
+    } else if (["accepted", "payment_pending", "partially_paid"].indexOf(app.status) !== -1) {
       html += "<h3 style=\"font-size:1rem;margin-top:24px\">" + t.addPayment + "</h3>";
       html += "<p class=\"residency-note\">" + t.paymentDetails + "</p>";
       html += "<form id=\"payment-form\">";
@@ -111,8 +119,10 @@
       if (app.status === "application_received" || app.status === "under_review") {
         html += "<p class=\"residency-note\">" + t.roomsHint + "</p>";
       } else {
+        html += "<p class=\"residency-note\">" + t.extraNightHint + "</p>";
         html += "<div id=\"room-editor\" class=\"room-editor\"></div>";
         html += "<button type=\"button\" class=\"editor-add-row\" id=\"add-room\">+ " + t.addRoom + "</button>";
+        html += "<div class=\"residency-total\" id=\"room-total\"><span>" + t.residenceEstimate + ": </span><strong id=\"room-total-value\">—</strong><small id=\"room-total-detail\" style=\"display:block;margin-top:6px;font-weight:400;color:#ddd\"></small></div>";
         html += "<div id=\"room-warning\" hidden class=\"editor-warning\"></div>";
         html += "<button class=\"residency-submit\" id=\"save-rooms\" type=\"button\">" + t.saveRooms + "</button>";
         html += "<div class=\"residency-status\" id=\"rooms-status\"></div>";
@@ -169,6 +179,9 @@
           "<label><span>" + t.roomType + "</span><select class=\"f-type\">" +
             ["single","twin","double","triple"].map(function(v){ return "<option value=\"" + v + "\"" + (r.room_type === v ? " selected" : "") + ">" + t[v] + "</option>"; }).join("") +
           "</select></label>" +
+          "<label><span>" + t.extraNight + "</span><select class=\"f-extra\">" +
+            [["none",t.extraNone],["with_dinner",t.extraWithDinner],["without_dinner",t.extraWithoutDinner]].map(function(v){ return "<option value=\"" + v[0] + "\"" + ((r.extra_night_option || "none") === v[0] ? " selected" : "") + ">" + v[1] + "</option>"; }).join("") +
+          "</select></label>" +
           "<label><span>" + t.guest + " 1</span><input class=\"f-g1\" value=\"" + (r.guest1 || "") + "\"></label>" +
           "<label><span>" + t.role + "</span><input class=\"f-g1r\" value=\"" + (r.guest1_role || "") + "\"></label>" +
           "<label><span>" + t.guest + " 2</span><input class=\"f-g2\" value=\"" + (r.guest2 || "") + "\"></label>" +
@@ -176,21 +189,40 @@
           "<label><span>" + t.guest + " 3</span><input class=\"f-g3\" value=\"" + (r.guest3 || "") + "\"></label>" +
           "<label><span>" + t.role + "</span><input class=\"f-g3r\" value=\"" + (r.guest3_role || "") + "\"></label>" +
           "<button type=\"button\" class=\"remove-row\">" + t.remove + "</button>";
-        row.querySelector(".remove-row").addEventListener("click", function(){ row.remove(); });
+        row.querySelector(".remove-row").addEventListener("click", function(){ row.remove(); updateResidenceTotal(); });
+        row.addEventListener("input", updateResidenceTotal);
+        row.addEventListener("change", updateResidenceTotal);
         return row;
       }
-      (rooms.length ? rooms : [{}]).forEach(function(r){ roomEditor.appendChild(roomRow(r)); });
-      document.getElementById("add-room").addEventListener("click", function(){ roomEditor.appendChild(roomRow({})); });
-
-      document.getElementById("save-rooms").addEventListener("click", function(){
-        var payload = Array.prototype.map.call(roomEditor.querySelectorAll(".room-editor-row"), function(row){
+      function collectRooms(){
+        return Array.prototype.map.call(roomEditor.querySelectorAll(".room-editor-row"), function(row){
           return {
             room_ref: row.querySelector(".f-ref").value, room_type: row.querySelector(".f-type").value,
+            extra_night_option: row.querySelector(".f-extra").value,
             guest1: row.querySelector(".f-g1").value, guest1_role: row.querySelector(".f-g1r").value,
             guest2: row.querySelector(".f-g2").value, guest2_role: row.querySelector(".f-g2r").value,
             guest3: row.querySelector(".f-g3").value, guest3_role: row.querySelector(".f-g3r").value,
           };
         });
+      }
+      function updateResidenceTotal(){
+        var base = 0, extra = 0;
+        collectRooms().forEach(function(r){
+          var guests = [r.guest1, r.guest2, r.guest3].filter(function(v){ return String(v || "").trim(); }).length;
+          var single = r.room_type === "single";
+          base += guests * (single ? 309 : 249);
+          if (r.extra_night_option === "with_dinner") extra += guests * (single ? 125 : 95);
+          if (r.extra_night_option === "without_dinner") extra += guests * (single ? 120 : 90);
+        });
+        document.getElementById("room-total-value").textContent = euros((base + extra) * 100) + " €";
+        document.getElementById("room-total-detail").textContent = t.baseResidence + ": " + euros(base * 100) + " € · " + t.extraNightTotal + ": " + euros(extra * 100) + " €";
+      }
+      (rooms.length ? rooms : [{}]).forEach(function(r){ roomEditor.appendChild(roomRow(r)); });
+      updateResidenceTotal();
+      document.getElementById("add-room").addEventListener("click", function(){ roomEditor.appendChild(roomRow({})); updateResidenceTotal(); });
+
+      document.getElementById("save-rooms").addEventListener("click", function(){
+        var payload = collectRooms();
         var statusBox = document.getElementById("rooms-status");
         var fd = new FormData();
         fd.append("token", token); fd.append("action", "rooms"); fd.append("rooms", JSON.stringify(payload));
@@ -199,10 +231,14 @@
           .then(function(d){
             if (!d.ok) throw new Error(d.error || "error");
             statusBox.className = "residency-status is-visible ok";
-            statusBox.textContent = t.saved;
+            statusBox.textContent = t.saved + " " + t.residenceEstimate + ": " + euros(d.totalCents) + " €";
+            document.getElementById("summary-total").textContent = euros(d.totalCents) + " €";
+            document.getElementById("room-total-value").textContent = euros(d.totalCents) + " €";
+            document.getElementById("room-total-detail").textContent = t.baseResidence + ": " + euros(d.baseCents) + " € · " + t.extraNightTotal + ": " + euros(d.extraNightCents) + " €";
             var warn = document.getElementById("room-warning");
             if (d.warning) { warn.hidden = false; warn.textContent = t.guestMismatch + " (" + d.guestTotal + " / " + d.expected + ")"; }
             else warn.hidden = true;
+            setTimeout(function(){ location.reload(); }, 900);
           })
           .catch(function(){ statusBox.className = "residency-status is-visible error"; statusBox.textContent = t.error; });
       });

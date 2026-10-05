@@ -1,7 +1,7 @@
 // STELLA 2026 — private organizer portal, authenticated by an opaque token (no login system).
 import {
   sanitize, sendEmail, validateProofFile, FROM, VOXLACI_EMAIL,
-  paymentReceivedEmail, internalNotificationEmail,
+  paymentReceivedEmail, internalNotificationEmail, calculateChoirResidenceTotal,
 } from "../../../_shared/stella.js";
 
 function json(obj, status = 200) {
@@ -9,7 +9,7 @@ function json(obj, status = 200) {
 }
 
 const ROOM_TYPES = ["single", "twin", "double", "triple"];
-const ROOM_CAPACITY = { single: 1, twin: 2, double: 2, triple: 3 };
+const EXTRA_NIGHT_OPTIONS = ["none", "with_dinner", "without_dinner"];
 const MEAL_KEYS = ["dinner_friday", "dinner_saturday", "dinner_sunday", "choir_day_dinner"];
 
 async function loadApplication(db, token) {
@@ -25,7 +25,7 @@ export async function onRequestGet({ request, env }) {
   if (!app) return json({ ok: false, error: "not_found" }, 404);
 
   const [rooms, meals, payments] = await Promise.all([
-    env.DB.prepare("SELECT id, room_ref, room_type, guest1, guest1_role, guest2, guest2_role, guest3, guest3_role, share_with, notes FROM stella_rooms WHERE application_id = ? ORDER BY id").bind(app.id).all(),
+    env.DB.prepare("SELECT id, room_ref, room_type, guest1, guest1_role, guest2, guest2_role, guest3, guest3_role, share_with, notes, extra_night_option FROM stella_rooms WHERE application_id = ? ORDER BY id").bind(app.id).all(),
     env.DB.prepare("SELECT id, meal_key, count, vegetarian, vegan, gluten_free, other_allergies FROM stella_meals WHERE application_id = ? ORDER BY id").bind(app.id).all(),
     env.DB.prepare("SELECT id, amount_cents, payment_method, proof_original_filename, status, created_at FROM stella_payments WHERE application_id = ? ORDER BY created_at").bind(app.id).all(),
   ]);
@@ -70,30 +70,34 @@ export async function onRequestPost({ request, env }) {
     }
     if (!Array.isArray(rooms) || rooms.length > 60) return json({ ok: false, error: "invalid_rooms" }, 400);
 
-    let guestTotal = 0;
+    const normalizedRooms = rooms.map((r) => ({
+      ...r,
+      room_type: ROOM_TYPES.includes(r.room_type) ? r.room_type : "twin",
+      extra_night_option: EXTRA_NIGHT_OPTIONS.includes(r.extra_night_option) ? r.extra_night_option : "none",
+      guest1: sanitize(r.guest1, 200), guest2: sanitize(r.guest2, 200), guest3: sanitize(r.guest3, 200),
+    }));
+    const totals = calculateChoirResidenceTotal(normalizedRooms);
     const stmts = [env.DB.prepare("DELETE FROM stella_rooms WHERE application_id = ?").bind(app.id)];
-    rooms.forEach((r, i) => {
-      const roomType = ROOM_TYPES.includes(r.room_type) ? r.room_type : "twin";
-      const g1 = sanitize(r.guest1, 200), g2 = sanitize(r.guest2, 200), g3 = sanitize(r.guest3, 200);
-      guestTotal += [g1, g2, g3].filter(Boolean).length;
+    normalizedRooms.forEach((r, i) => {
       stmts.push(
         env.DB.prepare(
-          `INSERT INTO stella_rooms (application_id, room_ref, room_type, guest1, guest1_role, guest2, guest2_role, guest3, guest3_role, share_with, notes)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+          `INSERT INTO stella_rooms (application_id, room_ref, room_type, guest1, guest1_role, guest2, guest2_role, guest3, guest3_role, share_with, notes, extra_night_option)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
         ).bind(
-          app.id, sanitize(r.room_ref, 30) || `R${i + 1}`, roomType,
-          g1, sanitize(r.guest1_role, 60), g2, sanitize(r.guest2_role, 60), g3, sanitize(r.guest3_role, 60),
-          sanitize(r.share_with, 200), sanitize(r.notes, 500)
+          app.id, sanitize(r.room_ref, 30) || `R${i + 1}`, r.room_type,
+          r.guest1, sanitize(r.guest1_role, 60), r.guest2, sanitize(r.guest2_role, 60), r.guest3, sanitize(r.guest3_role, 60),
+          sanitize(r.share_with, 200), sanitize(r.notes, 500), r.extra_night_option
         )
       );
     });
+    stmts.push(env.DB.prepare("UPDATE stella_applications SET amount_total_cents = ?, updated_at = datetime('now') WHERE id = ?").bind(totals.totalCents, app.id));
     await env.DB.batch(stmts);
 
     const expected = app.num_singers + (app.num_companions || 0);
-    const warning = guestTotal !== expected
-      ? `guest_count_mismatch:${guestTotal}:${expected}`
+    const warning = totals.guestTotal !== expected
+      ? `guest_count_mismatch:${totals.guestTotal}:${expected}`
       : null;
-    return json({ ok: true, guestTotal, expected, warning });
+    return json({ ok: true, ...totals, expected, warning });
   }
 
   if (action === "meals") {

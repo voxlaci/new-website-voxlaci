@@ -42,6 +42,10 @@
         <label class="room-option"><input type="radio" name="application_type" value="choir_weekend" required><b>Fim de Semana Coral</b><span>79 € por cantor</span></label>
         <label class="room-option"><input type="radio" name="application_type" value="choir_day" required><b>Choir Day</b><span>42 € por cantor</span></label>
       </div>
+      <div class="payment-details-box" id="extra-night-info" hidden style="margin-top:18px">
+        <strong>Noite extra · domingo para segunda-feira</strong>
+        <p style="margin:8px 0 0">Na Residência Coral poderá prolongar a estadia por mais uma noite. Quarto duplo/twin/triplo: 95 € por pessoa com pequeno-almoço e jantar de domingo, ou 90 € sem jantar. Quarto individual: 125 € com jantar, ou 120 € sem jantar. A opção será escolhida na lista de quartos, antes do pagamento, e somada automaticamente ao total.</p>
+      </div>
     </fieldset>
     <div class="wizard-nav"><span></span><button type="button" class="wizard-next">Seguinte →</button></div>
   </div>
@@ -128,6 +132,7 @@
   var totalValue = document.getElementById("stella-total-value");
   var numSingers = form.querySelector('input[name="num_singers"]');
   var minWarning = document.getElementById("stella-min-warning");
+  var extraNightInfo = document.getElementById("extra-night-info");
 
   var DATE_OPTIONS = {
     choir_residence: ["4–6 dezembro 2026", "11–13 dezembro 2026"],
@@ -149,6 +154,7 @@
     input.addEventListener("change", function(){
       var opts = DATE_OPTIONS[input.value] || [];
       datesSelect.innerHTML = "<option value=\"\">Escolha uma data</option>" + opts.map(function(d){ return "<option value=\"" + d + "\">" + d + "</option>"; }).join("");
+      extraNightInfo.hidden = input.value !== "choir_residence";
       if (input.value === "choir_residence") totalBox.hidden = true; else updateTotal();
     });
   });

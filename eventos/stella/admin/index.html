@@ -191,7 +191,8 @@
       if (!d.ok || !d.rooms.length) { el.textContent = "Sem quartos definidos."; return; }
       el.innerHTML = d.rooms.map(function(r){
         var guests = [r.guest1, r.guest2, r.guest3].filter(Boolean).join(", ");
-        return "<p style=\"margin:0 0 4px;font-size:13px\">" + esc(r.room_ref) + " (" + esc(r.room_type) + "): " + esc(guests || "—") + "</p>";
+        var extras = { none: "sem noite extra", with_dinner: "noite extra com jantar", without_dinner: "noite extra sem jantar" };
+        return "<p style=\"margin:0 0 4px;font-size:13px\">" + esc(r.room_ref) + " (" + esc(r.room_type) + "): " + esc(guests || "—") + " · " + esc(extras[r.extra_night_option] || extras.none) + "</p>";
       }).join("");
     });
     fetch("../admin/meals?application_id=" + id).then(function(r){ return r.json(); }).then(function(d){

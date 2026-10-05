@@ -5,9 +5,37 @@ export { sanitize, esc, euros, sendEmail, validateProofFile, randomKey, FROM, VO
 
 export const PRICING = {
   choir_residence: { twin: 24900, single: 30900 }, // per person, cents — twin/double/triple share the same rate
+  choir_residence_extra_night: {
+    shared: { with_dinner: 9500, without_dinner: 9000 },
+    single: { with_dinner: 12500, without_dinner: 12000 },
+  },
   choir_weekend: 7900,
   choir_day: 4200,
 };
+
+export function calculateChoirResidenceTotal(rooms) {
+  const safeRooms = Array.isArray(rooms) ? rooms : [];
+  let baseCents = 0;
+  let extraNightCents = 0;
+  let guestTotal = 0;
+
+  safeRooms.forEach((room) => {
+    const roomType = room && room.room_type === "single" ? "single" : "shared";
+    const option = room && ["with_dinner", "without_dinner"].includes(room.extra_night_option)
+      ? room.extra_night_option
+      : "none";
+    const guests = [room && room.guest1, room && room.guest2, room && room.guest3]
+      .filter((name) => String(name || "").trim()).length;
+
+    guestTotal += guests;
+    baseCents += guests * PRICING.choir_residence[roomType === "single" ? "single" : "twin"];
+    if (option !== "none") {
+      extraNightCents += guests * PRICING.choir_residence_extra_night[roomType][option];
+    }
+  });
+
+  return { guestTotal, baseCents, extraNightCents, totalCents: baseCents + extraNightCents };
+}
 
 export const STATUS_LABELS = {
   pt: {

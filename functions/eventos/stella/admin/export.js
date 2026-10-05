@@ -19,7 +19,7 @@ export async function onRequestGet({ request, env }) {
     const { results } = await env.DB
       .prepare(
         `SELECT a.stella_id, a.choir_name, r.room_ref, r.room_type, r.guest1, r.guest1_role, r.guest2, r.guest2_role,
-                r.guest3, r.guest3_role, r.share_with, r.notes
+                r.guest3, r.guest3_role, r.extra_night_option, r.share_with, r.notes
          FROM stella_rooms r JOIN stella_applications a ON a.id = r.application_id
          ORDER BY a.stella_id, r.room_ref`
       )
