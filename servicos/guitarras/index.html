@@ -41,7 +41,15 @@
     .guitar-teacher-role{font-weight:800;font-size:clamp(1rem,1.5vw,1.25rem);line-height:1.45;color:#111}
     .guitar-teacher-copy p{line-height:1.75;color:#333}
     .guitar-teacher-location{margin-top:22px;padding-top:18px;border-top:1px solid #c9c9cf;font-weight:700}
-    @media(max-width:760px){.guitar-teacher{grid-template-columns:1fr}.guitar-teacher figure{max-width:520px}.guitar-prices{grid-template-columns:1fr}}
+    .instrument-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:32px}
+    .instrument-grid article{padding:24px;background:#f5f5f7;border:1px solid #d7d7dc;border-radius:18px}
+    .instrument-grid h3{margin:0 0 10px;color:#111;font-size:1.15rem}
+    .instrument-grid p{margin:0;color:#3a3a3c;line-height:1.6;font-size:.95rem}
+    .guitar-start{margin-top:28px;padding:28px;border-radius:18px;background:#171719;color:#fff}
+    .guitar-start h3{margin:0 0 10px;color:#fff}
+    .guitar-start p{margin:0;color:#ddd;line-height:1.7}
+    @media(max-width:1050px){.instrument-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:760px){.guitar-teacher{grid-template-columns:1fr}.guitar-teacher figure{max-width:520px}.guitar-prices{grid-template-columns:1fr}.instrument-grid{grid-template-columns:1fr}}
   </style>
 <!-- Metricool Tracking -->
 <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"218c291ab1fdaebf1e9485c2205c03e"})});</script>
@@ -96,6 +104,24 @@
           <p><strong>Nas suas aulas, procura transmitir essa mesma visão: aprender um instrumento é também descobrir uma nova forma de comunicar, criar e expressar-se através da música.</strong></p>
           <p class="guitar-teacher-location">Aulas de guitarra, bandolim, cavaquinho, ukulele e baixo com Tomás Duarte<br>Torre d’Águilha · São Domingos de Rana, Cascais</p>
         </div>
+      </div>
+    </section>
+    <section class="section white" id="instrumentos">
+      <div class="section-head">
+        <p class="eyebrow">Cinco instrumentos · uma linguagem comum</p>
+        <h2>Que instrumento gostaria de aprender?</h2>
+        <p>Nas Guitarras da Águilha pode descobrir diferentes instrumentos de cordas dedilhadas e escolher aquele que melhor corresponde à sua curiosidade musical, ao som que procura e à forma como deseja expressar-se.</p>
+      </div>
+      <div class="instrument-grid">
+        <article><h3>Guitarra</h3><p>Explore acordes, melodias, acompanhamento e expressão musical num instrumento presente em muitos estilos e repertórios.</p></article>
+        <article><h3>Bandolim</h3><p>Desenvolva precisão, articulação e sentido melódico através do som claro e característico do bandolim.</p></article>
+        <article><h3>Cavaquinho</h3><p>Descubra um instrumento profundamente ligado à tradição musical portuguesa, ao ritmo e à música partilhada.</p></article>
+        <article><h3>Ukulele</h3><p>Uma entrada direta no universo dos acordes, do ritmo e do acompanhamento através de um instrumento leve e versátil.</p></article>
+        <article><h3>Baixo</h3><p>Aprenda a construir pulsação, groove e base harmónica, compreendendo o papel essencial do baixo na música de conjunto.</p></article>
+      </div>
+      <div class="guitar-start">
+        <h3>Não sabe ainda qual escolher?</h3>
+        <p>A aula experimental permite conhecer o professor, falar sobre os seus interesses e dar os primeiros passos no instrumento. Depois, poderá escolher entre aulas individuais ou em grupo, de acordo com a modalidade e a disponibilidade existentes.</p>
       </div>
     </section>
     <section class="section dark">
