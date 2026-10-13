@@ -349,17 +349,13 @@
         <label><span>Sabe ler música?</span><select name="leitura-musical"><option>Não</option><option>Sim</option><option>Um pouco</option></select></label>
         <label><span>Como conheceu a VoxLaci?</span><select name="origem"><option>Google</option><option>Instagram</option><option>Facebook</option><option>YouTube</option><option>Família ou amigos</option><option>Evento</option><option>Outro</option></select></label>
         <label class="span-2"><span>Porque gostaria de fazer parte da VoxLaci?</span><textarea name="motivacao" rows="4"></textarea></label>
-        <fieldset class="payment-registration span-2 stripe-casting-payment">
-          <legend data-pt="Pagamento seguro do Casting — 20€" data-en="Secure Casting payment — €20">Pagamento seguro do Casting — 20€</legend>
-          <p data-pt="Depois de enviar a inscrição, será encaminhado para o Stripe Checkout. Pode pagar por cartão ou MB WAY. O estado só muda para PAGO após confirmação segura do Stripe." data-en="After submitting your application, you will be redirected to Stripe Checkout. You can pay by card or MB WAY. The status only changes to PAID after secure confirmation from Stripe.">Depois de enviar a inscrição, será encaminhado para o Stripe Checkout. Pode pagar por cartão ou MB WAY. O estado só muda para PAGO após confirmação segura do Stripe.</p>
-          <p class="secure-payment span-2" data-pt="Pagamento único de 20 €. Não existem subscrições e o VoxLaci não guarda os dados do cartão." data-en="One-time €20 payment. There are no subscriptions and VoxLaci does not store card details.">Pagamento único de 20 €. Não existem subscrições e o VoxLaci não guarda os dados do cartão.</p>
-        </fieldset>
+        <fieldset class="payment-registration span-2"><legend>试唱必须支付 — 20 欧元</legend><p>报名将在 VoxLaci 团队确认付款凭证后完成审核。</p><label><span>付款方式 *</span><select name="pagamento-inscricao" required><option value="">请选择</option><option>MB WAY — 938 407 985</option><option value="银行转账">银行转账</option><option>PayPal — info@voxlaci.com</option></select></label><label><span>付款人姓名 *</span><input name="nome-pagamento" required></label><label class="span-2"><span>20 欧元付款凭证（照片或 PDF）*</span><input type="file" name="comprovativo" accept="image/jpeg,image/png,image/webp,application/pdf" required></label><div class="secure-payment span-2" style="border:2px solid #151515;padding:18px 20px;background:#fff;color:#151515;line-height:1.7"><strong>银行转账和 PayPal</strong><br>账户名称：Associação Vox SDR<br>IBAN: PT50 0036 0196 9910 0035 3991 7<br>NIB: 0036.0196.99100035399.17<br>PayPal: info@voxlaci.com<br><small>请用报名者姓名标注付款，并附上付款凭证。</small></div></fieldset>
         <label class="form-consent span-2"><input type="checkbox" name="privacidade" required><span data-pt="Aceito que estes dados sejam usados para responder ao meu casting e receber a confirmação por email." data-en="I agree that this data may be used to respond to my casting and send me an email confirmation.">Aceito que estes dados sejam usados para responder ao meu casting e receber a confirmação por email.</span></label>
         <div class="turnstile-wrap span-2">
           <label class="turnstile-label" data-pt="Verificação de segurança — confirme que é humano" data-en="Security check — confirm you are human">Verificação de segurança — confirme que é humano</label>
           <div class="cf-turnstile" data-sitekey="1x00000000000000000000BB" data-language="zh-CN"></div>
         </div>
-        <button class="form-submit span-2" type="submit" data-pt="Enviar casting e pagar 20 € no Stripe →" data-en="Submit casting and pay €20 with Stripe →">提交试唱并通过 Stripe 支付 20 欧元 →</button>
+        <button class="form-submit span-2" type="submit">提交试唱和付款凭证 →</button>
       </form>
     </section>
 

@@ -445,11 +445,11 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
       <div class="registration-intro reveal">
         <p class="overline" data-pt="Castings VoxLaci · 30.ª Temporada" data-en="VoxLaci Castings · 30th Season">Castings VoxLaci · 30.ª Temporada</p>
         <h2 data-pt="A sua voz<br>começa aqui." data-en="Your voice<br>starts here.">A sua voz<br>começa aqui.</h2>
-        <p data-pt="Os castings VoxLaci são um processo de seleção por audição, com vagas limitadas em cada naipe e ensemble. Enquanto aguardamos a aprovação do Stripe, efetue o pagamento único de 20 € por MB WAY ou transferência bancária e anexe o comprovativo ao formulário." data-en="VoxLaci castings are a selective audition process, with limited places in each voice section and ensemble. While Stripe approval is pending, make the one-time €20 payment by MB WAY or bank transfer and attach the payment receipt to the form.">Os castings VoxLaci são um processo de seleção por audição, com vagas limitadas em cada naipe e ensemble. Enquanto aguardamos a aprovação do Stripe, efetue o pagamento único de 20 € por MB WAY ou transferência bancária e anexe o comprovativo ao formulário.</p>
+        <p data-pt="Os castings VoxLaci são um processo de seleção por audição, com vagas limitadas em cada naipe e ensemble. Efetue o pagamento único de 20 € por MB WAY, transferência bancária ou PayPal e anexe o comprovativo ao formulário." data-en="VoxLaci castings are a selective audition process, with limited places in each voice section and ensemble. Make the one-time €20 payment by MB WAY, bank transfer or PayPal and attach the payment receipt to the form.">Os castings VoxLaci são um processo de seleção por audição, com vagas limitadas em cada naipe e ensemble. Efetue o pagamento único de 20 € por MB WAY, transferência bancária ou PayPal e anexe o comprovativo ao formulário.</p>
         <div class="registration-fast-track">
           <strong>Caminho rápido</strong>
           <span>1. Preencha o formulário</span>
-          <span>2. Pague 20 € por MB WAY ou transferência bancária</span>
+          <span>2. Pague 20 € por MB WAY, transferência bancária ou PayPal</span>
           <span>3. Identifique o pagamento com o nome da pessoa inscrita</span>
           <span>4. Anexe o comprovativo e receba a confirmação por email</span>
           <a class="registration-whatsapp" href="https://wa.me/351925075186?text=Ol%C3%A1%20VoxLaci.%20Preciso%20de%20ajuda%20com%20o%20pagamento%20do%20casting." target="_blank" rel="noopener">Precisa de ajuda com o pagamento?</a>
@@ -474,7 +474,7 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
         <fieldset class="payment-registration span-2">
           <legend data-pt="Pagamento obrigatório do Casting — 20€" data-en="Mandatory Casting payment — €20">Pagamento obrigatório do Casting — 20€</legend>
           <p data-pt="A inscrição fica em validação até a equipa confirmar o comprovativo. Indique sempre o nome da pessoa que se está a inscrever." data-en="The application remains under review until the team confirms the receipt. Always identify the person being registered.">A inscrição fica em validação até a equipa confirmar o comprovativo. Indique sempre o nome da pessoa que se está a inscrever.</p>
-          <label><span data-pt="Forma de pagamento *" data-en="Payment method *">Forma de pagamento *</span><select name="pagamento-inscricao" required><option value="" data-pt="Escolher" data-en="Choose">Escolher</option><option>MB WAY — 938 407 985</option><option value="Transferência bancária" data-pt="Transferência bancária" data-en="Bank transfer">Transferência bancária</option></select></label>
+          <label><span data-pt="Forma de pagamento *" data-en="Payment method *">Forma de pagamento *</span><select name="pagamento-inscricao" required><option value="" data-pt="Escolher" data-en="Choose">Escolher</option><option>MB WAY — 938 407 985</option><option value="Transferência bancária" data-pt="Transferência bancária" data-en="Bank transfer">Transferência bancária</option><option>PayPal — info@voxlaci.com</option></select></label>
           <label><span data-pt="Nome usado no pagamento *" data-en="Name used for payment *">Nome usado no pagamento *</span><input name="nome-pagamento" required></label>
           <label class="span-2"><span data-pt="Comprovativo do pagamento de 20 € (fotografia ou PDF) *" data-en="€20 payment receipt (photo or PDF) *">Comprovativo do pagamento de 20 € (fotografia ou PDF) *</span><input type="file" name="comprovativo" accept="image/jpeg,image/png,image/webp,application/pdf" required></label>
           <div class="secure-payment span-2" style="border:2px solid #151515;padding:18px 20px;background:#fff;color:#151515;line-height:1.7">
@@ -482,6 +482,7 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
             <span data-pt="Cliente: Associação Vox SDR" data-en="Account holder: Associação Vox SDR">Cliente: Associação Vox SDR</span><br>
             <span>IBAN: PT50 0036 0196 9910 0035 3991 7</span><br>
             <span>NIB: 0036.0196.99100035399.17</span><br>
+            <span>PayPal: info@voxlaci.com</span><br>
             <small data-pt="Identifique a transferência com o nome da pessoa inscrita e anexe o comprovativo." data-en="Identify the transfer with the registered person's name and attach the payment receipt.">Identifique a transferência com o nome da pessoa inscrita e anexe o comprovativo.</small>
           </div>
         </fieldset>
@@ -651,7 +652,7 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
   const ERROS = {
     pt: {
       "configuracao":           "O pagamento seguro ainda não está configurado. Tente novamente mais tarde.",
-      "pagamento-indisponivel": "Não foi possível abrir o Stripe Checkout. A inscrição ficou com pagamento pendente.",
+      "pagamento-indisponivel": "Não foi possível validar o pagamento. Envie o comprovativo para concluir a inscrição.",
       "captcha":                "Não foi possível validar a submissão. Tente novamente.",
       "rate":                   "Demasiadas tentativas. Aguarde alguns minutos antes de tentar novamente.",
       "campos-obrigatorios":    "Por favor, preencha todos os campos obrigatórios.",
@@ -661,7 +662,7 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
     },
     en: {
       "configuracao":           "Secure payment is not configured yet. Please try again later.",
-      "pagamento-indisponivel": "Stripe Checkout could not be opened. Your application remains payment pending.",
+      "pagamento-indisponivel": "The payment could not be validated. Submit the receipt to complete your application.",
       "captcha":                "We could not validate the submission. Please try again.",
       "rate":                   "Too many attempts. Please wait a few minutes before trying again.",
       "campos-obrigatorios":    "Please complete all required fields.",

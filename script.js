@@ -307,7 +307,7 @@ const uiTranslations = {
     "Forma de pagamento": "付款方式",
     "Nome usado no pagamento": "付款时使用的姓名",
     "Comprovativo do pagamento de 20€ (fotografia ou PDF) *": "20€付款凭证（照片或PDF）*",
-    "Visa, Mastercard, Apple Pay e Google Pay serão disponibilizados assim que a ligação de pagamento segura Stripe/Mollie estiver associada. Nunca introduza dados do cartão diretamente neste formulário.": "一旦安全支付链接Stripe/Mollie连接，将提供Visa、Mastercard、Apple Pay和Google Pay。请勿在此表格中直接输入卡片信息。",
+    "O pagamento é feito por MB WAY, transferência bancária ou PayPal, com envio obrigatório do comprovativo.": "付款可通过 MB WAY、银行转账或 PayPal 完成，并必须上传付款凭证。",
     "Aceito que estes dados sejam usados para responder ao meu casting e receber a confirmação por email.": "我同意这些数据用于回复我的试唱申请并通过电子邮件接收确认。",
     "Enviar casting e receber confirmação →": "提交试唱并接收确认 →",
     "Pagamentos 2026": "2026年缴费",
