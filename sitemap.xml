@@ -1112,6 +1112,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://voxlaci.com/eventos/stella/individual-residence/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://voxlaci.com/zh/</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/en/"/>
