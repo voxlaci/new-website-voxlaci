@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <title>STELLA Festival 2026 Application | VoxLaci</title>
-<meta name="description" content="Choir application for STELLA Festival 2026 — Choral Residence, Choir Weekend and Choir Day. Cascais, Portugal.">
+<meta name="description" content="Choir application for STELLA Festival 2026 — Choral Residence and one or more STELLA Choir Days. Cascais, Portugal.">
 <meta name="robots" content="noindex,follow">
 <link rel="canonical" href="https://voxlaci.com/en/events/stella/application/"><link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/stella/candidatura/"><link rel="alternate" hreflang="en" href="https://voxlaci.com/en/events/stella/application/">
 <link rel="stylesheet" href="../../../../subpage.css"><link rel="stylesheet" href="../../../../ramos-residency.css">
@@ -37,14 +37,18 @@
   <div class="wizard-panel is-active" data-panel="1">
     <fieldset class="residency-fieldset">
       <legend>1/5 · Choose the modality</legend>
-      <div class="room-options cols-3">
+      <div class="room-options cols-2">
         <label class="room-option"><input type="radio" name="application_type" value="choir_residence" required><b>Choral Residence</b><span>from €249 / €309 pp · 2 nights</span></label>
-        <label class="room-option"><input type="radio" name="application_type" value="choir_weekend" required><b>Choir Weekend</b><span>€79 per singer</span></label>
-        <label class="room-option"><input type="radio" name="application_type" value="choir_day" required><b>Choir Day</b><span>€42 per singer</span></label>
+        <label class="room-option"><input type="radio" name="application_type" value="choir_day" required><b>Choir Day</b><span>€42 per singer, per day</span></label>
       </div>
       <div class="payment-details-box" id="extra-night-info" hidden style="margin-top:18px">
         <strong>Extra Night · Sunday to Monday</strong>
         <p style="margin:8px 0 0">With the Choral Residence, you can extend your stay for one additional night. Double/twin/triple room: €95 per person with breakfast and Sunday dinner, or €90 without dinner. Single room: €125 with dinner, or €120 without dinner. You will select this option in the rooming list before payment, and it will be added automatically to the total. No other extra nights are available, either before or after the festival.</p>
+      </div>
+      <div class="payment-details-box" id="multi-day-info" hidden style="margin-top:18px">
+        <strong>Participating on more than one day</strong>
+        <p style="margin:8px 0 0">Choirs may participate in <strong>one or more STELLA Choir Days</strong>. Registration is made separately for each day of participation. If a choir wishes to attend on two different days, both Choir Days must be selected and registered separately.</p>
+        <p style="margin:8px 0 0"><strong>Example: Saturday + Sunday = 2 Choir Days.</strong> Each Choir Day gives access to the programme and experiences scheduled for that particular day.</p>
       </div>
     </fieldset>
     <div class="wizard-nav"><span></span><button type="button" class="wizard-next">Next →</button></div>
@@ -76,7 +80,7 @@
         <label><span>Number of singers *</span><input type="number" name="num_singers" min="1" required></label>
         <label><span>Number of companions</span><input type="number" name="num_companions" min="0" value="0"></label>
       </div>
-      <label><span>Preferred dates *</span><select name="preferred_dates" required><option value="">Choose the modality in step 1 first</option></select></label>
+      <div><span>Selected dates *</span><div class="room-options cols-2" id="stella-date-options"><p>Choose the modality in step 1 first.</p></div></div>
       <div class="residency-total" id="stella-total" hidden>Estimated total: <span id="stella-total-value">—</span></div>
     </fieldset>
     <div class="wizard-nav"><button type="button" class="wizard-back">← Back</button><button type="button" class="wizard-next">Next →</button></div>
@@ -127,34 +131,47 @@
   }
 
   var typeInputs = form.querySelectorAll('input[name="application_type"]');
-  var datesSelect = form.querySelector('select[name="preferred_dates"]');
+  var datesBox = document.getElementById("stella-date-options");
   var totalBox = document.getElementById("stella-total");
   var totalValue = document.getElementById("stella-total-value");
   var numSingers = form.querySelector('input[name="num_singers"]');
   var minWarning = document.getElementById("stella-min-warning");
   var extraNightInfo = document.getElementById("extra-night-info");
+  var multiDayInfo = document.getElementById("multi-day-info");
 
   var DATE_OPTIONS = {
     choir_residence: ["4–6 December 2026", "11–13 December 2026"],
-    choir_weekend: ["5–6 December 2026", "12–13 December 2026"],
     choir_day: ["5 December 2026", "6 December 2026", "8 December 2026", "12 December 2026", "13 December 2026"],
   };
-  var PRICE_PER_SINGER = { choir_weekend: 79, choir_day: 42 };
-  var MODALITY_LABEL = { choir_residence: "Choral Residence", choir_weekend: "Choir Weekend", choir_day: "Choir Day" };
+  var MODALITY_LABEL = { choir_residence: "Choral Residence", choir_day: "Choir Day" };
+
+  function selectedDates(){
+    return Array.prototype.slice.call(form.querySelectorAll('input[name="preferred_dates"]:checked')).map(function(el){ return el.value; });
+  }
+
+  function renderDates(type){
+    var opts = DATE_OPTIONS[type] || [];
+    var inputType = type === "choir_day" ? "checkbox" : "radio";
+    datesBox.innerHTML = opts.map(function(d){
+      return '<label class="room-option"><input type="' + inputType + '" name="preferred_dates" value="' + d + '"><b>' + d + '</b></label>';
+    }).join("") || "<p>Choose the modality in step 1 first.</p>";
+    datesBox.querySelectorAll('input[name="preferred_dates"]').forEach(function(el){ el.addEventListener("change", updateTotal); });
+  }
 
   function updateTotal(){
     var type = form.querySelector('input[name="application_type"]:checked');
     var n = parseInt(numSingers.value, 10) || 0;
-    if (!type || !PRICE_PER_SINGER[type.value] || !n) { totalBox.hidden = true; return; }
+    var dayCount = selectedDates().length;
+    if (!type || type.value !== "choir_day" || !n || !dayCount) { totalBox.hidden = true; return; }
     totalBox.hidden = false;
-    totalValue.textContent = "€" + (PRICE_PER_SINGER[type.value] * n).toLocaleString("en-US");
+    totalValue.textContent = "€" + (42 * n * dayCount).toLocaleString("en-US") + " (" + dayCount + (dayCount === 1 ? " Choir Day)" : " Choir Days)");
   }
 
   typeInputs.forEach(function(input){
     input.addEventListener("change", function(){
-      var opts = DATE_OPTIONS[input.value] || [];
-      datesSelect.innerHTML = "<option value=\"\">Choose a date</option>" + opts.map(function(d){ return "<option value=\"" + d + "\">" + d + "</option>"; }).join("");
+      renderDates(input.value);
       extraNightInfo.hidden = input.value !== "choir_residence";
+      multiDayInfo.hidden = input.value !== "choir_day";
       if (input.value === "choir_residence") totalBox.hidden = true; else updateTotal();
     });
   });
@@ -186,6 +203,13 @@
     for (var i = 0; i < fields.length; i++) {
       if (!fields[i].checkValidity()) { fields[i].reportValidity(); return false; }
     }
+    if (n === 3 && !selectedDates().length) {
+      var errorBox = document.getElementById("stella-error");
+      errorBox.style.display = "block";
+      errorBox.textContent = "Please select at least one participation date.";
+      return false;
+    }
+    document.getElementById("stella-error").style.display = "none";
     return true;
   }
 
@@ -208,7 +232,7 @@
       ["Conductor", form.conductor_name.value || "—"],
       ["Number of singers", form.num_singers.value || "—"],
       ["Number of companions", form.num_companions.value || "0"],
-      ["Preferred dates", form.preferred_dates.value || "—"],
+      ["Selected dates", selectedDates().join(", ") || "—"],
       ["Contact", form.contact_person.value || "—"],
       ["Email", form.email.value || "—"],
       ["Phone", form.phone.value || "—"],
@@ -220,7 +244,7 @@
 
   // Pre-select modality from a #hash coming from the public page (e.g. #choir-day).
   var hash = (location.hash || "").replace("#", "");
-  var HASH_TO_TYPE = { "residencia-coral": "choir_residence", "fim-de-semana-coral": "choir_weekend", "choir-day": "choir_day" };
+  var HASH_TO_TYPE = { "residencia-coral": "choir_residence", "choir-day": "choir_day" };
   if (HASH_TO_TYPE[hash]) {
     var pre = form.querySelector('input[name="application_type"][value="' + HASH_TO_TYPE[hash] + '"]');
     if (pre) { pre.checked = true; pre.dispatchEvent(new Event("change")); }

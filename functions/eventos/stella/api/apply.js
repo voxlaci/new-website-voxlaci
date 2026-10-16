@@ -63,7 +63,7 @@ export async function onRequestPost(context) {
 
   const language = formData.get("language") === "en" ? "en" : "pt";
   const applicationType = sanitize(formData.get("application_type"), 30);
-  if (!["choir_residence", "choir_weekend", "choir_day"].includes(applicationType)) {
+  if (!["choir_residence", "choir_day"].includes(applicationType)) {
     return json({ ok: false, error: "invalid_modality" }, 400);
   }
 
@@ -79,7 +79,11 @@ export async function onRequestPost(context) {
   const socialMedia = sanitize(formData.get("social_media"), 300);
   const numSingers = parseInt(formData.get("num_singers"), 10) || 0;
   const numCompanions = parseInt(formData.get("num_companions"), 10) || 0;
-  const preferredDates = sanitize(formData.get("preferred_dates"), 200);
+  const allowedDates = applicationType === "choir_residence"
+    ? ["4–6 dezembro 2026", "11–13 dezembro 2026", "4–6 December 2026", "11–13 December 2026"]
+    : ["5 dezembro 2026", "6 dezembro 2026", "8 dezembro 2026", "12 dezembro 2026", "13 dezembro 2026", "5 December 2026", "6 December 2026", "8 December 2026", "12 December 2026", "13 December 2026"];
+  const selectedDates = [...new Set(formData.getAll("preferred_dates").map((value) => sanitize(value, 60)).filter((value) => allowedDates.includes(value)))];
+  const preferredDates = selectedDates.join(" · ");
   const biography = sanitize(formData.get("biography"), 3000);
   const videoLink = sanitize(formData.get("video_link"), 500);
   const notes = sanitize(formData.get("notes"), 2000);
@@ -95,8 +99,7 @@ export async function onRequestPost(context) {
   const belowMinimum = numSingers < 20;
 
   let amountTotalCents = null;
-  if (applicationType === "choir_weekend") amountTotalCents = numSingers * PRICING.choir_weekend;
-  if (applicationType === "choir_day") amountTotalCents = numSingers * PRICING.choir_day;
+  if (applicationType === "choir_day") amountTotalCents = numSingers * PRICING.choir_day * selectedDates.length;
   // choir_residence stays null until the rooming list determines the single/shared mix.
 
   const privateToken = crypto.randomUUID();

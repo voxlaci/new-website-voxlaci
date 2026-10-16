@@ -9,7 +9,6 @@ export const PRICING = {
     shared: { with_dinner: 9500, without_dinner: 9000 },
     single: { with_dinner: 12500, without_dinner: 12000 },
   },
-  choir_weekend: 7900,
   choir_day: 4200,
 };
 
@@ -61,8 +60,8 @@ export const STATUS_LABELS = {
 };
 
 export const MODALITY_LABELS = {
-  pt: { choir_residence: "STELLA Choral Residence", choir_weekend: "STELLA Choir Weekend", choir_day: "STELLA Choir Day" },
-  en: { choir_residence: "STELLA Choral Residence", choir_weekend: "STELLA Choir Weekend", choir_day: "STELLA Choir Day" },
+  pt: { choir_residence: "STELLA Choral Residence", choir_day: "STELLA Choir Day" },
+  en: { choir_residence: "STELLA Choral Residence", choir_day: "STELLA Choir Day" },
 };
 
 export async function generateStellaId(db, id) {

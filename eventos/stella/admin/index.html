@@ -38,7 +38,6 @@
     <select id="filter-type">
       <option value="">Todas as modalidades</option>
       <option value="choir_residence">Residência Coral</option>
-      <option value="choir_weekend">Fim de Semana Coral</option>
       <option value="choir_day">Choir Day</option>
     </select>
   </div>
@@ -97,7 +96,7 @@
     payment_pending: "Pagamento pendente", partially_paid: "Parcialmente pago", paid: "Pago",
     confirmed: "Confirmado", cancelled: "Cancelado",
   };
-  var TYPE_LABEL = { choir_residence: "Residência Coral", choir_weekend: "Fim de Semana Coral", choir_day: "Choir Day" };
+  var TYPE_LABEL = { choir_residence: "Residência Coral", choir_day: "Choir Day" };
   var STATUSES = Object.keys(STATUS_LABEL);
 
   var tbody = document.getElementById("admin-tbody");
