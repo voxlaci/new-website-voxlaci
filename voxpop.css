@@ -24,7 +24,12 @@
 
 .conductor-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0}
 .conductor-card{padding:20px;border:1px solid var(--line);border-radius:4px;background:#fff}
-.conductor-card img{width:64px;height:64px;border-radius:50%;object-fit:cover;margin-bottom:12px}
+.conductor-card img{width:96px;height:96px;border-radius:50%;object-fit:cover;margin-bottom:14px}
+.conductor-photo{display:inline-block;border-radius:50%}
+.conductor-photo:hover img{transform:scale(1.04)}
+.conductor-card img{transition:transform .2s ease}
+.conductor-card b a{text-decoration:none}
+.conductor-card b a:hover{color:var(--gold)}
 .conductor-card b{display:block;font-size:1rem;margin-bottom:2px}
 .conductor-card .role{display:block;font-size:12px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
 .conductor-card p{color:var(--muted);font-size:13px;line-height:1.6;margin:0 0 10px}
