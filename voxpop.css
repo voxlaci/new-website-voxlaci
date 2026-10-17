@@ -56,3 +56,18 @@
 .social-links a{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--line);border-radius:50%;color:var(--ink)}
 .social-links a:hover{border-color:var(--gold);color:var(--gold)}
 .social-links svg{width:18px;height:18px;fill:currentColor}
+
+.schedule-list{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.schedule-list li{display:grid;grid-template-columns:130px 1fr;gap:18px;padding:12px 0;border-bottom:1px solid var(--line)}
+.schedule-list time{font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
+.technical-note{margin-top:24px;padding:20px;border:1px solid var(--line);background:var(--ivory);border-radius:4px}
+.technical-note b{font:700 1rem Manrope}
+.technical-note p{margin:8px 0 0;color:var(--muted);line-height:1.7}
+.schedule-overview{padding-top:64px;padding-bottom:64px}
+.schedule-overview-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+.schedule-overview-grid a{display:flex;min-height:118px;flex-direction:column;justify-content:space-between;padding:18px;border:1px solid var(--line);border-radius:4px;color:inherit;text-decoration:none;background:#fff}
+.schedule-overview-grid b{font:800 1.1rem Manrope}
+.schedule-overview-grid span{font-size:13px;color:var(--muted);line-height:1.4}
+.schedule-overview-grid a:hover{border-color:var(--gold);transform:translateY(-2px)}
+@media(max-width:900px){.schedule-overview-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.schedule-list li{grid-template-columns:1fr;gap:4px}.voxpop-city-card b{font-size:1.05rem}}

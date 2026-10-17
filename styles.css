@@ -367,6 +367,13 @@ details.faq-home-item p { margin: 0; padding: 4px 60px 28px 0; color: var(--grey
   display:block;
   background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(0,0,0,.28));
 }
+.history-grid .event-card-visual::after{
+  display:none;
+}
+.history-grid .event-card-visual img{
+  object-position:center;
+  filter:none;
+}
 @media(max-width:1100px){
   .history-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
