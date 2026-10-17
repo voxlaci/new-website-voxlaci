@@ -65,7 +65,11 @@ export async function onRequestPost({ request, env }) {
   const choirExperience = sanitize(formData.get("choir_experience"), 500);
   const readsMusic = sanitize(formData.get("reads_music"), 10);
   const voiceDistribution = sanitize(formData.get("voice_distribution"), 300);
-  const notes = sanitize(formData.get("notes"), 2000);
+  const selectedLisbonEdition = sanitize(formData.get("lisbon_edition"), 60);
+  const submittedNotes = sanitize(formData.get("notes"), 1900);
+  const notes = selectedLisbonEdition
+    ? `Edição Lisboa: ${selectedLisbonEdition}${submittedNotes ? `\n${submittedNotes}` : ""}`
+    : submittedNotes;
 
   let numParticipants = 1;
   let numSingers = null;

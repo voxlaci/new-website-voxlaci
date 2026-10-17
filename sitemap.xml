@@ -408,6 +408,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://voxlaci.com/eventos/voxpop/lisboa/2026/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://voxlaci.com/eventos/voxpop/london/</loc>
     <xhtml:link rel="alternate" hreflang="pt" href="https://voxlaci.com/eventos/voxpop/london/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://voxlaci.com/eventos/voxpop/london/"/>
