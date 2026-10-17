@@ -60,6 +60,11 @@
 .schedule-list{list-style:none;padding:0;margin:0;display:grid;gap:0}
 .schedule-list li{display:grid;grid-template-columns:130px 1fr;gap:18px;padding:12px 0;border-bottom:1px solid var(--line)}
 .schedule-list time{font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
+#programa .section-head h2{line-height:.98;letter-spacing:-.035em;word-spacing:.12em}
+#programa .section-head>p:last-child{line-height:1.7}
+#programa summary{line-height:1.35;letter-spacing:-.015em;word-spacing:.06em;padding:5px 0}
+#programa details>div{line-height:1.75}
+#programa .schedule-list li{line-height:1.6}
 .technical-note{margin-top:24px;padding:20px;border:1px solid var(--line);background:var(--ivory);border-radius:4px}
 .technical-note b{font:700 1rem Manrope}
 .technical-note p{margin:8px 0 0;color:var(--muted);line-height:1.7}
@@ -70,7 +75,7 @@
 .schedule-overview-grid span{font-size:13px;color:var(--muted);line-height:1.4}
 .schedule-overview-grid a:hover{border-color:var(--gold);transform:translateY(-2px)}
 @media(max-width:900px){.schedule-overview-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.schedule-list li{grid-template-columns:1fr;gap:4px}.voxpop-city-card b{font-size:1.05rem}}
+@media(max-width:600px){.schedule-list li{grid-template-columns:1fr;gap:7px;padding:16px 0}.voxpop-city-card b{font-size:1.05rem}#programa .section-head h2{line-height:1.02;letter-spacing:-.025em;word-spacing:.14em}#programa summary{line-height:1.45;word-spacing:.08em}}
 
 /* Keep the complete square brand artwork and its title visible in the hub hero. */
 .voxpop-brand-hero{min-height:92svh;background:#080808}
