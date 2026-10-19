@@ -390,7 +390,7 @@ document.querySelectorAll(".reveal").forEach((item) => revealObserver.observe(it
 const details = {
   pueri: {
     title: "Vox Pueri",
-    body: "Para crianças dos 4 aos 9/10 anos. Uma primeira experiência musical que desenvolve escuta, confiança, linguagem, coordenação e alegria de criar em grupo.",
+    body: "Para crianças dos 6 aos 10 anos. Uma primeira experiência musical que desenvolve escuta, confiança, linguagem, coordenação e alegria de criar em grupo.",
     meta: "Segundas-feiras · 17h–17h50"
   },
   soul: {
@@ -485,7 +485,7 @@ const copy = {
     fallback: "Posso ajudar com ensembles, festival, inscrições, atuações, horários e contactos.",
     answers: {
       sing: ["Temos caminhos para crianças, jovens, adultos, vozes de câmara e ensembles profissionais. Diga-me a idade ou experiência para ajudar a escolher.", "#vozes", "Explorar ensembles"],
-      child: ["Vox Pueri recebe crianças dos 4 aos 9/10 anos. Vox Soul recebe jovens dos 10 aos 18 anos.", "#vozes", "Ver os coros"],
+      child: ["Vox Pueri recebe crianças dos 6 aos 10 anos. Vox Soul recebe jovens dos 10 aos 18 anos.", "#vozes", "Ver os coros"],
       festival: ["O Ramos Palm Sunday Festival junta cantores, coros e maestros internacionais em masterclasses, ensaios e concertos.", "#festival", "Descobrir o festival"],
       book: ["Criamos música para casamentos, cerimónias, empresas, eventos privados e team building.", "#servicos", "Criar connosco"],
       location: ["Ensaiamos no Seminário Torre d'Águilha, em São Domingos de Rana, Cascais.", "#contactos", "Ver contactos"],
@@ -499,7 +499,7 @@ const copy = {
     fallback: "I can help with ensembles, the festival, registration, performances, schedules and contact information.",
     answers: {
       sing: ["We have paths for children, teenagers, adults, chamber voices and professional ensembles. Tell me an age or experience level.", "#vozes", "Explore ensembles"],
-      child: ["Vox Pueri welcomes ages 4–9/10. Vox Soul welcomes ages 10–18.", "#vozes", "View choirs"],
+      child: ["Vox Pueri welcomes ages 6–10. Vox Soul welcomes ages 10–18.", "#vozes", "View choirs"],
       festival: ["Ramos Palm Sunday Festival brings international singers, choirs and conductors together for masterclasses, rehearsals and concerts.", "#festival", "Discover the festival"],
       book: ["We create music for weddings, ceremonies, companies, private events and team building.", "#servicos", "Create with us"],
       location: ["We rehearse at Seminário Torre d'Águilha in São Domingos de Rana, Cascais.", "#contactos", "View contact"],
@@ -541,7 +541,7 @@ const copy = {
     fallback: "Je peux aider avec les ensembles, le festival, les inscriptions, les concerts et les contacts.",
     answers: {
       sing: ["Nous avons des parcours pour enfants, jeunes, adultes et ensembles professionnels.", "#vozes", "Explorer les ensembles"],
-      child: ["Vox Pueri accueille les 4–9/10 ans. Vox Soul accueille les 10–18 ans.", "#vozes", "Voir les chœurs"],
+      child: ["Vox Pueri accueille les 6–10 ans. Vox Soul accueille les 10–18 ans.", "#vozes", "Voir les chœurs"],
       festival: ["Le Ramos Palm Sunday Festival réunit chanteurs, chœurs et chefs internationaux.", "#festival", "Découvrir le festival"],
       book: ["Nous créons de la musique pour mariages, cérémonies et événements privés.", "#servicos", "Créer avec nous"],
       location: ["Nous répétons au Seminário Torre d'Águilha, à Cascais.", "#contactos", "Voir les contacts"],
@@ -555,7 +555,7 @@ const copy = {
     fallback: "Ich helfe bei Ensembles, Festival, Anmeldung, Auftritten und Kontakten.",
     answers: {
       sing: ["Wir bieten Ensembles für Kinder, Jugendliche, Erwachsene und professionelle Sänger.", "#vozes", "Ensembles ansehen"],
-      child: ["Vox Pueri ist für 4–9/10 Jahre, Vox Soul für 10–18 Jahre.", "#vozes", "Chöre ansehen"],
+      child: ["Vox Pueri ist für 6–10 Jahre, Vox Soul für 10–18 Jahre.", "#vozes", "Chöre ansehen"],
       festival: ["Das Ramos Palm Sunday Festival bringt internationale Sänger, Chöre und Dirigenten zusammen.", "#festival", "Festival entdecken"],
       book: ["Wir gestalten Musik für Hochzeiten, Zeremonien und private Veranstaltungen.", "#servicos", "Mit uns gestalten"],
       location: ["Wir proben im Seminário Torre d'Águilha in Cascais.", "#contactos", "Kontakte ansehen"],
