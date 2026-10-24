@@ -36,7 +36,10 @@
     .individual-deep h3{margin:0 0 12px;font:700 clamp(2rem,5vw,4rem)/1 Manrope;letter-spacing:-.05em}
     .individual-deep p{max-width:850px;color:#d0d0d5;line-height:1.7}
     .individual-deep .access-grid article{background:#19191c}
+    .mini-concerts-embed{background:#0b0b10;color:#fff;padding:clamp(42px,6vw,84px) clamp(16px,4vw,54px)}
+    .mini-concerts-embed .section-head{max-width:980px;margin:0 auto 28px}.mini-concerts-frame{display:block;width:min(1180px,100%);height:3550px;margin:0 auto;border:0;border-radius:22px;background:#f5f2ec}
     @media(max-width:760px){.timeline-card{grid-template-columns:1fr;gap:10px;padding:22px}.choir-day-subgrid,.access-grid{grid-template-columns:1fr}.choir-day-manifesto{font-size:.95rem;letter-spacing:.04em}}
+    @media(max-width:760px){.mini-concerts-frame{height:4850px;border-radius:14px}}
   </style>
   <script src="/utm-capture.js"></script>
   <script type="application/ld+json">
@@ -81,7 +84,7 @@
         <div class="page-hero-actions">
           <a class="button primary" href="#para-coros" data-pt="Para coros" data-en="For choirs" data-es="Para coros" data-fr="Pour les chœurs" data-it="Per i cori" data-zh="合唱团">Para coros</a>
           <a class="button" href="#cantores-individuais" data-pt="Cantores individuais" data-en="Individual singers" data-es="Cantantes individuales" data-fr="Chanteurs individuels" data-it="Cantanti individuali" data-zh="个人歌者">Cantores individuais</a>
-          <a class="button" href="/eventos/stella/mini-concerts/">Mini Concerts</a>
+          <a class="button" href="#mini-concerts">Mini Concerts</a>
           <a class="button" href="#mercado-natal" data-pt="Mercado de Natal" data-en="Christmas Market" data-es="Mercado de Navidad" data-fr="Marché de Noël" data-it="Mercatino di Natale" data-zh="圣诞市集">Mercado de Natal</a>
         </div>
       </div>
@@ -125,7 +128,7 @@
           <p data-pt="Choir Day · escolha livremente um ou vários dias do festival." data-en="Choir Day · freely choose one or more festival days." data-es="Choir Day · elija libremente uno o varios días del festival." data-fr="Choir Day · choisissez librement un ou plusieurs jours du festival." data-it="Choir Day · scegli liberamente uno o più giorni del festival." data-zh="合唱日 · 自由选择一天或多天。">Choir Day · escolha livremente um ou vários dias do festival.</p>
           <span class="choice-cta" data-pt="Ver Choir Day →" data-en="View Choir Day →" data-es="Ver Choir Day →" data-fr="Voir Choir Day →" data-it="Vedi Choir Day →" data-zh="查看合唱日 →">Ver Choir Day →</span>
         </a>
-        <a class="choice-card" href="/eventos/stella/mini-concerts/">
+        <a class="choice-card" href="#mini-concerts">
           <b>STELLA Mini Concerts</b>
           <p data-pt="Concertos de artistas a solo no STELLA Hall · candidaturas abertas." data-en="Solo artist concerts at STELLA Hall · applications open." data-es="Conciertos de artistas solistas en STELLA Hall · candidaturas abiertas." data-fr="Concerts d’artistes solistes au STELLA Hall · candidatures ouvertes." data-it="Concerti di artisti solisti nella STELLA Hall · candidature aperte." data-zh="STELLA Hall 独奏艺术家音乐会 · 现正接受申请。">Concertos de artistas a solo no STELLA Hall · candidaturas abertas.</p>
           <span class="choice-cta" data-pt="Ver Mini Concerts →" data-en="View Mini Concerts →" data-es="Ver Mini Concerts →" data-fr="Voir Mini Concerts →" data-it="Vedi Mini Concerts →" data-zh="查看迷你音乐会 →">Ver Mini Concerts →</span>
@@ -185,15 +188,24 @@
           <span data-pt="Venho individualmente. Quarto partilhado: 319 € por pessoa (2 pessoas, total 638 €). Quarto individual: 369 €. Inclui alojamento, pequenos-almoços, jantares, concertos, workshops, Mercado de Natal e atividades do festival." data-en="I come by myself. Shared room: €319 per person (2 people, €638 total). Single room: €369. Includes accommodation, breakfasts, dinners, concerts, workshops, Christmas Market and festival activities." data-es="Viajo individualmente. Habitación compartida: 319 € por persona. Habitación individual: 369 €." data-fr="Je viens individuellement. Chambre partagée : 319 € par personne. Chambre individuelle : 369 €." data-it="Vengo individualmente. Camera condivisa: 319 € a persona. Camera singola: 369 €." data-zh="个人参加。合住房每人319欧元，单人房369欧元。">Venho individualmente. Quarto partilhado: 319 € por pessoa (2 pessoas, total 638 €). Quarto individual: 369 €. Inclui alojamento, pequenos-almoços, jantares, concertos, workshops, Mercado de Natal e atividades do festival.</span>
           <span class="choice-cta" data-pt="Reservar Residência Individual →" data-en="Book Individual Residence →" data-es="Reservar Residencia Individual →" data-fr="Réserver la Résidence Individuelle →" data-it="Prenota la Residenza Individuale →" data-zh="预订个人驻留 →">Reservar Residência Individual →</span>
         </a>
-        <a class="entry-card is-featured" href="/eventos/stella/mini-concerts/">
-          <span class="ec-badge">Apenas 9 artistas</span>
+        <a class="entry-card is-featured" href="#mini-concerts">
+          <span class="ec-badge" data-pt="Apenas 9 artistas" data-en="Only 9 artists">Apenas 9 artistas</span>
           <b>STELLA Mini Concerts</b>
-          <span class="ec-price">5 € <small>bilhete</small></span>
-          <span class="ec-meta">5 · 6 · 8 dezembro · artistas a solo</span>
-          <span>20 minutos de concerto e 5 minutos de conversa com o público, no STELLA Hall.</span>
-          <span class="choice-cta">Candidatar-me →</span>
+          <span class="ec-price">5 € <small data-pt="bilhete" data-en="ticket">bilhete</small></span>
+          <span class="ec-meta" data-pt="5 · 6 · 8 dezembro · artistas a solo" data-en="5 · 6 · 8 December · solo artists">5 · 6 · 8 dezembro · artistas a solo</span>
+          <span data-pt="20 minutos de concerto e 5 minutos de conversa com o público, no STELLA Hall." data-en="20 minutes of concert and 5 minutes of conversation with the audience, at STELLA Hall.">20 minutos de concerto e 5 minutos de conversa com o público, no STELLA Hall.</span>
+          <span class="choice-cta" data-pt="Candidatar-me →" data-en="Apply →">Candidatar-me →</span>
         </a>
       </div>
+    </section>
+
+    <section class="mini-concerts-embed" id="mini-concerts">
+      <div class="section-head">
+        <p class="eyebrow">STELLA Mini Concerts</p>
+        <h2 data-pt="O STELLA abre o palco." data-en="STELLA opens the stage." data-es="STELLA abre el escenario." data-fr="STELLA ouvre la scène." data-it="STELLA apre il palco." data-zh="STELLA 开放舞台。">O STELLA abre o palco.</h2>
+        <p data-pt="Conheça o formato e candidate-se sem sair desta página." data-en="Discover the format and apply without leaving this page." data-es="Descubra el formato y presente su candidatura sin salir de esta página." data-fr="Découvrez le format et postulez sans quitter cette page." data-it="Scopri il formato e candidati senza lasciare questa pagina." data-zh="了解形式并直接在此页面申请。">Conheça o formato e candidate-se sem sair desta página.</p>
+      </div>
+      <iframe class="mini-concerts-frame" src="/eventos/stella/mini-concerts/?embed=1" title="STELLA Mini Concerts — candidatura / application" loading="lazy"></iframe>
     </section>
 
     <section class="section accordion" id="modalidades">
