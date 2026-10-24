@@ -206,6 +206,14 @@
         <p data-pt="Conheça o formato e candidate-se sem sair desta página." data-en="Discover the format and apply without leaving this page." data-es="Descubra el formato y presente su candidatura sin salir de esta página." data-fr="Découvrez le format et postulez sans quitter cette page." data-it="Scopri il formato e candidati senza lasciare questa pagina." data-zh="了解形式并直接在此页面申请。">Conheça o formato e candidate-se sem sair desta página.</p>
       </div>
       <iframe class="mini-concerts-frame" src="/eventos/stella/mini-concerts/?embed=1" title="STELLA Mini Concerts — candidatura / application" loading="lazy"></iframe>
+      <script>
+      document.addEventListener("voxlaci:langchange", function(event){
+        var frame=document.querySelector(".mini-concerts-frame");
+        var lang=event.detail&&event.detail.lang==="en"?"en":"pt";
+        var next="/eventos/stella/mini-concerts/?embed=1&lang="+lang;
+        if(frame&&frame.getAttribute("src")!==next)frame.setAttribute("src",next);
+      });
+      </script>
     </section>
 
     <section class="section accordion" id="modalidades">
