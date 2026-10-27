@@ -1,9 +1,9 @@
 import { sanitize, esc, sendEmail, FROM, VOXLACI_EMAIL } from "../../../_shared/stella.js";
 
 const SLOTS = new Set([
-  "2026-12-05-16:00","2026-12-05-16:30","2026-12-05-17:00",
-  "2026-12-06-16:00","2026-12-06-16:30","2026-12-06-17:00",
-  "2026-12-08-16:00","2026-12-08-16:30","2026-12-08-17:00"
+  "2026-12-05-15:00","2026-12-05-16:00","2026-12-05-17:00",
+  "2026-12-06-15:00","2026-12-06-16:00","2026-12-06-17:00",
+  "2026-12-08-15:00","2026-12-08-16:00","2026-12-08-17:00"
 ]);
 const TYPES = { "image/jpeg":"jpg", "image/png":"png", "image/heic":"heic", "image/heif":"heif" };
 const MAX_PHOTO = 8 * 1024 * 1024;
@@ -68,7 +68,7 @@ export async function onRequestPost({request,env}){
   }catch(error){ await env.RESIDENCY_PROOFS.delete(photoKey); throw error; }
 
   if(env.RESEND_API_KEY){
-    const confirmation=shell("Recebemos a sua candidatura — STELLA MINI CONCERTS 2026",`<p>Olá <b>${esc(fullName)}</b>,</p><p>Recebemos a sua candidatura aos STELLA MINI CONCERTS 2026.</p><p>Obrigado por partilhar a sua música connosco.</p><p>Serão selecionados apenas 9 artistas para os dias 5, 6 e 8 de dezembro, nos horários das 16h00, 16h30 e 17h00.</p><p>As candidaturas serão analisadas tendo em conta a ordem de chegada e a originalidade da proposta, incluindo o conceito, o instrumento e o repertório apresentados.</p><p>A receção desta mensagem confirma apenas a submissão da candidatura e não a participação no Festival.</p><p>Entraremos em contacto caso a sua proposta seja selecionada.</p><p>Referência: <b>${reference}</b></p>`);
+    const confirmation=shell("Recebemos a sua candidatura — STELLA MINI CONCERTS 2026",`<p>Olá <b>${esc(fullName)}</b>,</p><p>Recebemos a sua candidatura aos STELLA MINI CONCERTS 2026.</p><p>Obrigado por partilhar a sua música connosco.</p><p>Serão selecionados apenas 9 artistas para os dias 5, 6 e 8 de dezembro, nos horários das 15h00, 16h00 e 17h00.</p><p>As candidaturas serão analisadas tendo em conta a ordem de chegada e a originalidade da proposta, incluindo o conceito, o instrumento e o repertório apresentados.</p><p>A receção desta mensagem confirma apenas a submissão da candidatura e não a participação no Festival.</p><p>Entraremos em contacto caso a sua proposta seja selecionada.</p><p>Referência: <b>${reference}</b></p>`);
     const details=[["Referência",reference],["Nome",fullName],["Nome artístico",artisticName],["Email",email],["Telefone",phone],["Localidade",locality],["Mini-concerto",concertTitle],["Instrumento",mainInstrument],["Apresentação",artistIntro],["Conceito",concertConcept],["Repertório",repertoire],["Música original",originalMusic],["Link áudio/vídeo",mediaUrl],["Disponibilidade",availability.join(", ")],["1.ª preferência",firstPreference],["Público estimado",audienceEstimate],["Divulgação",promotionPlan],["Necessidades técnicas",technicalNotes]].map(([k,v])=>row(k,v)).join("");
     const photoUrl=`${new URL(request.url).origin}/eventos/stella/admin/mini-concert-photo/${encodeURIComponent(reference)}`;
     const internal=shell("Nova candidatura · STELLA MINI CONCERTS",`<table style="width:100%;border-collapse:collapse">${details}</table><p><a href="${esc(photoUrl)}" style="display:inline-block;padding:11px 18px;background:#111;color:#fff;text-decoration:none;border-radius:999px">Ver fotografia no arquivo privado</a></p>`);
