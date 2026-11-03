@@ -1048,3 +1048,15 @@ if (voiceTestButton) voiceTestButton.addEventListener("click", async () => {
     voiceTestButton.disabled = false;
   }
 });
+
+// Mede intenção de contacto sem enviar dados pessoais para Analytics.
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a[href]");
+  if (!link || typeof window.gtag !== "function") return;
+  const href = link.getAttribute("href") || "";
+  let eventName = "";
+  if (href.startsWith("tel:")) eventName = "contact_click_phone";
+  else if (href.startsWith("mailto:")) eventName = "contact_click_email";
+  else if (/^(https?:\/\/)?(wa\.me|api\.whatsapp\.com)/i.test(href)) eventName = "contact_click_whatsapp";
+  if (eventName) window.gtag("event", eventName, { link_location: window.location.pathname });
+});

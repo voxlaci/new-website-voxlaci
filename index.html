@@ -459,6 +459,7 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
       <form class="registration-form reveal" name="inscricao-voxlaci" method="POST" action="/enviar-casting" enctype="multipart/form-data" novalidate>
         <div id="form-erro" class="form-erro" hidden></div>
         <input type="hidden" name="form-name" value="inscricao-voxlaci">
+        <input type="hidden" name="submission-key" value="">
         <p class="form-hidden" aria-hidden="true"><label>Leave blank: <input name="campo-secreto" tabindex="-1" autocomplete="off"><input name="website" tabindex="-1" autocomplete="off"></label></p>
         <label class="span-2"><span data-pt="Nome completo *" data-en="Full name *">Nome completo *</span><input name="nome" required autocomplete="name"></label>
         <label><span data-pt="Idade *" data-en="Age *">Idade *</span><input type="number" name="idade" min="2" max="114" required></label>
@@ -794,13 +795,6 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
 
     hideBanner();
 
-    if (typeof gtag !== "undefined") {
-      gtag("event", "generate_lead", {
-        event_category: "casting",
-        event_label: "casting_form_submit",
-        value: 1,
-      });
-    }
   });
 
   // ── Limpar erros ao corrigir ─────────────────────────────────────────
@@ -815,5 +809,6 @@ input[type=checkbox].input-erro{outline:2px solid #e53;outline-offset:2px;box-sh
   });
 })();
 </script>
+<script src="/casting-analytics.js?v=1" defer></script>
 </body>
 </html>
