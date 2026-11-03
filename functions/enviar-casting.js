@@ -96,7 +96,7 @@ async function verifyTurnstile(formData, env, ip) {
   if (env.CASTING_TEST_MODE === "true") return true;
   const token = formData.get("cf-turnstile-response");
   if (!token) return false;
-  if (!env.TURNSTILE_SECRET_KEY) return true;
+  if (!env.TURNSTILE_SECRET_KEY) return false;
   const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
     method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({ secret: env.TURNSTILE_SECRET_KEY, response: String(token), remoteip: ip }),
