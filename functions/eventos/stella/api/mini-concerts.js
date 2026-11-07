@@ -28,7 +28,10 @@ export async function onRequestPost({request,env}){
   rateLimit.set(ip,!hit||now-hit.started>=3600000?{started:now,count:1}:{started:hit.started,count:hit.count+1});
   if(!env.DB || !env.RESIDENCY_PROOFS) return json({ok:false,error:"not_configured"},500);
   let form; try{ form=await request.formData(); }catch{return json({ok:false,error:"invalid_request"},400);}
-  if(form.get("website")) return json({ok:true,reference:"OK"});
+  // Never acknowledge a honeypot hit as a successful application. Some browser
+  // autofill tools populated the previous `website` honeypot, which produced a
+  // false success without saving the application.
+  if(form.get("contact_fax_number")) return json({ok:false,error:"spam_detected"},400);
   if(env.STELLA_MINI_CONCERTS_OPEN === "false") return json({ok:false,error:"applications_closed"},403);
 
   const submissionKey=sanitize(form.get("submission_key"),100);
@@ -67,15 +70,32 @@ export async function onRequestPost({request,env}){
       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`).bind(reference,submissionKey,fullName,artisticName,age,locality,email,phone,instagram,websiteUrl,concertTitle,mainInstrument,artistIntro,concertConcept,repertoire,originalMusic,mediaUrl,JSON.stringify(availability),firstPreference,audienceEstimate,promotionPlan,technicalInstrument,yes(form.get("needs_microphone")),yes(form.get("needs_piano")),yes(form.get("uses_backing_track")),technicalNotes,photoKey,sanitize(photo.name,220),photo.type,photo.size).run();
   }catch(error){ await env.RESIDENCY_PROOFS.delete(photoKey); throw error; }
 
+  const details=[
+    ["Referência",reference],["Nome completo",fullName],["Nome artístico",artisticName],["Idade",age],
+    ["Localidade",locality],["Email",email],["Telefone",phone],["Instagram",instagram],["Website",websiteUrl],
+    ["Título do mini-concerto",concertTitle],["Instrumento principal",mainInstrument],
+    ["Apresentação do artista",artistIntro],["Conceito do concerto",concertConcept],["Repertório",repertoire],
+    ["Música original",originalMusic],["Link áudio/vídeo",mediaUrl],["Disponibilidade",availability.join(", ")],
+    ["1.ª preferência",firstPreference],["Público estimado",audienceEstimate],["Plano de divulgação",promotionPlan],
+    ["Instrumento/equipamento",technicalInstrument],["Precisa de microfone",form.get("needs_microphone")==="yes"?"Sim":"Não"],
+    ["Precisa de piano",form.get("needs_piano")==="yes"?"Sim":"Não"],["Usa faixa de acompanhamento",form.get("uses_backing_track")==="yes"?"Sim":"Não"],
+    ["Notas técnicas",technicalNotes]
+  ].map(([k,v])=>row(k,v)).join("");
+
+  let candidateStatus="not_configured", internalStatus="not_configured", candidateId="", internalId="", emailError="";
   if(env.RESEND_API_KEY){
-    const confirmation=shell("Recebemos a sua candidatura — STELLA MINI CONCERTS 2026",`<p>Olá <b>${esc(fullName)}</b>,</p><p>Recebemos a sua candidatura aos STELLA MINI CONCERTS 2026.</p><p>Obrigado por partilhar a sua música connosco.</p><p>Serão selecionados apenas 9 artistas para os dias 5, 6 e 8 de dezembro, nos horários das 15h00, 16h00 e 17h00.</p><p>As candidaturas serão analisadas tendo em conta a ordem de chegada e a originalidade da proposta, incluindo o conceito, o instrumento e o repertório apresentados.</p><p>A receção desta mensagem confirma apenas a submissão da candidatura e não a participação no Festival.</p><p>Entraremos em contacto caso a sua proposta seja selecionada.</p><p>Referência: <b>${reference}</b></p>`);
-    const details=[["Referência",reference],["Nome",fullName],["Nome artístico",artisticName],["Email",email],["Telefone",phone],["Localidade",locality],["Mini-concerto",concertTitle],["Instrumento",mainInstrument],["Apresentação",artistIntro],["Conceito",concertConcept],["Repertório",repertoire],["Música original",originalMusic],["Link áudio/vídeo",mediaUrl],["Disponibilidade",availability.join(", ")],["1.ª preferência",firstPreference],["Público estimado",audienceEstimate],["Divulgação",promotionPlan],["Necessidades técnicas",technicalNotes]].map(([k,v])=>row(k,v)).join("");
+    const confirmation=shell("Recebemos a sua candidatura — STELLA MINI CONCERTS 2026",`<p>Olá <b>${esc(fullName)}</b>,</p><p>Recebemos e guardámos a sua candidatura aos STELLA MINI CONCERTS 2026.</p><p>Esta mensagem contém uma cópia completa da informação submetida.</p><p>Serão selecionados apenas 9 artistas para os dias 5, 6 e 8 de dezembro, nos horários das 15h00, 16h00 e 17h00.</p><p>A receção desta mensagem confirma a submissão da candidatura, não a seleção para o Festival.</p><table style="width:100%;border-collapse:collapse;margin-top:20px">${details}</table>`);
     const photoUrl=`${new URL(request.url).origin}/eventos/stella/admin/mini-concert-photo/${encodeURIComponent(reference)}`;
     const internal=shell("Nova candidatura · STELLA MINI CONCERTS",`<table style="width:100%;border-collapse:collapse">${details}</table><p><a href="${esc(photoUrl)}" style="display:inline-block;padding:11px 18px;background:#111;color:#fff;text-decoration:none;border-radius:999px">Ver fotografia no arquivo privado</a></p>`);
-    await Promise.allSettled([
-      sendEmail(env.RESEND_API_KEY,{from:FROM,to:[email],reply_to:VOXLACI_EMAIL,subject:"Recebemos a sua candidatura — STELLA MINI CONCERTS 2026",html:confirmation}),
-      sendEmail(env.RESEND_API_KEY,{from:FROM,to:[VOXLACI_EMAIL],reply_to:email,subject:`STELLA MINI CONCERTS — Nova candidatura | ${fullName}`,html:internal})
+    const deliveries=await Promise.allSettled([
+      sendEmail(env.RESEND_API_KEY,{from:FROM,to:[email],reply_to:VOXLACI_EMAIL,subject:`STELLA MINI CONCERTS — Cópia da candidatura (${reference})`,html:confirmation}),
+      sendEmail(env.RESEND_API_KEY,{from:FROM,to:[VOXLACI_EMAIL],reply_to:email,subject:`STELLA MINI CONCERTS — Nova candidatura | ${fullName} (${reference})`,html:internal})
     ]);
+    if(deliveries[0].status==="fulfilled"){candidateStatus="sent";candidateId=deliveries[0].value.id||"";}else{candidateStatus="failed";emailError+=`candidate: ${String(deliveries[0].reason)}; `;}
+    if(deliveries[1].status==="fulfilled"){internalStatus="sent";internalId=deliveries[1].value.id||"";}else{internalStatus="failed";emailError+=`internal: ${String(deliveries[1].reason)};`;}
   }
-  return json({ok:true,reference});
+  await env.DB.prepare(`UPDATE stella_mini_concert_applications
+    SET candidate_email_status=?, candidate_email_id=?, internal_email_status=?, internal_email_id=?, email_last_error=?, updated_at=datetime('now')
+    WHERE reference=?`).bind(candidateStatus,candidateId,internalStatus,internalId,emailError.slice(0,1800),reference).run();
+  return json({ok:true,reference,email_warning:candidateStatus!=="sent"||internalStatus!=="sent"},candidateStatus==="sent"&&internalStatus==="sent"?200:202);
 }
