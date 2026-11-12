@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="/ramos-residency.css">
   <link rel="stylesheet" href="/universal-share.css?v=14">
   <style>
+    .stella-2026-gateway{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px clamp(18px,5vw,72px);border-top:72px solid #080808;background:linear-gradient(110deg,#17131f,#2f2145 60%,#5a3d75);color:#fff;border-bottom:1px solid rgba(255,255,255,.2)}
+    .stella-2026-gateway p{margin:0;font:700 clamp(1.1rem,2.3vw,1.65rem)/1.25 Manrope;letter-spacing:-.02em}.stella-2026-gateway .button{flex:0 0 auto;background:#fff;color:#17131f;border-color:#fff}
     .choir-day-deep{background:#0b0b0d;color:#f7f7f4}
     .choir-day-deep .section-head h2,.choir-day-deep h3{color:#fff}
     .choir-day-deep .eyebrow,.choir-day-deep .timeline-time{color:#b9a7ff}
@@ -38,7 +40,7 @@
     .individual-deep .access-grid article{background:#19191c}
     .mini-concerts-embed{background:#0b0b10;color:#fff;padding:clamp(42px,6vw,84px) clamp(16px,4vw,54px)}
     .mini-concerts-embed .section-head{max-width:980px;margin:0 auto 28px}.mini-concerts-frame{display:block;width:min(1180px,100%);height:3550px;margin:0 auto;border:0;border-radius:22px;background:#f5f2ec}
-    @media(max-width:760px){.timeline-card{grid-template-columns:1fr;gap:10px;padding:22px}.choir-day-subgrid,.access-grid{grid-template-columns:1fr}.choir-day-manifesto{font-size:.95rem;letter-spacing:.04em}}
+    @media(max-width:760px){.stella-2026-gateway{align-items:flex-start;flex-direction:column;padding:18px}.stella-2026-gateway .button{width:100%;text-align:center}.timeline-card{grid-template-columns:1fr;gap:10px;padding:22px}.choir-day-subgrid,.access-grid{grid-template-columns:1fr}.choir-day-manifesto{font-size:.95rem;letter-spacing:.04em}}
     @media(max-width:760px){.mini-concerts-frame{height:4850px;border-radius:14px}}
   </style>
   <script src="/utm-capture.js"></script>
@@ -75,6 +77,10 @@
   </header>
 
   <main>
+    <section class="stella-2026-gateway" aria-label="STELLA 2026">
+      <p data-pt="STELLA 2026 — Descubra a edição deste ano" data-en="STELLA 2026 — Discover this year's edition">STELLA 2026 — Descubra a edição deste ano</p>
+      <a class="button" href="/eventos/stella/2026/" data-pt="VER PROGRAMAÇÃO 2026" data-en="VIEW THE 2026 PROGRAMME">VER PROGRAMAÇÃO 2026</a>
+    </section>
     <section class="page-hero project-hero">
       <img src="/assets/event-stella-2021.png" alt="STELLA Festival · Natal · Christmas · 聖誕節">
       <div class="page-hero-copy">
