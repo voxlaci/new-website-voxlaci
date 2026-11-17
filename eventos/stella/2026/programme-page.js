@@ -1,5 +1,6 @@
 (function () {
   const D = window.STELLA_2026;
+  const I = window.STELLA_I18N;
   if (!D) return;
 
   const languages = ['pt', 'en', 'es', 'fr', 'it', 'zh'];
@@ -11,12 +12,20 @@
   let marketFilter = 'all';
 
   const L = {
+    pt: {
+      buy: 'Comprar bilhete', confirmed: 'Confirmado', free: 'Entrada livre · sujeita à lotação',
+      search: 'Pesquisar por nome, produto ou marca', searchLabel: 'Pesquisar expositores', none: 'Nenhum expositor encontrado.',
+      try: 'Experimente outro nome, produto ou marca.', result: 'resultado', results: 'resultados', all: 'Todos', crafts: 'Artesanato',
+      food: 'Gastronomia', fashion: 'Moda e acessórios', decor: 'Decoração e presentes', auditorium: 'Auditório',
+      hall: 'STELLA Hall', church: 'Igreja', market: 'Mercado interior', workshops: 'Workshops',
+      latest: 'Abra o Instagram para ver as publicações mais recentes.'
+    },
     en: {
       buy: 'Buy ticket', confirmed: 'Confirmed', free: 'Free admission · subject to capacity',
       search: 'Search by name, product or brand', searchLabel: 'Search exhibitors', none: 'No exhibitors found.',
       try: 'Try another name, product or brand.', result: 'result', results: 'results', all: 'All', crafts: 'Crafts',
       food: 'Food', fashion: 'Fashion & accessories', decor: 'Decoration & gifts', auditorium: 'Auditorium',
-      hall: 'STELLA Hall', church: 'Church', market: 'Market / Outdoors', workshops: 'Workshops',
+      hall: 'STELLA Hall', church: 'Church', market: 'Indoor market', workshops: 'Workshops',
       latest: 'Open Instagram to see the latest posts.'
     },
     es: {
@@ -24,7 +33,7 @@
       search: 'Buscar por nombre, producto o marca', searchLabel: 'Buscar expositores', none: 'No se encontraron expositores.',
       try: 'Pruebe con otro nombre, producto o marca.', result: 'resultado', results: 'resultados', all: 'Todos', crafts: 'Artesanía',
       food: 'Gastronomía', fashion: 'Moda y accesorios', decor: 'Decoración y regalos', auditorium: 'Auditorio',
-      hall: 'STELLA Hall', church: 'Iglesia', market: 'Mercado / Exterior', workshops: 'Talleres',
+      hall: 'STELLA Hall', church: 'Iglesia', market: 'Mercado interior', workshops: 'Talleres',
       latest: 'Abra Instagram para ver las publicaciones más recientes.'
     },
     fr: {
@@ -32,7 +41,7 @@
       search: 'Rechercher par nom, produit ou marque', searchLabel: 'Rechercher des exposants', none: 'Aucun exposant trouvé.',
       try: 'Essayez un autre nom, produit ou marque.', result: 'résultat', results: 'résultats', all: 'Tous', crafts: 'Artisanat',
       food: 'Gastronomie', fashion: 'Mode et accessoires', decor: 'Décoration et cadeaux', auditorium: 'Auditorium',
-      hall: 'STELLA Hall', church: 'Église', market: 'Marché / Extérieur', workshops: 'Ateliers',
+      hall: 'STELLA Hall', church: 'Église', market: 'Marché intérieur', workshops: 'Ateliers',
       latest: 'Ouvrez Instagram pour voir les publications les plus récentes.'
     },
     it: {
@@ -40,7 +49,7 @@
       search: 'Cerca per nome, prodotto o marchio', searchLabel: 'Cerca espositori', none: 'Nessun espositore trovato.',
       try: 'Prova un altro nome, prodotto o marchio.', result: 'risultato', results: 'risultati', all: 'Tutti', crafts: 'Artigianato',
       food: 'Gastronomia', fashion: 'Moda e accessori', decor: 'Decorazioni e regali', auditorium: 'Auditorium',
-      hall: 'STELLA Hall', church: 'Chiesa', market: 'Mercato / Esterno', workshops: 'Laboratori',
+      hall: 'STELLA Hall', church: 'Chiesa', market: 'Mercato al coperto', workshops: 'Laboratori',
       latest: 'Apri Instagram per vedere i post più recenti.'
     },
     zh: {
@@ -48,7 +57,7 @@
       search: '按姓名、产品或品牌搜索', searchLabel: '搜索参展商', none: '未找到参展商。',
       try: '请尝试其他姓名、产品或品牌。', result: '项结果', results: '项结果', all: '全部', crafts: '手工艺',
       food: '美食', fashion: '时尚与配饰', decor: '装饰与礼品', auditorium: '礼堂',
-      hall: 'STELLA大厅', church: '教堂', market: '市集 / 户外', workshops: '工作坊',
+      hall: 'STELLA大厅', church: '教堂', market: '室内市集', workshops: '工作坊',
       latest: '打开 Instagram 查看最新帖子。'
     },
     pt: {
@@ -56,7 +65,7 @@
       search: 'Pesquisar por nome, produto ou marca', searchLabel: 'Pesquisar expositores', none: 'Nenhum expositor encontrado.',
       try: 'Experimente outro nome, produto ou marca.', result: 'resultado', results: 'resultados', all: 'Todos', crafts: 'Artesanato',
       food: 'Gastronomia', fashion: 'Moda e acessórios', decor: 'Decoração e presentes', auditorium: 'Auditório',
-      hall: 'STELLA Hall', church: 'Igreja', market: 'Mercado / Exterior', workshops: 'Workshops',
+      hall: 'STELLA Hall', church: 'Igreja', market: 'Mercado interior', workshops: 'Workshops',
       latest: 'Abra o Instagram para ver as publicações mais recentes.'
     }
   };
@@ -102,8 +111,13 @@
 
   const safe = value => String(value || '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const tr = value => {
-    if (value && typeof value === 'object') return value[lang] || value.en || value.pt || '';
-    return value || '';
+    if (value && typeof value === 'object') {
+      if (value[lang]) return value[lang];
+      if (lang === 'pt') return value.pt || value.en || '';
+      if (I?.has(lang, value.pt)) return I.get(lang, value.pt);
+      return value.en || value.pt || '';
+    }
+    return I?.get(lang, value || '') || value || '';
   };
   const img = (src, alt) => src ? `<img class="agenda-img" src="${safe(src)}" alt="${safe(alt)}" loading="lazy" onerror="this.classList.add('missing-image')">` : '';
 
@@ -111,7 +125,7 @@
     const pt = element.getAttribute('data-pt') || element.textContent;
     if (lang === 'pt') return pt;
     if (lang === 'en') return element.getAttribute('data-en') || pt;
-    return staticTranslations[lang]?.[pt] || element.getAttribute('data-en') || pt;
+    return I?.get(lang, pt) || staticTranslations[lang]?.[pt] || element.getAttribute('data-en') || pt;
   }
 
   function venueGroup(event) {
