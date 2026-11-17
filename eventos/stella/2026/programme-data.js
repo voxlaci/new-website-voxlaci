@@ -1,7 +1,7 @@
 /* STELLA 2026 — fonte única de conteúdos públicos. Edite este ficheiro para atualizar a página. */
 (function(){
 const A="/public/stella/2026/",T="https://shorturl.at/uGOtI";
-const market={time:"10:00–18:00",title:{pt:"Mercado de Natal STELLA",en:"STELLA Christmas Market"},artist:{pt:"68 expositores · entrada livre",en:"68 exhibitors · free admission"},venue:{pt:"Mercado interior",en:"Indoor market"},price:{pt:"Entrada livre",en:"Free admission"},image:A+"mercado_natal.png",category:"market",status:"confirmed"};
+const market={time:"10:00–18:00",title:{pt:"Mercado de Natal STELLA",en:"STELLA Christmas Market"},artist:{pt:"35 expositores por dia · entrada livre",en:"35 exhibitors per day · free admission",es:"35 expositores por día · entrada libre",fr:"35 exposants par jour · entrée libre",it:"35 espositori al giorno · ingresso libero",zh:"每天35位参展商 · 免费入场"},venue:{pt:"Mercado interior",en:"Indoor market"},price:{pt:"Entrada livre",en:"Free admission"},image:A+"mercado_natal.png",category:"market",status:"confirmed"};
 window.STELLA_2026={
 days:[{id:"2026-12-05",label:{pt:"5 dezembro",en:"5 December"}},{id:"2026-12-06",label:{pt:"6 dezembro",en:"6 December"}},{id:"2026-12-08",label:{pt:"8 dezembro",en:"8 December"}},{id:"2026-12-12",label:{pt:"12 dezembro",en:"12 December"}},{id:"2026-12-13",label:{pt:"13 dezembro",en:"13 December"}}],
 dayCards:[
