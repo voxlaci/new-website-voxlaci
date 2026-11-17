@@ -140,7 +140,7 @@
   function renderAgenda() {
     const groups = {auditorium:[], hall:[], church:[], market:[], workshops:[]};
     D.programme[active].forEach(event => groups[venueGroup(event)].push(event));
-    const order = ['auditorium', 'hall', 'church', 'market', 'workshops'];
+    const order = ['market', 'workshops', 'auditorium', 'hall', 'church'];
     document.querySelector('.agenda').innerHTML = order.filter(key => groups[key].length).map(key => `
       <section class="venue-group">
         <h3 class="venue-heading">${safe(L[lang][key])}</h3>
@@ -217,7 +217,7 @@
     renderDayCards(); renderTabs(); renderAgenda(); renderChoirs();
     document.querySelector('#concert-cards').innerHTML = D.concerts.map(item => visualCard(item, item.ticketUrl)).join('');
     document.querySelector('#mini-cards').innerHTML = D.mini.map(item => visualCard({...item, venue:'STELLA Hall', price:'5 €'}, 'https://shorturl.at/uGOtI')).join('');
-    document.querySelector('#community-grid').innerHTML = D.community.map(item => `<article class="simple-card">${img(item.image, tr(item.title))}<p class="eyebrow">${safe(tr(item.date))}</p><h3>${safe(tr(item.title))}</h3>${item.subtitle ? `<p><strong>${safe(tr(item.subtitle))}</strong></p>` : ''}${item.description ? `<p>${safe(tr(item.description))}</p>` : ''}<span class="pill">${L[lang].free}</span></article>`).join('');
+    document.querySelector('#community-grid').innerHTML = D.community.map(item => `<article class="simple-card">${img(item.image, tr(item.title))}<p class="eyebrow">${safe(tr(item.date))}</p><h3>${safe(tr(item.title))}</h3>${item.subtitle ? `<p><strong>${safe(tr(item.subtitle))}</strong></p>` : ''}<span class="pill">${L[lang].free}</span>${item.description ? `<details class="community-details"><summary>${safe(I.get(lang,'Saber mais'))}</summary><p>${safe(tr(item.description))}</p></details>` : ''}</article>`).join('');
     document.querySelector('#workshop-cards').innerHTML = D.workshops.map(item => visualCard(item, item.ticketUrl)).join('');
     renderMarketFilters(); renderMarket();
   }

@@ -1,6 +1,7 @@
 /* Traduções da página pública STELLA 2026. As chaves correspondem ao texto-base em português. */
 (function(){
 const rows=[
+["Saber mais","Learn more","Saber más","En savoir plus","Scopri di più","了解更多"],
 ["Programa","Programme","Programa","Programme","Programma","节目"],
 ["Mercado","Market","Mercado","Marché","Mercato","市集"],
 ["Bilhetes","Tickets","Entradas","Billets","Biglietti","门票"],
