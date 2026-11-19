@@ -183,7 +183,7 @@
   }
 
   function visualCard(item, ticket) {
-    return `<article class="visual-card">${img(item.image, tr(item.title))}<div class="visual-copy"><p class="eyebrow">${safe(tr(item.date))}</p><h3>${safe(tr(item.title))}</h3>${item.subtitle ? `<p>${safe(tr(item.subtitle))}</p>` : ''}<p>${safe(tr(item.venue || ''))}${item.price ? ` · ${safe(tr(item.price))}` : ''}</p>${ticket ? `<a class="button gold" href="${ticket}" target="_blank" rel="noopener">${L[lang].buy}</a>` : ''}</div></article>`;
+    return `<article class="visual-card">${img(item.image, tr(item.title))}<div class="visual-copy"><p class="eyebrow">${safe(tr(item.date))}</p><h3>${safe(tr(item.title))}</h3>${item.subtitle ? `<p>${safe(tr(item.subtitle))}</p>` : ''}<p>${safe(tr(item.venue || ''))}${item.price ? ` · ${safe(tr(item.price))}` : ''}</p>${item.description ? `<details class="event-details"><summary>${safe(L[lang].more)}</summary><p>${safe(tr(item.description))}</p></details>` : ''}${ticket ? `<a class="button gold" href="${ticket}" target="_blank" rel="noopener">${L[lang].buy}</a>` : ''}</div></article>`;
   }
 
   function renderChoirs() {
