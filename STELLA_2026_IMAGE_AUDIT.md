@@ -56,16 +56,16 @@ Foram instalados 11 ficheiros WebP de alta qualidade em `public/images/stella/20
 | CAOSMOS | 8 dezembro | Sim | `public/images/stella/2026/community-voices/caosmos.webp` |
 | St. Dominic’s International School | 8 dezembro | Sim | `public/images/stella/2026/community-voices/st-dominics-junior-school-choir.webp` |
 | International Voices Cascais | 8 dezembro | Sim | `public/images/stella/2026/community-voices/international-voices-cascais.webp` |
-| Riverside International Gospel Choir | 8 dezembro | **Não** | MISSING IMAGE |
+| Riverside International Gospel Choir | 8 dezembro | Sim | `public/images/stella/2026/community-voices/riverside-gospel-choir.jpeg` |
 | Nossa Senhora do Fado | 8 dezembro | Sim | `public/stella/2026/nossa_senhora_do_fado.png` |
 | Dinis Cabrita | 8 dezembro | Sim | `public/stella/2026/dinis_cabrita.png` |
 | Happy Kids Choir / Oana Daniela Dobre | 12 dezembro | Sim | `public/images/stella/2026/choir-day/happy-kids-choir-oana-dobre.webp` |
 | Padre Borga | 12 dezembro | Sim | `public/stella/2026/padre_borga.jpg` |
 | Coimbra Gospel Choir | 13 dezembro | Sim | `public/stella/2026/coimbra_gospel_choir.png` |
 
-Resultado técnico desta atualização: as duas sessões do Kids Makers Market, Vozes do Mar e os dois grupos do Choir Day de 5 de dezembro ficaram associados às imagens aprovadas existentes na biblioteca local. O único poster pedido que não foi localizado nas fontes disponíveis é o do Riverside International Gospel Choir.
+Resultado técnico desta atualização: as duas sessões do Kids Makers Market, Vozes do Mar, os dois grupos do Choir Day de 5 de dezembro e o Riverside International Gospel Choir ficaram associados às imagens aprovadas existentes na biblioteca local.
 
 ## Imagens ainda em falta
 
-- MISSING IMAGE: Riverside International Gospel Choir
+Nenhuma das imagens expressamente solicitadas nesta atualização permanece em falta.
 
