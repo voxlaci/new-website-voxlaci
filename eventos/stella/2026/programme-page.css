@@ -29,6 +29,54 @@
   border-color: var(--gold);
 }
 
+.agenda-media {
+  display: grid;
+  gap: 8px;
+}
+
+.agenda-media--double {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.agenda-media--double .agenda-img {
+  aspect-ratio: 1;
+  height: 100%;
+  object-fit: contain;
+}
+
+.section-poster {
+  display: block;
+  width: min(100%, 620px);
+  height: auto;
+  margin: 0 auto 32px;
+  border: 1px solid rgba(216, 173, 88, .45);
+  border-radius: 22px;
+  box-shadow: 0 20px 55px rgba(7, 17, 40, .18);
+}
+
+.agenda-img[src*="/public/images/stella/2026/"],
+.simple-card img[src*="/public/images/stella/2026/"],
+.choir-media img[src*="/public/images/stella/2026/"] {
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #071128;
+}
+
+.visual-card img[src*="/public/images/stella/2026/"] {
+  object-fit: contain;
+  background: #071128;
+}
+
+.event-details {
+  margin-top: 10px;
+}
+
+.event-details summary {
+  cursor: pointer;
+  color: #826126;
+  font-weight: 800;
+}
+
 .project-lang {
   display: flex;
   gap: 4px;
@@ -52,6 +100,10 @@
 }
 
 @media (max-width: 720px) {
+  .agenda-media--double {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .project-lang {
     max-width: 126px;
   }

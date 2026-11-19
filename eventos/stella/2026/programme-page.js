@@ -18,7 +18,7 @@
       try: 'Experimente outro nome, produto ou marca.', result: 'resultado', results: 'resultados', all: 'Todos', crafts: 'Artesanato',
       food: 'Gastronomia', fashion: 'Moda e acessórios', decor: 'Decoração e presentes', auditorium: 'Auditório',
       hall: 'STELLA Hall', church: 'Igreja', market: 'Mercado interior', workshops: 'Workshops',
-      latest: 'Abra o Instagram para ver as publicações mais recentes.'
+      latest: 'Abra o Instagram para ver as publicações mais recentes.', more: 'Saber mais'
     },
     en: {
       buy: 'Buy ticket', confirmed: 'Confirmed', free: 'Free admission · subject to capacity',
@@ -26,7 +26,7 @@
       try: 'Try another name, product or brand.', result: 'result', results: 'results', all: 'All', crafts: 'Crafts',
       food: 'Food', fashion: 'Fashion & accessories', decor: 'Decoration & gifts', auditorium: 'Auditorium',
       hall: 'STELLA Hall', church: 'Church', market: 'Indoor market', workshops: 'Workshops',
-      latest: 'Open Instagram to see the latest posts.'
+      latest: 'Open Instagram to see the latest posts.', more: 'Learn more'
     },
     es: {
       buy: 'Comprar entrada', confirmed: 'Confirmado', free: 'Entrada libre · sujeta al aforo',
@@ -34,7 +34,7 @@
       try: 'Pruebe con otro nombre, producto o marca.', result: 'resultado', results: 'resultados', all: 'Todos', crafts: 'Artesanía',
       food: 'Gastronomía', fashion: 'Moda y accesorios', decor: 'Decoración y regalos', auditorium: 'Auditorio',
       hall: 'STELLA Hall', church: 'Iglesia', market: 'Mercado interior', workshops: 'Talleres',
-      latest: 'Abra Instagram para ver las publicaciones más recientes.'
+      latest: 'Abra Instagram para ver las publicaciones más recientes.', more: 'Saber más'
     },
     fr: {
       buy: 'Acheter un billet', confirmed: 'Confirmé', free: 'Entrée libre · sous réserve de places',
@@ -42,7 +42,7 @@
       try: 'Essayez un autre nom, produit ou marque.', result: 'résultat', results: 'résultats', all: 'Tous', crafts: 'Artisanat',
       food: 'Gastronomie', fashion: 'Mode et accessoires', decor: 'Décoration et cadeaux', auditorium: 'Auditorium',
       hall: 'STELLA Hall', church: 'Église', market: 'Marché intérieur', workshops: 'Ateliers',
-      latest: 'Ouvrez Instagram pour voir les publications les plus récentes.'
+      latest: 'Ouvrez Instagram pour voir les publications les plus récentes.', more: 'En savoir plus'
     },
     it: {
       buy: 'Acquista biglietto', confirmed: 'Confermato', free: 'Ingresso libero · fino a esaurimento posti',
@@ -50,7 +50,7 @@
       try: 'Prova un altro nome, prodotto o marchio.', result: 'risultato', results: 'risultati', all: 'Tutti', crafts: 'Artigianato',
       food: 'Gastronomia', fashion: 'Moda e accessori', decor: 'Decorazioni e regali', auditorium: 'Auditorium',
       hall: 'STELLA Hall', church: 'Chiesa', market: 'Mercato al coperto', workshops: 'Laboratori',
-      latest: 'Apri Instagram per vedere i post più recenti.'
+      latest: 'Apri Instagram per vedere i post più recenti.', more: 'Scopri di più'
     },
     zh: {
       buy: '购买门票', confirmed: '已确认', free: '免费入场 · 座位有限',
@@ -58,7 +58,7 @@
       try: '请尝试其他姓名、产品或品牌。', result: '项结果', results: '项结果', all: '全部', crafts: '手工艺',
       food: '美食', fashion: '时尚与配饰', decor: '装饰与礼品', auditorium: '礼堂',
       hall: 'STELLA大厅', church: '教堂', market: '室内市集', workshops: '工作坊',
-      latest: '打开 Instagram 查看最新帖子。'
+      latest: '打开 Instagram 查看最新帖子。', more: '了解更多'
     },
     pt: {
       buy: 'Comprar bilhete', confirmed: 'Confirmado', free: 'Entrada livre · sujeita à lotação',
@@ -66,7 +66,7 @@
       try: 'Experimente outro nome, produto ou marca.', result: 'resultado', results: 'resultados', all: 'Todos', crafts: 'Artesanato',
       food: 'Gastronomia', fashion: 'Moda e acessórios', decor: 'Decoração e presentes', auditorium: 'Auditório',
       hall: 'STELLA Hall', church: 'Igreja', market: 'Mercado interior', workshops: 'Workshops',
-      latest: 'Abra o Instagram para ver as publicações mais recentes.'
+      latest: 'Abra o Instagram para ver as publicações mais recentes.', more: 'Saber mais'
     }
   };
 
@@ -120,6 +120,12 @@
     return I?.get(lang, value || '') || value || '';
   };
   const img = (src, alt) => src ? `<img class="agenda-img" src="${safe(src)}" alt="${safe(alt)}" loading="lazy" onerror="this.classList.add('missing-image')">` : '';
+  const eventMedia = event => {
+    const sources = event.images || (event.image ? [event.image] : []);
+    if (!sources.length) return '';
+    const label = tr(event.artist || event.title);
+    return `<div class="agenda-media${sources.length > 1 ? ' agenda-media--double' : ''}">${sources.map((src, index) => img(src, sources.length > 1 ? `${label} · ${index + 1}` : label)).join('')}</div>`;
+  };
 
   function translatedStatic(element) {
     const pt = element.getAttribute('data-pt') || element.textContent;
@@ -146,10 +152,10 @@
         <h3 class="venue-heading">${safe(L[lang][key])}</h3>
         ${groups[key].map(event => `<article class="agenda-item">
           <div class="agenda-time">${safe(tr(event.time))}</div>
-          ${img(event.image, tr(event.artist || event.title))}
+          ${eventMedia(event)}
           <div><h3>${safe(tr(event.title))}</h3>
           <p><strong>${safe(tr(event.artist))}</strong>${event.venue ? ` · ${safe(tr(event.venue))}` : ''}</p>
-          ${event.description ? `<p>${safe(tr(event.description))}</p>` : ''}
+          ${event.description ? `<details class="event-details"><summary>${safe(L[lang].more)}</summary><p>${safe(tr(event.description))}</p></details>` : ''}
           ${event.links ? `<div class="agenda-links">${event.links.map(link => `<a href="${safe(link.url)}" target="_blank" rel="noopener">${safe(link.label)}</a>`).join('')}</div>` : ''}
           ${event.ticketUrl ? `<a class="button gold" href="${event.ticketUrl}" target="_blank" rel="noopener">${L[lang].buy}</a>` : ''}</div>
           <span class="pill">${safe(tr(event.price) || L[lang].confirmed)}</span>
