@@ -33,43 +33,49 @@ function request() {
   fd.set("idade", "30");
   fd.set("telefone", "+351900000000");
   fd.set("email", "test@example.com");
-  fd.set("pagamento-inscricao", "MB WAY");
-  fd.set("nome-pagamento", "Test User");
-  fd.set("comprovativo", new Blob(["test"], { type: "application/pdf" }), "receipt.pdf");
   return new Request("https://voxlaci.com/enviar-casting", { method: "POST", body: fd });
+}
+
+function stripeSession() {
+  return new Response(JSON.stringify({
+    id: "cs_test_casting", url: "https://checkout.stripe.com/c/pay/cs_test_casting", mode: "payment",
+  }), { status: 200, headers: { "Content-Type": "application/json" } });
 }
 
 test("casting records accepted internal and candidate emails", async (t) => {
   const originalFetch = globalThis.fetch;
-  let calls = 0;
-  globalThis.fetch = async () => new Response(JSON.stringify({ id: `email_${++calls}` }), {
-    status: 200, headers: { "Content-Type": "application/json" },
-  });
+  let emails = 0;
+  globalThis.fetch = async (url) => String(url).includes("api.stripe.com")
+    ? stripeSession()
+    : new Response(JSON.stringify({ id: `email_${++emails}` }), {
+      status: 200, headers: { "Content-Type": "application/json" },
+    });
   t.after(() => { globalThis.fetch = originalFetch; });
 
   const DB = fakeDb();
-  const response = await onRequestPost({ request: request(), env: { DB, RESEND_API_KEY: "test", CASTING_TEST_MODE: "true" } });
+  const response = await onRequestPost({ request: request(), env: { DB, STRIPE_SECRET_KEY: "sk_test_example", RESEND_API_KEY: "test", CASTING_TEST_MODE: "true" } });
   assert.equal(response.status, 303);
-  assert.equal(new URL(response.headers.get("location")).pathname, "/casting-obrigado.html");
+  assert.equal(response.headers.get("location"), "https://checkout.stripe.com/c/pay/cs_test_casting");
   assert.equal(DB.state.inserts, 1);
   assert.deepEqual(DB.state.updates.map((args) => args[0]), ["internal_accepted", "accepted"]);
 });
 
 test("casting keeps the application and reports a candidate confirmation failure", async (t) => {
   const originalFetch = globalThis.fetch;
-  let calls = 0;
-  globalThis.fetch = async () => {
-    calls += 1;
-    return calls === 1
+  let emails = 0;
+  globalThis.fetch = async (url) => {
+    if (String(url).includes("api.stripe.com")) return stripeSession();
+    emails += 1;
+    return emails === 1
       ? new Response(JSON.stringify({ id: "email_internal" }), { status: 200, headers: { "Content-Type": "application/json" } })
       : new Response(JSON.stringify({ message: "suppressed" }), { status: 422, headers: { "Content-Type": "application/json" } });
   };
   t.after(() => { globalThis.fetch = originalFetch; });
 
   const DB = fakeDb();
-  const response = await onRequestPost({ request: request(), env: { DB, RESEND_API_KEY: "test", CASTING_TEST_MODE: "true" } });
+  const response = await onRequestPost({ request: request(), env: { DB, STRIPE_SECRET_KEY: "sk_test_example", RESEND_API_KEY: "test", CASTING_TEST_MODE: "true" } });
   assert.equal(response.status, 303);
-  assert.equal(new URL(response.headers.get("location")).searchParams.get("confirmacao"), "pendente");
+  assert.equal(response.headers.get("location"), "https://checkout.stripe.com/c/pay/cs_test_casting");
   assert.equal(DB.state.inserts, 1);
   assert.deepEqual(DB.state.updates.map((args) => args[0]), ["internal_accepted", "candidate_failed"]);
 });
