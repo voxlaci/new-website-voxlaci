@@ -19,7 +19,7 @@
     <div id="casting-status" aria-live="polite">
       <span class="status-pill pending">A confirmar pagamento</span>
       <h1>Estamos a verificar.</h1>
-      <p>A confirmação definitiva vem diretamente do Stripe. Não feche esta página enquanto verificamos o estado.</p>
+      <p>Envie o comprovativo de pagamento no formulário de casting para que a equipa VoxLaci possa validar a inscrição.</p>
     </div>
     <div class="casting-payment-actions"><a href="/">Voltar ao site</a><a href="mailto:info@voxlaci.com">Contactar VoxLaci</a></div>
   </main>
@@ -33,7 +33,7 @@
       let attempts = 0;
       const render = (paid, name) => {
         if (paid) {
-          target.innerHTML = `<span class="status-pill">PAGO / Casting pago</span><h1>Obrigado${name ? `, ${escapeHtml(name)}` : ""}.</h1><p>O Stripe confirmou o pagamento único de 20 € e a sua inscrição ficou associada ao respetivo casting.</p>`;
+          target.innerHTML = `<span class="status-pill">PAGO / Casting pago</span><h1>Obrigado${name ? `, ${escapeHtml(name)}` : ""}.</h1><p>O pagamento único de 20 € foi confirmado e ficou associado ao respetivo casting.</p>`;
         } else {
           target.innerHTML = `<span class="status-pill pending">Pagamento pendente</span><h1>${cancelled ? "Pagamento não concluído." : "Ainda estamos a confirmar."}</h1><p>A inscrição foi guardada, mas permanece com pagamento pendente. Uma página de retorno ou um parâmetro no endereço nunca altera este estado.</p>`;
         }
