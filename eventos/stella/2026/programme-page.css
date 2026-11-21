@@ -83,6 +83,49 @@
   font-weight: 800;
 }
 
+.visual-card .event-details,
+.choir .event-details {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(216, 173, 88, .35);
+}
+
+.visual-card .event-details summary,
+.dark .event-details summary {
+  color: #f0cb7a;
+}
+
+.event-details[open] summary {
+  margin-bottom: 10px;
+}
+
+.detail-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #826126;
+  font-weight: 800;
+}
+
+.dark .detail-link {
+  color: #f0cb7a;
+}
+
+.agenda-item .pill {
+  grid-column: auto !important;
+  margin: 8px 0 2px;
+}
+
+.makers-poster {
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #071128;
+}
+
+.insta-grid iframe {
+  display: block;
+  width: 100%;
+}
+
 .project-lang {
   display: flex;
   gap: 4px;

@@ -144,24 +144,26 @@
   }
 
   function renderAgenda() {
-    const groups = {auditorium:[], hall:[], church:[], market:[], workshops:[]};
-    D.programme[active].forEach(event => groups[venueGroup(event)].push(event));
-    const order = ['market', 'workshops', 'auditorium', 'hall', 'church'];
-    document.querySelector('.agenda').innerHTML = order.filter(key => groups[key].length).map(key => `
-      <section class="venue-group">
-        <h3 class="venue-heading">${safe(L[lang][key])}</h3>
-        ${groups[key].map(event => `<article class="agenda-item">
-          <div class="agenda-time">${safe(tr(event.time))}</div>
+    const startMinutes = value => {
+      const match = String(value || '').match(/(\d{1,2}):(\d{2})/);
+      return match ? Number(match[1]) * 60 + Number(match[2]) : Number.MAX_SAFE_INTEGER;
+    };
+    const events = [...D.programme[active]].sort((a, b) => {
+      if (a.category === 'market') return -1;
+      if (b.category === 'market') return 1;
+      return startMinutes(a.time) - startMinutes(b.time);
+    });
+    document.querySelector('.agenda').innerHTML = events.map(event => `<article class="agenda-item">
           ${eventMedia(event)}
-          <div><h3>${safe(tr(event.title))}</h3>
+          <div class="agenda-copy"><h3>${safe(tr(event.title))}</h3>
+          <div class="agenda-time">${safe(tr(event.time))}</div>
           <p><strong>${safe(tr(event.artist))}</strong>${event.venue ? ` · ${safe(tr(event.venue))}` : ''}</p>
           ${event.summary ? `<p class="event-summary">${safe(tr(event.summary))}</p>` : ''}
-          ${event.description ? `<details class="event-details"><summary>${safe(L[lang].more)}</summary><p>${safe(tr(event.description))}</p></details>` : ''}
+          <span class="pill">${safe(tr(event.price) || L[lang].confirmed)}</span>
+          <details class="event-details"><summary>${safe(L[lang].more)}</summary><p>${safe(tr(event.description))}</p>${event.category === 'choir' ? `<a class="detail-link" href="/eventos/stella/#stella-choir-day">${safe(I.get(lang,'Conhecer o STELLA Choir Day'))}</a>` : ''}</details>
           ${event.links ? `<div class="agenda-links">${event.links.map(link => `<a href="${safe(link.url)}" target="_blank" rel="noopener">${safe(link.label)}</a>`).join('')}</div>` : ''}
           ${event.ticketUrl ? `<a class="button gold" href="${event.ticketUrl}" target="_blank" rel="noopener">${L[lang].buy}</a>` : ''}</div>
-          <span class="pill">${safe(tr(event.price) || L[lang].confirmed)}</span>
-        </article>`).join('')}
-      </section>`).join('');
+        </article>`).join('');
   }
 
   function renderDayCards() {
@@ -184,11 +186,11 @@
   }
 
   function visualCard(item, ticket) {
-    return `<article class="visual-card">${img(item.image, tr(item.title))}<div class="visual-copy"><p class="eyebrow">${safe(tr(item.date))}</p><h3>${safe(tr(item.title))}</h3>${item.subtitle ? `<p>${safe(tr(item.subtitle))}</p>` : ''}<p>${safe(tr(item.venue || ''))}${item.price ? ` · ${safe(tr(item.price))}` : ''}</p>${item.description ? `<details class="event-details"><summary>${safe(L[lang].more)}</summary><p>${safe(tr(item.description))}</p></details>` : ''}${ticket ? `<a class="button gold" href="${ticket}" target="_blank" rel="noopener">${L[lang].buy}</a>` : ''}</div></article>`;
+    return `<article class="visual-card">${img(item.image, tr(item.title))}<div class="visual-copy"><p class="eyebrow">${safe(tr(item.date))}</p><h3>${safe(tr(item.title))}</h3>${item.subtitle ? `<p>${safe(tr(item.subtitle))}</p>` : ''}<p>${safe(tr(item.venue || ''))}${item.price ? ` · ${safe(tr(item.price))}` : ''}</p><details class="event-details"><summary>${safe(L[lang].more)}</summary><p>${safe(tr(item.description))}</p></details>${ticket ? `<a class="button gold" href="${ticket}" target="_blank" rel="noopener">${L[lang].buy}</a>` : ''}</div></article>`;
   }
 
   function renderChoirs() {
-    document.querySelector('#choir-list').innerHTML = D.choirs.map(choir => `<article class="choir"><div class="choir-media">${img(choir.leaderImage, choir.leader)}${img(choir.image, choir.title)}</div><div class="choir-copy"><p class="eyebrow">${safe(tr(choir.dates))}</p><h3>${safe(choir.leader)}</h3><p><strong>${safe(choir.title)}</strong><br>${safe(tr(choir.place))}</p><p>${safe(tr(choir.description))}</p></div></article>`).join('');
+    document.querySelector('#choir-list').innerHTML = D.choirs.map(choir => `<article class="choir"><div class="choir-media">${img(choir.leaderImage, choir.leader)}${img(choir.image, choir.title)}</div><div class="choir-copy"><p class="eyebrow">${safe(tr(choir.dates))}</p><h3>${safe(choir.leader)}</h3><p><strong>${safe(choir.title)}</strong><br>${safe(tr(choir.place))}</p><details class="event-details"><summary>${safe(L[lang].more)}</summary><p>${safe(tr(choir.description))}</p><a class="detail-link" href="/eventos/stella/#stella-choir-day">${safe(I.get(lang,'Conhecer o STELLA Choir Day'))}</a></details></div></article>`).join('');
   }
 
   function marketCategory(item) {
@@ -247,4 +249,12 @@
   document.querySelector('#market-search-form').onsubmit = event => {event.preventDefault(); showAll = true; renderMarket();};
   document.querySelector('#show-all').onclick = () => {showAll = true; document.querySelector('#market-search').value = ''; marketFilter = 'all'; renderMarketFilters(); renderMarket();};
   applyLanguage();
+  const instagramGrid = document.querySelector('#stella-insta-grid');
+  if (instagramGrid) {
+    const fallback = instagramGrid.innerHTML;
+    fetch('/instagram-feed').then(response => response.ok ? response.json() : Promise.reject(new Error('feed unavailable'))).then(posts => {
+      if (!Array.isArray(posts) || !posts.length) throw new Error('empty feed');
+      instagramGrid.innerHTML = posts.slice(0, 6).map(post => `<a class="insta-post-item" href="${safe(post.url)}" target="_blank" rel="noopener" aria-label="Instagram VoxLaci"><img src="${safe(post.image)}" alt="" loading="lazy"><span class="insta-post-overlay" aria-hidden="true">Instagram</span></a>`).join('');
+    }).catch(() => { instagramGrid.innerHTML = fallback; });
+  }
 })();

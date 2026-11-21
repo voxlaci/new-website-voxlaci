@@ -2,6 +2,7 @@
 (function(){
 const rows=[
 ["Saber mais","Learn more","Saber más","En savoir plus","Scopri di più","了解更多"],
+["Conhecer o STELLA Choir Day","Discover STELLA Choir Day","Conocer STELLA Choir Day","Découvrir STELLA Choir Day","Scopri STELLA Choir Day","了解 STELLA 合唱日"],
 ["Programa","Programme","Programa","Programme","Programma","节目"],
 ["Mercado","Market","Mercado","Marché","Mercato","市集"],
 ["Bilhetes","Tickets","Entradas","Billets","Biglietti","门票"],
@@ -47,14 +48,11 @@ const rows=[
 ["Capacidade","Capacity","Capacidad","Capacité","Capienza","容量"],
 ["10 mesas por sessão · até 2 jovens por mesa","10 tables per session · up to 2 young exhibitors per table","10 mesas por sesión · hasta 2 jóvenes por mesa","10 tables par session · jusqu’à 2 jeunes par table","10 tavoli per sessione · fino a 2 giovani per tavolo","每场10张桌子 · 每桌最多2名青少年"],
 ["Valor","Price","Precio","Prix","Prezzo","价格"],
-["15 € por mesa","€15 per table","15 € por mesa","15 € par table","15 € per tavolo","每桌15欧元"],
 ["Acompanhe o STELLA","Follow STELLA","Siga STELLA","Suivez STELLA","Segui STELLA","关注 STELLA"],
 ["A programação continua a crescer.","The programme continues to grow.","El programa sigue creciendo.","Le programme continue de s’enrichir.","Il programma continua a crescere.","节目仍在不断丰富。"],
 ["Acompanhe os últimos anúncios, artistas, bastidores e novidades do STELLA Festival 2026. As redes sociais apresentam novidades, mas não alteram automaticamente a programação oficial desta página.","Follow the latest announcements, artists, behind-the-scenes stories and STELLA Festival 2026 news. Social media shares updates but does not automatically change the official programme on this page.","Siga los últimos anuncios, artistas, bastidores y novedades de STELLA Festival 2026. Las redes sociales comparten novedades, pero no modifican automáticamente el programa oficial de esta página.","Suivez les dernières annonces, artistes, coulisses et actualités du STELLA Festival 2026. Les réseaux sociaux partagent des nouvelles sans modifier automatiquement le programme officiel de cette page.","Segui gli ultimi annunci, artisti, retroscena e novità dello STELLA Festival 2026. I social condividono aggiornamenti ma non modificano automaticamente il programma ufficiale di questa pagina.","关注 STELLA 2026 的最新公告、艺术家、幕后故事和新闻。社交媒体会分享更新，但不会自动更改本页官方节目。"],
-["Ver a publicação mais recente","See the latest post","Ver la publicación más reciente","Voir la publication la plus récente","Vedi il post più recente","查看最新帖子"],
 ["Atividade recente no Facebook","Recent Facebook activity","Actividad reciente en Facebook","Activité récente sur Facebook","Attività recente su Facebook","Facebook 最新动态"],
-["SEGUIR NO INSTAGRAM","FOLLOW ON INSTAGRAM","SEGUIR EN INSTAGRAM","SUIVRE SUR INSTAGRAM","SEGUI SU INSTAGRAM","在 Instagram 关注"],
-["SEGUIR NO FACEBOOK","FOLLOW ON FACEBOOK","SEGUIR EN FACEBOOK","SUIVRE SUR FACEBOOK","SEGUI SU FACEBOOK","在 Facebook 关注"],
+["Atividade recente no Instagram","Recent Instagram activity","Actividad reciente en Instagram","Activité récente sur Instagram","Attività recente su Instagram","Instagram 最新动态"],
 ["A carregar as publicações mais recentes…","Loading the latest posts…","Cargando las últimas publicaciones…","Chargement des dernières publications…","Caricamento degli ultimi post…","正在加载最新帖子…"],
 ["Localização","Location","Ubicación","Localisation","Posizione","地点"],
 ["Página geral STELLA","STELLA main page","Página principal de STELLA","Page principale STELLA","Pagina principale STELLA","STELLA 主页"],
