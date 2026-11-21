@@ -71,6 +71,12 @@
   margin-top: 10px;
 }
 
+.event-summary {
+  max-width: 68ch;
+  margin: 8px 0 0;
+  line-height: 1.55;
+}
+
 .event-details summary {
   cursor: pointer;
   color: #826126;

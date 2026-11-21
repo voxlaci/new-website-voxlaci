@@ -155,6 +155,7 @@
           ${eventMedia(event)}
           <div><h3>${safe(tr(event.title))}</h3>
           <p><strong>${safe(tr(event.artist))}</strong>${event.venue ? ` · ${safe(tr(event.venue))}` : ''}</p>
+          ${event.summary ? `<p class="event-summary">${safe(tr(event.summary))}</p>` : ''}
           ${event.description ? `<details class="event-details"><summary>${safe(L[lang].more)}</summary><p>${safe(tr(event.description))}</p></details>` : ''}
           ${event.links ? `<div class="agenda-links">${event.links.map(link => `<a href="${safe(link.url)}" target="_blank" rel="noopener">${safe(link.label)}</a>`).join('')}</div>` : ''}
           ${event.ticketUrl ? `<a class="button gold" href="${event.ticketUrl}" target="_blank" rel="noopener">${L[lang].buy}</a>` : ''}</div>
