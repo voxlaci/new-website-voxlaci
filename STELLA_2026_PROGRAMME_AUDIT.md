@@ -36,7 +36,6 @@ Auditoria gerada em 21 de novembro de 2026. A tabela verifica a fonte central da
 | 12/12/2026 | 11:00 | Concerto Choir Day | SIM | SIM | PT + EN | — | Igreja da Torre d’Águilha |
 | 12/12/2026 | 16:00 | Padre Borga | SIM | SIM | PT + EN | Entrada gratuita | Igreja da Torre d’Águilha |
 | 13/12/2026 | 10:00–18:00 | Mercado de Natal STELLA | SIM | SIM | PT + EN | Entrada livre | Mercado interior |
-| 13/12/2026 | 12:20 | Encontro de Oração de Taizé | SIM | SIM | PT + EN | Entrada livre | Igreja da Torre d’Águilha |
 | 13/12/2026 | 16:00 | Coimbra Gospel Choir | SIM | SIM | PT + EN | Entrada gratuita | Igreja da Torre d’Águilha |
 
 ## Verificações globais
@@ -54,8 +53,7 @@ Auditoria gerada em 21 de novembro de 2026. A tabela verifica a fonte central da
 - Botões redundantes de redes sociais removidos: **SIM**
 - Mercado apresentado em primeiro lugar em cada dia: **SIM**
 - Eventos seguintes ordenados pela hora de início: **SIM**
-- Oração de Taizé em 13 de dezembro às 12h20: **SIM**
-- Oração de Taizé tem poster oficial: **SIM**
+- O evento Oração de Taizé foi retirado da programação por indicação da organização: **SIM**
 - Padre Borga identificado como concerto, sem missa às 17h: **SIM**
 - Assets em falta: **NENHUM dos solicitados nesta auditoria**
 
