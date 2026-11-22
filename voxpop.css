@@ -12,12 +12,22 @@
 .voxpop-city-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.08)}
 .voxpop-city-card img{aspect-ratio:4/3;object-fit:cover;width:100%}
 .voxpop-city-card .voxpop-city-card-body{padding:18px}
+.voxpop-city-card .festival-name{display:block;color:var(--gold);font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
 .voxpop-city-card b{display:block;font:700 1.2rem Manrope;letter-spacing:-.02em;margin:8px 0 4px}
 .voxpop-city-card span.dates{display:block;color:var(--muted);font-size:13px;margin-bottom:8px}
+.voxpop-city-card .price-options{display:flex;gap:8px;margin-top:auto;padding-top:8px;border-top:1px solid var(--line)}
+.voxpop-city-card .price-options strong{display:inline-flex;align-items:center;justify-content:center;min-width:68px;padding:6px 10px;border-radius:99px;background:var(--ivory);color:var(--ink);font:800 13px Manrope}
 .voxpop-city-card span.price{display:block;font-weight:700;font-size:14px}
 .voxpop-city-card span.availability{display:block;color:var(--muted);font-size:12px;margin-top:2px}
 @media(max-width:900px){.voxpop-city-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.voxpop-city-grid{grid-template-columns:1fr}}
+
+.voxpop-hero-edition{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:4px 0 14px;padding:12px 14px;border:1px solid rgba(255,255,255,.34);border-radius:4px;background:rgba(5,8,16,.58);backdrop-filter:blur(8px);color:#fff}
+.voxpop-hero-edition>span{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#e8c880}
+.voxpop-hero-edition>strong{font-size:14px}
+.voxpop-hero-edition>div{display:flex;gap:6px}
+.voxpop-hero-edition>div b{display:inline-flex;padding:5px 9px;border-radius:99px;background:#fff;color:#10131a;font:800 12px Manrope}
+@media(max-width:600px){.voxpop-hero-edition{display:flex;width:100%;align-items:flex-start}.voxpop-hero-edition>strong{width:100%}}
 
 .capacity-note{padding:14px 18px;border:1px solid var(--line);background:var(--ivory);border-radius:2px;font-size:13px;color:var(--muted);margin:16px 0}
 .capacity-note b{color:var(--ink)}
