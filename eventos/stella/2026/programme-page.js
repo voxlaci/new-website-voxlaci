@@ -254,7 +254,9 @@
     const fallback = instagramGrid.innerHTML;
     fetch('/instagram-feed').then(response => response.ok ? response.json() : Promise.reject(new Error('feed unavailable'))).then(posts => {
       if (!Array.isArray(posts) || !posts.length) throw new Error('empty feed');
-      instagramGrid.innerHTML = posts.slice(0, 6).map(post => `<a class="insta-post-item" href="${safe(post.url)}" target="_blank" rel="noopener" aria-label="Instagram VoxLaci"><img src="${safe(post.image)}" alt="" loading="lazy"><span class="insta-post-overlay" aria-hidden="true">Instagram</span></a>`).join('');
+      instagramGrid.innerHTML = posts.slice(0, 6).map(post => post.embed
+        ? `<iframe class="instagram-embed" title="Publicação recente do Instagram VoxLaci" src="${safe(post.embed)}" loading="lazy" allowtransparency="true"></iframe>`
+        : `<a class="insta-post-item" href="${safe(post.url)}" target="_blank" rel="noopener" aria-label="Instagram VoxLaci"><img src="${safe(post.image)}" alt="" loading="lazy"><span class="insta-post-overlay" aria-hidden="true">Instagram</span></a>`).join('');
     }).catch(() => { instagramGrid.innerHTML = fallback; });
   }
 })();

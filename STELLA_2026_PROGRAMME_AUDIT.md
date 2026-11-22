@@ -6,7 +6,6 @@ Auditoria gerada em 21 de novembro de 2026. A tabela verifica a fonte central da
 |---|---|---|---|---|---|---|---|
 | 05/12/2026 | 10:00–18:00 | Mercado de Natal STELLA | SIM | SIM | PT + EN | Entrada livre | Mercado interior |
 | 05/12/2026 | 09:00–11:30 | SILÊNCIO | SIM | SIM | PT + EN | 39 € | Capela do Seminário |
-| 05/12/2026 | 09:00–13:00 | STELLA Choir Day | SIM | SIM | PT + EN | — | STELLA Hall |
 | 05/12/2026 | 10:00–11:00 | STELLA FORUM — Abertura do Festival | SIM | SIM | PT + EN | Entrada livre · capacidade 100 pessoas | STELLA Hall |
 | 05/12/2026 | 12:00 | Concerto Choir Day | SIM | SIM | PT + EN | — | STELLA Hall |
 | 05/12/2026 | 13:30 | Danças Indianas · Bollywood | SIM | SIM | PT + EN | — | STELLA Hall |
