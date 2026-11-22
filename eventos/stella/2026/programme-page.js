@@ -252,7 +252,7 @@
   const instagramGrid = document.querySelector('#stella-insta-grid');
   if (instagramGrid) {
     const fallback = instagramGrid.innerHTML;
-    fetch('/instagram-feed').then(response => response.ok ? response.json() : Promise.reject(new Error('feed unavailable'))).then(posts => {
+    fetch('/instagram-feed?v=2').then(response => response.ok ? response.json() : Promise.reject(new Error('feed unavailable'))).then(posts => {
       if (!Array.isArray(posts) || !posts.length) throw new Error('empty feed');
       instagramGrid.innerHTML = posts.slice(0, 6).map(post => post.embed
         ? `<iframe class="instagram-embed" title="Publicação recente do Instagram VoxLaci" src="${safe(post.embed)}" loading="lazy" allowtransparency="true"></iframe>`
