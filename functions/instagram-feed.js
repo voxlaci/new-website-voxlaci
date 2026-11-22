@@ -1,16 +1,16 @@
 const POSTS_LIMIT = 6; // alterar aqui para mudar o número de posts
 const CACHE_TTL = 3600; // segundos — 1 hora
 const FALLBACK_POSTS = [
-  'DgAUaYeDbXc',
-  'Df-P_BQjaRF',
-  'Df9l-wZCGS6',
-  'Df5H_5MoZH-',
-  'Df2rssmI6dw',
-  'Df1rrjdCGCw'
-].map(code => ({
+  ['Df0g0S3iH62', '/public/images/stella/2026/social/instagram-nuno-barroso.jpg'],
+  ['DetiYA9iMw4', '/public/images/stella/2026/social/instagram-frei-hermano.jpg'],
+  ['DezgtGzCPv8', '/public/images/stella/2026/social/instagram-simplus.jpg'],
+  ['DgAUaYeDbXc', '/public/images/stella/2026/social/instagram-mini-concerts.jpg'],
+  ['Df-P_BQjaRF', '/public/images/stella/2026/social/instagram-stella-forum.jpg'],
+  ['Df9l-wZCGS6', '/public/images/stella/2026/social/instagram-countdown.jpg']
+].map(([code, image]) => ({
   id: code,
   url: `https://www.instagram.com/voxlaci/p/${code}/`,
-  embed: `https://www.instagram.com/p/${code}/embed/captioned/`
+  image
 }));
 
 export async function onRequest({ env }) {
