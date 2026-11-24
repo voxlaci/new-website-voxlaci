@@ -214,10 +214,13 @@
     const total = list.length;
     if (!showAll && !query && marketFilter === 'all') list = list.slice(0, 12);
     document.querySelector('#exhibitors').innerHTML = list.length ? list.map(item => {
-      const participation = item[0] === 'Rita Agapito'
-        ? (lang === 'pt' ? ' · 5 e 6 dezembro' : ' · 5 & 6 December')
+      const participation = item[3]
+        ? ` · ${safe(lang === 'pt' ? item[3] : item[3].replace('5 e 6 dezembro', '5 & 6 December'))}`
         : '';
-      return `<article class="exhibitor"><b>${safe(item[0])}</b><span>${safe(item[1])}${item[2] ? ` · ${safe(item[2])}` : ''}${participation}</span></article>`;
+      const tables = item[4]
+        ? ` · ${safe(lang === 'pt' ? item[4] : item[4].replace('1 mesa por dia', '1 table per day'))}`
+        : '';
+      return `<article class="exhibitor"><b>${safe(item[0])}</b><span>${safe(item[1])}${item[2] ? ` · ${safe(item[2])}` : ''}${participation}${tables}</span></article>`;
     }).join('') : `<article class="exhibitor"><b>${L[lang].none}</b><span>${L[lang].try}</span></article>`;
     document.querySelector('#market-results-status').textContent = query || marketFilter !== 'all' ? `${total} ${total === 1 ? L[lang].result : L[lang].results}` : '';
   }
