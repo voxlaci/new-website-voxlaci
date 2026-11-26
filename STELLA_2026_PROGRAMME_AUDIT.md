@@ -21,7 +21,6 @@ Auditoria gerada em 21 de novembro de 2026. A tabela verifica a fonte central da
 | 06/12/2026 | 16:00–17:30 | Constelações Familiares segundo Bert Hellinger | SIM | SIM | PT + EN | 29 € | Workshop · STELLA Hall |
 | 08/12/2026 | 10:00–18:00 | Mercado de Natal STELLA | SIM | SIM | PT + EN | Entrada livre | MERCADO INTERIOR · Cantinho da Nossa Senhora |
 | 08/12/2026 | 10:00–13:00 | Kids Makers Market | SIM | SIM | PT + EN | Entrada livre | MERCADO INTERIOR · Cantinho da Nossa Senhora |
-| 08/12/2026 | 10:00 | Nuno Barroso — Um Regresso a Casa | SIM | SIM | PT + EN | 10 €–25 € | Auditório da Torre d’Águilha |
 | 08/12/2026 | 12:00 | SIMPLUS | SIM | SIM | PT + EN | 10 €–25 € | Auditório |
 | 08/12/2026 | 13:00 | CAOSMOS | SIM | SIM | PT + EN | Entrada livre | STELLA Hall |
 | 08/12/2026 | 14:00 | St. Dominic’s International School | SIM | SIM | PT + EN | Entrada livre | STELLA Hall |

@@ -27,7 +27,6 @@ O ZIP foi extraído integralmente. Os 14 ficheiros foram abertos e identificados
 | `file_00000000579881f49ab169f51a98c6c9` | The Hebrew Fairies — versão final sem flores | Instalado |
 | `a_square_poster_in_the_same_elegant_dark_navy_gold.png` | Junior School Choir — composição anterior | Não usado; substituído pela versão final de St. Dominic’s |
 | `file_00000000143881f497cc04ce3ad4eba8` | Happy Kids Choir / Oana Daniela Dobre | Instalado |
-| `regresso_a_casa_em_destaque.png` | Nuno Barroso — Um Regresso a Casa | Instalado |
 | `stella_2026_comunidade_em_harmonia.png` | CAOSMOS / Scholas Occurrentes Portugal | Instalado |
 
 ## Assets instalados
@@ -51,7 +50,6 @@ Foram instalados 11 ficheiros WebP de alta qualidade em `public/images/stella/20
 | Vozes do Mar | 6 dezembro | Sim | `public/images/stella/2026/community-voices/vozes-do-mar.png` |
 | Constelações Familiares | 6 dezembro | Sim | `public/stella/2026/paula_matos_constelacoes.png` |
 | Kids Makers Market | 8 dezembro | Sim | `public/images/stella/2026/mercado/kids-makers-market.png` |
-| Nuno Barroso — Um Regresso a Casa | 8 dezembro | Sim | `public/images/stella/2026/concertos/nuno-barroso-um-regresso-a-casa.webp` |
 | SIMPLUS | 8 dezembro | Sim | `public/stella/2026/simplus.png` |
 | CAOSMOS | 8 dezembro | Sim | `public/images/stella/2026/community-voices/caosmos.webp` |
 | St. Dominic’s International School | 8 dezembro | Sim | `public/images/stella/2026/community-voices/st-dominics-junior-school-choir.webp` |
