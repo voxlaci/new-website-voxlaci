@@ -77,6 +77,10 @@ window.STELLA_2026.exhibitors=window.STELLA_2026.exhibitors.map(item=>
     ? ["Magda Silva","Perfumes, velas e cosmética","Chogan","8, 12 e 13 dezembro","1 mesa por dia"]
     : item
 );
+if(!window.STELLA_2026.exhibitors.some(item=>item[0]==="Carla Azenha")){
+  window.STELLA_2026.exhibitors.push(["Carla Azenha","Bijuteria e acessórios","Coração de Tinta","12 e 13 dezembro","1 mesa por dia"]);
+}
+window.STELLA_2026.exhibitors.sort((a,b)=>a[0].localeCompare(b[0],"pt"));
 
 // Retratos e cartaz oficiais enviados para esta edição.
 const officialPortraits={
